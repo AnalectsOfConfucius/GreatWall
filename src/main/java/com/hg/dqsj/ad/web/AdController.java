@@ -76,12 +76,13 @@ public class AdController extends BaseController {
 	public Map<String, Object> query(HttpServletRequest request, ModelMap model) {
 		Map<String, Object> result = new HashMap<String, Object>(); // 返回结果集
 		try {
-			if (menuService.isHasOperator(request, "search")) {
+			/*if (menuService.isHasOperator(request, "search")) {
 				result = feAdService.selectByCriterias(request); // 查询结果
 			} else {
 				result.put("isError", "1");
 				result.put("msg", "你未拥有当前菜单的查询权限！");
-			}
+			}*/
+			result = feAdService.selectByCriterias(request); // 查询结果
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			result.put("isError", "1");
@@ -102,12 +103,13 @@ public class AdController extends BaseController {
 	public Map<String, Object> saveOrUpdate(HttpServletRequest request, @RequestParam(value = "filepath", required = false) MultipartFile file, ModelMap model) {
 		Map<String, Object> result = new HashMap<String, Object>(); // 返回结果集
 		try {
-			if (menuService.isHasOperator(request, "update")) {
+			/*if (menuService.isHasOperator(request, "update")) {
 				result = feAdService.saveOrUpdate(request, file != null ? uploadFile(file, request) : null);
 			} else {
 				result.put("isError", "1");
 				result.put("msg", "你未拥有当前菜单的编辑权限！");
-			}
+			}*/
+			result = feAdService.saveOrUpdate(request, file != null ? uploadFile(file, request) : null);
 		} catch (Exception e) {
 			result.put("isError", "1"); // 是否报错[0:否][1:是]
 			result.put("msg", "保存失败，请重试！");

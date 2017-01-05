@@ -351,6 +351,7 @@ var parentPanel = $('#wrapper',window.parent.document);
 var hidOperatMenuId = $('#menuOpData',window.parent.document);
 var operatMenuStr = hidOperatMenuId.val();
 var menuOperatJson = eval('('+operatMenuStr+')');
+console.log(menuOperatJson);
 
 /**
  * 添加权限

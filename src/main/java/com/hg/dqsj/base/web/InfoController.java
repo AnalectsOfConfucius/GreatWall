@@ -83,12 +83,13 @@ public class InfoController extends BaseController {
 	public Map<String, Object> saveOrUpdate(HttpServletRequest request, @RequestParam(value = "filepath", required = false) MultipartFile file, ModelMap model) {
 		Map<String, Object> result = new HashMap<String, Object>(); // 返回结果集
 		try {
-			if (menuService.isHasOperator(request, "update")) {
-				result = infoService.saveOrUpdate(request, file != null ? uploadFile(file, request) : null);
+			/*if (menuService.isHasOperator(request, "update")) {
+
 			} else {
 				result.put("isError", "1");
 				result.put("msg", "你未拥有当前菜单的编辑权限！");
-			}
+			}*/
+			result = infoService.saveOrUpdate(request, file != null ? uploadFile(file, request) : null);
 		} catch (Exception e) {
 			result.put("isError", "1");
 			result.put("msg", "保存失败，请重试！");
