@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.base.dao.FEInfoMapDao">
+    <!-- 根据类别ID查询一条详细信息 -->
+    <select id="selectSingleByTypeId" parameterType="java.lang.String" resultType="com.hg.dqsj.base.entity.FEInfoMap">
+        SELECT
+            id,
+            infoMapType,
+            typeId,
+            infoId,
+            infoMapOrder,
+            remark,
+            createDate,
+            createUserId,
+            updateDate,
+            updateUserId,
+            deleteFlag
+        FROM
+            dqsj_fe_info_map
+        WHERE
+            deleteFlag = '0'
+        AND infoMapType = '1'
+        AND typeId = #{typeId}
+    </select>
+
+    <!-- 根据类别ID和资讯ID查询详细信息 -->
+    <select id="selectByTypeIdAndInfoId" parameterType="java.util.Map" resultType="com.hg.dqsj.base.entity.FEInfoMap">
+        SELECT
+            id,
+            infoMapType,
+            typeId,
+            infoId,
+            infoMapOrder,
+            remark,
+            createDate,
+            createUserId,
+            updateDate,
+            updateUserId,
+            deleteFlag
+        FROM
+            dqsj_fe_info_map
+        WHERE
+            deleteFlag = '0'
+        AND typeId = '${typeId}'
+        AND infoId = '${infoId}'
+    </select>
+    
+    <!-- 根据类别ID查询多个详细信息 -->
+    <select id="selectMultiByTypeId" parameterType="java.util.Map" resultType="com.hg.dqsj.base.entity.FEInfoMap">
+        SELECT
+            id,
+            infoMapType,
+            typeId,
+            infoId,
+            infoMapOrder,
+            remark,
+            createDate,
+            createUserId,
+            updateDate,
+            updateUserId,
+            deleteFlag
+        FROM
+            dqsj_fe_info_map
+        WHERE
+            deleteFlag = '0'
+        AND infoMapType = '2'
+        AND typeId = #{typeId}
+    </select>
+    
+    <!-- 保存 -->
+    <insert id="save" parameterType="com.hg.dqsj.base.entity.FEInfoMap">
+		INSERT INTO dqsj_fe_info_map (
+		    id,
+            infoMapType,
+            typeId,
+            infoId,
+            infoMapOrder,
+            remark,
+            createDate,
+            createUserId,
+            updateDate,
+            updateUserId,
+            deleteFlag
+		)
+		VALUES
+		    (
+		        #{id},
+				#{infoMapType},
+				#{typeId},
+				#{infoId},
+				#{infoMapOrder},
+				#{remark},
+				#{createDate},
+				#{createUserId},
+				#{updateDate},
+				#{updateUserId},
+				#{deleteFlag}
+		    )
+    </insert>
+    
+     <!-- 更新 -->
+    <update id="update" parameterType="com.hg.dqsj.base.entity.FEInfoMap">
+        UPDATE dqsj_fe_info_map
+        SET infoMapType = #{infoMapType},
+        typeId = #{typeId},
+        infoId = #{infoId},
+        infoMapOrder = #{infoMapOrder},
+        remark = #{remark},
+        createDate = #{createDate},
+        createUserId = #{createUserId},
+        updateDate = #{updateDate},
+        updateUserId = #{updateUserId},
+        deleteFlag = #{deleteFlag}
+        WHERE
+            id = #{id}
+    </update>
+    
+    <!-- 更新删除标识 -->
+    <update id="updateDeleteFlagById" parameterType="com.hg.dqsj.base.entity.FEInfoMap">
+        UPDATE dqsj_fe_info_map
+        SET 
+        updateDate = #{updateDate},
+        updateUserId = #{updateUserId},
+        deleteFlag = #{deleteFlag}
+        WHERE
+            id = #{id}
+    </update>
+</mapper>

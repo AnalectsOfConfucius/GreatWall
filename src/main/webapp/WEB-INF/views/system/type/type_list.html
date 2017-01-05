@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>民生大千世界梦幻乐园管理系统-系统管理-类别列表</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/pagination.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<div class="tabcc">
+							<table>
+								<tr>
+									<td>类别标识：</td>
+									<td><select class="form-control-c" id="selTypeFlag">
+											<option value="">全部</option>
+											<option value="1">资讯</option>
+											<option value="2">美食</option>
+											<option value="3">特色商品</option>
+											<option value="4">酒店客房</option>
+											<option value="5">年卡</option>
+									</select></td>
+									<td>类别代码：</td>
+									<td><input id="txtTypeCode" type="text" class="form-control-c"></td>
+									<td>类别名称：</td>
+									<td><input id="txtTypeName" type="text" class="form-control-c"></td>
+									<td><button type="button" id="issearch" class="binCont" onclick="searchDetails()">搜索</button></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div id="tbListContent" class="ibox-content">
+						<input id="hideTypeCode" type="hidden">
+						<input id="hideTypeFlag" type="hidden">
+						<input id="hideTypeName" type="hidden">
+						<button id="isadd" class="btn btn-primary" data-toggle="modal" data-target="#addModal">添加</button>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th style="width: 10%;">类别标识</th>
+									<th style="width: 25%;">类别代码</th>
+									<th style="width: 25%;">类别名称</th>
+									<th style="width: 10%;">排序</th>
+									<th id="thOperate" style="width: 30%;">操作</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+						<!--分页 S-->
+						<div class="pages clearfix">
+							<div id="Pagination" class="pagecontent"></div>
+							<div class="searchPage">
+								<span class="page-sum">
+									共<strong class="allPage">0</strong>页
+								</span>
+							</div>
+						</div>
+						<!--分页 E-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--添加 S-->
+	<div class="modal fade" id="addModal" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">添加类别</h2>
+					<a type="button" class="btn btn-primary close-modal" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" id="addForm">
+							<input name="id" type="hidden" />
+							<div class="form-group">
+								<label class="col-sm-2 control-label">类别标识：</label>
+								<div class="col-sm-2">
+									<select class="form-control m-b" name="typeFlag">
+										<option value="">请选择</option>
+										<option value="1">资讯</option>
+										<option value="2">美食</option>
+										<option value="3">特色商品</option>
+										<option value="4">酒店客房</option>
+										<option value="5">年卡</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">类别代码：</label>
+								<div class="col-sm-7">
+									<input name="typeCode" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">类别名称：</label>
+								<div class="col-sm-7">
+									<input name="typeName" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">前台链接：</label>
+								<div class="col-sm-7">
+									<input name="feAction" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">类别排序：</label>
+								<div class="col-sm-7">
+									<input name="typeOrder" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-7">
+									<textarea name="remark" class="form-control" required aria-required="true"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-2 pb20">
+									<a class="btn btn-primary" type="submit" onclick="saveDetail('#addForm')">保存</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--添加 E-->
+	<!--查看 S-->
+	<div class="modal fade" id="viewModal" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">查看类别</h2>
+					<a type="button" class="btn btn-primary close-modal" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" id="viewForm">
+							<input name="id" type="hidden" />
+							<div class="form-group">
+								<label class="col-sm-2 control-label">类别标识：</label>
+								<div class="col-sm-2">
+									<input type="text" name="typeFlagStr" type="text" class="form-control" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">类别代码：</label>
+								<div class="col-sm-7">
+									<input name="typeCode" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">类别名称：</label>
+								<div class="col-sm-7">
+									<input name="typeName" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">前台链接：</label>
+								<div class="col-sm-7">
+									<input name="feAction" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-7">
+									<textarea name="remark" class="form-control" required aria-required="true" disabled></textarea>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--查看 E-->
+	<!--  修改（Modal） -->
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">修改类别</h2>
+					<a type="button" class="btn btn-primary close-modal" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" id="editForm">
+							<input name="id" type="hidden" />
+							<div class="form-group">
+								<label class="col-sm-2 control-label">类别标识：</label>
+								<div class="col-sm-2">
+									<select class="form-control m-b" name="typeFlag">
+										<option value="">请选择</option>
+										<option value="1">资讯</option>
+										<option value="2">美食</option>
+										<option value="3">特色商品</option>
+										<option value="4">酒店客房</option>
+										<option value="5">年卡</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">类别代码：</label>
+								<div class="col-sm-7">
+									<input name="typeCode" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">类别名称：</label>
+								<div class="col-sm-7">
+									<input name="typeName" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">前台链接：</label>
+								<div class="col-sm-7">
+									<input name="feAction" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">类别排序：</label>
+								<div class="col-sm-7">
+									<input name="typeOrder" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-7">
+									<textarea name="remark" class="form-control" required aria-required="true"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-2 pb20">
+									<a class="btn btn-primary" type="submit" onclick="saveDetail('#editForm')">保存</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- （修改 （Modal））  -->
+	<script src="/js/jquery.min.js?v=2.1.4"></script>
+	<script src="/js/bootstrap.min.js?v=3.3.5"></script>
+	<script src="/js/script.js"></script>
+	<script src="/js/wxm.dialog.js"></script>
+	<script>
+        // 查询详细信息列表
+        function searchDetails() {
+            $("#hideTypeFlag").val($("#selTypeFlag").val()); // 类别标识
+            $("#hideTypeCode").val($("#txtTypeCode").val()); // 类别代码
+            $("#hideTypeName").val($("#txtTypeName").val()); // 类别名称
+            // 加载详细信息列表
+            loadDetail();
+        }
+        // 加载详细信息列表
+        function loadDetail(currentPage) {
+            wxm.maskLayer();
+            if (!currentPage) {
+                currentPage = 1;
+            }
+            var typeFlag = $("#hideTypeFlag").val(); // 类别标识
+            var typeCode = $("#hideTypeCode").val(); // 类别代码
+            var typeName = $("#hideTypeName").val(); // 类别名称
+            $.ajax({
+                type : 'POST',
+                url : '/type/query',
+                data : {
+                    "typeFlag" : typeFlag,
+                    "typeCode" : typeCode,
+                    "typeName" : typeName,
+                    "currentPage" : currentPage
+                },
+                dataType : 'json',
+                success : function(result) {
+                    if (result.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                    } else {
+                        loadHtml(result);
+                    }
+                    wxm.maskLayer.close();
+                }
+            });
+        }
+        // 加载元素
+        function loadHtml(result) {
+            // 详细信息列表容器
+            var $tbListContentTBody = $("#tbListContent table tbody");
+            // 清空详细信息列表
+            $tbListContentTBody.empty();
+            // 分页
+            paginationFun($("#Pagination"), (result.totalCount || 0), 10, (result.currentPage || 0), "loadDetail");
+            // 若返回结果为空，则退出
+            if (typeof (result) == "undefined" || typeof (result.details) == "undefined" || result.details.length <= 0) {
+                return;
+            }
+            // 添加查询结果
+            var details = result.details;
+            if (details != null && details.length > 0) {
+                for (var i = 0; i < details.length; i++) {
+                    var $tr = $('<tr><td>' + (details[i].typeFlagStr || '') + '</td><td>' + (details[i].typeCode || '') + '</td><td>' + (details[i].typeName || '') + '</td><td>' + (details[i].typeOrder || '') + '</td></tr>');
+                    var $td = $('<td class="thOperate"></td>');
+                    var $view = $('<a href="#" class="view-detail isview" data-toggle="modal" data-target="#viewModal" data-id="' + details[i].id + '">查看</a>');
+                    var $edit = $('<a href="#" class="view-detail isupt" data-toggle="modal" data-target="#editModal" data-id="' + details[i].id + '">修改</a>');
+                    var $remove = $('<a href="#" class="delete-detail isdel" data-toggle="modal" data-id="' + details[i].id + '">删除</a>');
+
+                    $td.append($view);
+                    $td.append($edit);
+                    $td.append($remove);
+                    $tr.append($td);
+                    $tbListContentTBody.append($tr);
+                }
+            }
+			//权限管理
+			var isview = isAuth($('.thOperate .isview'),'view');
+			var isupt = isAuth($('.thOperate .isupt'),'update');
+			var isdel = isAuth($('.thOperate .isdel'),'delete');
+			if(!isview && !isupt && !isdel){
+				$('#thOperate').remove();
+				$('.thOperate').remove();
+			}
+			
+            $('.view-detail').off('click').on('click', function() {
+                viewDetail($(this).attr('data-target'), $(this).attr('data-id'))
+            })
+
+            $('.delete-detail').off('click').on('click', function() {
+                deleteDetail($(this).attr('data-id'))
+            })
+        }
+        // 保存详细信息
+        function saveDetail(formId) {
+            wxm.maskLayer();
+            var data = $(formId).serialize();
+            $.ajax({
+                type : 'POST',
+                url : '/type/saveOrUpdate',
+                data : data,
+                dataType : 'json',
+                success : function(result) {
+                    wxm.maskLayer.close();
+                    if (!result || !result.isError) {
+                        wxm.dialog({
+                            type : 'error',
+                            message : "操作失败，请联系管理员！"
+                        });
+                        return;
+                    }
+                    if (result.isError == "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                        return;
+                    }
+                    $(formId).find("input[name='id']").val(result.id);
+                    searchDetails();
+                    wxm.dialog({
+                        type : 'success',
+                        message : "保存成功！"
+                    });
+                }
+            });
+        }
+        // 展示详细信息
+        function viewDetail(modelId, objId) {
+            $.ajax({
+                url : "/type/detail",
+                data : {
+                    'id' : objId
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : data.msg
+                        });
+                    } else {
+                        var $model = $(modelId);
+                        clearForm(modelId)
+                        var typeFlag = data.detail.typeFlag;
+                        var typeFlagStr;
+                        if (typeFlag == "1") {
+                            typeFlagStr = "资讯"
+                        } else if (typeFlag == "2") {
+                            typeFlagStr = "美食"
+                        }
+                        $model.find("input[name='id']").val(data.detail.id);
+                        $model.find("input[name='typeFlagStr']").val(typeFlagStr);
+                        $model.find("input[name='typeFlag']").val(data.detail.typeFlag);
+                        $model.find("select[name='typeFlag']").val(data.detail.typeFlag);
+                        $model.find("input[name='typeCode']").val(data.detail.typeCode);
+                        $model.find("input[name='typeName']").val(data.detail.typeName);
+                        $model.find("input[name='feAction']").val(data.detail.feAction);
+                        $model.find("input[name='remark']").val(data.detail.remark);
+                    }
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！！"
+                    });
+                }
+            });
+        }
+
+        // 关闭窗口
+        $(".close-modal").bind('click', function() {
+            clearForm("#" + $(this).parents('.modal.fade').attr("id"))
+        })
+        // 清空表单数据
+        function clearForm(panel) {
+            $(panel).find("input[type='text']").val("");
+            $(panel).find("input[type='hidden']").val("");
+            $(panel).find("input[type='checkbox']").prop("checked", false);
+            $(panel).find("textarea").val("");
+            var selects = $(panel).find("select");
+            selects.find("option").prop("selected", false);
+            selects.find("option:first").prop("selected", "selected");
+            $(panel).find(".imgFileUp img").attr("src", "/images/add_img.png");
+        }
+
+        // 删除详细信息
+        function deleteDetail(objId) {
+            wxm.dialog({
+                type : 'confirm',
+                message : "确定是否删除？",
+                callback : {
+                    correct : function() {
+                        wxm.maskLayer();
+                        $.ajax({
+                            url : "/type/delete",
+                            data : {
+                                'id' : objId
+                            },
+                            type : 'POST',
+                            cache : false,
+                            async : false,
+                            dataType : 'json',
+                            success : function(result) {
+                                wxm.maskLayer.close();
+                                if (!result || !result.isError) {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : "操作失败，请重试！"
+                                    });
+                                    return;
+                                }
+                                if (result.isError == "1") {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : result.msg
+                                    });
+                                    return;
+                                }
+                                searchDetails();
+                                wxm.dialog({
+                                    type : 'success',
+                                    message : "删除成功！"
+                                });
+                            },
+                            error : function() {
+                                wxm.maskLayer.close();
+                                wxm.dialog({
+                                    type : 'error',
+                                    message : "操作失败，请重试！！"
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        $(function() {
+            if(isAuth($('#issearch'),'search')){
+	            // 加载详细信息列表
+	            loadDetail();
+			}
+			isAuth($('#isadd'),'add');
+        })
+    </script>
+</body>
+</html>

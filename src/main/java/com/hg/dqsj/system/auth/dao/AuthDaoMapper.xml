@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.system.auth.dao.AuthDao">
+
+	<!-- 用户登录 -->
+	<select id="selectUserByNameAndPw" parameterType="map"
+		resultType="com.hg.dqsj.system.user.entity.User">
+		select
+		t.id,
+		t.userPhone,
+		t.userName,
+		t.userPhone,
+		t.userTel,
+		t.userEmail,
+		t.userGender,
+		t.userPicUrl,
+		t.isLocked,
+		t.adminFlag
+		from dqsj_sm_user t
+		where t.deleteFlag = '0'
+		and t.userName = #{userName}
+		and t.userPassWord = #{password}
+	</select>
+</mapper>

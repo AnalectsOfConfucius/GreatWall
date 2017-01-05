@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>民生大千世界梦幻乐园管理系统-系统管理-广告列表</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/pagination.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="ibox float-e-margins">
+					<div id="divSearch" class="ibox-title">
+						<div class="tabcc">
+							<table>
+								<tr>
+									<td>广告标题：</td>
+									<td><input id="txtAdTitle" type="text" class="form-control-c"></td>
+									<td>广告类型：</td>
+									<td><select class="form-control-c" id="selLinkTypeId"> <#if types??>
+											<option value="">全部</option><#list types as type>
+											<option value="${(type.id)!''}">${(type.typeName)!''}</option> </#list></#if>
+									</select></td>
+									<td><button type="button" class="binCont" onclick="searchDetails()">搜索</button></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div id="tbListContent" class="ibox-content">
+						<input id="hideAdTitle" type="hidden">
+						<input id="hideTypeId" type="hidden" value="${(typeId)!''}" />
+						<input id="hideLinkTypeId" type="hidden">
+						<button class="btn btn-primary" data-toggle="modal" data-target="#addModal" onclick="changeModelId('#addModal')">添加</button>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th style="width: 20%;">广告标题</th>
+									<th style="width: 8%;">广告类型</th>
+									<th style="width: 20%;">广告名称</th>
+									<th style="width: 8%;">排序</th>
+									<th style="width: 16%;">更新日期</th>
+									<th id="thOperate" style="width: 20%;">操作</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+						<!--分页 S-->
+						<div class="pages clearfix">
+							<div id="Pagination" class="pagecontent"></div>
+							<div class="searchPage">
+								<span class="page-sum">
+									共<strong class="allPage">0</strong>页
+								</span>
+							</div>
+						</div>
+						<!--分页 E-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--添加 S-->
+	<div class="modal fade" id="addModal" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">添加</h2>
+					<a type="button" class="btn btn-primary close-modal" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" id="addForm" enctype="multipart/form-data">
+							<input name="id" type="hidden" />
+							<input name="linkObjId" type="hidden" />
+							<input name="typeId" type="hidden" value="${(typeId)!''}" />
+							<div class="form-group">
+								<label class="col-sm-3 control-label">广告标题：</label>
+								<div class="col-sm-7">
+									<input name="adTitle" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">广告类型：</label>
+								<div class="col-sm-4">
+									<select class="form-control" name="linkTypeId" style="margin: 0;"> <#if types??>
+										<option value="">请选择</option><#list types as type>
+										<option value="${(type.id)!''}" data-flag="${(type.typeFlag)!''}">${(type.typeName)!''}</option> </#list></#if>
+									</select>
+								</div>
+								<div class="col-sm-4">
+									<a class="btn btn-primary select-ad-obj" data-toggle="modal" data-target="#selectModal" style="display: none;">选择广告</a>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">广告名称：</label>
+								<div class="col-sm-7">
+									<input name="linkObjName" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">封面图片：</label>
+								<div class="col-sm-7 imgFileUp">
+									<input type="file" name="filepath" id="addImg" onchange="preImg(this.id,'addImgPre',100,100);" style="display: none;">
+									<img id="addImgPre" src="/images/add_img.png" data-name="picPath" style="max-width: 100px; max-height: 100px;" onclick="javascript:$('#addImg').click();">
+									<p style="margin-top: 10px;">
+										<a class="btn btn-info" style="padding: 5px 20px; border-radius: 0;" onclick="javascript:$('#addImg').click();">修改</a>
+										<a style="margin-left: 10px; padding: 5px 20px; border-radius: 0;" class="btn btn-info" onclick="removImg(this)">删除</a>
+									</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">排序：</label>
+								<div class="col-sm-4">
+									<input name="adOrder" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">备注：</label>
+								<div class="col-sm-7">
+									<textarea name="remark" class="form-control" required aria-required="true"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-2 pb20 btn_save_ctn">
+									<a class="btn btn-primary" type="submit" onclick="saveDetail('#addForm')">保存</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--添加 E-->
+	<!--查看 S-->
+	<div class="modal fade" id="viewModal" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">查看</h2>
+					<a type="button" class="btn btn-primary close-modal" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" id="viewForm">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">广告标题：</label>
+								<div class="col-sm-7">
+									<input name="adTitle" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">广告类型：</label>
+								<div class="col-sm-4">
+									<input name="linkTypeName" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">广告名称：</label>
+								<div class="col-sm-4">
+									<input name="linkObjName" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">封面图片：</label>
+								<div class="col-sm-7 imgFileUp">
+									<img class="img_adMiniPicUrl" src="/images/add_img.png" style="max-width: 100px; max-height: 100px;">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">排序：</label>
+								<div class="col-sm-4">
+									<input name="adOrder" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">备注：</label>
+								<div class="col-sm-7">
+									<textarea name="remark" class="form-control" required aria-required="true" disabled></textarea>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--查看 E-->
+	<!--  修改（Modal） -->
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">修改</h2>
+					<a type="button" class="btn btn-primary close-modal" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" id="editForm" enctype="multipart/form-data">
+							<input name="id" type="hidden" />
+							<input name="linkObjId" type="hidden" />
+							<input name="typeId" type="hidden" value="${(typeId)!''}" />
+							<div class="form-group">
+								<label class="col-sm-3 control-label">广告标题：</label>
+								<div class="col-sm-7">
+									<input name="adTitle" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">广告类型：</label>
+								<div class="col-sm-4">
+									<select class="form-control" name="linkTypeId" style="margin: 0;"> <#if types??>
+										<option value="">请选择</option><#list types as type>
+										<option value="${(type.id)!''}" data-flag="${(type.typeFlag)!''}">${(type.typeName)!''}</option> </#list></#if>
+									</select>
+								</div>
+								<div class="col-sm-4">
+									<a class="btn btn-primary select-ad-obj" data-toggle="modal" data-target="#selectModal" style="display: none;">选择广告</a>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">广告名称：</label>
+								<div class="col-sm-7">
+									<input name="linkObjName" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">封面图片：</label>
+								<div class="col-sm-7 imgFileUp">
+									<input type="file" name="filepath" id="updateImg" onchange="preImg(this.id,'updateImgPre',100,100);" style="display: none;">
+									<img id="updateImgPre" src="/images/add_img.png" data-name="picPath" style="max-width: 100px; max-height: 100px;" onclick="javascript:$('#updateImg').click();">
+									<p style="margin-top: 10px;">
+										<a class="btn btn-info" style="padding: 5px 20px; border-radius: 0;" onclick="javascript:$('#updateImg').click();">修改</a>
+										<a style="margin-left: 10px; padding: 5px 20px; border-radius: 0;" class="btn btn-info" onclick="removImg(this)">删除</a>
+									</p>
+									<input name="adMiniPicUrl" type="hidden" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">排序：</label>
+								<div class="col-sm-4">
+									<input name="adOrder" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">备注：</label>
+								<div class="col-sm-7">
+									<textarea name="remark" class="form-control" required aria-required="true"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-2 pb20 btn_save_ctn">
+									<a class="btn btn-primary" type="submit" onclick="saveDetail('#editForm')">保存</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- （修改 （Modal））  -->
+	<!--选择广告 S-->
+	<div class="modal fade" id="selectModal" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar" style="max-width: 900px; min-height: 700px;">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">选择广告</h2>
+					<a type="button" class="btn btn-primary" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<div class="row" style="margin-bottom: 10px;">
+							<div class="col-md-4" style="margin-top: 2px;">
+								<div class="input-group query">
+									<span>美食：</span>
+									<input id="txtObjName" type="text" style="height: 32px;">
+								</div>
+							</div>
+							<div id="divObjParentName" class="col-md-4" style="margin-top: 2px;">
+								<div class="input-group query">
+									<span>美食店：</span>
+									<input id="txtObjParentName" type="text" style="height: 32px;">
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="input-group">
+									<button type="button" class="btn btn-primary" onclick="searchAdDetail()">搜索</button>
+								</div>
+							</div>
+						</div>
+						<div class="ibox-content">
+							<!-- 美食店 -->
+							<input id="hideObjParentName" type="hidden" />
+							<!-- 目标广告名称 -->
+							<input id="hideObjName" type="hidden" />
+							<!-- 目标广告类型 -->
+							<input id="hideAdObjTpyeId" type="hidden" />
+							<!-- 窗口ID -->
+							<input id="hideModelId" type="hidden" />
+							<table class="table table-bordered">
+								<thead>
+									<tr id="trAdObjLink">
+										<th style="width: 10%;">选择</th>
+										<th id="thAdObjTitle" style="width: 40%;">美食</th>
+										<th id="thAdObjShop" style="width: 20%;">美食店</th>
+										<th style="width: 30%;">简介</th>
+									</tr>
+								</thead>
+								<tbody id="tabcontent_g"></tbody>
+							</table>
+							<!--分页 S-->
+							<div class="pages clearfix">
+								<div id="Pagination_g" class="pagecontent"></div>
+								<div class="searchPage">
+									<span class="page-sum">
+										共<strong class="allPage">0</strong>页
+									</span>
+								</div>
+							</div>
+							<!--分页 E-->
+							<div class="form-group">
+								<div class="col-sm-10 col-sm-offset-5">
+									<a type="button" class="btn btn-primary" data-dismiss="modal" onclick="confirmAdObj()">确定</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--选择广告 E-->
+	<script src="/js/jquery.min.js?v=2.1.4"></script>
+	<script src="/js/bootstrap.min.js?v=3.3.5"></script>
+	<script src="/js/script.js"></script>
+	<script src="/js/jquery.form.js"></script>
+	<script src="/js/wxm.dialog.js"></script>
+	<script>
+        /* 将图片显示在浏览器上 */
+        function preImg(sourceId, targetId, mw, mh) {
+            var url = getFileUrl(sourceId);
+            var imgPre = document.getElementById(targetId);
+            imgPre.src = url;
+            $('#' + sourceId).parent().find("input[name='filepath']").val("1");
+        }
+
+        /* 将浏览器上显示的图片删除，然后显示默认的图片 */
+        function removImg(ob) {
+            $(ob).parent().parent().find("input").val("");
+            var img = $(ob).parent().parent().find("img[data-name='picPath']");
+            img.attr("src", "/images/add_img.png");
+        }
+
+        // 给所有【广告类型】添加改变事件，加载目标连接选择项，清空广告链接
+        $('form').find("select[name='linkTypeId']").off('change').on('change', function() {
+            if ($(this).val() == "") {
+                $('.select-ad-obj').hide();
+            } else {
+                $('.select-ad-obj').show();
+            }
+            // 清空广告Url
+            $(this).parents('form').find("input[name='linkObjId']").val("");
+            $(this).parents('form').find("input[name='linkObjName']").val("");
+        });
+
+        // 查询详细信息列表
+        function searchDetails() {
+            $("#hideAdTitle").val($("#txtAdTitle").val()); // 广告标题
+            $("#hideLinkTypeId").val($("#selLinkTypeId").val()); // 广告类型ID
+            // 加载详细信息列表
+            loadDetail();
+        }
+        // 加载详细信息列表
+        function loadDetail(currentPageNo) {
+            wxm.maskLayer();
+            if (!currentPageNo) {
+                currentPageNo = 1;
+            }
+            var adTitle = $("#hideAdTitle").val(); // 广告标题
+            var typeId = $("#hideTypeId").val(); // 广告所属
+            var linkTypeId = $("#hideLinkTypeId").val(); // 广告类型
+            $.ajax({
+                type : 'POST',
+                url : '/ad/query',
+                data : {
+                    "adTitle" : adTitle,
+                    "typeId" : typeId,
+                    "linkTypeId" : linkTypeId,
+                    "currentPageNo" : currentPageNo,
+                    "pageSize" : 10
+                },
+                dataType : 'json',
+                success : function(result) {
+                    if (result.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                    } else {
+                        loadHtml(result);
+                    }
+                    wxm.maskLayer.close();
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+                    wxm.maskLayer.close();
+                }
+            });
+        }
+        // 加载元素
+        function loadHtml(result) {
+            // 详细信息列表容器
+            var $tbListContentTBody = $("#tbListContent table tbody");
+            // 清空详细信息列表
+            $tbListContentTBody.empty();
+            // 分页
+            paginationFun($("#Pagination"), (result.totalCount || 0), 10, (result.currentPageNo || 0), "loadDetail");
+            // 若返回结果为空，则退出
+            if (typeof (result) == "undefined" || typeof (result.details) == "undefined" || result.details.length <= 0) {
+                return;
+            }
+            // 添加查询结果
+            var details = result.details;
+            if (details != null && details.length > 0) {
+                for (var i = 0; i < details.length; i++) {
+                    var $tr = $('<tr><td>' + (details[i].adTitle || '') + '</td><td>' + (details[i].linkTypeName || '') + '</td><td>' + (details[i].linkObjName || '') + '</td><td>' + (details[i].adOrder || '') + '</td><td>' + (details[i].updateDate || '') + '</td></tr>');
+                    var $td = $('<td class="td_operate"></td>');
+                    var $view = $('<a href="#" class="view-detail is_view" data-toggle="modal" data-target="#viewModal" data-id="' + details[i].id + '">查看</a>');
+                    var $edit = $('<a href="#" class="view-detail is_update" data-toggle="modal" data-target="#editModal" data-id="' + details[i].id + '">修改</a>');
+                    var $remove = $('<a href="#" class="delete-detail is_delete" data-toggle="modal" data-id="' + details[i].id + '">删除</a>');
+
+                    $td.append($view);
+                    $td.append($edit);
+                    $td.append($remove);
+                    $tr.append($td);
+                    $tbListContentTBody.append($tr);
+                }
+            }
+
+            //权限管理
+            var isView = isAuth($('.td_operate .is_view'), 'view');
+            var isUpdate = isAuth($('.td_operate .is_update'), 'update');
+            var isDelete = isAuth($('.td_operate .is_delete'), 'delete');
+            if (!isView && !isUpdate && !isDelete) {
+                $('#thOperate').remove();
+                $('.td_operate').remove();
+            }
+
+            $('.view-detail').off('click').on('click', function() {
+                changeModelId($(this).attr('data-target'))
+                viewDetail($(this).attr('data-target'), $(this).attr('data-id'))
+            })
+
+            $('.delete-detail').off('click').on('click', function() {
+                deleteDetail($(this).attr('data-id'));
+            })
+        }
+
+        // 选择广告
+        $('.select-ad-obj').bind('click', function() {
+            var $linkTypeId = $(this).parents('form').find("select[name='linkTypeId']");
+            $('#hideAdObjTpyeId').val($linkTypeId.val());
+            $('#txtObjParentName').val('');
+            $('#txtObjName').val('');
+            $('#hideObjParentName').val('');
+            $('#hideObjName').val('');
+
+            var flag = $linkTypeId.find("option:selected").attr('data-flag');
+            // 资讯
+            if (flag == "1") {
+                $("#divObjParentName").hide();
+                $("#thAdObjShop").hide();
+                $("#thAdObjTitle").text('标题');
+                $("#txtObjName").siblings('span').text('标题：');
+            }
+            // 美食
+            else if (flag == "2") {
+                $("#divObjParentName").show();
+                $("#thAdObjShop").show();
+                $("#thAdObjTitle").text('美食');
+                $("#txtObjName").siblings('span').text('美食：');
+            }
+            // 特色商品
+            else if (flag == "3") {
+                $("#divObjParentName").hide();
+                $("#thAdObjShop").hide();
+                $("#thAdObjTitle").text('特色商品');
+                $("#txtObjName").siblings('span').text('特色商品：');
+            }
+            // 酒店客房
+            else if (flag == "4") {
+                $("#divObjParentName").hide();
+                $("#thAdObjShop").hide();
+                $("#thAdObjTitle").text('酒店客房');
+                $("#txtObjName").siblings('span').text('酒店客房：');
+            }
+            // 年卡
+            else if (flag == "5") {
+                $("#divObjParentName").hide();
+                $("#thAdObjShop").hide();
+                $("#thAdObjTitle").text('年卡');
+                $("#txtObjName").siblings('span').text('年卡：');
+            }
+            $("#tabcontent_g").empty();
+            searchAdDetail();
+        })
+
+        function searchAdDetail() {
+            $('#hideObjParentName').val($('#txtObjParentName').val());
+            $('#hideObjName').val($('#txtObjName').val());
+            loadObjAdDetail();
+        }
+
+        // 加载目标广告列表
+        function loadObjAdDetail(currentPageNo) {
+            wxm.maskLayer();
+            if (!currentPageNo) {
+                currentPageNo = 1;
+            }
+            var adObjTpyeId = $('#hideAdObjTpyeId').val(); // 广告类型
+            var objParentName = $('#hideObjParentName').val(); // 美食店名称
+            var objName = $('#hideObjName').val(); // 目标广告名称
+            $.ajax({
+                type : 'POST',
+                url : '/ad/loadObjLinkDetail',
+                data : {
+                    "linkTypeId" : adObjTpyeId,
+                    "objParentName" : objParentName,
+                    "objName" : objName,
+                    "currentPageNo" : currentPageNo,
+                    "pageSize" : 10
+                },
+                dataType : 'json',
+                success : function(result) {
+                    if (result.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                    } else {
+                        loadObjAdHtml(result);
+                    }
+                    wxm.maskLayer.close();
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+                    wxm.maskLayer.close();
+                }
+            });
+        }
+        // 加载目标广告元素
+        function loadObjAdHtml(result) {
+            // 详细信息列表容器
+            var $tbListContentTBody = $("#tabcontent_g");
+            // 清空详细信息列表
+            $tbListContentTBody.empty();
+            // 分页
+            paginationFun($("#Pagination_g"), (result.totalCount || 0), 10, (result.currentPageNo || 0), "loadObjAdDetail");
+            // 若返回结果为空，则退出
+            if (typeof (result) == "undefined" || typeof (result.details) == "undefined" || result.details.length <= 0) {
+                return;
+            }
+            // 添加查询结果
+            var details = result.details;
+            var tdCount = 0
+            $('#trAdObjLink').children().each(function() {
+                if (!$(this).is(':hidden')) {
+                    ++tdCount;
+                }
+            });
+            if (details != null && details.length > 0) {
+                if (tdCount == 4) {
+                    for (var i = 0; i < details.length; i++) {
+                        $tbListContentTBody.append('<tr><td><input type="radio" name="adObjId" data-id="' + (details[i].objId || '') + '" data-name="' + (details[i].objName || '') + '"></td><td class="sub_ctn">' + (details[i].objName || '') + '</td><td class="sub_ctn">'
+                                + (details[i].objParentName || '') + '</td><td class="sub_ctn">' + (details[i].objBrief || '') + '</td></tr>');
+                    }
+                } else {
+                    for (var i = 0; i < details.length; i++) {
+                        $tbListContentTBody.append('<tr><td><input type="radio" name="adObjId" data-id="' + (details[i].objId || '') + '" data-name="' + (details[i].objName || '') + '"></td><td class="sub_ctn">' + (details[i].objName || '') + '</td><td class="sub_ctn">'
+                                + (details[i].objBrief || '') + '</td></tr>');
+                    }
+                }
+            }
+
+            // 截取标题
+            substr(150, $("#tabcontent_g .sub_ctn"));
+        }
+
+        function changeModelId(modelId) {
+            $('#hideModelId').val(modelId);
+        }
+
+        // 确定广告目标
+        function confirmAdObj() {
+            $($('#hideModelId').val() + " form").find("input[name='linkObjName']").val($('#selectModal').find('input:radio[name=adObjId]:checked').attr('data-name'));
+            $($('#hideModelId').val() + " form").find("input[name='linkObjId']").val($('#selectModal').find('input:radio[name=adObjId]:checked').attr('data-id'));
+        }
+        // 保存详细信息
+        function saveDetail(formId) {
+            wxm.maskLayer();
+            var data = $(formId).serialize();
+            $(formId).ajaxSubmit({
+                type : 'POST',
+                url : '/ad/saveOrUpdate',
+                data : data,
+                dataType : 'json',
+                success : function(result) {
+                    wxm.maskLayer.close();
+                    if (!result || !result.isError) {
+                        wxm.dialog({
+                            type : 'error',
+                            message : "操作失败，请联系管理员！"
+                        });
+                        return;
+                    }
+                    if (result.isError == "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                        wxm.maskLayer.close();
+                        return;
+                    }
+                    $(formId).find("input[name='id']").val(result.id);
+                    searchDetails();
+                    wxm.dialog({
+                        type : 'success',
+                        message : "保存成功！"
+                    });
+                    $(formId).parents('.modal-worppar').find("a[data-dismiss='modal']").click();
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+                    wxm.maskLayer.close();
+                }
+            });
+        }
+        // 展示详细信息
+        function viewDetail(modelId, objId) {
+            $.ajax({
+                url : "/ad/detail",
+                data : {
+                    'id' : objId
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                    } else {
+                        var $model = $(modelId);
+                        clearForm(modelId)
+
+                        $model.find("input[name='id']").val(data.detail.id);
+                        $model.find("input[name='adTitle']").val(data.detail.adTitle);
+                        $model.find("select[name='linkTypeId']").val(data.detail.linkTypeId);
+                        $model.find("input[name='linkTypeName']").val(data.detail.linkTypeName);
+                        $model.find("input[name='linkObjId']").val(data.detail.linkObjId);
+                        $model.find("input[name='linkObjName']").val(data.detail.linkObjName);
+                        $model.find("input[name='adOrder']").val(data.detail.adOrder);
+                        $model.find("textarea[name='remark']").val(data.detail.remark);
+                        $model.find(".img_adMiniPicUrl").attr("src", data.detail.adMiniPicUrl);
+                        if (data.detail.linkTypeId != "") {
+                            $('.select-ad-obj').show();
+                        }
+                        // image type
+                        if (data.detail.adMiniPicUrl) {
+                            var img = "";
+                            img = "<img src='" + data.detail.adMiniPicUrl + "' style=\"max-width:300px;max-height:300px;\"/>";
+                            $model.find(".viewImg").html(img);
+                            $model.find("#updateImgPre").attr("src", data.detail.adMiniPicUrl);
+                            $model.find("input[name=adMiniPicUrl]").val(data.detail.adMiniPicUrl);
+                        } else {
+                            $model.find(".imgFileUp img").attr("src", "/images/add_img.png");
+                        }
+                    }
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+                }
+            });
+        }
+
+        // 关闭窗口
+        $(".close-modal").bind('click', function() {
+            clearForm("#" + $(this).parents('.modal.fade').attr("id"))
+        })
+        // 清空表单数据
+        function clearForm(panel) {
+            $(panel).find("input[type='text']").val("");
+            $(panel).find("select option").attr("selected", false);
+            $(panel).find("input[name='id']").val("");
+            $(panel).find(".imgFileUp img").attr("src", "/images/add_img.png");
+            $('.select-ad-obj').hide();
+        }
+        // 删除详细信息
+        function deleteDetail(objId) {
+            wxm.dialog({
+                type : 'confirm',
+                message : "确定是否删除？",
+                callback : {
+                    correct : function() {
+                        wxm.maskLayer();
+                        $.ajax({
+                            url : "/ad/delete",
+                            data : {
+                                'id' : objId
+                            },
+                            type : 'POST',
+                            cache : false,
+                            async : false,
+                            dataType : 'json',
+                            success : function(result) {
+                                wxm.maskLayer.close();
+                                if (!result || !result.isError) {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : "操作失败，请重试！"
+                                    });
+                                    return;
+                                }
+                                if (result.isError == "1") {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : result.msg
+                                    });
+                                    return;
+                                }
+                                wxm.dialog({
+                                    type : 'success',
+                                    message : "删除成功！"
+                                });
+                                searchDetails();
+                            },
+                            error : function() {
+                                wxm.dialog({
+                                    type : 'error',
+                                    message : "操作失败，请重试！"
+                                });
+                                wxm.maskLayer.close();
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        $(function() {
+            if (isAuth($('#divSearch'), 'search')) {
+                // 加载详细信息列表
+                loadDetail();
+            }
+            isAuth($('#btnAdd'), 'add');
+        })
+    </script>
+</body>
+</html>

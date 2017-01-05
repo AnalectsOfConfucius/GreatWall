@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.system.menu.dao.MenuDao">
+	
+    <!-- 查询所有级别的权限菜单列表 -->
+    <select id="selectAllMenu" resultType="com.hg.dqsj.system.menu.entity.Menu">
+        select
+            id,
+            menuName,
+            parentId,
+            menuUrl,
+            picUrl,
+            menuCss,
+            menuOrder
+        from dqsj_sm_menu 
+        where deleteFlag = '0'
+        order by menuOrder asc, updateDate desc
+    </select>
+    <!-- 查询父菜单 -->
+    <select id="selectParentMenu" parameterType="map" resultType="com.hg.dqsj.system.menu.entity.Menu">
+        select
+            id,
+            menuName,
+            parentId,
+            menuUrl,
+            picUrl,
+            menuCss,
+            menuOrder
+        from dqsj_sm_menu 
+        where deleteFlag = '0' and parentId is null
+        <if test="menuName != null and menuName != ''"><![CDATA[ and menuName like '%${menuName}%' ]]></if>
+        order by menuOrder asc, updateDate desc
+    </select>
+    <!-- 查询子菜单 -->
+    <select id="selectChildMenu" parameterType="map" resultType="com.hg.dqsj.system.menu.entity.MenuInfo">
+        select
+            a.id,
+            a.menuName,
+            a.parentId,
+            b.menuName parentName,
+            a.menuUrl,
+            a.picUrl,
+            a.menuCss,
+            a.menuOrder
+        from dqsj_sm_menu a
+        left join dqsj_sm_menu b on a.parentId=b.id
+        where a.deleteFlag = '0' and a.parentId is not null
+        <if test="parentId != null and parentId != ''"><![CDATA[ and a.parentId = '${parentId}' ]]></if>
+        <if test="menuName != null and menuName != ''"><![CDATA[ and a.menuName like '%${menuName}%' ]]></if>
+        order by a.menuOrder asc, a.updateDate desc
+    </select>
+    
+    <!-- 查询用户的菜单操作权限 -->
+    <select id="selectUserMenuOpration" parameterType="java.lang.String" resultType="com.hg.dqsj.system.menu.entity.MenuOperate">
+        select
+			r_op.menuId,
+			op.opCode
+		from
+		    dqsj_sm_user_role u_role,
+			dqsj_sm_role role,
+			dqsj_sm_role_operate r_op,
+			dqsj_sm_operate op,
+			dqsj_sm_menu menu
+		where
+			u_role.deleteFlag='0'
+			and role.deleteFlag='0'
+			and r_op.deleteFlag='0'
+			and op.deleteFlag='0'
+			and menu.deleteFlag='0'
+			and u_role.userId=#{userId}
+			and u_role.roleId=role.id
+			and role.id=r_op.roleId
+			and r_op.opId=op.id
+			and r_op.menuId=menu.id
+        group by
+			r_op.menuId,
+			op.opCode
+		order by r_op.menuId asc
+    </select>
+    
+    <!-- 新建菜单信息 -->
+    <insert id="insertMenu" parameterType="com.hg.dqsj.system.menu.entity.Menu">
+        insert into dqsj_sm_menu (
+            id,
+			menuName,
+			parentId,
+			menuUrl,
+			picUrl,
+			menuCss,
+			menuOrder,
+			remark,
+			createDate,
+			createUserId,
+			updateDate,
+			updateUserId,
+			deleteFlag
+        ) values (
+            #{id},
+			#{menuName},
+			#{parentId},
+			#{menuUrl},
+			#{picUrl},
+			#{menuCss},
+			#{menuOrder},
+			#{remark},
+			#{createDate},
+			#{createUserId},
+			#{updateDate},
+			#{updateUserId},
+			#{deleteFlag}
+        )
+    </insert>
+    
+    <!-- 修改菜单信息 -->
+    <update id="updateMenu" parameterType="com.hg.dqsj.system.menu.entity.Menu">
+        update dqsj_sm_menu
+        set menuName=#{menuName},
+            parentId=#{parentId},
+            menuUrl=#{menuUrl},
+            picUrl=#{picUrl},
+            menuCss=#{menuCss},
+            menuOrder=#{menuOrder},
+            remark=#{remark},
+            updateDate=#{updateDate},
+            updateUserId=#{updateUserId}
+        where id=#{id}
+    </update>
+    
+    <!-- 逻辑删除菜单 -->
+    <update id="deleteMenu" parameterType="map">
+        update dqsj_sm_menu
+        set updateDate=#{updateDate},
+            updateUserId=#{updateUserId},
+            deleteFlag='1'
+        where id=#{id}
+    </update>
+    
+    <!-- 查询所有级别的权限菜单列表 -->
+    <select id="selectIdByMenuUrl" parameterType="java.lang.String" resultType="java.lang.String">
+		select id
+		  from dqsj_sm_menu
+		 where deleteFlag = '0'
+		   and menuUrl = #{menuUrl}
+    </select>
+</mapper>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.base.dao.FEInfoDao">
+
+    <!-- 根据查询条件查询所有详细信息 -->
+    <select id="selectByCriterias" parameterType="java.util.Map" resultType="com.hg.dqsj.base.view.VFEInfo">
+		SELECT DISTINCT fi.id,
+		                fi.infoTitle,
+		                fi.infoPicUrl,
+		                fi.infoBrief,
+		                fi.infoContent,
+		                fi.isRecommend,
+		                fi.isRelease,
+		                fi.releaseDate,
+		                fi.remark,
+		                fi.createDate,
+		                fi.createUserId,
+		                fi.updateDate,
+		                fi.updateUserId,
+		                fi.deleteFlag,
+		                fim.id           as infoMapId,
+		                fim.infoMapType,
+		                st.id            as typeId,
+		                st.typeCode,
+		                fim.infoMapOrder
+		  FROM dqsj_fe_info fi, dqsj_fe_info_map fim, dqsj_sm_type st
+		 WHERE fi.deleteFlag = '0'
+		   AND fim.deleteFlag = '0'
+		   AND st.deleteFlag = '0'
+		   AND fi.id = fim.infoId
+		   AND fim.typeId = st.id
+		   AND st.typeCode = '${typeCode}'
+		   AND fim.infoMapType = '${infoMapType}'
+		<if test="infoTitle != null and infoTitle != ''"><![CDATA[ and fi.infoTitle like '%${infoTitle}%' ]]></if>
+        <if test="isRecommend != null and isRecommend != ''"><![CDATA[ and fi.isRecommend = '${isRecommend}' ]]></if>
+		<if test="isRelease != null and isRelease != ''"><![CDATA[ and fi.isRelease = '${isRelease}' ]]></if>
+		ORDER BY
+		    fim.infoMapOrder,
+		    fi.updateDate DESC
+        <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>
+    </select>
+    
+    <!-- 根据查询条件查询所有详细信息数 -->
+    <select id="countByCriterias" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT count(DISTINCT fi.id)
+		  FROM dqsj_fe_info fi, dqsj_fe_info_map fim, dqsj_sm_type st
+		 WHERE fi.deleteFlag = '0'
+		   AND fim.deleteFlag = '0'
+		   AND st.deleteFlag = '0'
+		   AND fi.id = fim.infoId
+		   AND fim.typeId = st.id
+		   AND st.typeCode = '${typeCode}'
+		   AND fim.infoMapType = '${infoMapType}'
+        <if test="infoTitle != null and infoTitle != ''"><![CDATA[ and fi.infoTitle like '%${infoTitle}%' ]]></if>
+        <if test="isRecommend != null and isRecommend != ''"><![CDATA[ and fi.isRecommend = '${isRecommend}' ]]></if>
+        <if test="isRelease != null and isRelease != ''"><![CDATA[ and fi.isRelease = '${isRelease}' ]]></if>
+    </select>
+    
+    <!-- 根据ID查询详细信息 -->
+    <select id="selectById" parameterType="java.util.Map" resultType="com.hg.dqsj.base.entity.FEInfo">
+		SELECT fi.id,
+		       fi.infoTitle,
+		       fi.infoPicUrl,
+		       fi.infoBrief,
+		       fi.infoContent,
+		       fi.isRecommend,
+		       fi.isRelease,
+		       fi.releaseDate,
+		       fi.remark,
+		       fi.createDate,
+		       fi.createUserId,
+		       fi.updateDate,
+		       fi.updateUserId,
+		       fi.deleteFlag
+		  FROM dqsj_fe_info fi
+		 WHERE fi.deleteFlag = '0'
+		   AND fi.id = '${id}'
+    </select>
+    
+    <!-- 保存 -->
+    <insert id="save" parameterType="com.hg.dqsj.base.entity.FEInfo">
+		INSERT INTO dqsj_fe_info
+		  (id,
+		   infoTitle,
+		   infoPicUrl,
+		   infoBrief,
+		   infoContent,
+		   isRecommend,
+		   isRelease,
+		   releaseDate,
+		   remark,
+		   createDate,
+		   createUserId,
+		   updateDate,
+		   updateUserId,
+		   deleteFlag)
+		VALUES
+		  (#{id},
+		   #{infoTitle},
+		   #{infoPicUrl},
+		   #{infoBrief},
+		   #{infoContent},
+		   #{isRecommend},
+		   #{isRelease},
+		   #{releaseDate},
+		   #{remark},
+		   #{createDate},
+		   #{createUserId},
+		   #{updateDate},
+		   #{updateUserId},
+		   #{deleteFlag})
+    </insert>
+    
+     <!-- 更新 -->
+    <update id="update" parameterType="com.hg.dqsj.base.entity.FEInfo">
+		UPDATE dqsj_fe_info
+		   SET infoTitle    = #{infoTitle},
+		       infoPicUrl   = #{infoPicUrl},
+		       infoBrief    = #{infoBrief},
+		       infoContent  = #{infoContent},
+		       isRecommend  = #{isRecommend},
+		       isRelease    = #{isRelease},
+		       releaseDate  = #{releaseDate},
+		       remark       = #{remark},
+		       createDate   = #{createDate},
+		       createUserId = #{createUserId},
+		       updateDate   = #{updateDate},
+		       updateUserId = #{updateUserId},
+		       deleteFlag   = #{deleteFlag}
+		 WHERE id = #{id}
+    </update>
+    
+    <!-- 根据ID查询详细信息 -->
+    <select id="selectVById" parameterType="java.util.Map" resultType="com.hg.dqsj.base.view.VFEInfo">
+		SELECT fi.id,
+		       fi.infoTitle,
+		       fi.infoPicUrl,
+		       fi.infoBrief,
+		       fi.infoContent,
+		       fi.isRecommend,
+		       fi.isRelease,
+		       fi.releaseDate,
+		       fi.remark,
+		       fi.createDate,
+		       fi.createUserId,
+		       fi.updateDate,
+		       fi.updateUserId,
+		       fi.deleteFlag,
+		       (SELECT infoMapOrder FROM dqsj_fe_info_map WHERE infoId = fi.id) AS infoMapOrder
+		  FROM dqsj_fe_info fi
+		 WHERE fi.deleteFlag = '0'
+		   AND fi.id = '${id}'
+    </select>
+    
+    <!-- 更新删除标识 -->
+    <update id="updateDeleteFlagById" parameterType="com.hg.dqsj.base.entity.FEInfo">
+		UPDATE dqsj_fe_info
+		   SET updateDate   = #{updateDate},
+		       updateUserId = #{updateUserId},
+		       deleteFlag   = #{deleteFlag}
+		 WHERE id = #{id}
+    </update>
+</mapper>

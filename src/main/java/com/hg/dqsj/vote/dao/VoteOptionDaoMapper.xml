@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.vote.dao.VoteOptionDao">
+
+    <!-- 根据查询条件查询所有详细信息 -->
+    <select id="selectByVoteId" parameterType="java.util.Map" resultType="com.hg.dqsj.vote.entity.VoteOption">
+		SELECT DISTINCT
+		    v.id,
+	        v.voteOptionNo,
+	        (SELECT count(id) FROM dqsj_fe_vote_user_detail b WHERE b.voteOptionId = v.id) as votedCount,
+	        v.voteOptionTitle,
+	        v.remark,
+	        v.voteOptionPicUrl,
+	        v.voteOptionContent,
+	        v.voteOrder
+		FROM
+		    dqsj_sm_vote_option v
+		WHERE
+		    v.deleteFlag = '0'	
+		<if test="voteId != null and voteId != ''"><![CDATA[ and v.voteId = '${voteId}' ]]></if>	
+		<if test="id != null and id != ''"><![CDATA[ and v.id = '${id}' ]]></if>	
+		ORDER BY
+		    v.voteOrder ASC,
+		    v.updateDate DESC      
+    </select>
+       <!-- 根据查询条件查询数量-->
+    <select id="countByVoteId" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT count(distinct v.id)		   
+		FROM
+		    dqsj_sm_vote_option v
+		WHERE
+		    v.deleteFlag = '0'	
+		<if test="voteId != null and voteId != ''"><![CDATA[ and v.voteId = '${voteId}' ]]></if>
+		<if test="voteOptionNo != null and voteOptionNo != ''"><![CDATA[ and v.voteOptionNo = '${voteOptionNo}' ]]></if>	  
+    </select>  
+   <!-- 新增投票选项 -->
+    <insert id="saveOption" parameterType="com.hg.dqsj.vote.entity.VoteOption">
+		INSERT INTO dqsj_sm_vote_option (
+		    id,
+			voteId,
+			voteOrder,
+			remark,
+			voteOptionNo,
+			voteOptionTitle,
+			voteOptionPicUrl,		
+			createDate,
+			createUserId,
+			updateDate,
+			updateUserId,
+			deleteFlag
+		)
+		VALUES
+		    (
+		        #{id},
+				#{voteId},
+				#{voteOrder},
+				#{remark},
+				#{voteOptionNo},
+				#{voteOptionTitle},
+				#{voteOptionPicUrl},								
+				#{createDate},
+				#{createUserId},
+				#{updateDate},
+				#{updateUserId},
+				#{deleteFlag}
+		    )
+    </insert> 
+     <!-- 修改选项-->
+    <update id="updateOption" parameterType="com.hg.dqsj.vote.entity.VoteOption">
+		UPDATE dqsj_sm_vote_option 
+			SET voteOrder= #{voteOrder},
+			remark= #{remark},
+			voteOptionNo= #{voteOptionNo},
+			voteOptionTitle= #{voteOptionTitle},
+			voteOptionPicUrl= #{voteOptionPicUrl},
+			updateDate= #{updateDate},
+			updateUserId= #{updateUserId}
+		WHERE
+		   id = #{id}
+    </update>
+    
+   <!-- 删除选项 -->
+    <update id="deleteOption" parameterType="map">
+    	update dqsj_sm_vote_option set
+    		updateDate=#{updateDate},
+			updateUserId=#{updateUserId},
+	    	deleteFlag=#{deleteFlag}
+		where id=#{id}
+    </update>
+</mapper>

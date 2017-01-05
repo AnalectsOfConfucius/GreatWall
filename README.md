@@ -1,2 +1,0 @@
-# GreatWall
-Great Wall

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.system.feUser.dao.FeUserDao">
+    <!-- 用户总条数 -->
+    <select id="getUserCount" parameterType="map" resultType="java.lang.Integer">
+        select
+            count(id) totalCount
+        from dqsj_fe_user 
+        where deleteFlag = '0'
+        <if test="userId != null and userId != ''"><![CDATA[ and id = '${userId}' ]]></if>
+        <if test="userName != null and userName != ''"><![CDATA[ and userName like '%${userName}%' ]]></if>
+        <if test="userPhone != null and userPhone != ''"><![CDATA[ and userPhone like '%${userPhone}%' ]]></if>
+        
+    </select>
+    <!-- 查询用户信息 -->
+    <select id="selectFeUser" parameterType="map" resultType="com.hg.dqsj.system.feUser.entity.FeUser">
+        select
+            id,
+            userPlatformId,
+            userName,
+            userPhone,
+            userTel,
+            userPassWord,
+            userEmail,
+            userGender,
+            userPicUrl,
+            userBirthday,
+            isLocked,
+            userOrder,
+            remark
+        from dqsj_fe_user 
+        where deleteFlag = '0'
+        <if test="userId != null and userId != ''"><![CDATA[ and id = '${userId}' ]]></if>
+        <if test="userName != null and userName != ''"><![CDATA[ and userName like '%${userName}%' ]]></if>
+        <if test="userPhone != null and userPhone != ''"><![CDATA[ and userPhone like '%${userPhone}%' ]]></if>
+        order by userOrder asc, updateDate desc
+        <if test="startRowNo != null and startRowNo != '' and endRowNo != null and endRowNo != ''">
+            <![CDATA[ limit ${startRowNo} , ${endRowNo} ]]>
+        </if>
+    </select>
+    <!-- 逻辑删除用户 -->
+    <update id="deleteFeUser" parameterType="map">
+        update dqsj_fe_user
+        set updateDate=#{updateDate},
+            updateUserId=#{updateUserId},
+            deleteFlag='1'
+        where id=#{id}
+    </update>
+    
+    <!-- 修改用户信息 -->
+    <update id="updateFeUser" parameterType="com.hg.dqsj.system.feUser.entity.FeUser">
+        update dqsj_fe_user
+        set 
+			isLocked=#{isLocked},
+            updateDate=#{updateDate},
+            updateUserId=#{updateUserId}
+        where id=#{id}
+    </update>
+</mapper>

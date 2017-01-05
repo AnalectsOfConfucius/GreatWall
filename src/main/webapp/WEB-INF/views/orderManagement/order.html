@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>民生大千世界梦幻乐园管理系统-订单-订单管理</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/pagination.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="ibox float-e-margins">
+					<div id="divSearch" class="ibox-title">
+						<div class="tabcc">
+							<table>
+								<tr>
+									<td>订单编号：</td>
+									<td><input id="txtOrderNo" type="text" class="form-control-c"></td>
+									<td>消费码：</td>
+									<td><input id="txtOrderQRCode" type="text" class="form-control-c"></td>
+									<td>订单类型：</td>
+									<td><select class="form-control-c" id="selOrderTypeCode">
+											<option value="">全部</option>
+											<option value="1">门票</option>
+											<option value="3">年卡</option>
+											<option value="4">特色商品</option>
+											<option value="5">美食</option>
+									</select></td>
+									<td>订单状态：</td>
+									<td><select class="form-control-c" id="selFlagType">
+											<option value="">全部</option>
+											<option value="payFlag">待支付</option>
+											<option value="getFlag">已支付 待领取</option>
+											<option value="evalFlag">已领取 待评价</option>
+											<option value="cancelFlag">已取消</option>
+											<option value="doneFlag">已完成</option>
+									</select></td>
+									<td>用户名：</td>
+									<td><input id="txtUserName" type="text" class="form-control-c"></td>
+									<td>联系人手机号：</td>
+									<td><input id="txtLinkUserPhone" type="text" class="form-control-c"></td>
+									<td><button type="button" class="binCont" onclick="searchDetails()">搜索</button></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<input id="hideOrderNo" type="hidden">
+						<input id="hideOrderQRCode" type="hidden">
+						<input id="hideOrderTypeCode" type="hidden">
+						<input id="hideFlagType" type="hidden">
+						<input id="hideUserName" type="hidden">
+						<input id="hideLinkUserPhone" type="hidden">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th style="width: 10%">订单编号</th>
+									<th style="width: 10%">消费码</th>
+									<th style="width: 10%">订单类型</th>
+									<th style="width: 10%">订单总金额</th>
+									<th style="width: 10%">下单时间</th>
+									<th style="width: 10%">订单状态</th>
+									<th style="width: 10%">用户名</th>
+									<th style="width: 10%">联系人手机号</th>
+									<th id="thOperate" style="width: 20%">操作</th>
+								</tr>
+							</thead>
+							<tbody id="tbList"></tbody>
+						</table>
+						<!--分页 S-->
+						<div class="pages clearfix">
+							<div id="Pagination" class="pagecontent"></div>
+							<div class="searchPage">
+								<span class="page-sum">
+									共<strong class="allPage">0</strong>页
+								</span>
+							</div>
+						</div>
+						<!--分页 E-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--查看 S-->
+	<div class="modal fade" id="viewModal" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">查看</h2>
+					<a type="button" class="btn btn-primary" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">订单编号：</label>
+								<div class="col-sm-10">
+									<input name="orderNo" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">消费码：</label>
+								<div class="col-sm-10">
+									<input name="orderQRCode" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">订单类型：</label>
+								<div class="col-sm-10">
+									<input name="orderTypeCode" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">订单状态：</label>
+								<div class="col-sm-10">
+									<input name="orderState" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">订单总金额：</label>
+								<div class="col-sm-10">
+									<input name="orderPrice" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">下单时间：</label>
+								<div class="col-sm-10">
+									<input name="orderTime" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名：</label>
+								<div class="col-sm-10">
+									<input name="userName" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">手机号：</label>
+								<div class="col-sm-10">
+									<input name="userPhone" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">联系人手机号：</label>
+								<div class="col-sm-10">
+									<input name="linkUserPhone" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group" id="divUseDate">
+								<label class="col-sm-2 control-label">使用时间：</label>
+								<div class="col-sm-10">
+									<input name="useDate" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<input name="remark" type="text" class="form-control" disabled>
+								</div>
+							</div>
+						</form>
+						<div class="pb20" style="clear: both;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--查看 E-->
+	<!--商品详情 S-->
+	<div class="modal fade" id="goodsModal" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">商品详情</h2>
+					<a type="button" class="btn btn-primary" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<div class="ibox-content">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>商品类型</th>
+										<th>商品名称</th>
+										<th>商品数量</th>
+										<th>商品单价</th>
+										<th>备注</th>
+									</tr>
+								</thead>
+								<tbody id="tbGoodsList"></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--订单商品 E-->
+	<script src="/js/jquery.min.js?v=2.1.4"></script>
+	<script src="/js/bootstrap.min.js?v=3.3.5"></script>
+	<script src="/js/script.js"></script>
+	<script src="/js/wxm.dialog.js"></script>
+	<script>
+        // 查询详细信息列表
+        function searchDetails() {
+            $("#hideOrderNo").val($("#txtOrderNo").val()); // 订单编号
+            $("#hideOrderQRCode").val($("#txtOrderQRCode").val()); // 消费码
+            $("#hideOrderTypeCode").val($("#selOrderTypeCode").val()); // 订单类型
+            $("#hideFlagType").val($("#selFlagType").val()); // 订单状态
+            $("#hideUserName").val($("#txtUserName").val()); // 用户名
+            $("#hideLinkUserPhone").val($("#txtLinkUserPhone").val()); // 联系人手机号
+            // 加载详细信息列表
+            loadDetail();
+        }
+        // 加载详细信息列表
+        function loadDetail(currentPageNo) {
+            wxm.maskLayer();
+            if (!currentPageNo) {
+                currentPageNo = 1;
+            }
+            var orderNo = $("#hideOrderNo").val(); // 订单编号
+            var orderQRCode = $("#hideOrderQRCode").val(); // 消费码
+            var orderTypeCode = $("#hideOrderTypeCode").val(); // 订单类型
+            var flagType = $("#hideFlagType").val(); // 订单状态
+            var userName = $("#hideUserName").val(); // 用户名
+            var linkUserPhone = $("#hideLinkUserPhone").val(); // 联系人手机号
+            $.ajax({
+                type : 'POST',
+                url : '/order/query',
+                data : {
+                    "orderNo" : orderNo,
+                    "orderQRCode" : orderQRCode,
+                    "orderTypeCode" : orderTypeCode,
+                    "flagType" : flagType,
+                    "userName" : userName,
+                    "linkUserPhone" : linkUserPhone,
+                    "currentPageNo" : currentPageNo,
+                    "pageSize" : 10
+                },
+                dataType : 'json',
+                success : function(result) {
+                    if (result.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                    } else {
+                        loadHtml(result);
+                    }
+                    wxm.maskLayer.close();
+                }
+            });
+        }
+        // 加载元素
+        function loadHtml(result) {
+            // 详细信息列表容器
+            var $tbList = $("#tbList");
+            // 清空详细信息列表
+            $tbList.empty();
+            // 分页
+            paginationFun($("#Pagination"), (result.totalCount || 0), 10, (result.currentPageNo || 0), "loadDetail");
+            // 若返回结果为空，则退出
+            if (typeof (result) == "undefined" || typeof (result.details) == "undefined" || result.details.length <= 0) {
+                return;
+            }
+            // 添加查询结果
+            var details = result.details;
+            if (details != null && details.length > 0) {
+                for (var i = 0; i < details.length; i++) {
+                    var $tr = $('<tr><td>' + (details[i].orderNo || '') + '</td><td>' + (details[i].orderQRCode || '') + '</td><td>' + (details[i].orderTypeCodeStr || '') + '</td><td>' + (details[i].orderPrice || '') + '</td><td>' + (details[i].orderTime || '') + '</td><td>'
+                            + (details[i].orderState || '') + '</td><td>' + (details[i].userName || '') + '</td><td>' + (details[i].linkUserPhone || '') + '</td></tr>');
+                    var $td = $('<td class="td_operate"></td>');
+                    var $view = $('<a href="#" class="view-detail is_view" data-toggle="modal" data-target="#viewModal" data-id="' + details[i].id + '">订单详情</a>');
+                    var $goods = $('<a href="#" class="goods-detail is_view" data-toggle="modal" data-target="#goodsModal" data-id="' + details[i].id + '">商品详情</a>');
+
+                    $td.append($view);
+                    $td.append($goods);
+
+                    if (details[i].payFlag == "1" && details[i].getFlag == "0") {
+                        $td.append('<a href="#" class="get-detail is_update" data-toggle="modal" data-id="' + details[i].id + '" data-rowLockNum="' + details[i].rowLockNum + '">确认领取</a>');
+                    }
+
+                    $tr.append($td);
+                    $tbList.append($tr);
+                }
+            }
+
+            //权限管理
+            var isView = isAuth($('.td_operate .is_view'), 'view');
+            var isUpdate = isAuth($('.td_operate .is_update'), 'update');
+            if (!isView && !isUpdate) {
+                $('#thOperate').remove();
+                $('.td_operate').remove();
+            }
+
+            $('.view-detail').off('click').on('click', function() {
+                viewDetail($(this).attr('data-target'), $(this).attr('data-id'))
+            })
+
+            $('.goods-detail').off('click').on('click', function() {
+                wxm.maskLayer();
+                $.ajax({
+                    type : 'POST',
+                    url : '/order/goodsQuery',
+                    data : {
+                        "orderId" : $(this).attr('data-id')
+                    },
+                    dataType : 'json',
+                    success : function(result) {
+                        if (result.isError === "1") {
+                            wxm.dialog({
+                                type : 'error',
+                                message : result.msg
+                            });
+                        } else {
+                            // 详细信息列表容器
+                            var $tbGoodsList = $("#tbGoodsList");
+                            // 清空详细信息列表
+                            $tbGoodsList.empty();
+                            // 若返回结果为空，则退出
+                            if (typeof (result) == "undefined" || typeof (result.details) == "undefined" || result.details.length <= 0) {
+                                return;
+                            }
+                            // 添加查询结果
+                            var details = result.details;
+                            if (details != null && details.length > 0) {
+                                for (var i = 0; i < details.length; i++) {
+                                    var $tr = $('<tr><td>' + (result.goodsType || '') + '</td><td>' + (details[i].goodsName || '') + '</td><td>' + (details[i].goodsNum || '') + '</td><td>' + (details[i].goodsPrice || '') + '</td><td>' + (details[i].remark || '') + '</td></tr>');
+                                    $tbGoodsList.append($tr);
+                                }
+                            }
+                        }
+                        wxm.maskLayer.close();
+                    }
+                });
+            })
+
+            $('.get-detail').off('click').on('click', function() {
+                var id = $(this).attr('data-id');
+                var rowLockNum = $(this).attr('data-rowLockNum');
+                wxm.dialog({
+                    type : 'confirm',
+                    message : "确定是否确认领取？",
+                    callback : {
+                        correct : function() {
+                            wxm.maskLayer();
+                            $.ajax({
+                                url : "/order/confirmGetFlag",
+                                data : {
+                                    'id' : id,
+                                    'rowLockNum' : rowLockNum
+                                },
+                                type : 'POST',
+                                cache : false,
+                                async : false,
+                                dataType : 'json',
+                                success : function(result) {
+                                    wxm.maskLayer.close();
+                                    if (!result || !result.isError) {
+                                        wxm.dialog({
+                                            type : 'error',
+                                            message : "操作失败，请重试！"
+                                        });
+                                        return;
+                                    }
+                                    if (result.isError == "1") {
+                                        wxm.dialog({
+                                            type : 'error',
+                                            message : result.msg
+                                        });
+                                        return;
+                                    }
+                                    searchDetails();
+                                    wxm.dialog({
+                                        type : 'success',
+                                        message : "确认领取成功！"
+                                    });
+                                },
+                                error : function() {
+                                    wxm.maskLayer.close();
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : "操作失败，请重试！"
+                                    });
+                                }
+                            });
+                        }
+                    }
+                });
+            })
+            wxm.maskLayer.close();
+        }
+        // 展示详细信息
+        function viewDetail(modelId, objId) {
+            $.ajax({
+                url : "/order/detail",
+                data : {
+                    'id' : objId
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                    } else {
+                        var $model = $(modelId);
+                        $model.find("input[name='orderNo']").val(data.detail.orderNo);
+                        $model.find("input[name='orderQRCode']").val(data.detail.orderQRCode);
+                        $model.find("input[name='orderTypeCode']").val(data.detail.orderTypeCodeStr);
+                        $model.find("input[name='userName']").val(data.detail.userName);
+                        $model.find("input[name='userPhone']").val(data.detail.userPhone);
+                        $model.find("input[name='orderPrice']").val(data.detail.orderPrice);
+                        $model.find("input[name='orderTime']").val(data.detail.orderTime);
+                        $model.find("input[name='orderState']").val(data.detail.orderState);
+                        $model.find("input[name='linkUserPhone']").val(data.detail.linkUserPhone);
+                        $model.find("input[name='remark']").val(data.detail.remark);
+
+                        // 门票
+                        if (data.detail.orderTypeCode == "1") {
+                            $("#divUseDate").show();
+                            $model.find("input[name='useDate']").val(data.detail.useDate);
+                        } else {
+                            $("#divUseDate").hide();
+                        }
+                    }
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+                }
+            });
+        }
+
+        $(function() {
+            if (isAuth($('#divSearch'), 'search')) {
+                // 加载详细信息列表
+                loadDetail();
+            }
+        })
+    </script>
+</body>
+</html>

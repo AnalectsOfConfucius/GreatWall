@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.vote.dao.VoteDao">   
+ <!--查询所有投票信息 -->
+    <select id="selectAllVote" parameterType="java.util.Map" resultType="com.hg.dqsj.vote.entity.Vote">
+		SELECT DISTINCT
+		    v.id,
+		    (SELECT count(id) FROM dqsj_sm_vote_option a WHERE a.voteId = v.id) as optionCount,
+		    (SELECT count(id) FROM dqsj_fe_vote_user_detail b WHERE b.voteId = v.id) as votedCount,
+	        v.voteTitle,
+	        v.votePicUrl,
+	        v.voteBackPicUrl,
+	        v.voteDescribe,
+	        v.voteStartTime,
+	        v.voteEndTime,
+	        v.stateFlag,
+	        v.userTypeFlag,
+	        v.stateFlag,
+	        v.isLimitUser,
+	        v.periodHour,
+	        v.voteNumber,
+	        v.voteRule,
+	        v.voteOrder,
+	        v.updateDate
+		FROM
+		    dqsj_sm_vote v 
+		WHERE
+		    v.deleteFlag = '0'	
+		    <if test="voteId != null and voteId != ''"><![CDATA[ and v.id = '${voteId}' ]]></if>	
+		ORDER BY
+		    v.voteOrder ASC,
+		    v.updateDate DESC      
+    </select>   
+    <!-- 保存基础内容 -->
+    <insert id="saveBase" parameterType="com.hg.dqsj.vote.entity.Vote">
+		INSERT INTO dqsj_sm_vote (
+		    id,
+			voteTitle,
+			voteOrder,
+			voteDescribe,
+			stateFlag,
+			votePicUrl,
+			voteBackPicUrl,
+			voteStartTime,
+			voteEndTime,
+			createDate,
+			createUserId,
+			updateDate,
+			updateUserId,
+			deleteFlag
+		)
+		VALUES
+		    (
+		        #{id},
+				#{voteTitle},
+				#{voteOrder},
+				#{voteDescribe},
+				#{stateFlag},
+				#{votePicUrl},
+				#{voteBackPicUrl},
+				#{voteStartTime},
+				#{voteEndTime},			
+				#{createDate},
+				#{createUserId},
+				#{updateDate},
+				#{updateUserId},
+				#{deleteFlag}
+		    )
+    </insert>
+    <!-- 结束投票 -->
+    <update id="shutDown" parameterType="java.util.Map">
+		UPDATE dqsj_sm_vote 
+			SET stateFlag= #{stateFlag},
+			updateDate= #{updateDate},
+			updateUserId= #{updateUserId}
+		WHERE
+		   id = #{id}
+    </update>
+     <!-- 修改基础内容 -->
+    <update id="updateBase" parameterType="com.hg.dqsj.vote.entity.Vote">
+		UPDATE dqsj_sm_vote 
+			SET voteTitle= #{voteTitle},
+			voteOrder= #{voteOrder},
+			voteBackPicUrl = #{voteBackPicUrl},
+			voteDescribe= #{voteDescribe},
+			votePicUrl= #{votePicUrl},
+			voteStartTime= #{voteStartTime},
+			voteEndTime= #{voteEndTime},
+			updateDate= #{updateDate},
+			updateUserId= #{updateUserId}
+		WHERE
+		   id = #{id}
+    </update>
+    <!-- 保存投票规则 -->
+    <update id="updateRule" parameterType="com.hg.dqsj.vote.entity.Vote">
+		UPDATE dqsj_sm_vote 
+		  SET 
+			periodHour = #{periodHour},
+			voteNumber= #{voteNumber},
+			isLimitUser = #{isLimitUser},
+			voteRule= #{voteRule},			
+			updateDate= #{updateDate},
+			updateUserId= #{updateUserId}
+	WHERE
+	        id = #{id}
+    </update>
+  
+</mapper>

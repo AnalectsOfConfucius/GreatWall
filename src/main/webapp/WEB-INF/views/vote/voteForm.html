@@ -1,0 +1,1427 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>民生大千世界梦幻乐园管理系统-投票管理-发起投票</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link href="/css/summernote.css" rel="stylesheet">
+<link href="/css/summernote-bs3.css" rel="stylesheet">
+<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/pagination.css" />
+<link href="/css/style.css" rel="stylesheet">
+<!-- 引用控制层插件样式 -->
+<link rel="stylesheet" href="/css/zyUpload.css" type="text/css">
+<!-- 复选框 -->
+<link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+<style>
+.note-editor {
+	width: 80%;
+}
+
+.note-editor .note-editable {
+	min-height: 400px;
+}
+
+.laydate_body .laydate_top {
+	height: 36px;
+}
+
+.laydate_body .laydate_bottom {
+	height: 32px;
+}
+
+.mt15 {
+	margin-top: 15px;
+}
+
+ul, li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.bocWordpp {
+	background-color: #fff;
+}
+
+.bocWordpp .title {
+	height: 44px;
+	line-height: 44px;
+	border-bottom: 1px solid #eee;
+	font-size: 17px;
+	color: #666;
+	text-indent: 25px;
+	font-family: "微软雅黑";
+}
+
+.tabsCont {
+	margin-top: 20px;
+}
+
+.tabsCont .bd {
+	height: 44px;
+	background-color: #fafafa;
+	border-bottom: 1px solid #eee;
+}
+
+.tabsCont .bd ul li {
+	float: left;
+	display: block;
+	height: 44px;
+	line-height: 44px;
+	padding: 0 25px;
+	color: #999;
+	cursor: pointer;
+	border-right: 1px solid #eee;
+}
+
+.tabsCont .bd ul li.on {
+	background-color: #1ab394;
+	color: #fff;
+}
+
+.tabsCont .hd {
+	background-color: #fff;
+	padding: 25px 0;
+}
+
+.borderbb {
+	border-bottom: 1px solid #eee;
+}
+
+.g-miu {
+	margin-bottom: 15px;
+	font-size: 14px;
+}
+
+.ronner {
+	color: #fe2d30;
+}
+
+.lineheight {
+	line-height: 30px;
+	color: #666;
+}
+
+.inp-control {
+	height: 30px;
+	line-height: 30px;
+	padding: 0 5px;
+	width: 240px;
+	border-color: #1ab394;
+	border: 1px solid #1ab394;
+}
+
+.imgCOX ul li {
+	float: left;
+	width: 200px;
+	height: 150px;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	padding: 5px;
+	margin-right: 15px;
+}
+
+.imgCOX ul li img {
+	width: 187px;
+	height: 140px;
+	overflow: hidden;
+}
+
+.btnww {
+	position: relative;
+	background-color: #1ab394;
+	width: 200px;
+	height: 40px;
+	border-radius: 2px;
+	line-height: 40px;
+	color: #fff;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.btnww .J_UploadInput {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200px;
+	height: 40px;
+	-webkit-appearance: none;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.table-list {
+	padding: 0 25px;
+}
+
+.wel-ss {
+	width: 240px;
+	border-color: #1ab394;
+	border: 1px solid #1ab394;
+}
+
+.reenm {
+	color: #999;
+	padding-left: 15px;
+}
+
+.textar {
+	border: 1px solid #1ab394;
+	width: 60%;
+	padding: 5px;
+}
+
+.modal-worppar {
+	max-width: 1200px;
+	background: #fff;
+	border-radius: 5px;
+	margin: 30px auto;
+}
+
+.titleboxl {
+	height: 50px;
+	line-height: 50px;
+	background-color: #efefef;
+	border-bottom: 1px solid #cdcdce;
+	text-indent: 30px;
+	font-size: 16px;
+}
+</style>
+<style type="text/css">
+.hidediv {
+	display: none;
+}
+
+.showdiv {
+	display: block;
+}
+</style>
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="bocWordpp ">
+					<div class="title">投票管理</div>
+					<div class="tabsCont">
+						<div class="bd">
+							<ul>
+								<li onclick="changeTab(1)" id="tab1" class="on">基础内容设置</li>
+								<li onclick="changeTab(2)" id="tab2">选项设置</li>
+								<li onclick="changeTab(3)" id="tab3">规则设置</li>
+
+							</ul>
+						</div>
+						<div class="hd">
+							<!-- 基础内容设置 S -->
+							<div class="box-tpl" id="baseDiv">
+								<input type="hidden" value="0" name="isExist" id="isExist">
+								<form action="" method="post" id="addForm" enctype="multipart/form-data">
+									<input type="hidden" value="" name="voteId" id="voteId1">
+									<input type="hidden" value="" name="votePicUrl" id="votePicUrl">
+									<input type="hidden" value="" name="voteBackPicUrl" id="voteBackPicUrl">
+									<input type="hidden" value="" name="voteBackPicUrl" id="voteBackPicUrl">
+									<input type="hidden" value="0" name="hasDeletePic1" id="hasDeletePic1">
+									<input type="hidden" value="0" name="hasDeletePic2" id="hasDeletePic2">
+									<!-- borderbb S -->
+									<div class="borderbb">
+										<div class="row g-miu lineheight">
+											<div class="col-md-2 text-right">
+												<span>
+													<em class="ronner">* </em>投票标题 ：
+												</span>
+											</div>
+											<div class="col-md-10">
+												<input name="voteTitle" id="a_voteTitle" type="text" class="inp-control" value="" placeholder="请输入标题">
+											</div>
+										</div>
+									</div>
+									<!-- borderbb E -->
+									<!-- borderbb S -->
+									<div class="borderbb">
+										<div class="row g-miu lineheight">
+											<div class="col-md-2 text-right">
+												<span>
+													<em class="ronner">* </em>排序 ：
+												</span>
+											</div>
+											<div class="col-md-10">
+												<input name="voteOrder" id="a_voteOrder" type="text" class="inp-control" value="" placeholder="请输入数字">
+											</div>
+										</div>
+									</div>
+									<!-- borderbb E -->
+									<!-- borderbb S -->
+									<div class="borderbb">
+										<div class="row g-miu lineheight mt15">
+											<div class="col-md-2 text-right">
+												<span>投票封面 ：</span>
+											</div>
+											<div class="col-sm-10 imgFileUp">
+												<input type="file" name="filepath" id="addImg" onchange="preImg(this.id,'addImgPre',100,100);" style="display: none;" />
+												<img id="addImgPre" src="/images/add_img.png" data-name="picPath" style="max-width: 100px; max-height: 100px;" onclick="javascript:$('#addImg').click();" />
+												<p style="margin-top: 10px;">
+													<a class="btn btn-primary" onclick="javascript:$('#addImg').click();">修改</a>
+													<a class="btn btn-primary" onclick="removImg(this,'1')">删除</a>
+												</p>
+											</div>
+										</div>
+									</div>
+									<!-- borderbb E -->
+									<!-- borderbb S -->
+									<div class="borderbb">
+										<div class="row g-miu lineheight mt15">
+											<div class="col-md-2 text-right">
+												<span>背景图片 ：</span>
+											</div>
+											<div class="col-sm-10 imgFileUp">
+												<input type="file" name="backpath" id="backImg" onchange="preImg(this.id,'backImgPre',100,100);" style="display: none;" />
+												<img id="backImgPre" src="/images/add_img.png" data-name="picPath" style="max-width: 100px; max-height: 100px;" onclick="javascript:$('#backImg').click();" />
+												<p style="margin-top: 10px;">
+													<a class="btn btn-primary" onclick="javascript:$('#backImg').click();">修改</a>
+													<a class="btn btn-primary" onclick="removImg(this,'2')">删除</a>
+												</p>
+											</div>
+										</div>
+									</div>
+									<!-- borderbb E -->
+									<!-- borderbb S -->
+									<input type="hidden" name="voteStartTime" id="a_startTime" value="">
+									<input type="hidden" name="voteEndTime" id="a_endTime" value="">
+									<div class="borderbb">
+										<div class="row g-miu lineheight mt15">
+											<div class="col-md-2 text-right">
+												<span>开始时间：</span>
+											</div>
+											<div class="col-md-10">
+												<input id="start" type="text" value="" class="inp-control laydate-icon" style="height: 30px">
+											</div>
+										</div>
+									</div>
+									<!-- borderbb E -->
+									<!-- borderbb S -->
+									<div class="borderbb">
+										<div class="row g-miu lineheight mt15">
+											<div class="col-md-2 text-right">
+												<span>结束时间：</span>
+											</div>
+											<div class="col-md-10">
+												<input id="end" type="text" value="" class="inp-control laydate-icon" style="height: 30px">
+											</div>
+										</div>
+									</div>
+									<!-- borderbb E -->
+									<!-- borderbb S -->
+									<div class="borderbb">
+										<div class="row g-miu lineheight mt15">
+											<div class="col-md-2 text-right">
+												<span>描述投票(选填) ：</span>
+											</div>
+											<div class="col-md-10">
+												<textarea name="voteDescribe" id="a_voteDescribe" class="summernote" cols="60" rows="5"></textarea>
+											</div>
+										</div>
+									</div>
+									<!-- borderbb E -->
+									<!-- borderbb S -->
+									<!--   <div class="borderbb">
+	                           	  	   <div class="row g-miu lineheight mt15">
+	                           	  	   	  <div class="col-md-2 text-right"><span>投票详情介绍：</span></div>
+	                           	  	   	  <div class="col-md-6">
+	                           	  	   	  
+	                           	  	   	  	<div class="ibox-content no-padding" >
+          						                <input name="voteContent" class="summernote" style="min-height: 700px;" />
+                                            </div>
+	                           	  	   	  </div> 
+	                           	  	   </div>
+                           	  	  </div> -->
+									<!-- borderbb E -->
+									<!-- borderbb S -->
+									<div class="borderbb">
+										<div class="row g-miu lineheight mt15">
+											<div class="col-md-2 text-right"></div>
+											<div class="col-md-10">
+
+												<!--  <button class="btn btn-white " type="button" >取消</button> -->
+												<button class="btn btn-primary" type="button" style="margin-left: 10px" id="saveBase">保存</button>
+											</div>
+										</div>
+									</div>
+									<!-- borderbb E -->
+								</form>
+							</div>
+							<!-- 基础内容设置 E -->
+							<!-- 选项设置 S -->
+							<div class="box-tpl hidediv" id="optionDiv">
+								<div class="table-list">
+									<button type="button" class="btn btn-w-m btn-primary" id="m_addOpt" data-toggle="modal" data-target="#myModal">新增选项</button>
+									<table class="table table-bordered mt15">
+										<thead>
+											<tr>
+												<th>编号/手机号</th>
+												<th>标题/用户名</th>
+												<th>选项封面</th>
+												<th>排序</th>
+												<th>选项描述</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody id="tabcontent">
+
+										</tbody>
+									</table>
+									<!--分页 S-->
+									<div class="pages clearfix ">
+										<div id="Pagination" class="pagecontent"></div>
+										<div class="searchPage">
+											<span class="page-sum">
+												共<strong class="allPage">0</strong>页
+											</span>
+										</div>
+									</div>
+									<!--分页 E-->
+								</div>
+							</div>
+							<!-- 选项设置 E -->
+							<!-- 规则设置 S -->
+							<div class="box-tpl hidediv" id="ruleDiv">
+								<form action="" method="post" id="ruleForm" enctype="multipart/form-data">
+									<input type="hidden" value="" name="voteId" id="voteId2">
+									<!-- borderbb S -->
+									<!-- <div class="borderbb">
+                                     <div class="row g-miu lineheight">
+                                        <div class="col-md-2 text-right"><span>用户类型 ：</span></div>
+                                        <div class="col-md-10">
+                                          <select class="form-control wel-ss" name="userTypeFlag">
+                                              <option value="1" id="userType_1">所有人均可投票</option>
+                                              <option value="0" id="userType_0">会员投票</option>
+                                          </select>
+                                        </div> 
+                                     </div>
+                                  </div> -->
+									<!-- borderbb E -->
+
+									<!-- borderbb S -->
+									<div class="borderbb">
+										<div class="row g-miu lineheight mt15">
+											<div class="col-md-2 text-right">
+												<span>限制用户 ：</span>
+											</div>
+											<div class="col-md-10">
+
+												<select class="form-control wel-ss" name="isLimitUser" id="isLimitUser">
+													<option value="0" id="isLimitUser_0">对用户开放</option>
+													<option value="1" id="isLimitUser_1">不对用户开放</option>
+
+												</select>
+
+
+											</div>
+										</div>
+									</div>
+									<!-- borderbb E -->
+
+									<!-- borderbb S -->
+									<div class="borderbb">
+										<div class="row g-miu lineheight mt15">
+											<div class="col-md-2 text-right">
+												<span>用户投票周期设置 ：</span>
+											</div>
+											<div class="col-md-10">
+												<input name="periodHour" id="periodHour" type="text" class="inp-control" value="" style="width: 100px;">
+												<span>小时</span>
+												<span class="reenm">不设置则认为不限制</span>
+											</div>
+										</div>
+									</div>
+									<!-- borderbb E -->
+
+									<!-- borderbb S -->
+									<div class="borderbb">
+										<div class="row g-miu lineheight mt15">
+											<div class="col-md-2 text-right">
+												<span>周期内投票数设置 ：</span>
+											</div>
+											<div class="col-md-10">
+												<input type="text" name="voteNumber" id="voteNumber" class="inp-control" value="" style="width: 100px;">
+												<span>张</span>
+												<span class="reenm" style="padding-left: 30px;">不设置则认为不限制</span>
+											</div>
+										</div>
+									</div>
+									<!-- borderbb E -->
+
+									<!-- borderbb S -->
+									<div class="borderbb">
+										<div class="row g-miu lineheight mt15">
+											<div class="col-md-2 text-right">
+												<span>规则说明 ：</span>
+											</div>
+											<div class="col-md-10">
+												<textarea class="textar" name="voteRule" id="voteRule" cols="" rows="7"></textarea>
+											</div>
+										</div>
+									</div>
+									<!-- borderbb E -->
+
+									<!-- borderbb S -->
+									<div class="borderbb">
+										<div class="row g-miu lineheight mt15">
+											<div class="col-md-2 text-right"></div>
+											<div class="col-md-10">
+
+												<!--  <button class="btn btn-white " type="submit" >取消</button> -->
+												<button class="btn btn-primary" type="button" style="margin-left: 10px" id="updateRule">保存</button>
+											</div>
+										</div>
+									</div>
+									<!-- borderbb E -->
+								</form>
+							</div>
+							<!-- 规则设置 E -->
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 2016-4-7 add -->
+	<!-- 新增选项 弹出框 S -->
+	<div class="modal fade" id="myModal" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<!-- 新增投票选项 S -->
+					<div class="box-tpl">
+						<div class="titleboxl">
+							新增投票选项
+							<a type="button" class="btn btn-primary" data-dismiss="modal" id="j_btn" style="position: absolute; right: 31px; top: 8px; text-indent: 0;">关闭</a>
+						</div>
+						<form action="" method="post" id="optionForm" enctype="multipart/form-data">
+							<!-- borderbb S -->
+							<input type="hidden" value="" name="voteId" id="voteId3">
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span>
+											<em class="ronner">*</em>选项编号 ：
+										</span>
+									</div>
+									<div class="col-md-10">
+										<input type="text" class="inp-control" name="voteOptionNo" id="voteOptionNo" value="" placeholder="请输入选项编号">
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span>
+											<em class="ronner">*</em>选项标题 ：
+										</span>
+									</div>
+									<div class="col-md-10">
+										<input type="text" class="inp-control" name="voteOptionTitle" id="voteOptionTitle" value="" placeholder="请输入选项标题">
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span>
+											<em class="ronner">*</em>选项排序 ：
+										</span>
+									</div>
+									<div class="col-md-10">
+										<input type="text" class="inp-control" name="voteOrder" id="voteOrder" value="" placeholder="请输入数字">
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span>选项封面 ：</span>
+									</div>
+									<div class="col-sm-10 imgFileUp">
+										<input type="file" name="filepath" id="optImg" onchange="preImg(this.id,'optImgPre',100,100);" style="display: none;" />
+										<img id="optImgPre" src="/images/add_img.png" data-name="picPath" style="max-width: 100px; max-height: 100px;" onclick="javascript:$('#optImg').click();" />
+										<p style="margin-top: 10px;">
+											<a class="btn btn-primary" onclick="javascript:$('#optImg').click();">修改</a>
+											<a class="btn btn-primary" onclick="removImg(this,'0')">删除</a>
+										</p>
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span> 选项描述 ：</span>
+									</div>
+									<div class="col-md-10">
+										<textarea rows="3" cols="38" name="remark" id="remark" placeholder="请输入选项描述"></textarea>
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+							<!-- borderbb S -->
+							<!--  <div class="borderbb">
+                                     <div class="row g-miu lineheight mt15">
+                                        <div class="col-md-2 text-right"><span>详情介绍：</span></div>
+                                        <div class="col-md-8">
+                                          <div class="ibox-content no-padding "  >
+                                              <div class="summernote hss"  >
+                                                
+                                              </div>
+                                            </div>
+                                        </div> 
+                                     </div>
+                                  </div> -->
+							<!-- borderbb E -->
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right"></div>
+									<div class="col-md-10">
+
+										<button class="btn btn-white " type="button" onclick="javascript:$('#j_btn').click();">取消</button>
+										<button class="btn btn-primary" type="button" id="saveOption" style="margin-left: 10px">保存</button>
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+						</form>
+					</div>
+					<!-- 新增投票选项 E -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 新增选项 弹出框 S -->
+	<!-- 修改选项 弹出框 S -->
+	<div class="modal fade" id="myModal3" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<!-- 修改投票选项 S -->
+					<div class="box-tpl">
+						<div class="titleboxl">
+							修改投票选项
+							<a type="button" class="btn btn-primary" data-dismiss="modal" id="j_close" style="position: absolute; right: 31px; top: 8px; text-indent: 0;">关闭</a>
+						</div>
+						<form action="" method="post" id="uptForm" enctype="multipart/form-data">
+							<!-- borderbb S -->
+							<input type="hidden" value="" name="optionId">
+							<input type="hidden" value="" name="voteOptionPicUrl">
+							<input type="hidden" value="" name="voteId" id="voteId4">
+							<input type="hidden" value="" name="o_voteOptionNo" id="o_voteOptionNo">
+							<input type="hidden" value="0" name="hasDeletePic3" id="hasDeletePic3">
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span>
+											<em class="ronner">*</em>选项编号 ：
+										</span>
+									</div>
+									<div class="col-md-10">
+										<input type="text" class="inp-control" name="voteOptionNo" id="voteOptionNo2" value="" placeholder="请输入选项编号">
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span>
+											<em class="ronner">*</em>选项标题 ：
+										</span>
+									</div>
+									<div class="col-md-10">
+										<input type="text" class="inp-control" name="voteOptionTitle" id="voteOptionTitle2" value="" placeholder="请输入选项标题">
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span>
+											<em class="ronner">*</em>选项排序 ：
+										</span>
+									</div>
+									<div class="col-md-10">
+										<input type="text" class="inp-control" name="voteOrder" id="voteOrder2" value="" placeholder="请输入数字">
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span>选项封面 ：</span>
+									</div>
+									<div class="col-sm-10 imgFileUp">
+										<input type="file" name="filepath" id="uptImg" onchange="preImg(this.id,'uptImgPre',100,100);" style="display: none;" />
+										<img id="uptImgPre" src="/images/add_img.png" data-name="picPath" style="max-width: 100px; max-height: 100px;" onclick="javascript:$('#uptImg').click();" />
+										<p style="margin-top: 10px;">
+											<a class="btn btn-primary" onclick="javascript:$('#uptImg').click();">修改</a>
+											<a class="btn btn-primary" onclick="removImg(this,'3')">删除</a>
+										</p>
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span> 选项描述 ：</span>
+									</div>
+									<div class="col-md-10">
+										<textarea rows="3" cols="38" name="remark" placeholder="请输入选项描述"></textarea>
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right"></div>
+									<div class="col-md-10">
+
+										<button class="btn btn-white " type="button" onclick="javascript:$('#j_close').click();">取消</button>
+										<button class="btn btn-primary" type="button" id="updateOption" style="margin-left: 10px">保存</button>
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+						</form>
+					</div>
+					<!-- 修改投票选项 E -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 修改选项 弹出框 S -->
+	<!-- 查看选项S -->
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<!-- 查看选项 S -->
+					<div class="box-tpl">
+						<div class="titleboxl">
+							新增投票选项
+							<a type="button" class="btn btn-primary" data-dismiss="modal" style="position: absolute; right: 31px; top: 8px; text-indent: 0;">关闭</a>
+						</div>
+						<form action="" method="post" id="optionForm" enctype="multipart/form-data">
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span>
+											<em class="ronner">*</em>选项编号 ：
+										</span>
+									</div>
+									<div class="col-md-10">
+										<input type="text" class="inp-control" disabled name="voteOptionNo" value="" placeholder="请输入选项编号">
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span>
+											<em class="ronner">*</em>选项标题 ：
+										</span>
+									</div>
+									<div class="col-md-10">
+										<input type="text" disabled class="inp-control" name="voteOptionTitle" value="" placeholder="请输入选项标题">
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span>
+											<em class="ronner">*</em>选项排序 ：
+										</span>
+									</div>
+									<div class="col-md-10">
+										<input type="text" disabled class="inp-control" name="voteOrder" value="" placeholder="请输入数字">
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right ">
+										<span>选项封面 ：</span>
+									</div>
+									<div class="viewImg"></div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+							<!-- borderbb S -->
+							<div class="borderbb">
+								<div class="row g-miu lineheight mt15">
+									<div class="col-md-2 text-right">
+										<span> 选项描述 ：</span>
+									</div>
+									<div class="col-md-10">
+										<textarea rows="3" cols="38" disabled name="remark" placeholder="请输入选项描述"></textarea>
+									</div>
+								</div>
+							</div>
+							<!-- borderbb E -->
+
+
+						</form>
+					</div>
+					<!-- 查看选项E -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--查看选项 S -->
+
+
+	<script src="/js/jquery.min.js?v=2.1.4"></script>
+	<script src="/js/bootstrap.min.js?v=3.3.5"></script>
+	<script src="/js/content.min.js?v=1.0.0"></script>
+	<script src="/js/jquery.SuperSlide.2.1.js"></script>
+	<script src="/js/wxm.dialog.js"></script>
+	<script src="/js/script.js"></script>
+	<script src="/js/plugins/summernote/summernote.min.js"></script>
+	<script src="/js/plugins/summernote/summernote-zh-CN.js"></script>
+	<script type="text/javascript" src="/js/jquery.form.js"></script>
+	<script>
+        var edit = function() {
+            $("#eg").addClass("no-padding");
+            $(".click2edit").summernote({
+                lang : "zh-CN",
+                focus : true
+            })
+        };
+        var save = function() {
+            $("#eg").removeClass("no-padding");
+            var aHTML = $(".click2edit").code();
+            $(".click2edit").destroy()
+        };
+    </script>
+
+	<script type="text/javascript" src="/js/laydate.js"></script>
+	<script type="text/javascript">
+        $(document).ready(function() {
+            function inti() {
+                var isExist = '${isExist!''}';
+                var voteId = '${voteId!''}';
+                var fromList = '${fromList!''}';
+                var isSee = '${isSee!''}';
+                var voteTitle = '${(vote.voteTitle)!''}';
+                var votePicUrl = '${(vote.votePicUrl)!''}';
+                var voteBackPicUrl = '${(vote.voteBackPicUrl)!''}';
+                var voteOrder = '${(vote.voteOrder)!''}';
+                var voteDescribe = '${(vote.voteDescribe)!''}';
+                var voteStartTime = '${(vote.voteStartTime)!''}';
+                var voteEndTime = '${(vote.voteEndTime)!''}';
+                var userTypeFlag = '${(vote.userTypeFlag)!''}';
+                var isLimitUser = '${(vote.isLimitUser)!''}';
+                var periodHour = '${(vote.periodHour)!''}';
+                var voteNumber = '${(vote.voteNumber)!''}';
+                var voteRule = '${(vote.voteRule)!''}';
+                if (fromList == '1') {
+                    $('#isExist').val('1');
+                    $('#voteId1').val(voteId);
+                    $('#voteId2').val(voteId);
+                    $('#voteId3').val(voteId);
+                    
+                    selectList(1);
+                    $('#a_voteTitle').val(voteTitle);
+                    $('#a_voteOrder').val(voteOrder);
+                    $('#a_voteDescribe').val(voteDescribe);
+                    $('#start').val(voteStartTime);
+                    $('#end').val(voteEndTime);
+                    $('#votePicUrl').val(votePicUrl);
+                    $('#voteBackPicUrl').val(voteBackPicUrl);
+                    $('#voteOrder').val(voteOrder);
+                    $("#addImgPre").attr("src", votePicUrl);
+                    $("#backImgPre").attr("src", voteBackPicUrl);
+                    $('#periodHour').val(periodHour);
+                    $('#voteNumber').val(voteNumber);
+                    $('#voteRule').val(voteRule);
+                    if (isLimitUser == "1") {
+                        $('#isLimitUser_1').attr("selected", true);
+                    } else if (isLimitUser == "0") {
+                        $('#isLimitUser_0').attr("selected", true);
+                    }
+                    if (isSee == "1") {
+                        $('#a_voteTitle').attr("disabled", true);
+                        $('#a_voteOrder').attr("disabled", true);
+                        $('#a_voteDescribe').attr("disabled", true);
+                        $('#start').attr("disabled", true);
+                        $('#end').attr("disabled", true);
+                        $('#votePicUrl').attr("disabled", true);
+                        $('#voteOrder').attr("disabled", true);
+                        $("#addImgPre").attr("disabled", true);
+                        $("#backImgPre").attr("disabled", true);
+                        $('#periodHour').attr("disabled", true);
+                        $('#voteNumber').attr("disabled", true);
+                        $('#voteRule').attr("disabled", true);
+                        $('#isLimitUser').attr("disabled", true);
+                        $('#m_addOpt').css("display", "none");
+                        $('#saveBase').css("display", "none");
+                        $('#updateRule').css("display", "none");
+                    }
+                }
+            }
+            inti();
+        });
+    </script>
+	<script type="text/javascript">
+        function removImg(ob, id) {
+            $(ob).parent().parent().find("input").val("");
+            var img = $(ob).parent().parent().find("img[data-name='picPath']");
+            img.attr("src", "/images/add_img.png");
+            $(ob).parent().parent().find("input[name='picFlag']").val("1");
+            if (id == '1') {
+                $('#hasDeletePic1').val('1');
+            }
+            if (id == '2') {
+                $('#hasDeletePic2').val('1');
+            }
+            if (id == '3') {
+                $('#hasDeletePic3').val('1');
+            }
+        }
+
+        //切换选项卡
+        function changeTab(ob) {
+            var isExist = $('#isExist').val();
+            if (isExist == "1") {
+                $("#tab" + ob).addClass('on');
+                $("#tab" + ob).siblings().removeClass('on');
+                if (ob == "1") {
+                    $('#ruleDiv').removeClass('showdiv');
+                    $('#optionDiv').removeClass('showdiv');
+                    $('#baseDiv').removeClass('hidediv');
+                    $('#ruleDiv').addClass('hidediv');
+                    $('#optionDiv').addClass('hidediv');
+                    $('#baseDiv').addClass('showdiv');
+                } else if (ob == "2") {
+                    $('#baseDiv').removeClass('showdiv');
+                    $('#ruleDiv').removeClass('showdiv');
+                    $('#optionDiv').removeClass('hidediv');
+
+                    $('#baseDiv').addClass('hidediv');
+                    $('#ruleDiv').addClass('hidediv');
+                    $('#optionDiv').addClass('showdiv');
+                } else if (ob == "3") {
+                    $('#baseDiv').removeClass('showdiv');
+                    $('#optionDiv').removeClass('showdiv');
+                    $('#ruleDiv').removeClass('hidediv');
+
+                    $('#baseDiv').addClass('hidediv');
+                    $('#optionDiv').addClass('hidediv');
+                    $('#ruleDiv').addClass('showdiv');
+                }
+            } else {
+                return;
+            }
+        }
+    </script>
+	<script type="text/javascript">
+        var iframe;
+        function load() {
+            iframe = document.getElementById("iframe");
+            wxm.dialog({
+                type : 'success',
+                message : "保存成功！"
+            });
+        }
+    </script>
+
+	<script>
+        !function() {
+            laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+            laydate({
+                elem : '#d121'
+            });//绑定元素
+        }();
+    </script>
+	<script>
+        //日期范围限制
+        var start = {
+            elem : '#start',
+            format : 'YYYY-MM-DD hh:MM:ss',
+            min : laydate.now(), //设定最小日期为当前日期
+            max : '2099-06-16 00:00:00', //最大日期
+            istime : true,
+            istoday : false,
+            choose : function(datas) {
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        };
+
+        var end = {
+            elem : '#end',
+            format : 'YYYY-MM-DD hh:MM:ss',
+            min : laydate.now(),
+            max : '2099-06-16 00:00:00',
+            istime : true,
+            istoday : false,
+            choose : function(datas) {
+                start.max = datas; //结束日选好后，充值开始日的最大日期
+            }
+        };
+        laydate(start);
+        laydate(end);
+    </script>
+	<script type="text/javascript">
+        function clearInput(panel) {
+            $(panel).find("input").val("");
+            $(panel).find("textarea").val("");
+            var selects = $(panel).find("select");
+            selects.find("option").prop("selected", false);
+            selects.find("option:first").prop("selected", "selected");
+            $(panel).find(".imgFileUp img").attr("src", "/images/add_img.png");
+        }
+        $('#m_addOpt').click(function() {
+            $('#voteOptionNo').val("");
+            $('#voteOptionTitle').val("");
+            $('#remark').val("");
+            $('#voteOrder').val("");
+            $('#optImgPre').attr("src", "/images/add_img.png");
+        })
+        function selectList(currentPageNo) {
+            if (!currentPageNo) {
+                currentPageNo = 1;
+            }
+            var voteId = $('#voteId1').val();
+            $.ajax({
+                url : "/vote/getOption",
+                data : {
+                    'currentPageNo' : currentPageNo,
+                    'voteId' : voteId
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError == "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : data.msg
+                        });
+                    } else {
+                        selectHtml(data);
+                    }
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+                }
+            });
+        }
+        function selectHtml(data) {
+            var isSee = '${isSee!''}';
+            var rows = data.rows;
+            var tb = [];
+            if (rows && rows.length > 0) {
+                for (var i = 0; i < rows.length; i++) {
+                    var ob = rows[i];
+                    ob.optionId = ob.id;
+                    tb[tb.length] = '<tr>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.voteOptionNo) + '</td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.voteOptionTitle) + '</td>';
+                    tb[tb.length] = '<td><div style="height:50px;width:100px;"><img style="height:100%;" src="' + nullToStr(ob.voteOptionPicUrl) + '"></div></td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.voteOrder) + '</td>';
+                    tb[tb.length] = '<td style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">' + nullToStr(ob.remark) + '</td>';
+                    tb[tb.length] = '<td>';
+                    tb[tb.length] = "   &nbsp;&nbsp; <a data-target='#myModal1' data-toggle='modal' data-val='" + JsonToStr(ob) + "' onclick='viewWin(this,\"view\");'>查看</a>";
+                    if (isSee != "1") {
+                        tb[tb.length] = "   &nbsp;&nbsp; <a data-target='#myModal3' data-toggle='modal' data-val='" + JsonToStr(ob) + "' onclick='viewWin(this,\"upt\");'>修改</a>";
+                        tb[tb.length] = "   &nbsp;&nbsp; <a  onclick='del(this,\"" + ob.id + "\");'>删除</a>";
+                    }
+
+                    tb[tb.length] = '</td>';
+                    tb[tb.length] = '</tr>';
+                }
+                paginationFun($("#Pagination"), data.totalCnt, 10, data.currentPage, "selectList");
+            }
+            $("#tabcontent").html(tb.join(""));
+        }
+        function viewWin(ob, flag) {
+            var panel = $(ob).attr("data-target");
+            clearInput(panel);
+            var jsonstr = $(ob).attr("data-val");
+            var data = eval('(' + jsonstr + ')');
+            $(panel).find("input").each(function(index) {
+                var name = $(this).attr("name");
+                $(this).val(nullToStr(data[name]));
+            });
+            $(panel).find("textarea").each(function(index) {
+                var name = $(this).attr("name");
+                $(this).val(nullToStr(data[name]));
+            });
+            $('#o_voteOptionNo').val( $('#voteOptionNo2').val());
+            if (flag == "view") {
+                var img = "";
+                if (data.voteOptionPicUrl) {
+                    img = "<img src='"+data.voteOptionPicUrl+"' style='display:block;max-width:300px;max-height:180px;'/>";
+                }
+                $(panel).find(".viewImg").html(img);
+            } else {
+                if (data.voteOptionPicUrl) {
+                    $(panel).find(".imgFileUp img").attr("src", data.voteOptionPicUrl);
+                }
+            }
+
+        }
+        //删除 
+        function del(ob, id) {
+            wxm.dialog({
+                type : 'confirm',
+                message : "确定是否删除？",
+                callback : {
+                    correct : function() {
+                        wxm.maskLayer();
+                        $.ajax({
+                            url : "/vote/delOption",
+                            data : {
+                                'optionId' : id
+                            },
+                            type : 'POST',
+                            cache : false,
+                            async : false,
+                            dataType : 'json',
+                            success : function(result) {
+                                wxm.maskLayer.close();
+                                if (!result || !result.isError) {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : "操作失败，请重试！"
+                                    });
+                                    return;
+                                }
+                                if (result.isError == "1") {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : result.msg
+                                    });
+                                    return;
+                                }
+                                selectList(1);
+                                wxm.dialog({
+                                    type : 'success',
+                                    message : "删除成功！"
+                                });
+                            },
+                            error : function() {
+                                wxm.maskLayer.close();
+                                wxm.dialog({
+                                    type : 'error',
+                                    message : "操作失败，请重试！！"
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        $(function() {
+            //新增
+            $("#saveBase").click(function() {
+                var a = $('#start').val();
+                var b = $('#end').val();
+                var c = $('#a_voteTitle').val();
+                var d = $('#isExist').val();
+                var e = $('#a_voteOrder').val();
+                $('#a_startTime').val(a);
+                $('#a_endTime').val(b);
+
+                if (c == "") {
+                    wxm.dialog({
+                        type : 'error',
+                        message : '请输入投票标题'
+                    });
+                    $('#a_voteTitle').focus();
+                    return false;
+                }
+                if (e == "") {
+                    wxm.dialog({
+                        type : 'error',
+                        message : '请输入排序'
+                    });
+                    $('#a_voteOrder').focus();
+                    return false;
+                }
+                if (a == "") {
+                    wxm.dialog({
+                        type : 'error',
+                        message : '请选择开始时间'
+                    });
+                    return false;
+                }
+                if (b == "") {
+                    wxm.dialog({
+                        type : 'error',
+                        message : '请选择结束时间'
+                    });
+                    return false;
+                }
+                wxm.maskLayer();
+                if (d == "0") {
+                    $("#addForm").ajaxSubmit({
+                        url : "/vote/saveBase",
+                        type : 'post',
+                        success : function(data) {
+                            wxm.maskLayer.close();
+                            if (data.isError == "1") {
+                                wxm.dialog({
+                                    type : 'error',
+                                    message : data.msg
+                                });
+                            } else {
+                                wxm.dialog({
+                                    type : 'success',
+                                    message : data.msg
+                                });
+                                $('#isExist').val('1');
+                                $('#voteId1').val(data.voteId);
+                                $('#voteId2').val(data.voteId);
+                                $('#voteId3').val(data.voteId);
+                                selectList(1);
+                            }
+                        },
+                        error : function() {
+                            wxm.maskLayer.close();
+                            wxm.dialog({
+                                type : 'error',
+                                message : "操作失败，请重试！"
+                            });
+                        }
+                    });
+                } else if (d == "1") {
+                    $("#addForm").ajaxSubmit({
+                        url : "/vote/updateBase",
+                        type : 'post',
+                        success : function(data) {
+                            wxm.maskLayer.close();
+                            if (data.isError == "1") {
+                                wxm.dialog({
+                                    type : 'error',
+                                    message : data.msg
+                                });
+                            } else {
+                                wxm.dialog({
+                                    type : 'success',
+                                    message : data.msg
+                                });
+                            }
+                        },
+                        error : function() {
+                            wxm.maskLayer.close();
+                            wxm.dialog({
+                                type : 'error',
+                                message : "操作失败，请重试！"
+                            });
+                        }
+                    });
+                }
+            });
+            //修改规则	
+            $("#updateRule").click(function() {
+                wxm.maskLayer();
+                $("#ruleForm").ajaxSubmit({
+                    url : "/vote/updateRule",
+                    type : 'post',
+                    success : function(data) {
+                        wxm.maskLayer.close();
+                        if (data.isError == "1") {
+                            wxm.dialog({
+                                type : 'error',
+                                message : data.msg
+                            });
+                        } else {
+                            wxm.dialog({
+                                type : 'error',
+                                message : data.msg
+                            });
+                        }
+                    },
+                    error : function() {
+                        wxm.maskLayer.close();
+                        wxm.dialog({
+                            type : 'error',
+                            message : "操作失败，请重试！"
+                        });
+                    }
+                });
+
+            });
+
+            //新增选项
+            $("#saveOption").click(function() {
+                var a = $('#voteOptionNo').val();
+                var b = $('#voteOptionTitle').val();
+                var c = $('#voteOrder').val();
+                if (a == "") {
+                    wxm.dialog({
+                        type : 'error',
+                        message : '请输入选项编号'
+                    });
+                    $('#voteOptionNo').focus();
+                    return false;
+                }
+                if (b == "") {
+                    wxm.dialog({
+                        type : 'error',
+                        message : '请输入选项标题'
+                    });
+                    $('#voteOptionTitle').focus();
+                    return false;
+                }
+                if (c == "") {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "请输入选项排序"
+                    });
+                    $('#voteOrder').focus();
+                    return false;
+                }
+                wxm.maskLayer();
+                $("#optionForm").ajaxSubmit({
+                    url : "/vote/saveOption",
+                    type : 'post',
+                    success : function(data) {
+                        wxm.maskLayer.close();
+                        if (data.isError == "1") {
+                            wxm.dialog({
+                                type : 'error',
+                                message : data.msg
+                            });
+                        } else {
+                            wxm.dialog({
+                                type : 'success',
+                                message : data.msg
+                            });
+                            $('#j_btn').click();
+                            selectList(1);
+                        }
+                    },
+                    error : function() {
+                        wxm.maskLayer.close();
+                        wxm.dialog({
+                            type : 'error',
+                            message : "操作失败，请重试！"
+                        });
+                    }
+                });
+            });
+            //修改选项
+            $("#updateOption").click(function() {
+            	var voteId = $('#voteId1').val();
+                $('#voteId4').val(voteId);
+               
+                var a = $('#voteOptionNo2').val();
+                var b = $('#voteOptionTitle2').val();
+                var c = $('#voteOrder2').val();
+                if (a == "") {
+                    wxm.dialog({
+                        type : 'error',
+                        message : '请输入选项编号'
+                    });
+                    $('#voteOptionNo2').focus();
+                    return false;
+                }
+                if (b == "") {
+                    wxm.dialog({
+                        type : 'error',
+                        message : '请输入选项标题'
+                    });
+                    $('#voteOptionTitle2').focus();
+                    return false;
+                }
+                if (c == "") {
+                    wxm.dialog({
+                        type : 'error',
+                        message : '请输入选项排序'
+                    });
+                    $('#voteOrder2').focus();
+                    return false;
+                }
+                wxm.maskLayer();
+                $("#uptForm").ajaxSubmit({
+                    url : "/vote/updateOption?voteId="+voteId,
+                    type : 'post',
+                    success : function(data) {
+                        wxm.maskLayer.close();
+                        if (data.isError == "1") {
+                            wxm.dialog({
+                                type : 'error',
+                                message : data.msg
+                            });
+                        } else {
+                            wxm.dialog({
+                                type : 'success',
+                                message : data.msg
+                            });
+                            $('#j_close').click();
+                            selectList(1);
+                        }
+                    },
+                    error : function() {
+                        wxm.maskLayer.close();
+                        wxm.dialog({
+                            type : 'error',
+                            message : "操作失败，请重试！"
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>

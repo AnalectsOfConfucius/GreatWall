@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>民生大千世界梦幻乐园管理系统-投票管理-投票列表</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/pagination.css" rel="stylesheet">
+<style>
+.modal-worppar {
+	max-width: 1200px;
+	background: #fff;
+	border-radius: 5px;
+	margin: 30px auto;
+}
+
+.titleboxl {
+	height: 50px;
+	line-height: 50px;
+	background-color: #efefef;
+	border-bottom: 1px solid #cdcdce;
+	text-indent: 30px;
+	font-size: 16px;
+}
+
+#see_table th, td {
+	text-align: center;
+}
+
+.pages #Pagination2 {
+	float: left;
+	overflow: hidden;
+}
+
+.pages #Pagination2 .pagination {
+	height: 40px;
+	text-align: right;
+	font-family: \u5b8b\u4f53, Arial;
+	margin: 0;
+}
+
+.pages #Pagination2 .pagination a, .pages #Pagination2 .pagination span {
+	float: left;
+	display: inline;
+	padding: 6px 13px;
+	border: 1px solid #e6e6e6;
+	border-right: none;
+	background: #f6f6f6;
+	color: #666666;
+	font-family: \u5b8b\u4f53, Arial;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.pages #Pagination2 .pagination .current {
+	background: #1ab394;
+	color: #fff;
+}
+
+.pages #Pagination2 .pagination .prev, .pages #Pagination2 .pagination .next {
+	float: left;
+	padding: 6px 13px;
+	border: 1px solid #e6e6e6;
+	background: #f6f6f6;
+	color: #666666;
+	cursor: pointer;
+}
+
+.pages #Pagination2 .pagination .prev i, .pages #Pagination2 .pagination .next i {
+	display: inline-block;
+	width: 4px;
+	height: 6px;
+	margin-right: 5px;
+	background: url(../images/icon.fw.png) no-repeat;
+}
+
+.pages #Pagination2 .pagination .prev {
+	border-right: none;
+}
+
+.pages #Pagination2 .pagination .prev i {
+	background-position: -144px -1px;
+	*background-position: -144px -4px;
+}
+
+.pages #Pagination2 .pagination .next i {
+	background-position: -156px -1px;
+	*background-position: -156px -4px;
+}
+
+.pages #Pagination2 .pagination .pagination-break {
+	padding: 6px 5px;
+	border: none;
+	border-left: 1px solid #e6e6e6;
+	background: none;
+	cursor: default;
+}
+</style>
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="ibox float-e-margins">
+					<div id="tbListContent" class="ibox-content">
+						<input type="hidden" name="voteId" />
+						<a class="btn btn-primary" href="/vote/setVote">发起投票</a>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th style="width: 15%;">投票标题</th>
+									<th style="width: 20%;">修改时间</th>
+									<th style="width: 10%;">状态</th>
+									<th style="width: 5%;">排序</th>
+									<th style="width: 5%;">选项数量</th>
+									<th style="width: 5%;">投票数量</th>
+									<th style="width: 20%;">操作</th>
+								</tr>
+							</thead>
+							<tbody id="tabcontent"></tbody>
+						</table>
+						<!--分页 S-->
+						<div class="pages clearfix">
+							<div id="Pagination" class="pagecontent"></div>
+							<div class="searchPage">
+								<span class="page-sum">
+									共<strong class="allPage">0</strong>页
+								</span>
+							</div>
+						</div>
+						<!--分页 E-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 查看结果 -->
+	<div style="width: 548px; padding: 0; margin-left: 300px;" class="modal fade" id="myModal" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar" style="width: 548px; padding: 0;">
+			<div class="row" style="width: 548px; padding: 0;">
+				<div class="col-md-12" style="width: 548px; margin: 0;">
+					<input type="hidden" name="voteId1" id="voteId1" value="">
+					<!-- 查看结果 S -->
+					<div class="box-tpl" style="width: 548px;">
+						<div class="titleboxl">
+							投票结果
+							<a type="button" class="btn btn-primary" data-dismiss="modal" id="j_btn" style="position: absolute; right: 31px; top: 8px; text-indent: 0;">关闭</a>
+						</div>
+						<table class="table table-bordered" id="see_table">
+							<thead>
+								<tr>
+									<th>选项编号</th>
+									<th>选项标题</th>
+									<th>获得票数</th>
+								</tr>
+							</thead>
+							<tbody id="m_tabcontent"></tbody>
+						</table>
+						<!--分页 S-->
+						<div class="pages clearfix">
+							<div id="Pagination2" class="pagecontent"></div>
+							<div class="searchPage">
+								<span class="page-sum">
+									共<strong class="allPage">0</strong>页
+								</span>
+							</div>
+						</div>
+						<!--分页 E-->
+
+					</div>
+					<!-- 查看结果 E -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 查看结果 S -->
+	<script src="/js/jquery.min.js?v=2.1.4"></script>
+	<script src="/js/bootstrap.min.js?v=3.3.5"></script>
+	<script src="/js/script.js"></script>
+	<script src="/js/jquery.form.js"></script>
+	<script src="/js/wxm.dialog.js"></script>
+	<script>
+        $(document).ready(function() {
+            $(".i-checks").iCheck({
+                checkboxClass : "icheckbox_square-green",
+                radioClass : "iradio_square-green",
+            })
+        });
+    </script>
+	<script type="text/javascript" src="/js/laydate.js"></script>
+	<script>
+        selectList(1);
+        function selectList(currentPageNo) {
+            wxm.maskLayer();
+            if (!currentPageNo) {
+                currentPageNo = 1;
+            }
+            $.ajax({
+                url : "/vote/voteList",
+                data : {
+                    'currentPageNo' : currentPageNo
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError == "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : data.msg
+                        });
+                    } else {
+                        selectHtml(data);
+                    }
+                    wxm.maskLayer.close();
+                },
+                error : function() {
+                    wxm.maskLayer.close();
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+             	}
+     	});
+    	}
+    	function selectHtml(data){
+    		var rows = data.rows;
+    		var tb = [];
+    		if(rows && rows.length>0){
+    			for (var i = 0; i < rows.length; i++) {
+    				var ob = rows[i];
+    				ob.voteId = ob.id;
+    				tb[tb.length] = '<tr>';
+    				tb[tb.length] = '<td>'+nullToStr(ob.voteTitle)+'</td>';
+    				tb[tb.length] = '<td>'+nullToStr(ob.updateDate)+'</td>';
+    				tb[tb.length] = '<td ><span style="background:red;color:#fff;padding:3px;">'+ob.stateStr+'</span></td>';
+    				tb[tb.length] = '<td>'+nullToStr(ob.voteOrder)+'</td>';
+    				tb[tb.length] = '<td>'+nullToStr(ob.optionCount)+'</td>';
+    				tb[tb.length] = '<td>'+nullToStr(ob.votedCount)+'</td>';    				
+    				tb[tb.length] = '<td>';
+    				tb[tb.length] = '   &nbsp;&nbsp; <a  href="/vote/setVote?isSee=1&fromList=1&voteId='+ob.id+'">查看</a>';
+    				tb[tb.length] = '   &nbsp;&nbsp; <a href="/vote/setVote?fromList=1&voteId='+ob.id+'">修改</a>';
+    				if(ob.stateStr=='投票进行中···'){
+    				   tb[tb.length] = "   &nbsp;&nbsp; <a  onclick='shut(this,\""+ob.id+"\");'>结束投票</a>";
+    				}
+    				tb[tb.length] = "   &nbsp;&nbsp; <a data-target='#myModal' data-toggle='modal' onclick='toSee(this,\""+ob.id+"\");'>查看结果</a>";
+    				tb[tb.length] = '</td>';
+    				tb[tb.length] = '</tr>';
+    			}i
+    			paginationFun($("#Pagination"),data.totalCnt,8,data.currentPage,"selectList");
+    		}
+    		$("#tabcontent").html(tb.join(""));
+    	}
+       function toSee(ob,id){
+    	   $('#voteId1').val(id);
+    	   selectSeeList(1,id);
+       }
+        function selectSeeList(currentPageNo) {
+            wxm.maskLayer();
+            if (!currentPageNo) {
+                currentPageNo = 1;
+            }
+            var voteId = $('#voteId1').val();
+            $.ajax({
+                url : "/vote/getOption",
+                data : {
+                    'currentPageNo' : currentPageNo,
+                    'voteId' : voteId
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError == "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : data.msg
+                        });
+                    } else {
+                        selectSeeHtml(data);
+                    }
+                    wxm.maskLayer.close();
+                },
+                error : function() {
+                    wxm.maskLayer.close();
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+                }
+            });
+        }
+        function selectSeeHtml(data) {
+            var rows = data.rows;
+            var tb = [];
+            if (rows && rows.length > 0) {
+                for (var i = 0; i < rows.length; i++) {
+                    var ob = rows[i];
+                    ob.optionId = ob.id;
+                    tb[tb.length] = '<tr>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.voteOptionNo) + '</td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.voteOptionTitle) + '</td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.votedCount) + '</td>';
+                    tb[tb.length] = '</tr>';
+                }
+                paginationFun($("#Pagination2"), data.totalCnt, 8, data.currentPage, "selectSeeList");
+            }
+            $("#m_tabcontent").html(tb.join(""));
+        }
+
+        // 关闭窗口
+        $(".close-modal").bind('click', function() {
+            clearForm("#" + $(this).parents('.modal.fade').attr("id"))
+        })
+        // 清空表单数据
+        function clearForm(panel) {
+            $(panel).find("input[type='text']").val("");
+            $(panel).find("input[name='id']").val("");
+            $(panel).find("input[name=isRelease][value=1]").click();
+            $(panel).find("textarea").val("");
+            $(panel).find(".summernote").code("");
+            $(panel).find(".imgFileUp img").attr("src", "/images/add_img.png");
+        }
+        // 结束投票
+        function shut(ob, id) {
+            wxm.dialog({
+                type : 'confirm',
+                message : "确定结束该投票活动？",
+                callback : {
+                    correct : function() {
+                        wxm.maskLayer();
+                        $.ajax({
+                            url : "/vote/shutDown",
+                            data : {
+                                'voteId' : id
+                            },
+                            type : 'POST',
+                            cache : false,
+                            async : false,
+                            dataType : 'json',
+                            success : function(result) {
+                                wxm.maskLayer.close();
+                                if (!result || !result.isError) {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : "操作失败，请重试！"
+                                    });
+                                    return;
+                                }
+                                if (result.isError == "1") {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : result.msg
+                                    });
+                                    return;
+                                }
+                                selectList(1);
+                                wxm.dialog({
+                                    type : 'success',
+                                    message : "该投票已结束！"
+                                });
+                            },
+                            error : function() {
+                                wxm.maskLayer.close();
+                                wxm.dialog({
+                                    type : 'error',
+                                    message : "操作失败，请重试！！"
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

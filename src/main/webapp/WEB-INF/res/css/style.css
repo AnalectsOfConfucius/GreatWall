@@ -1,0 +1,228 @@
+.bodgdl dd {
+	margin-bottom: 5px;
+}
+
+.bodgdl dd span {
+	float: left;
+	margin-top: -3px;
+}
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+	margin-top: 0;
+}
+
+.wilq a {
+	font-size: 15px;
+	padding-right: 5px;
+}
+
+.h5Class {
+	padding: 0;
+	margin: 0;
+	height: 50px;
+	line-height: 50px;
+	text-indent: 20px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.modal-worppar {
+	max-width: 800px;
+	background: #fff;
+	border-radius: 5px;
+	margin: 30px auto;
+}
+
+.ibox-content table tr th, .ibox-content table tr td {
+	text-align: center;
+	font-size: 14px;
+	height: 27px;
+	line-height: 27px;
+}
+
+.ibox-content table tr td a {
+	padding: 0 5px;
+}
+
+.titleCon {
+	margin-top: -10px;
+}
+
+.titleCon a i {
+	position: relative;
+	font-size: 25px;
+	color: #000;
+}
+
+.ibox-title {
+	margin-top: 10px;
+	border-width: 1px 0 0;
+}
+/*弹出框*/
+.theme-popover-mask {
+	z-index: 9998;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.4;
+	filter: alpha(opacity = 40);
+	display: none;
+}
+
+.theme-popover {
+	z-index: 9999;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	background-color: #f3f3f4;
+	display: none;
+}
+
+.theme-poptit {
+	border-bottom: 1px solid #eef1f6;
+	padding: 15px;
+	position: relative;
+}
+
+.theme-poptit .close {
+	float: right;
+	color: #999;
+	padding: 5px;
+	margin: -2px -5px -5px;
+	font: bold 14px/14px simsun;
+	text-shadow: 0 1px 0 #ddd;
+}
+
+.form-control-c {
+	margin: 0 10px;
+	padding: 0 5px;
+	height: 32px;
+	line-height: 32px;
+}
+
+.binCont {
+	background-color: #18a689;
+	border-color: #18a689;
+	color: #FFF;
+	border-radius: 3px;
+	padding: 7px 15px;
+	border: none;
+}
+
+.gap {
+	margin: 5% 5%;
+}
+
+.laydate_body .laydate_top {
+	height: 36px;
+}
+
+.laydate_body .laydate_bottom {
+	height: 32px;
+}
+
+.form-content {
+	height: auto;
+	margin: 10px 60px;
+	border-radius: 15px;
+}
+
+.btn_save_ctn {
+	text-align: center;
+}
+
+/* 对话框 */
+.wxm-maskBackground {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9990;
+	display: block;
+	width: 100%;
+	height: 100%;
+	opacity: 0.7;
+	filter: alpha(opacity = 70);
+	background: #FFF;
+}
+
+.wxm-dialog-box {
+	position: absolute;
+	margin: 0 auto;
+	width: auto;
+	height: auto;
+	min-width: 320px;
+	min-height: 160px;
+	border-radius: 8px;
+	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
+	text-align: center;
+	overflow: auto;
+	background-color: #FFF;
+	z-index: 9999;
+}
+
+.wxm-dialog-box .wxm-dialog-header {
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	font-size: 15px;
+	text-align: left;
+}
+
+.wxm-dialog-header {
+	color: #fff;
+	background-color: #18a689;
+}
+
+.wxm-dialog-box .wxm-dialog-header i {
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+.wxm-dialog-box .alert {
+	padding: 0;
+	margin: 5px;
+	font-size: 16px;
+}
+
+.wxm-dialog-box .wxm-dialog-fotter {
+	width: 100%;
+	height: 40px;
+}
+
+.wxm-dialog-box .wxm-dialog-fotter .btn {
+	margin: 3px 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border: none;
+	background-color: #18a689;
+}
+
+/**
+ * 遮罩层
+ */
+.wxm-mask-layer {
+	position: absolute;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 20px;
+	color: #fafafa;
+	z-index: 9996;
+	overflow: auto;
+}
+
+.andArea {
+	background: rgba(0, 0, 0, 0) url("../images/add_img.png") no-repeat scroll center 5px;
+	border: 1px dashed #e6e6e6;
+	color: #cccccc;
+	font-size: 18px;
+	padding-top: 77px;
+	position: relative;
+	text-align: center;
+	top: 0;
+}

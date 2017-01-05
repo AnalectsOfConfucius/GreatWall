@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="dqsj_ms:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="dqsj_ms.war">
+      <element id="artifact" artifact-name="dqsj_ms:war exploded" />
+    </root>
+  </artifact>
+</component>

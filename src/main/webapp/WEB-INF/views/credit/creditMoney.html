@@ -1,0 +1,587 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>民生大千世界-积分管理-积分抵金额设置</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/pagination.css" />
+<style type="text/css">
+.hideDiv {
+	display: none;
+}
+
+.showDiv {
+	display: block;
+}
+
+.bodgdl dd {
+	margin-bottom: 5px;
+}
+
+.bodgdl dd span {
+	float: left;
+	margin-top: -3px;
+}
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+	margin-top: 0;
+}
+
+.wilq a {
+	font-size: 15px;
+	padding-right: 5px;
+}
+
+.h5Class {
+	padding: 0;
+	margin: 0;
+	height: 50px;
+	line-height: 50px;
+	text-indent: 20px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.modal-worppar {
+	max-width: 1200px;
+	background: #fff;
+	border-radius: 5px;
+	margin: 30px auto;
+}
+
+.ibox-content table tr th, .ibox-content table tr td {
+	text-align: center;
+	font-size: 14px;
+	height: 27px;
+	line-height: 27px;
+}
+
+.ibox-content table tr td a {
+	padding: 0 5px;
+}
+
+.titleCon {
+	margin-top: -10px;
+}
+
+.titleCon a i {
+	position: relative;
+	font-size: 25px;
+	color: #000;
+}
+
+.ibox-title {
+	margin-top: 10px;
+	border-width: 1px 0 0;
+}
+/*弹出框*/
+.theme-popover-mask {
+	z-index: 9998;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.4;
+	filter: alpha(opacity = 40);
+	display: none;
+}
+
+.theme-popover {
+	z-index: 9999;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	background-color: #f3f3f4;
+	display: none;
+}
+
+.theme-poptit {
+	border-bottom: 1px solid #eef1f6;
+	padding: 15px;
+	position: relative;
+}
+
+.theme-poptit .close {
+	float: right;
+	color: #999;
+	padding: 5px;
+	margin: -2px -5px -5px;
+	font: bold 14px/14px simsun;
+	text-shadow: 0 1px 0 #ddd;
+}
+
+.hiden {
+	display: none;
+}
+</style>
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>积分抵金额设置</h5>
+					</div>
+					<div class="ibox-content">
+						<button class="btn btn-primary hideDiv" type="submit" data-toggle="modal" data-target="#myModal0_1" id="addBtn" onclick="clearInpt('#myModal0_1')">添加</button>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>可用条件</th>
+									<th>可抵金额</th>
+									<th>积分规则</th>
+									<th>备注</th>
+									<th id="thOperate">操作</th>
+								</tr>
+							</thead>
+							<tbody id="tabcontent"></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 2016-4-7 add -->
+	<!--添加 S-->
+	<div class="modal fade" id="myModal0_1" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">添加积分抵金额设置信息</h2>
+					<a type="button" class="btn btn-primary" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" action="" method="post" id="subForm">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">可用条件：</label>
+								<div class="col-sm-10">
+									<input name="usableCondition" type="text" class="form-control hiden">
+									<select name="creditNum" class="form-control">
+										<option value="100">100积分</option>
+										<option value="1000">1000积分</option>
+										<option value="10000">10000积分</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">可抵金额：</label>
+								<div class="col-sm-10">
+									<input name="isWorthMoney" type="text" class="form-control" value="1" readonly>
+								</div>
+							</div>
+							<div class="form-group creditComment">
+								<label class="col-sm-2 control-label">积分规则：</label>
+								<div class="col-sm-10">
+									<textarea name="creditComment" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<input name="remark" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-2 pb20">
+									<a class="btn btn-primary" data-name="subbtn">保存</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!--添加 E-->
+	<!--查看 S-->
+	<div class="modal fade" id="myModal0" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">查看积分抵金额设置信息</h2>
+					<a type="button" class="btn btn-primary" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">可用条件：</label>
+								<div class="col-sm-10">
+									<input name="usableCondition" type="text" class="form-control hiden" disabled>
+									<select name="creditNum" class="form-control" disabled>
+										<option value="100">100积分</option>
+										<option value="1000">1000积分</option>
+										<option value="10000">10000积分</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">可抵金额：</label>
+								<div class="col-sm-10">
+									<input name="isWorthMoney" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group creditComment">
+								<label class="col-sm-2 control-label">积分规则：</label>
+								<div class="col-sm-10">
+									<textarea name="creditComment" class="form-control" disabled></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<input name="remark" type="text" class="form-control" disabled>
+								</div>
+							</div>
+						</form>
+						<div class="pb20" style="clear: both;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!--查看 E-->
+
+	<!--  修改（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">修改积分抵金额设置信息</h2>
+					<a type="button" class="btn btn-primary" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" method="post" id="subFormUpt">
+							<input type="hidden" name="creditMoneyId" value="" />
+							<div class="form-group">
+								<label class="col-sm-2 control-label">可用条件：</label>
+								<div class="col-sm-10">
+									<input name="usableCondition" type="text" class="form-control hiden">
+									<select name="creditNum" class="form-control">
+										<option value="100">100积分</option>
+										<option value="1000">1000积分</option>
+										<option value="10000">10000积分</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">可抵金额：</label>
+								<div class="col-sm-10">
+									<input name="isWorthMoney" type="text" class="form-control" value="1" readonly>
+								</div>
+							</div>
+							<div class="form-group creditComment">
+								<label class="col-sm-2 control-label">积分规则：</label>
+								<div class="col-sm-10">
+									<textarea name="creditComment" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<input name="remark" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-2 pb20">
+									<a class="btn btn-primary" data-name="subbtn">保存</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- （修改 （Modal））  -->
+
+
+	<script src="/js/jquery.min.js?v=2.1.4"></script>
+	<script src="/js/bootstrap.min.js?v=3.3.5"></script>
+	<script src="/js/content.min.js?v=1.0.0"></script>
+	<script src="/js/wxm.dialog.js"></script>
+	<script src="/js/script.js"></script>
+	<script src="/js/My97DatePicker/WdatePicker.js"></script>
+
+	<script type="text/javascript">
+        $(document).ready(function() {
+            var a = $('#tabcontent').children('tr').length;
+            if (a == 0) {
+                $('#addBtn').removeClass('hideDiv');
+                $('#addBtn').addClass('showDiv');
+            }
+        })
+        //类别
+        function changefun(ob, panel) {
+            var v = $(ob).val();
+            if (v == 1) {
+                $(panel).find("input[name='usableCondition']").hide();
+                $(panel).find("select[name='creditNum']").show();
+                $(panel).find(".creditComment").show();
+                $(panel).find("input[name='isWorthMoney']").attr("readonly", true).val(1);
+            } else {
+                $(panel).find("select[name='creditNum']").hide();
+                $(panel).find("textarea[name='creditComment']").val("");
+                $(panel).find(".creditComment").val("").hide();
+                $(panel).find("input[name='isWorthMoney']").attr("readonly", false);
+                $(panel).find("input[name='usableCondition']").show();
+            }
+        }
+        //清空
+        function clearInpt(panel) {
+            $(panel).find("input[type='text']").val("");
+            var selects = $(panel).find("select");
+            selects.find("option").prop("selected", false);
+            selects.find("option:first").prop("selected", "selected");
+            selects.trigger("change");
+
+            $(panel).find("input[name='isWorthMoney']").attr("readonly", true).val(1);
+        }
+
+        //列表
+        function selectList() {
+            wxm.maskLayer();
+            $.ajax({
+                url : "/credit/selectCreditMoney",
+                data : {},
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : data.msg
+                        });
+                    } else {
+                        selectHtml(data);
+                    }
+                    wxm.maskLayer.close();
+                },
+                error : function() {
+                    wxm.maskLayer.close();
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+                }
+            });
+        }
+        function selectHtml(data) {
+            var rows = data.rows;
+            var tb = [];
+            if (rows && rows.length > 0) {
+                for (var i = 0; i < rows.length; i++) {
+                    var ob = rows[i];
+                    ob.creditMoneyId = ob.id;
+                    tb[tb.length] = '<tr>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.usableCondition) + '</td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.isWorthMoney) + '</td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.creditComment) + '</td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.remark) + '</td>';
+                    tb[tb.length] = '<td class="thOperate">';
+                    tb[tb.length] = "    <a class='isview' data-target='#myModal0' data-toggle='modal' data-val='" + JsonToStr(ob) + "' onclick='viewWin(this,\"view\");'>查看</a>";
+                    tb[tb.length] = "    <a class='isupt' data-target='#myModal' data-toggle='modal' data-val='" + JsonToStr(ob) + "' onclick='viewWin(this,\"upt\");'>修改</a>";
+                    tb[tb.length] = "    <a class='isdel' onclick='delFun(this,\"" + ob.id + "\");'>删除</a>";
+                    tb[tb.length] = '</td>';
+                    tb[tb.length] = '</tr>';
+                }
+                //paginationFun($("#Pagination"),data.totalCnt,10,data.currentPage,"selectList");
+            }
+            $("#tabcontent").html(tb.join(""));
+            //权限管理
+            var isview = isAuth($('.thOperate .isview'), 'view');
+            var isupt = isAuth($('.thOperate .isupt'), 'update');
+            var isdel = isAuth($('.thOperate .isdel'), 'delete');
+            if (!isview && !isupt && !isdel) {
+                $('#thOperate').remove();
+                $('.thOperate').remove();
+            }
+        }
+        function viewWin(ob, flag) {
+            var panel = $(ob).attr("data-target");
+            clearInpt(panel);
+            var jsonstr = $(ob).attr("data-val");
+            var data = eval('(' + jsonstr + ')');
+
+            data.creditNum = data.usableCondition;
+            $(panel).find("input[name='usableCondition']").hide();
+            $(panel).find("select[name='creditNum']").show();
+            $(panel).find(".creditComment").show();
+            $(panel).find("input[name='isWorthMoney']").attr("readonly", true).val(1);
+
+            $(panel).find("input").each(function(index) {
+                var name = $(this).attr("name");
+                $(this).val(nullToStr(data[name]));
+            });
+            $(panel).find("textarea").each(function(index) {
+                var name = $(this).attr("name");
+                $(this).val(nullToStr(data[name]));
+            });
+
+            $(panel).find("select").each(function(index) {
+                var name = $(this).attr("name");
+                var v = data[name];
+                $(this).find("option").prop("selected", false);
+                $(this).find("option[value='" + v + "']").prop("selected", true);
+                $(this).trigger('change');
+            });
+        }
+
+        //删除 
+        function delFun(ob, id) {
+            wxm.dialog({
+                type : 'confirm',
+                message : "确定是否删除？",
+                callback : {
+                    correct : function() {
+                        wxm.maskLayer();
+                        $.ajax({
+                            url : "/credit/deleteCreditMoney",
+                            data : {
+                                'creditMoneyId' : id
+                            },
+                            type : 'POST',
+                            cache : false,
+                            async : false,
+                            dataType : 'json',
+                            success : function(data) {
+                                wxm.maskLayer.close();
+                                if (data.isError === "1") {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : data.msg
+                                    });
+                                } else {
+                                    wxm.dialog({
+                                        type : 'success',
+                                        message : data.msg
+                                    });
+                                    selectList(1);
+                                    var a = $('#tabcontent').children('tr').length;
+                                    if (a == 0) {
+                                        $('#addBtn').removeClass('hideDiv');
+                                        $('#addBtn').addClass('showDiv');
+                                    }
+                                }
+                            },
+                            error : function() {
+                                wxm.maskLayer.close();
+                                wxm.dialog({
+                                    type : 'error',
+                                    message : "操作失败，请重试！"
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+
+        }
+
+        $(function() {
+            if (isAuth($('#issearch'), 'search')) {
+                selectList();
+            }
+            isAuth($('#addBtn'), 'add');
+            //新增
+            $("#subForm").find("a[data-name='subbtn']").click(function() {
+                wxm.maskLayer();
+                var data = $("#subForm").serializeArray();
+                $.ajax({
+                    url : "/credit/addCreditMoney",
+                    data : data,
+                    type : 'POST',
+                    cache : false,
+                    async : false,
+                    dataType : 'json',
+                    success : function(data) {
+                        wxm.maskLayer.close();
+                        if (data.isError === "1") {
+                            wxm.dialog({
+                                type : 'error',
+                                message : data.msg
+                            });
+                        } else {
+                            wxm.dialog({
+                                type : 'success',
+                                message : data.msg
+                            });
+                            selectList(1);
+                            var a = $('#tabcontent').children('tr').length;
+                            if (a > 0) {
+                                $('#addBtn').removeClass('showDiv');
+                                $('#addBtn').addClass('hideDiv');
+                            }
+                            $("#myModal0_1").find("a[data-dismiss='modal']").click();
+                        }
+                    },
+                    error : function() {
+                        wxm.maskLayer.close();
+                        wxm.dialog({
+                            type : 'error',
+                            message : "操作失败，请重试！"
+                        });
+                    }
+                });
+            });
+            //修改
+            $("#subFormUpt").find("a[data-name='subbtn']").click(function() {
+                wxm.maskLayer();
+                var data = $("#subFormUpt").serializeArray();
+                $.ajax({
+                    url : "/credit/updateCreditMoney",
+                    data : data,
+                    type : 'POST',
+                    cache : false,
+                    async : false,
+                    dataType : 'json',
+                    success : function(data) {
+                        wxm.maskLayer.close();
+                        if (data.isError === "1") {
+                            wxm.dialog({
+                                type : 'error',
+                                message : data.msg
+                            });
+                        } else {
+                            wxm.dialog({
+                                type : 'success',
+                                message : data.msg
+                            });
+                            selectList(1);
+                            $("#myModal").find("a[data-dismiss='modal']").click();
+                        }
+                    },
+                    error : function() {
+                        wxm.maskLayer.close();
+                        wxm.dialog({
+                            type : 'error',
+                            message : "操作失败，请重试！"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
