@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>民生大千世界梦幻乐园管理系统-资讯管理-资讯列表</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/pagination.css" rel="stylesheet">
+<link href="/css/summernote.css" rel="stylesheet">
+<link href="/css/summernote-bs3.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="ibox float-e-margins">
+					<div id="divSearch" class="ibox-title">
+						<div class="tabcc">
+							<table>
+								<tr>
+									<td>标题：</td>
+									<td><input id="txtInfoTitle" type="text" class="form-control-c"></td>
+									<td>是否发布：</td>
+									<td><select class="form-control-c" id="selIsRelease">
+											<option value="">全部</option>
+											<option value="1">是</option>
+											<option value="0">否</option>
+									</select></td>
+									<td><button type="button" class="binCont" onclick="searchDetails()">搜索</button></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div id="tbListContent" class="ibox-content">
+						<input id="hideInfoTitle" type="hidden">
+						<input id="hideIsRelease" type="hidden">
+						<input id="hideTypeCode" type="hidden" value="${(typeCode)!''}" />
+						<input id="hideInfoMapType" type="hidden" value="${(infoMapType)!''}" />
+						<button id="btnAdd" class="btn btn-primary" data-toggle="modal" data-target="#addModal">添加</button>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th style="width: 30%;">标题</th>
+									<th style="width: 10%;">是否发布</th>
+									<th style="width: 10%;">排序</th>
+									<th style="width: 15%;">创建日期</th>
+									<th style="width: 15%;">更新日期</th>
+									<th id="thOperate" style="width: 20%;">操作</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+						<!--分页 S-->
+						<div class="pages clearfix">
+							<div id="Pagination" class="pagecontent"></div>
+							<div class="searchPage">
+								<span class="page-sum">
+									共<strong class="allPage">0</strong>页
+								</span>
+							</div>
+						</div>
+						<!--分页 E-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--添加 S-->
+	<div class="modal fade" id="addModal" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">添加</h2>
+					<a type="button" class="btn btn-primary close-modal" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" id="addForm" enctype="multipart/form-data">
+							<input name="id" type="hidden" />
+							<input name="isRecommend" type="hidden" value="1" />
+							<input name="typeCode" type="hidden" value="${(typeCode)!''}" />
+							<input name="infoMapType" type="hidden" value="${(infoMapType)!''}" />
+							<div class="form-group">
+								<label class="col-sm-3 control-label">标题：</label>
+								<div class="col-sm-7">
+									<input name="infoTitle" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">是否发布：</label>
+								<div class="col-sm-4">
+									<input type="radio" name="isRelease" value="0">
+									否&emsp;
+									<input type="radio" name="isRelease" value="1" checked>
+									是
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">排序：</label>
+								<div class="col-sm-4">
+									<input name="infoMapOrder" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">封面图片：</label>
+								<div class="col-sm-7 imgFileUp">
+									<input type="file" name="filepath" id="addImg" onchange="preImg(this.id,'addImgPre',100,100);" style="display: none;">
+									<img id="addImgPre" src="/images/add_img.png" data-name="picPath" style="max-width: 100px; max-height: 100px;" onclick="javascript:$('#addImg').click();">
+									<p style="margin-top: 10px;">
+										<a class="btn btn-info" style="padding: 5px 20px; border-radius: 0;" onclick="javascript:$('#addImg').click();">修改</a>
+										<a style="margin-left: 10px; padding: 5px 20px; border-radius: 0;" class="btn btn-info" onclick="removImg(this)">删除</a>
+									</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">简介：</label>
+								<div class="col-sm-7">
+									<textarea name="infoBrief" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">内容：</label>
+								<div class="col-sm-7">
+									<input name="infoContent" class="summernote" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-2 pb20 btn_save_ctn">
+									<a class="btn btn-primary" type="submit" onclick="saveDetail('#addForm')">保存</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--添加 E-->
+	<!--查看 S-->
+	<div class="modal fade" id="viewModal" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">查看</h2>
+					<a type="button" class="btn btn-primary close-modal" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" id="viewForm">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">标题：</label>
+								<div class="col-sm-7">
+									<input name="infoTitle" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">是否发布：</label>
+								<div class="col-sm-4">
+									<input name="isReleaseStr" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">排序：</label>
+								<div class="col-sm-4">
+									<input name="infoMapOrder" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">封面图片：</label>
+								<div class="col-sm-7 imgFileUp">
+									<img class="img_infoPicUrl" src="/images/add_img.png" style="max-width: 100px; max-height: 100px;">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">简介：</label>
+								<div class="col-sm-7">
+									<textarea name="infoBrief" class="form-control" disabled></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">内容：</label>
+								<div class="col-sm-7">
+									<input name="infoContent" class="summernote" disabled />
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--查看 E-->
+	<!--  修改（Modal） -->
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">修改</h2>
+					<a type="button" class="btn btn-primary close-modal" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" id="editForm" enctype="multipart/form-data">
+							<input name="id" type="hidden" />
+							<input name="isRecommend" type="hidden" value="1" />
+							<input name="typeCode" type="hidden" value="${(typeCode)!''}" />
+							<input name="infoMapType" type="hidden" value="${(infoMapType)!''}" />
+							<div class="form-group">
+								<label class="col-sm-3 control-label">标题：</label>
+								<div class="col-sm-7">
+									<input name="infoTitle" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">是否发布：</label>
+								<div class="col-sm-4">
+									<input type="radio" name="isRelease" value="0">
+									否&emsp;
+									<input type="radio" name="isRelease" value="1" checked>
+									是
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">排序：</label>
+								<div class="col-sm-4">
+									<input name="infoMapOrder" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">封面图片：</label>
+								<div class="col-sm-7 imgFileUp">
+
+									<input type="file" name="filepath" id="updateImg" onchange="preImg(this.id,'updateImgPre',100,100);" style="display: none;">
+									<img id="updateImgPre" src="/images/add_img.png" data-name="picPath" style="max-width: 100px; max-height: 100px;" onclick="javascript:$('#updateImg').click();">
+									<p style="margin-top: 10px;">
+										<a class="btn btn-info" style="padding: 5px 20px; border-radius: 0;" onclick="javascript:$('#updateImg').click();">修改</a>
+										<a style="margin-left: 10px; padding: 5px 20px; border-radius: 0;" class="btn btn-info" onclick="removImg(this)">删除</a>
+									</p>
+									<input name="infoPicUrl" value="" type="hidden">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">简介：</label>
+								<div class="col-sm-7">
+									<textarea name="infoBrief" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">内容：</label>
+								<div class="col-sm-7">
+									<input name="infoContent" class="summernote" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-2 pb20 btn_save_ctn">
+									<a class="btn btn-primary" type="submit" onclick="saveDetail('#editForm')">保存</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- （修改 （Modal））  -->
+	<script src="/js/jquery.min.js?v=2.1.4"></script>
+	<script src="/js/bootstrap.min.js?v=3.3.5"></script>
+	<script src="/js/script.js"></script>
+	<script src="/js/jquery.form.js"></script>
+	<script src="/js/wxm.dialog.js"></script>
+	<script src="/js/plugins/summernote/summernote.min.js"></script>
+	<script src="/js/plugins/summernote/summernote-zh-CN.js"></script>
+	<script>
+        /* 将图片显示在浏览器上 */
+        function preImg(sourceId, targetId, mw, mh) {
+            var url = getFileUrl(sourceId);
+            var imgPre = document.getElementById(targetId);
+            imgPre.src = url;
+            $('#' + sourceId).parent().find("input[name='filepath']").val("1");
+        }
+
+        /* 将浏览器上显示的图片删除，然后显示默认的图片 */
+        function removImg(ob) {
+            $(ob).parent().parent().find("input").val("");
+            var img = $(ob).parent().parent().find("img[data-name='picPath']");
+            img.attr("src", "/images/add_img.png");
+        }
+        // 查询详细信息列表
+        function searchDetails() {
+            $("#hideInfoTitle").val($("#txtInfoTitle").val()); // 类别代码
+            $("#hideIsRelease").val($("#selIsRelease").val()); // 类别名称
+            // 加载详细信息列表
+            loadDetail();
+        }
+        // 加载详细信息列表
+        function loadDetail(currentPageNo) {
+            wxm.maskLayer();
+            if (!currentPageNo) {
+                currentPageNo = 1;
+            }
+            var infoTitle = $("#hideInfoTitle").val(); // 标题
+            var isRelease = $("#hideIsRelease").val(); // 是否发布
+            $.ajax({
+                type : 'POST',
+                url : '/info/query',
+                data : {
+                    "infoTitle" : infoTitle,
+                    "isRelease" : isRelease,
+                    "infoMapType" : $("#hideInfoMapType").val(),
+                    "typeCode" : $("#hideTypeCode").val(),
+                    "currentPageNo" : currentPageNo,
+                    "pageSize" : 10
+                },
+                dataType : 'json',
+                success : function(result) {
+                    if (result.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                    } else {
+                        loadHtml(result);
+                    }
+                    wxm.maskLayer.close();
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+                    wxm.maskLayer.close();
+                }
+            });
+        }
+        // 加载元素
+        function loadHtml(result) {
+            // 详细信息列表容器
+            var $tbListContentTBody = $("#tbListContent table tbody");
+            // 清空详细信息列表
+            $tbListContentTBody.empty();
+            // 分页
+            paginationFun($("#Pagination"), (result.totalCount || 0), 10, (result.currentPageNo || 0), "loadDetail");
+            // 若返回结果为空，则退出
+            if (typeof (result) == "undefined" || typeof (result.details) == "undefined" || result.details.length <= 0) {
+                return;
+            }
+
+            // 添加查询结果
+            var details = result.details;
+            if (details != null && details.length > 0) {
+                for (var i = 0; i < details.length; i++) {
+                    var $tr = $('<tr><td>' + (details[i].infoTitle || '') + '</td><td>' + (details[i].isReleaseStr || '') + '</td><td>' + (details[i].infoMapOrder || '') + '</td><td>' + (details[i].createDate || '') + '</td><td>' + (details[i].updateDate || '') + '</td></tr>');
+                    var $td = $('<td class="td_operate"></td>');
+
+                    $td.append('<a href="#" class="view-detail is_view" data-toggle="modal" data-target="#viewModal" data-id="' + details[i].id + '">查看</a>');
+                    $td.append('<a href="#" class="view-detail is_update" data-toggle="modal" data-target="#editModal" data-id="' + details[i].id + '">修改</a>');
+                    $td.append('<a href="#" class="delete-detail is_delete" data-toggle="modal" data-id="' + details[i].id + '">删除</a>');
+
+                    $tr.append($td);
+                    $tbListContentTBody.append($tr);
+                }
+            }
+
+            //权限管理
+            var isView = isAuth($('.td_operate .is_view'), 'view');
+            var isUpdate = isAuth($('.td_operate .is_update'), 'update');
+            var isDelete = isAuth($('.td_operate .is_delete'), 'delete');
+            if (!isView && !isUpdate && !isDelete) {
+                $('#thOperate').remove();
+                $('.td_operate').remove();
+            }
+
+            $('.view-detail').off('click').on('click', function() {
+                viewDetail($(this).attr('data-target'), $(this).attr('data-id'))
+            })
+
+            $('.delete-detail').off('click').on('click', function() {
+                deleteDetail($(this).attr('data-id'));
+            })
+        }
+        // 保存详细信息
+        function saveDetail(formId) {
+            wxm.maskLayer();
+            $(formId).find('input[name="infoContent"]').val($(formId).find('.summernote').code());
+            var data = $(formId).serialize();
+            $(formId).ajaxSubmit({
+                type : 'POST',
+                url : '/info/saveOrUpdate',
+                data : data,
+                dataType : 'json',
+                success : function(result) {
+                    wxm.maskLayer.close();
+                    if (!result || !result.isError) {
+                        wxm.dialog({
+                            type : 'error',
+                            message : "操作失败，请重试！"
+                        });
+                        return;
+                    }
+                    if (result.isError == "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                        return;
+                    }
+                    $(formId).find("input[name='id']").val(result.id);
+                    searchDetails();
+                    wxm.dialog({
+                        type : 'success',
+                        message : "保存成功！"
+                    });
+                    $(formId).parents('.modal-worppar').find("a[data-dismiss='modal']").click();
+                },
+                error : function() {
+                    wxm.maskLayer.close();
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+                }
+            });
+        }
+        // 展示详细信息
+        function viewDetail(modelId, objId) {
+            $.ajax({
+                url : "/info/detail",
+                data : {
+                    'id' : objId
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                    } else {
+                        var $model = $(modelId);
+                        clearForm(modelId)
+                        $model.find("input[name='id']").val(data.detail.id);
+                        $model.find("input[name='infoTitle']").val(data.detail.infoTitle);
+                        $model.find("input[name='isReleaseStr']").val(data.detail.isReleaseStr);
+                        $model.find("input[name='infoMapOrder']").val(data.detail.infoMapOrder);
+                        $model.find(".img_infoPicUrl").attr("src", data.detail.infoPicUrl);
+                        $model.find("textarea[name='infoBrief']").val(data.detail.infoBrief);
+                        $model.find(".summernote").code(data.detail.infoContentStr);
+
+                        // image type
+                        if (data.detail.infoPicUrl) {
+                            var img = "";
+                            img = "<img src='" + data.detail.infoPicUrl + "' style=\"max-width:300px;max-height:300px;\"/>";
+                            $model.find(".viewImg").html(img);
+                            $model.find("#updateImgPre").attr("src", data.detail.infoPicUrl);
+                            $model.find("input[name=infoPicUrl]").val(data.detail.infoPicUrl);
+                        } else {
+                            $model.find(".imgFileUp img").attr("src", "/images/add_img.png");
+                        }
+                    }
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+                }
+            });
+        }
+
+        // 关闭窗口
+        $(".close-modal").bind('click', function() {
+            clearForm("#" + $(this).parents('.modal.fade').attr("id"))
+        })
+        // 清空表单数据
+        function clearForm(panel) {
+            $(panel).find("input[type='text']").val("");
+            $(panel).find("input[name='id']").val("");
+            $(panel).find("input[name=isRelease][value=1]").click();
+            $(panel).find("textarea").val("");
+            $(panel).find(".summernote").code("");
+            $(panel).find(".imgFileUp img").attr("src", "/images/add_img.png");
+        }
+        // 删除详细信息
+        function deleteDetail(objId) {
+            wxm.dialog({
+                type : 'confirm',
+                message : "确定是否删除？",
+                callback : {
+                    correct : function() {
+                        wxm.maskLayer();
+                        $.ajax({
+                            url : "/info/delete",
+                            data : {
+                                'id' : objId,
+                                "typeCode" : $("#hideTypeCode").val()
+                            },
+                            type : 'POST',
+                            cache : false,
+                            async : false,
+                            dataType : 'json',
+                            success : function(result) {
+                                wxm.maskLayer.close();
+                                if (!result || !result.isError) {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : "操作失败，请重试！"
+                                    });
+                                    return;
+                                }
+                                if (result.isError == "1") {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : result.msg
+                                    });
+                                    return;
+                                }
+                                searchDetails();
+                                wxm.dialog({
+                                    type : 'success',
+                                    message : "删除成功！"
+                                });
+                            },
+                            error : function() {
+                                wxm.maskLayer.close();
+                                wxm.dialog({
+                                    type : 'error',
+                                    message : "操作失败，请重试！"
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        $(function() {
+            if (isAuth($('#divSearch'), 'search')) {
+                // 加载详细信息列表
+                loadDetail();
+            }
+            isAuth($('#btnAdd'), 'add');
+        })
+    </script>
+</body>
+</html>

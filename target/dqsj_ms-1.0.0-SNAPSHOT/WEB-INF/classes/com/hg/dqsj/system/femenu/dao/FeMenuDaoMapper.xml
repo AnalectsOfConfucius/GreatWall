@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.system.femenu.dao.FeMenuDao">
+	
+    <!-- 查询所有级别的权限菜单列表 -->
+    <select id="selectAllMenu" resultType="com.hg.dqsj.system.femenu.entity.FeMenu">
+        select
+            id,
+            menuName,
+            parentId,
+            menuUrl,
+            picUrl,
+            menuCss,
+            menuOrder
+        from dqsj_fe_menu 
+        where deleteFlag = '0'
+        order by menuOrder asc, updateDate desc
+    </select>
+    <!-- 查询父菜单 -->
+    <select id="selectParentMenu" parameterType="map" resultType="com.hg.dqsj.system.femenu.entity.FeMenu">
+        select
+            id,
+            menuName,
+            parentId,
+            menuUrl,
+            picUrl,
+            menuCss,
+            menuOrder
+        from dqsj_fe_menu 
+        where deleteFlag = '0' and parentId is null
+        <if test="menuName != null and menuName != ''"><![CDATA[ and menuName like '%${menuName}%' ]]></if>
+        order by menuOrder asc, updateDate desc
+    </select>
+    <!-- 查询子菜单 -->
+    <select id="selectChildMenu" parameterType="map" resultType="com.hg.dqsj.system.femenu.entity.FeMenuInfo">
+        select
+            a.id,
+            a.menuName,
+            a.parentId,
+            b.menuName parentName,
+            a.menuUrl,
+            a.picUrl,
+            a.menuCss,
+            a.menuOrder
+        from dqsj_fe_menu a
+        left join dqsj_fe_menu b on a.parentId=b.id
+        where a.deleteFlag = '0' and a.parentId is not null
+        <if test="parentId != null and parentId != ''"><![CDATA[ and a.parentId = '${parentId}' ]]></if>
+        <if test="menuName != null and menuName != ''"><![CDATA[ and a.menuName like '%${menuName}%' ]]></if>
+        order by a.menuOrder asc, a.updateDate desc
+    </select>
+    
+   
+    <!-- 新建菜单信息 -->
+    <insert id="insertMenu" parameterType="com.hg.dqsj.system.femenu.entity.FeMenu">
+        insert into dqsj_fe_menu (
+            id,
+			menuName,
+			parentId,
+			menuUrl,
+			picUrl,
+			menuCss,
+			menuOrder,
+			remark,
+			createDate,
+			createUserId,
+			updateDate,
+			updateUserId,
+			deleteFlag
+        ) values (
+            #{id},
+			#{menuName},
+			#{parentId},
+			#{menuUrl},
+			#{picUrl},
+			#{menuCss},
+			#{menuOrder},
+			#{remark},
+			#{createDate},
+			#{createUserId},
+			#{updateDate},
+			#{updateUserId},
+			#{deleteFlag}
+        )
+    </insert>
+    
+    <!-- 修改菜单信息 -->
+    <update id="updateMenu" parameterType="com.hg.dqsj.system.femenu.entity.FeMenu">
+        update dqsj_fe_menu
+        set menuName=#{menuName},
+            parentId=#{parentId},
+            menuUrl=#{menuUrl},
+            picUrl=#{picUrl},
+            menuCss=#{menuCss},
+            menuOrder=#{menuOrder},
+            remark=#{remark},
+            updateDate=#{updateDate},
+            updateUserId=#{updateUserId}
+        where id=#{id}
+    </update>
+    
+    <!-- 逻辑删除菜单 -->
+    <update id="deleteMenu" parameterType="map">
+        update dqsj_fe_menu
+        set updateDate=#{updateDate},
+            updateUserId=#{updateUserId},
+            deleteFlag='1'
+        where id=#{id}
+    </update>
+    
+</mapper>

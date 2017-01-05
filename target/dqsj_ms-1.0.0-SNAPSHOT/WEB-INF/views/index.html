@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>民生大千世界梦幻乐园管理系统</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+<link rel="shortcut icon" href="favicon.ico">
+<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow: hidden">
+	<div id="wrapper">
+		<input type="hidden" id="menuOpData" value='${mMenuOp!""}' />
+		<!--左侧导航开始-->
+		<nav class="navbar-default navbar-static-side" role="navigation">
+			<div class="nav-close">
+				<i class="fa fa-times-circle"></i>
+			</div>
+			<div class="sidebar-collapse">
+				<ul class="nav" id="side-menu">
+					<li class="nav-header">
+						<div class="dropdown profile-element">
+							<span>
+								<img alt="image" class="img-circle" src="${(user.userPicUrl)!'/img/profile_small.jpg'}" style="width: 64px; height: 64px;" />
+							</span>
+						</div>
+					</li>
+					[#if topMenuList??] [#list topMenuList as p]
+					<li>
+						<a href="#">
+							<i class="fa ${(p.menuCss)!''}"></i>
+							<span class="nav-label">${(p.menuName)!''}</span>
+							<span class="fa arrow"></span>
+						</a>
+						<ul class="nav nav-second-level childMenu">
+							[#if mChildMenu?? && mChildMenu[p.id]??] [#list mChildMenu[p.id] as c]
+							<li>
+								<a class="J_menuItem" href="${(c.menuUrl)!''}" data-menuId="${(c.id)!''}" data-index="${c_index}">${(c.menuName)!''}</a>
+							</li>
+							[/#list] [/#if]
+						</ul>
+					</li>
+					[/#list] [/#if]
+
+				</ul>
+			</div>
+		</nav>
+		<!--左侧导航结束-->
+		<!--右侧部分开始-->
+		<div id="page-wrapper" class="gray-bg dashbard-1">
+			<div class="row border-bottom">
+				<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+					<div class="navbar-header">
+						<a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#">
+							<i class="fa fa-bars"></i>
+						</a>
+					</div>
+					<ul class="nav navbar-top-links navbar-right">
+						<li class="por_box">
+							<div class="adminCont">
+								<img class="pic_page" src="${(user.userPicUrl)!'/img/profile_small.jpg'}">
+								<p>${(user.userName)!''}</p>
+							</div>
+						</li>
+						<li class="dropdown">
+							<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+								<i class="fa fa-envelope"></i>
+								<span class="label label-warning">${(msgCount)!'0'}</span>
+							</a>
+							[#if messages??]
+							<ul class="dropdown-menu dropdown-messages">
+								[#list messages as msg]
+								<li class="m-t-xs">
+									<div class="dropdown-messages-box">
+										<a href="#" class="pull-left">
+											<img alt="image" class="img-circle" src="${(msg.userPicUrl)!'/images/default_person.jpg'}">
+										</a>
+										<div class="media-body">
+											<small class="pull-right">${(msg.dateDifference)!'刚刚'}</small><strong>${(msg.userName)!'匿名'}</strong><br>${(msg.messageContent)!''}
+										</div>
+									</div>
+								</li>
+								<li class="divider"></li>
+								[/#list]
+								<li>
+									<div class="text-center link-block">
+										<a id="aMessageUrl" class="J_menuItem" style="display: none;" href="/message/enter">
+											<strong>留言管理</strong>
+										</a>
+										<a onclick="openMessagePage();">
+											<i class="fa fa-envelope"></i> <strong>查看所有留言</strong>
+										</a>
+									</div>
+								</li>
+							</ul>
+							[/#if]
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="row content-tabs">
+				<button class="roll-nav roll-left J_tabLeft">
+					<i class="fa fa-backward"></i>
+				</button>
+				<nav class="page-tabs J_menuTabs">
+					<div class="page-tabs-content" id="topMenu"></div>
+				</nav>
+				<button class="roll-nav roll-right J_tabRight" style="right: 120px;">
+					<i class="fa fa-forward"></i>
+				</button>
+				<a href="/user/uptPwPage" class="roll-nav roll-right J_tabExit J_menuItem" style="right: 60px;">修改密码</a>
+				<a href="/logout/" class="roll-nav roll-right J_tabExit">
+					<i class="fa fa fa-sign-out"></i> 退出
+				</a>
+			</div>
+			<div class="row J_mainContent" id="content-main">
+				<iframe class="J_iframe" name="iframe0" width="100%" height="100%" frameborder="0" data-id="" seamless></iframe>
+			</div>
+			<div class="footer">
+				<div class="pull-right">
+					&copy; 2015 -
+					<span id="currentYear"></span>
+					<a href="http://www.duomi.me/" target="_blank">海南航冠电子科技有限公司</a>
+				</div>
+			</div>
+		</div>
+		<!--右侧部分结束-->
+	</div>
+	<script src="/js/jquery.min.js?v=2.1.4"></script>
+	<script src="/js/bootstrap.min.js?v=3.3.5"></script>
+	<script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+	<script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="/js/plugins/layer/layer.min.js"></script>
+	<script src="/js/hplus.min.js?v=4.0.0"></script>
+	<script src="/js/contabs.min.js"></script>
+	<script src="/js/plugins/pace/pace.min.js"></script>
+	<script type="text/javascript">
+        function openMessagePage() {
+            $("#aMessageUrl").click();
+        }
+        $(function() {
+            $("#currentYear").text(new Date().getFullYear());
+        })
+        // 截取标题
+        // substr(150, $("#tabcontent_g .sub_ctn"));
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.orderManagement.dao.OfOrderGoodsDao">
+    <!-- 根据订单ID查询商品信息 -->
+    <select id="selectGoodsByOrderId" parameterType="java.lang.String" resultType="com.hg.dqsj.orderManagement.view.VOfOrderGoods">
+		select (select goodsName from dqsj_fe_goods where id = oog.goodsId) as goodsName,
+		       goodsNum,
+		       goodsPrice,
+		       remark
+		  from dqsj_of_order_goods oog
+		 where oog.orderId = #{orderId}
+    </select>
+    
+    <!-- 根据订单ID查询客房信息 -->
+    <select id="selectGuestRoomByOrderId" parameterType="java.lang.String" resultType="com.hg.dqsj.orderManagement.view.VOfOrderGoods">
+        select (select guestRoomName from dqsj_fe_guest_room where id = oog.goodsId) as goodsName,
+               goodsNum,
+               goodsPrice,
+               remark
+          from dqsj_of_order_goods oog
+         where oog.orderId = #{orderId}
+    </select>
+    
+     <!-- 根据订单ID所有商品 -->
+    <select id="selectByOrderId" parameterType="java.lang.String" resultType="com.hg.dqsj.orderManagement.entity.OfOrderGoods">
+        select id,
+               goodsId,
+               goodsNum,
+               refundGoodsNum,
+               goodsPrice,
+               remark
+          from dqsj_of_order_goods oog
+         where oog.orderId = #{orderId}
+    </select>
+      
+    <!-- 更新已退款商品数量-->
+    <update id="uptRefundGoodsNum" parameterType="com.hg.dqsj.orderManagement.entity.OfOrderGoods" >
+		update dqsj_of_order
+		   set refundGoodsNum  = #{refundGoodsNum},
+		       updateDate   = #{updateDate},
+		       updateUserId = #{updateUserId},		     
+		 where id = #{id}		 
+    </update>
+</mapper>

@@ -1,0 +1,871 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>海南航冠电子科技有限公司-系统管理-用户列表</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/pagination.css" />
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<div class="row">
+							<div class="col-md-4" style="margin-top: 2px;">
+								<div class="input-group query">
+									用户名称：
+									<input type="text" name="userName" style="height: 32px;">
+									&emsp; 手机号码：
+									<input type="text" name="userPhone" style="height: 32px;">
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="input-group">
+									<button type="button" id="issearch" class="btn btn-primary" onclick="selectList(1)">搜索</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<button id="isadd" class="btn btn-primary" type="submit" data-toggle="modal" data-target="#myModal0_1" onclick="clearInpt('#myModal0_1')">添加</button>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>用户名</th>
+									<th>手机号码</th>
+									<th>固话号码</th>
+									<th>邮箱</th>
+									<th>性别</th>
+									<th>生日</th>
+									<th>管理员标识</th>
+<!-- 									<th>是否激活</th> -->
+									<th>备注</th>
+									<th id="thOperate">操作</th>
+								</tr>
+							</thead>
+							<tbody id="tabcontent">
+
+							</tbody>
+						</table>
+						<!--分页 S-->
+						<div class="pages clearfix">
+							<div id="Pagination" class="pagecontent"></div>
+							<div class="searchPage">
+								<span class="page-sum">
+									共<strong class="allPage"></strong>页
+								</span>
+								<!--                                  <span class="page-go">跳转<input type="text">页</span> -->
+								<!--                                  <a href="javascript:;" class="page-btn">GO</a> -->
+								<!--                                  <input id="pageUrl" type="hidden" name="pageUrl" value="selectList"/> -->
+								<!--                                  <input id="totalPage" type="hidden" name="totalPage" value="${totalPage!'0'}"/> -->
+								<!--                                  <input id="pageSize" type="hidden" name="pageSize" value="10"/> -->
+							</div>
+						</div>
+						<!--分页 E-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 2016-4-7 add -->
+	<!--添加 S-->
+	<div class="modal fade" id="myModal0_1" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">添加用户列表信息</h2>
+					<a type="button" class="btn btn-primary" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" action="/user/add" method="post" id="subForm" enctype="multipart/form-data">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名称：</label>
+								<div class="col-sm-10">
+									<input name="userName" type="text" class="form-control" required="" aria-required="true">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">手机号码：</label>
+								<div class="col-sm-10">
+									<input name="userPhone" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">固话号码：</label>
+								<div class="col-sm-10">
+									<input name="userTel" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">邮箱：</label>
+								<div class="col-sm-10">
+									<input name="userEmail" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">性别：</label>
+								<div class="col-sm-10">
+									<select name="userGender" class="form-control m-b">
+										<option value="0">未知</option>
+										<option value="1">男</option>
+										<option value="2">女</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">生日：</label>
+								<div class="col-sm-10">
+									<input name="userBirthday" type="text" class="form-control" onfocus="WdatePicker()">
+								</div>
+							</div>
+							<div class="form-group" style="display: none">
+								<label class="col-sm-2 control-label">管理员标识：</label>
+								<div class="col-sm-10">
+									<select name="adminFlag" class="form-control m-b">
+										<!--                                         <option value="0">不是</option> -->
+										<option value="0">普通管理员</option>
+										<!--                                         <option value="2">超级管理员</option> -->
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<input name="remark" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">上传头像：</label>
+								<div class="col-sm-10 imgFileUp">
+									<input type="file" name="filepath" id="addImg" onchange="preImg(this.id,'addImgPre',100,100);" style="display: none;" />
+									<img id="addImgPre" src="/images/add_img.png" data-name="picPath" style="max-width: 100px; max-height: 100px;" onclick="javascript:$('#addImg').click();" />
+									<p style="margin-top: 10px;">
+										<a class="btn btn-primary" onclick="javascript:$('#addImg').click();">修改</a>
+										<a class="btn btn-primary" onclick="removImg(this)">删除</a>
+									</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-2 pb20">
+									<a class="btn btn-primary" data-name="subbtn">保存</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!--添加 E-->
+	<!--查看 S-->
+	<div class="modal fade" id="myModal0" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">查看用户列表信息</h2>
+					<a type="button" class="btn btn-primary" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名称：</label>
+								<div class="col-sm-10">
+									<input name="userName" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">手机号码：</label>
+								<div class="col-sm-10">
+									<input name="userPhone" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">固话号码：</label>
+								<div class="col-sm-10">
+									<input name="userTel" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">邮箱：</label>
+								<div class="col-sm-10">
+									<input name="userEmail" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">性别：</label>
+								<div class="col-sm-10">
+									<select name="userGender" class="form-control m-b" disabled>
+										<option value="0">未知</option>
+										<option value="1">男</option>
+										<option value="2">女</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">生日：</label>
+								<div class="col-sm-10">
+									<input name="userBirthday" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">是否激活：</label>
+								<div class="col-sm-10">
+									<select name="isLocked" class="form-control m-b" disabled>
+										<option value="0">激活</option>
+										<option value="1">锁死</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">管理员标识：</label>
+								<div class="col-sm-10">
+									<select name="adminFlag" class="form-control m-b" disabled>
+										<option value="0">普通管理员</option>
+										<option value="1">超级管理员</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">图片：</label>
+								<div class="col-sm-10">
+									<div class="viewImg"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<input name="remark" type="text" class="form-control" disabled>
+								</div>
+							</div>
+						</form>
+						<div class="pb20" style="clear: both;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!--查看 E-->
+
+	<!--  修改（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">修改用户列表信息</h2>
+					<a type="button" class="btn btn-primary" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" action="/user/update" method="post" id="subFormUpt" enctype="multipart/form-data">
+							<input type="hidden" name="userId" value="" />
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名称：</label>
+								<div class="col-sm-10">
+									<input name="userName" type="text" class="form-control" required="" aria-required="true">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">手机号码：</label>
+								<div class="col-sm-10">
+									<input name="userPhone" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">固话号码：</label>
+								<div class="col-sm-10">
+									<input name="userTel" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">邮箱：</label>
+								<div class="col-sm-10">
+									<input name="userEmail" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">性别：</label>
+								<div class="col-sm-10">
+									<select name="userGender" class="form-control m-b">
+										<option value="0">未知</option>
+										<option value="1">男</option>
+										<option value="2">女</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">生日：</label>
+								<div class="col-sm-10">
+									<input name="userBirthday" type="text" class="form-control" onfocus="WdatePicker()">
+								</div>
+							</div>
+							<div class="form-group" style="display: none">
+								<label class="col-sm-2 control-label">管理员标识：</label>
+								<div class="col-sm-10">
+									<select name="adminFlag" class="form-control m-b">
+										<option value="0">普通管理员</option>
+										<option value="1">超级管理员</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">上传头像：</label>
+								<div class="col-sm-10 imgFileUp">
+									<input type="file" name="filepath" id="uptImg" onchange="preImg(this.id,'uptImgPre',100,100);" style="display: none;" />
+									<img id="uptImgPre" src="/images/add_img.png" data-name="picPath" style="max-width: 100px; max-height: 100px;" onclick="javascript:$('#uptImg').click();" />
+									<p style="margin-top: 10px;">
+										<a class="btn btn-primary" onclick="javascript:$('#uptImg').click();">修改</a>
+										<a class="btn btn-primary" onclick="removImg(this)">删除</a>
+									</p>
+									<input name="picFlag" value="0" type="hidden">
+									<input name="userPicUrl" value="" type="hidden">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<input name="remark" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-2 pb20">
+									<a class="btn btn-primary" data-name="subbtn">保存</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- （修改 （Modal））  -->
+
+	<!--  删除（Modal） -->
+	<div class="modal fade" id="myModal2" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog custom_modal">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">
+						是否删除
+						<span data-dismiss="modal">
+							<Img src="/img/close.png">
+						</span>
+					</h4>
+
+				</div>
+				<div class="modal-body wilq">
+					<div class="modal-body-img">
+						<img src="/img/11.png">
+					</div>
+					<div class="modal-body-p">
+						<p>你确定要删除吗？</p>
+						<p>如果是请点击"确定"，否则点"取消"</p>
+						<p class="add_button">
+							<input type="hidden" name="userId" />
+							<button type="button" class="btn btn-primary qd" data-dismiss="modal" onclick="delFun(this)">确定</button>
+							<button type="button" class="btn btn-primary qx" data-dismiss="modal">取消</button>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!-- 删除 （Modal） -->
+
+	<!--分配管理 S-->
+	<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="" id="subFormUR">
+					<input type="hidden" name="userId" />
+					<input type="hidden" name="userRoleId" />
+					<div class="modal-header">
+						<h4 class="modal-title">分配管理</h4>
+					</div>
+					<div class="modal-body">
+						<dl class="bodgdl">
+							[#if rlist??] [#list rlist as l]
+							<dd>
+								<label class="checkbox-inline">
+									<input type="checkbox" name="roleId" value="${(l.id)!''}" style="float: left;">
+									<span style="float: right;">${(l.roleName)!''}</span>
+								</label>
+							</dd>
+							[/#list] [/#if]
+						</dl>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" name="subbtn">确认</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+					</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!--分配管理 E-->
+
+	<style>
+.bodgdl dd {
+	margin-bottom: 5px;
+}
+
+.bodgdl dd span {
+	float: left;
+	margin-top: -3px;
+}
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+	margin-top: 0;
+}
+
+.wilq a {
+	font-size: 15px;
+	padding-right: 5px;
+}
+
+.h5Class {
+	padding: 0;
+	margin: 0;
+	height: 50px;
+	line-height: 50px;
+	text-indent: 20px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.modal-worppar {
+	max-width: 1200px;
+	background: #fff;
+	border-radius: 5px;
+	margin: 30px auto;
+}
+
+.ibox-content table tr th, .ibox-content table tr td {
+	text-align: center;
+	font-size: 14px;
+	height: 27px;
+	line-height: 27px;
+}
+
+.ibox-content table tr td a {
+	padding: 0 5px;
+}
+
+.titleCon {
+	margin-top: -10px;
+}
+
+.titleCon a i {
+	position: relative;
+	font-size: 25px;
+	color: #000;
+}
+
+.ibox-title {
+	margin-top: 10px;
+	border-width: 1px 0 0;
+}
+/*弹出框*/
+.theme-popover-mask {
+	z-index: 9998;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.4;
+	filter: alpha(opacity = 40);
+	display: none;
+}
+
+.theme-popover {
+	z-index: 9999;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	background-color: #f3f3f4;
+	display: none;
+}
+
+.theme-poptit {
+	border-bottom: 1px solid #eef1f6;
+	padding: 15px;
+	position: relative;
+}
+
+.theme-poptit .close {
+	float: right;
+	color: #999;
+	padding: 5px;
+	margin: -2px -5px -5px;
+	font: bold 14px/14px simsun;
+	text-shadow: 0 1px 0 #ddd;
+}
+</style>
+	<script src="/js/jquery.min.js?v=2.1.4"></script>
+	<script src="/js/bootstrap.min.js?v=3.3.5"></script>
+	<script src="/js/script.js"></script>
+	<script type="text/javascript" src="/js/jquery.form.js"></script>
+	<script type="text/javascript" src="/js/My97DatePicker/WdatePicker.js"></script>
+	<script src="/js/wxm.dialog.js"></script>
+
+	<script type="text/javascript">
+        function clearInpt(panel) {
+            $(panel).find("input").val("");
+            $(panel).find("textarea").val("");
+            var selects = $(panel).find("select");
+            selects.find("option").prop("selected", false);
+            selects.find("option:first").prop("selected", "selected");
+            $(panel).find(".imgFileUp img").attr("src", "/images/add_img.png");
+        }
+        
+        function selectList(currentPageNo) {
+            if (!currentPageNo) {
+                currentPageNo = 1;
+            }
+            var userName = $(".query").find("input[name='userName']").val();
+            var userPhone = $(".query").find("input[name='userPhone']").val();
+            var adminFlag = 1;
+            $.ajax({
+                url : "/user/search",
+                data : {
+                    "currentPageNo" : currentPageNo,
+                    'adminFlag' : adminFlag,
+                    'userName' : userName,
+                    'userPhone' : userPhone
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : data.msg
+                        });
+                    } else {
+                        selectHtml(data);
+                    }
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : '操作失败，请重试！'
+                    });
+                }
+            });
+        }
+        function selectHtml(data) {
+            var rows = data.rows;
+            var tb = [];
+            if (rows && rows.length > 0) {
+                for (var i = 0; i < rows.length; i++) {
+                    var ob = rows[i];
+                    ob.userId = ob.id;
+                    tb[tb.length] = '<tr>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.userName) + '</td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.userPhone) + '</td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.userTel) + '</td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.userEmail) + '</td>';
+                    tb[tb.length] = '<td>' + (ob.userGender == '1' ? '男' : ob.userGender == '2' ? '女' : '未知') + '</td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.userBirthday) + '</td>';
+                    tb[tb.length] = '<td>' + (ob.adminFlag == '0' ? '普通管理员' : ob.adminFlag == '1' ? '超级管理员' : '不是') + '</td>';
+                    //tb[tb.length] = '<td>' + (ob.isLocked == '0' ? '激活' : '锁死') + '</td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.remark) + '</td>';
+                    tb[tb.length] = '<td class="thOperate">';
+                    tb[tb.length] = "    <a class='isview' data-target='#myModal0' data-toggle='modal' data-val='" + JsonToStr(ob) + "' onclick='viewWin(this,\"view\");'>查看</a>";
+                    tb[tb.length] = "    <a class='isupt' data-target='#myModal' data-toggle='modal' data-val='" + JsonToStr(ob) + "' onclick='viewWin(this,\"upt\");'>修改</a>";
+                    tb[tb.length] = "    <a class='isdel' onclick='delFun(\"" + ob.userId + "\");'>删除</a>";
+                    tb[tb.length] = "    <a data-target='#myModal3' data-toggle='modal' onclick='selectUserRole(this,\"" + ob.userId + "\");'>分配角色</a>";
+                    tb[tb.length] = '</td>';
+                    tb[tb.length] = '</tr>';
+                }
+                paginationFun($("#Pagination"), data.totalCnt, 10, data.currentPage, "selectList");
+            }
+            $("#tabcontent").html(tb.join(""));
+            //权限管理
+			var isview = isAuth($('.thOperate .isview'),'view');
+			var isupt = isAuth($('.thOperate .isupt'),'update');
+			var isdel = isAuth($('.thOperate .isdel'),'delete');
+			
+        }
+        function viewWin(ob, flag) {
+            var panel = $(ob).attr("data-target");
+            clearInpt(panel);
+            var jsonstr = $(ob).attr("data-val");
+            var data = eval('(' + jsonstr + ')');
+            $(panel).find("input").each(function(index) {
+                var name = $(this).attr("name");
+                $(this).val(nullToStr(data[name]));
+            });
+            $(panel).find("select").each(function(index) {
+                var name = $(this).attr("name");
+                var v = data[name];
+                $(this).find("option").prop("selected", false);
+                $(this).find("option[value='" + v + "']").prop("selected", true);
+                $(this).trigger('change');
+            });
+
+            if (flag == "view") {
+                var img = "";
+                if (data.userPicUrl) {
+                    img = "<img src='"+data.userPicUrl+"'/>";
+                }
+                $(panel).find(".viewImg").html(img);
+            } else {
+                if (data.userPicUrl) {
+                    $(panel).find(".imgFileUp img").attr("src", data.userPicUrl);
+                }
+            }
+        }
+        function removImg(ob) {
+            $(ob).parent().parent().find("input").val("");
+            var img = $(ob).parent().parent().find("img[data-name='picPath']");
+            img.attr("src", "/images/add_img.png");
+        }
+        //id赋值
+        function inptData(ob, id) {
+            var panel = $(ob).attr("data-target");
+            $(panel).find("input[name='userId']").val(id);
+        }
+        //删除 
+        function delFun(id) {
+            wxm.dialog({
+                type : 'confirm',
+                message : "确定是否删除？",
+                callback : {
+                    correct : function() {
+                        //var userId = $(ob).parent().find("input[name='userId']").val();
+                        $.ajax({
+                            url : "/user/delete",
+                            data : {
+                                'userId' : id
+                            },
+                            type : 'POST',
+                            cache : false,
+                            async : false,
+                            dataType : 'json',
+                            success : function(data) {
+                                if (data.isError === "1") {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : data.msg
+                                    });
+                                } else {
+                                    wxm.dialog({
+                                        type : 'success',
+                                        message : data.msg
+                                    });
+                                    selectList(1);
+                                }
+                            },
+                            error : function() {
+                                wxm.dialog({
+                                    type : 'error',
+                                    message : '操作失败，请重试！'
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        //用户角色
+        function selectUserRole(ob, id) {
+            var panel = $(ob).attr("data-target");
+            $(panel).find("input[name='userId']").val(id);
+            $(panel).find("input[name='userRoleId']").val("");
+            $(panel).find("input[name='roleId']").prop("checked", false);
+            $.ajax({
+                url : "/user/selectUserRoleByUserId",
+                data : {
+                    'userId' : id
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : data.msg
+                        });
+                    } else {
+                        var rows = data.rows;
+                        if (rows && rows.length > 0) {
+                            var ob = rows[0];
+                            var urid = ob.id;
+                            $(panel).find("input[name='userRoleId']").val(urid);
+                            var roleId = ob.roleId;
+                            $(panel).find("input[value='" + roleId + "']").prop("checked", true);
+
+                        }
+                    }
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : '操作失败，请重试！'
+                    });
+                }
+            });
+        }
+
+        $(function() {
+        	if(isAuth($('#issearch'),'search')){
+				selectList(1);
+			}
+			isAuth($('#isadd'),'add');
+			
+            //新增
+            $("#subForm").find("a[data-name='subbtn']").click(function() {
+                // 				var data = $("#subForm").serializeArray();
+                $("#subForm").ajaxSubmit({
+                    url : "/user/add",
+                    type : 'post',
+                    success : function(data) {
+                        if (data.isError === "1") {
+                            wxm.dialog({
+                                type : 'error',
+                                message : data.msg
+                            });
+                        } else {
+                            wxm.dialog({
+                                type : 'success',
+                                message : data.msg
+                            });
+                            selectList(1);
+                            $("#myModal0_1").find("a[data-dismiss='modal']").click();
+                        }
+                    },
+                    error : function() {
+                        wxm.dialog({
+                            type : 'error',
+                            message : '操作失败，请重试！'
+                        });
+                    }
+                });
+            });
+            //修改
+            $("#subFormUpt").find("a[data-name='subbtn']").click(function() {
+                // 				var data = $("#subFormUpt").serializeArray();
+                $("#subFormUpt").ajaxSubmit({
+                    url : "/user/update",
+                    type : 'post',
+                    success : function(data) {
+                        if (data.isError === "1") {
+                            wxm.dialog({
+                                type : 'error',
+                                message : data.msg
+                            });
+                        } else {
+                            wxm.dialog({
+                                type : 'success',
+                                message : data.msg
+                            });
+                            selectList(1);
+                            $("#myModal").find("a[data-dismiss='modal']").click();
+                        }
+                    },
+                    error : function() {
+                        wxm.dialog({
+                            type : 'error',
+                            message : '操作失败，请重试！'
+                        });
+                    }
+                });
+            });
+            //角色单选
+            $("#subFormUR").find(":checkbox[name=roleId]").bind("click", function() {
+                var v = $(this).val();
+                var check = $("#subFormUR").find("input[name='roleId']:checked");
+                if (check.length > 1) {
+                    check.each(function(i) {
+                        var v1 = $(this).val();
+                        if (v != v1) {
+                            $(this).attr("checked", false);
+                        }
+                    });
+                }
+
+            });
+
+            //用户分配角色
+            $("#subFormUR").find("button[name='subbtn']").click(function() {
+                var check = $("#subFormUR").find("input[name='roleId']:checked");
+                if (check.length > 1) {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "请选择一个角色"
+                    });
+                    return;
+                }
+                var roleId = check.val();
+                var userId = $("#subFormUR").find("input[name='userId']").val();
+
+                var urid = $("#subFormUR").find("input[name='userRoleId']").val();
+                var url = "/userRole/add";
+                if (urid) {
+                    url = "/userRole/update";
+                }
+                $.ajax({
+                    url : url,
+                    data : {
+                        "userId" : userId,
+                        "roleId" : roleId,
+                        "userRoleId" : urid
+                    },
+                    type : 'POST',
+                    cache : false,
+                    async : false,
+                    dataType : 'json',
+                    success : function(data) {
+                        if (data.isError === "1") {
+                            wxm.dialog({
+                                type : 'error',
+                                message : data.msg
+                            });
+                        } else {
+                            wxm.dialog({
+                                type : 'success',
+                                message : data.msg
+                            });
+                            selectList(1);
+                            $("#myModal3").find("button[data-dismiss='modal']").click();
+                        }
+                    },
+                    error : function() {
+                        wxm.dialog({
+                            type : 'error',
+                            message : '操作失败，请重试！'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

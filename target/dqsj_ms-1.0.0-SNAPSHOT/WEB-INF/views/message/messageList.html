@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>民生大千世界梦幻乐园管理系统-留言管理-留言列表</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/pagination.css" rel="stylesheet">
+<link href="/css/summernote.css" rel="stylesheet">
+<link href="/css/summernote-bs3.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="ibox float-e-margins">
+					<div id="divSearch" class="ibox-title">
+						<div class="tabcc">
+							<table>
+								<tr>
+									<td>留言人姓名：</td>
+									<td><input id="txtUserName" type="text" class="form-control-c"></td>
+									<td>留言人电话：</td>
+									<td><input id="txtUserPhone" type="text" class="form-control-c"></td>
+									<td>是否回复：</td>
+									<td><select class="form-control-c" id="selIsReply">
+											<option value="">全部</option>
+											<option value="1">已回复</option>
+											<option value="0">未回复</option>
+									</select></td>
+									<td>满意程度：</td>
+									<td><select class="form-control-c" id="selevalLevel">
+											<option value="">全部记录</option>
+											<option value="1">非常满意</option>
+											<option value="2">满意</option>
+											<option value="3">一般</option>
+											<option value="4">不满意</option>
+											<option value="5">非常不满意</option>
+									</select></td>
+									<td><button type="button" class="binCont" onclick="search()">搜索</button></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div id="tbListContent" class="ibox-content">
+						<input id="hideIsReply" type="hidden" value="">
+						<input id="hideUserName" type="hidden" value="">
+						<input id="hideUserPhone" type="hidden" value="">
+						<input id="hideEvalLevel" type="hidden" value="">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>留言者姓名</th>
+									<th>留言者电话</th>
+									<th>留言内容</th>
+									<th>留言时间</th>
+									<th>更新日期</th>
+									<th id="thOperate">操作</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+						<!--分页 S-->
+						<div class="pages clearfix">
+							<div id="Pagination" class="pagecontent"></div>
+							<div class="searchPage">
+								<span class="page-sum">
+									共<strong class="allPage">0</strong>页
+								</span>
+							</div>
+						</div>
+						<!--分页 E-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 查看  Modal-->
+	<div class="modal fade" id="viewModal" tabindex="0" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">查看</h2>
+					<a type="button" class="btn btn-primary close-modal" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" id="viewForm">
+							<input name="id" type="hidden" />
+							<div class="form-group">
+								<label class="col-sm-2 control-label">留言者名称：</label>
+								<div class="col-sm-4">
+									<input name="userName" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">留言者电话：</label>
+								<div class="col-sm-4">
+									<input name="userPhone" type="text" class="form-control" required aria-required="true" disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">满意程度：</label>
+								<div class="col-sm-4">
+									<select name="evalLevelName" class="form-control" disabled aria-required="true">
+										<option value="">无评价</option>
+										<option value="1">非常满意</option>
+										<option value="2">满意</option>
+										<option value="3">一般</option>
+										<option value="4">不满意</option>
+										<option value="5">非常不满意</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">留言内容：</label>
+								<div class="col-sm-10">
+									<textarea name="messageContent" class="form-control" disabled></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">留言回复：</label>
+								<div class="col-sm-10">
+									<textarea name="replyContent" class="form-control" disabled></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<textarea name="remark" class="form-control" disabled></textarea>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 查看  Modal -->
+
+	<!-- 修改 Modal -->
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">修改</h2>
+					<a type="button" class="btn btn-primary close-modal" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" id="editForm">
+							<input name="id" type="hidden" />
+							<input name="isReply" type="hidden" />
+							<input name="flag" type="hidden" value="update"/>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">
+									<em style="color: red;">*</em>留言者名称：
+								</label>
+								<div class="col-sm-4">
+									<input name="userName" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">
+									<em style="color: red;">*</em>留言者电话：
+								</label>
+								<div class="col-sm-4">
+									<input name="userPhone" type="text" class="form-control" required aria-required="true" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">
+									<em style="color: red;">*</em>满意程度：
+								</label>
+								<div class="col-sm-4">
+									<select name="evalLevelName" class="form-control" aria-required="true">
+										<option value="">无评价</option>
+										<option value="1">非常满意</option>
+										<option value="2">满意</option>
+										<option value="3">一般</option>
+										<option value="4">不满意</option>
+										<option value="5">非常不满意</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">
+									<em style="color: red;">*</em>留言内容：
+								</label>
+								<div class="col-sm-10">
+									<textarea name="messageContent" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<textarea name="remark" class="form-control"></textarea>
+								</div>
+							</div>
+							<textarea name="replyContent" class="form-control" style="display: none;"></textarea>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-2 pb20">
+									<a class="btn btn-primary" type="submit" onclick="updateMessage('#editForm', 'edit')">保存</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 修改  Modal -->
+
+	<!-- 回复 Modal -->
+	<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">回复</h2>
+					<a type="button" class="btn btn-primary close-modal" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" id="replyForm">
+							<input name="id" type="hidden" />
+							<input name="isReply" type="hidden"/>
+							<input name="flag" type="hidden" value="reply"/>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">留言者名称：</label>
+								<div class="col-sm-4">
+									<input name="userName" type="text" class="form-control" required aria-required="true" readonly="readonly" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">留言者电话：</label>
+								<div class="col-sm-4">
+									<input name="userPhone" type="text" class="form-control" required aria-required="true" readonly="readonly" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">留言内容：</label>
+								<div class="col-sm-10">
+									<textarea name="messageContent" class="form-control" readonly="readonly"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">满意程度：</label>
+								<input name="evalLevel"  type="hidden"/>
+								<div class="col-sm-4">
+									<select name="evalLevelName" disabled class="form-control" aria-required="true">
+										<option value="">无评价</option>
+										<option value="1">非常满意</option>
+										<option value="2">满意</option>
+										<option value="3">一般</option>
+										<option value="4">不满意</option>
+										<option value="5">非常不满意</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<textarea name="remark" class="form-control" readonly="readonly"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">
+									<em style="color: red;">*</em>留言回复：
+								</label>
+								<div class="col-sm-10">
+									<textarea name="replyContent" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-2 pb20">
+									<a class="btn btn-primary" type="submit" onclick="updateMessage('#replyForm', 'reply')">确认回复</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 回复  Modal -->
+
+	<script src="/js/jquery.min.js?v=2.1.4"></script>
+	<script src="/js/bootstrap.min.js?v=3.3.5"></script>
+	<script src="/js/script.js"></script>
+	<script src="/js/wxm.dialog.js"></script>
+	<script src="/js/jquery.form.js"></script>
+	<script>
+        function search() {
+            $("#hideUserName").val($("#txtUserName").val());
+            $("#hideUserPhone").val($("#txtUserPhone").val());
+            $("#hideIsReply").val($("#selIsReply").val());
+            $("#hideEvalLevel").val($("#selevalLevel").val());
+            loadData();
+        }
+
+        function loadData(currentPageNo) {
+            wxm.maskLayer();
+            if (!currentPageNo) {
+                currentPageNo = 1;
+            }
+            var userName = $("#hideUserName").val();
+            var userPhone = $("#hideUserPhone").val();
+            var isReply = $("#hideIsReply").val();
+            var evalLevel = $("#hideEvalLevel").val();
+            $.ajax({
+                type : 'POST',
+                url : '/message/selectMessageList',
+                data : {
+                    "isReply" : isReply,
+                    "userName" : userName,
+                    "userPhone" : userPhone,
+                    "evalLevel" : evalLevel,
+                    "currentPageNo" : currentPageNo,
+                    "pageSize" : 10
+                },
+                dataType : 'json',
+                success : function(result) {
+                    if (result.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                    } else {
+                        loadHtml(result);
+                    }
+                    wxm.maskLayer.close();
+                }
+            });
+        }
+        // 加载元素
+        function loadHtml(result) {
+            // 详细信息列表容器
+            var $tbListContentTBody = $("#tbListContent table tbody");
+            // 清空详细信息列表
+            $tbListContentTBody.empty();
+            // 分页
+            paginationFun($("#Pagination"), (result.totalCount || 0), 10, (result.currentPageNo || 0), "loadData");
+            // 若返回结果为空，则退出
+            if (typeof (result) == "undefined" || typeof (result.messageList) == "undefined" || result.messageList.length <= 0) {
+                return;
+            }
+            // 添加查询结果
+            var messageList = result.messageList;
+            if (messageList != null && messageList.length > 0) {
+                for (var i = 0; i < messageList.length; i++) {
+                    var $tr = $('<tr><td>' + (messageList[i].userName || '') + '</td><td>' + (messageList[i].userPhone || '') + '</td><td>' + (messageList[i].messageContent || '') + '</td><td>' + (messageList[i].messageDate || '') + '</td><td>' + (messageList[i].updateDate || '') + '</td></tr>');
+                    var $td = $('<td class="td_operate"></td>');
+                    var $view = $('<a href="#" class="view-message is_view" data-toggle="modal" data-target="#viewModal" data-id="' + messageList[i].id + '">查看</a>');
+                    var $edit = $('<a href="#" class="view-message is_update" data-toggle="modal" data-target="#editModal" data-id="' + messageList[i].id + '">修改</a>');
+                    var $reply = $('<a href="#" class="view-message is_update" data-toggle="modal" data-target="#replyModal" data-id="' + messageList[i].id + '">回复</a>');
+                    var $remove = $("<a href='#' class='delete-message is_delete' onclick='delFun(this, \""+messageList[i].id+"\");'>删除</a>");
+                    $td.append($view);
+                    $td.append($reply);
+                    $td.append($remove);
+                    $tr.append($td);
+                    $tbListContentTBody.append($tr);
+                }
+            }
+
+            //权限管理
+            var isView = isAuth($('.td_operate .is_view'), 'view');
+            var isUpdate = isAuth($('.td_operate .is_update'), 'update');
+            var isDelete = isAuth($('.td_operate .is_delete'), 'delete');
+            if (!isView && !isUpdate && !isDelete) {
+                $('#thOperate').remove();
+                $('.td_operate').remove();
+            }
+
+            $('.view-message').off('click').on('click', function() {
+                viewMessageDetail($(this).attr('data-target'), $(this).attr('data-id'))
+            })
+
+            $('.delete-message').off('click').on('click', function() {
+                $($(this).attr('data-target')).find("input[name='id']").val($(this).attr('data-id'));
+            })
+        }
+
+		//删除
+		function delFun(ob, id) {
+			wxm.dialog({
+				type : 'confirm',
+				message : "确定是否删除？",
+				callback : {
+					correct : function() {
+						wxm.maskLayer();
+						$.ajax({
+							url : "/message/deleteMessage",
+							data : {
+								'id' : id
+							},
+							type : 'POST',
+							cache : false,
+							async : false,
+							dataType : 'json',
+							success : function(data) {
+								wxm.maskLayer.close();
+								if (data.isError === "1") {
+									wxm.dialog({
+										type : 'error',
+										message : data.msg
+									});
+								} else {
+									wxm.dialog({
+										type : 'success',
+										message : data.msg
+									});
+									loadData();
+								}
+							},
+							error : function() {
+								wxm.maskLayer.close();
+								wxm.dialog({
+									type : 'error',
+									message : "操作失败，请重试！"
+								});
+							}
+						});
+					}
+				}
+			});
+		}
+
+        function updateMessage(formId, flag) {
+            wxm.maskLayer();
+            if (flag == 'reply') {
+                $(formId).find("input[name='isReply']").val('1');
+            }
+            var data = $(formId).serialize();
+            $(formId).ajaxSubmit({
+                type : 'POST',
+                url : '/message/updateMessage',
+                data : data,
+                dataType : 'json',
+                success : function(result) {
+                    wxm.maskLayer.close();
+                    if (!result || !result.isError) {
+                        wxm.dialog({
+                            type : 'error',
+                            message : "操作失败，请重试！"
+                        });
+                    }
+                    if (result.isError == "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                    }
+                    if (result.isError == "0") {
+                        search();
+                        wxm.dialog({
+                            type : 'success',
+                            message : "操作成功！"
+                        });
+                    }
+                },
+                error : function() {
+                    wxm.maskLayer.close();
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+                }
+            });
+        }
+
+        function viewMessageDetail(modelId, objId) {
+            $.ajax({
+                url : "/message/selectMessageById",
+                data : {
+                    'id' : objId
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : data.msg
+                        });
+                    } else {
+                        clearForm(modelId);
+                        var message = data.message;
+                        $(modelId).find("input[name='id']").val(message.id);
+                        $(modelId).find("input[name='isReply']").val(message.isReply);
+                        $(modelId).find("input[name='userName']").val(message.userName);
+                        $(modelId).find("input[name='userPhone']").val(message.userPhone);
+						$(modelId).find("input[name='evalLevel']").val(message.evalLevel);
+                        $(modelId).find("select[name='evalLevelName']").find("option[value='" + message.evalLevel + "']").prop("selected", true);
+                        $(modelId).find("textarea[name='messageContent']").val(message.messageContent);
+                        $(modelId).find("textarea[name='remark']").val(message.remark);
+                        $(modelId).find("textarea[name='replyContent']").val(message.replyContent);
+                    }
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "操作失败，请重试！"
+                    });
+                }
+            });
+        }
+
+        $(".close-modal").bind('click', function() {
+            clearForm("#" + $(this).parents('.modal.fade').attr("id"))
+        })
+
+        function clearForm(panel) {
+//            $(panel).find("input[type='text']").val("");
+//            $(panel).find("input[name='id']").val("");
+//            $(panel).find("textarea").val("");
+        }
+
+        $(function() {
+            if (isAuth($('#divSearch'), 'search')) {
+                // 加载详细信息列表
+                loadData();
+            }
+        })
+    </script>
+</body>
+</html>

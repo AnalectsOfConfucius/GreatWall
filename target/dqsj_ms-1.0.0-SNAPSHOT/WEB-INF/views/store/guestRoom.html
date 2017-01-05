@@ -1,0 +1,805 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <title>海南航冠电子科技有限公司-店铺管理-客房列表</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+	<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+	<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+	<link href="/css/animate.min.css" rel="stylesheet">
+	<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/pagination.css" rel="stylesheet">
+	<link href="/css/summernote.css" rel="stylesheet">
+	<link href="/css/summernote-bs3.css" rel="stylesheet">
+    
+    <!-- 图片上传 -->
+    <link rel="stylesheet" href="/css/jquery-ui.css" type="text/css" />
+	<link rel="stylesheet" href="/js/jquery.ui.plupload/css/jquery.ui.plupload.css" type="text/css" />
+	
+<style type="text/css">
+.loadimgdiv{
+	float:left;
+	margin:0 10px 0 0;
+}
+
+</style>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                      <div class="row">
+                          <div class="col-md-4" style="margin-top:2px;width:auto;">
+                          	<div class="input-group query">
+ 								客户名称：<input type="text" name="goodsName" style="height:32px;">&emsp;
+ 								销售价格：
+ 								<input type="text" name="startPrice" style="height:32px;width:100px;">
+ 								&nbsp;-&nbsp;
+ 								<input type="text" name="endPrice" style="height:32px;width:100px;">
+                              </div>
+                          </div>
+                          <div class="col-md-2">
+                              <div class="input-group">
+                                  <button type="button" id="issearch" class="btn btn-primary" onclick="selectList(1)">搜索</button>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="ibox-content">
+                        <button id="isadd" data-target="#myModal0_1" data-toggle="modal" type="submit" onclick="setLoad(0)" class="btn btn-primary">添加</button>
+                        <table class="table table-bordered" style="table-layout:fixed;">
+                            <thead>
+                                <tr>
+                                    <th>酒店名称</th>
+                                    <th>是否开业</th>
+                                    <th>客房名称</th>
+                                    <th>销售价格</th>
+                                    <th>客房简介</th>
+                                    <th>联系电话</th>
+                                    <th>地址</th>
+                                    <th>排序</th>
+                                    <th>备注</th>
+                                    <th id="thOperate">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabcontent">
+                                
+                            </tbody>
+                        </table>
+                        <!--分页 S-->
+                         <div class="pages clearfix">
+                            <div id="Pagination" class="pagecontent">
+                            	
+                            </div>
+                             <div class="searchPage">
+                                 <span class="page-sum">共<strong class="allPage"></strong>页</span>
+                             </div>
+                            </div>
+                        <!--分页 E-->   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 2016-4-7 add -->
+    <!--添加 S-->
+    <div class="modal fade" id="myModal0_1" tabindex="0" role="dialog"   aria-labelledby="myModalLabel" aria-hidden="true" style="overflow: auto;">
+      	 <div class="modal-worppar">
+      	 	<div class="row">
+            <div class="col-md-12">
+                  <h2 class="h5Class">添加客房信息</h2>
+                  <a type="button" class="btn btn-primary" data-dismiss="modal" style="position:absolute; right: 31px; top: 10px;">关闭</a>
+                    <div class="ibox-content">
+                        <form class="form-horizontal m-t"  novalidate="novalidate" action="/guestRoom/add" method="post" id="subForm" enctype="multipart/form-data" target="msgiframe">
+                            <input name="storeId" type="hidden" value="${(store.id)!''}">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">酒店名称：</label>
+                                <div class="col-sm-10" style="line-height:32px;">
+                                    ${(store.storeName)!''}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">客房名称：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomName" type="text" class="form-control" required="" aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">销售价格：</label>
+                                <div class="col-sm-10">
+                                    <input name="sellPrice" type="text" class="form-control" required aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">客房简介：</label>
+                                <div class="col-sm-10">
+                                    <textarea name="guestRoomBrief" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">联系电话：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomTel" type="text" class="form-control" required aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">地址：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomAddress" type="text" class="form-control" required aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">商品内容：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomContent" class="summernote" style="min-height: 700px;" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">排序：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomOrder" type="text" class="form-control" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">备注：</label>
+                                <div class="col-sm-10">
+                                    <textarea name="remark" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">图片：</label>
+                                <div class="col-sm-10" style="height:180px;overflow:auto;">
+									<div data-target="#uploadimg" data-toggle="modal" class="andArea addimg" style="width:100px;cursor:pointer;float:left;" ></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <a class="btn btn-primary" type="submit" data-name="subbtn">保存</a>
+                                </div>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+      	 </div>
+   
+    </div>
+    <!--添加 E-->
+    <!--查看 S-->
+    <div class="modal fade" id="myModal0" tabindex="0" role="dialog"   aria-labelledby="myModalLabel" aria-hidden="true" style="overflow: auto;">
+      	 <div class="modal-worppar">
+      	 	<div class="row">
+            <div class="col-md-12">
+                  <h2 class="h5Class">查看客房信息</h2>
+                  <a type="button" class="btn btn-primary" data-dismiss="modal" style="position:absolute; right: 31px; top: 10px;">关闭</a>
+                    <div class="ibox-content">
+                    	<form class="form-horizontal m-t"  novalidate="novalidate">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">酒店名称：</label>
+                                <div class="col-sm-10" style="line-height:32px;">
+                                    ${(store.storeName)!''}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">客房名称：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomName" type="text" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">销售价格：</label>
+                                <div class="col-sm-10">
+                                    <input name="sellPrice" type="text" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">客房简介：</label>
+                                <div class="col-sm-10">
+                                    <textarea name="guestRoomBrief" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">联系电话：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomTel" type="text" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">地址：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomAddress" type="text" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">商品内容：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomContent" class="summernote" style="min-height: 700px;" disabled/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">排序：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomOrder" type="text" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">备注：</label>
+                                <div class="col-sm-10">
+                                    <textarea name="remark" class="form-control" disabled></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">图片：</label>
+                                <div class="col-sm-10" style="height:180px;overflow:auto;">
+                                    <div class="viewImg"></div>
+                                </div>
+                            </div>
+					<div class="pb20" style="clear:both;"></div>
+					</form>  
+                </div>
+            </div>
+        </div>
+      	 </div>
+   
+    </div>
+    <!--查看 E-->
+    
+    <!--  修改（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+       aria-labelledby="myModalLabel" aria-hidden="true" style="overflow: auto;">
+             	 <div class="modal-worppar">
+      	 	<div class="row">
+            <div class="col-md-12">
+                  <h2 class="h5Class">修改客房信息</h2>
+                  <a type="button" class="btn btn-primary" data-dismiss="modal" style="position:absolute; right: 31px; top: 10px;">关闭</a>
+                    <div class="ibox-content">
+                        <form class="form-horizontal m-t"  novalidate="novalidate" id="subFormUpt">
+                            <input type="hidden" name="roomId" />
+                            <input name="storeId" type="hidden" value="${(store.id)!''}">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">酒店名称：</label>
+                                <div class="col-sm-10" style="line-height:32px;">
+                                    ${(store.storeName)!''}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">客房名称：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomName" type="text" class="form-control" required="" aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">销售价格：</label>
+                                <div class="col-sm-10">
+                                    <input name="sellPrice" type="text" class="form-control" required aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">客房简介：</label>
+                                <div class="col-sm-10">
+                                    <textarea name="guestRoomBrief" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">联系电话：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomTel" type="text" class="form-control" required aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">地址：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomAddress" type="text" class="form-control" required aria-required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">商品内容：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomContent" class="summernote" style="min-height: 700px;" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">排序：</label>
+                                <div class="col-sm-10">
+                                    <input name="guestRoomOrder" type="text" class="form-control" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">备注：</label>
+                                <div class="col-sm-10">
+                                    <textarea name="remark" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">图片：</label>
+                                <div class="col-sm-10" style="height:180px;overflow:auto;">
+									<div data-target="#uploadimg" data-toggle="modal" class="andArea addimg" style="width:100px;cursor:pointer;float:left;" ></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <a class="btn btn-primary" type="" data-name="subbtn">保存</a> 
+                                </div>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+      	 </div>
+   
+    </div>
+    <!-- （修改 （Modal））  --> 
+    
+    <!-- Upload Modal -->
+	<div class="modal fade" id="uploadimg" tabindex="-3" role="dialog" aria-hidden="true">
+	    
+	    <div class="modal-dialog modal-lg" style="z-index:8888 !important;">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal">
+	                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+	                </button>
+	                <h4 class="modal-title" id="uploadModalLabel">上传图片</h4>
+	            </div>
+	            <div class="modal-body">
+	                <div id="uploader">
+	                    <p>您的浏览器不支持 Flash, Silverlight 或 HTML5.</p>
+	                </div>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button"  class="btn btn-default" data-dismiss="modal">取消</button>
+	                <button type="submit" id="addImgBtn" data-addimg="0" class="btn btn-primary">确定</button>
+	            </div>
+	        </div>
+	    </div>
+	<div class="modal-backdrop fade in" style="z-index:7777 !important;"></div>
+	</div>
+	
+<style >
+.bodgdl dd{
+	margin-bottom: 5px;
+}
+.bodgdl dd span{ 
+	float: left;
+	margin-top: -3px ;
+}
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+    margin-top: 0;
+}
+.wilq a{
+	font-size: 15px;
+	padding-right: 5px;
+}
+.h5Class{
+	padding: 0;
+	margin: 0;
+	height: 50px;
+	line-height: 50px; 
+	text-indent: 20px;
+	font-size: 20px;
+	font-weight: 600;
+}
+.modal-worppar{
+	max-width:1200px;
+	background: #fff;
+	border-radius: 5px;
+	margin: 30px  auto;
+}
+ .ibox-content table tr th,
+ .ibox-content table tr td{
+    text-align: center;
+    font-size: 14px;
+    height: 27px;
+    line-height: 27px;
+ }
+ .ibox-content table tr td a{
+    padding: 0 5px;
+ }
+.titleCon{
+    margin-top: -10px;
+}
+
+.titleCon a i{
+    position: relative; 
+    font-size: 25px;
+    color: #000;
+}
+.ibox-title {
+    margin-top: 10px;
+    border-width: 1px 0 0;
+}
+  /*弹出框*/
+  .theme-popover-mask {
+    z-index: 9998;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#000;
+    opacity:0.4;filter:alpha(opacity=40);
+    display:none;
+}
+  .theme-popover {
+    z-index:9999;
+    position:fixed;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background-color:#f3f3f4;
+    display:none;
+}
+  .theme-poptit {
+    border-bottom:1px solid #eef1f6;
+    padding:15px;
+    position: relative; 
+}
+  .theme-poptit .close {
+    float:right;
+    color:#999;
+    padding:5px;
+    margin:-2px -5px -5px;
+    font:bold 14px/14px simsun;
+    text-shadow:0 1px 0 #ddd; 
+}
+.hiden{
+	display:none;
+}
+</style>
+    <script src="/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/js/bootstrap.min.js?v=3.3.5"></script>
+    
+    <!-- 图片 -->
+    <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/plupload.full.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
+	<script type="text/javascript" src="/js/zh_CN.js"></script>
+	<script type="text/javascript" src="/js/file.js"></script>
+	
+	<script src="/js/script.js"></script>
+    <script src="/js/wxm.dialog.js"></script>
+	<!-- 编辑框 -->
+	<script type="text/javascript" src="/js/plugins/summernote/summernote.min.js"></script>
+	<script type="text/javascript" src="/js/plugins/summernote/summernote-zh-CN.js"></script>
+    
+   <script type="text/javascript">
+		//清空
+		function clearInpt(panel) {
+			$(panel).find("input[type='text']").val("");
+			$(panel).find("input[type='checkbox']").prop("checked",false);
+			$(panel).find("textarea").val("");
+			var selects = $(panel).find("select");
+			selects.find("option").prop("selected", false);
+			selects.find("option:first").prop("selected", "selected");
+			$(panel).find(".imgFileUp img").attr("src", "/images/add_img.png");
+			//删除图片
+			$(panel).find(".loadimgdiv").remove();
+			//情况编辑框
+			$(panel).find(".summernote").code('');
+		}
+		selectList(1);
+		function selectList(currentPageNo){
+            wxm.maskLayer();
+			if(!currentPageNo){
+				currentPageNo = 1;
+			}
+			var guestRoomName = $(".query").find("input[name='guestRoomName']").val();
+			var startPrice = $(".query").find("input[name='startPrice']").val();
+			var endPrice = $(".query").find("input[name='endPrice']").val();
+			$.ajax({
+	            	url:"/guestRoom/query",
+	            	data:{"currentPageNo":currentPageNo,'guestRoomName':guestRoomName,
+	            		'startPrice':startPrice,'endPrice':endPrice},
+	            	type:'POST',
+	            	cache:false,
+	            	async:false,
+	            	dataType:'json',
+	            	success:function(data) {
+	            		if (data.isError === "1") {
+	                        wxm.dialog({type : 'error',message : data.msg});
+	                    } else {
+	                        selectHtml(data);
+	                    }
+                        wxm.maskLayer.close();
+	            	},
+	            	error : function() {
+                        wxm.maskLayer.close();
+	            		wxm.dialog({type : 'error',message : '操作失败，请重试！'});
+	            	}
+	    	});
+		}
+		function selectHtml(data){
+			var rows = data.rows;
+			var tb = [];
+			if(rows && rows.length>0){
+				for (var i = 0; i < rows.length; i++) {
+					var ob = rows[i];
+					ob.roomId = ob.id;
+					tb[tb.length] = '<tr>';
+					tb[tb.length] = '<td style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">'+nullToStr(ob.storeName)+'</td>';
+					tb[tb.length] = '<td style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">'+(ob.isOpen=='0'?'歇业':'开业')+'</td>';
+					tb[tb.length] = '<td style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">'+nullToStr(ob.guestRoomName)+'</td>';
+					tb[tb.length] = '<td>'+nullToStr(ob.sellPrice)+'</td>';
+					tb[tb.length] = '<td style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">'+nullToStr(ob.guestRoomBrief)+'</td>';
+					tb[tb.length] = '<td>'+nullToStr(ob.guestRoomTel)+'</td>';
+					tb[tb.length] = '<td style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">'+nullToStr(ob.guestRoomAddress)+'</td>';
+					tb[tb.length] = '<td>'+nullToStr(ob.guestRoomOrder)+'</td>';
+					tb[tb.length] = '<td style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">'+nullToStr(ob.remark)+'</td>';
+					tb[tb.length] = '<td class="thOperate">';
+					tb[tb.length] = "    <a class='isview' data-target='#myModal0' data-toggle='modal' data-val='' onclick='viewWin(this,\"view\",\""+ob.id+"\");'>查看</a>";
+					tb[tb.length] = "    <a class='isupt' data-target='#myModal' data-toggle='modal' data-val='' onclick='viewWin(this,\"upt\",\""+ob.id+"\");'>修改</a>";
+					tb[tb.length] = "    <a class='isdel' onclick='delFun(\""+ob.id+"\");'>删除</a>";
+					tb[tb.length] = '</td>';
+					tb[tb.length] = '</tr>';
+				}
+				paginationFun($("#Pagination"),data.totalCnt,10,data.currentPage,"selectList");
+			}
+			$("#tabcontent").html(tb.join(""));
+			//权限管理
+			var isview = isAuth($('.thOperate .isview'),'view');
+			var isupt = isAuth($('.thOperate .isupt'),'update');
+			var isdel = isAuth($('.thOperate .isdel'),'delete');
+			if(!isview && !isupt && !isdel){
+				$('#thOperate').remove();
+				$('.thOperate').remove();
+			}
+		}
+		function viewWin(ob,flag,id){
+			var panel = $(ob).attr("data-target");
+			var typeCode = $(".query").find("input[name='typeCode']").val();
+			$.ajax({
+	            	url:"/guestRoom/detail",
+	            	data:{'roomId':id,'typeCode':typeCode},
+	            	type:'POST',
+	            	cache:false,
+	            	async:false,
+	            	dataType:'json',
+	            	success:function(data) {
+	            		if (data.isError === "1") {
+	                        wxm.dialog({type : 'error',message : data.msg});
+	                    } else {
+	                    	clearInpt(panel);
+	                    	$(panel).find(".loadimgdiv").remove();
+	                        var info = data.info;
+	                        
+	                        $(panel).find("input[name='roomId']").val(id);
+	                        
+	                        $(panel).find("input[type='text']").each(function(index){
+								var name = $(this).attr("name");
+								$(this).val(nullToStr(info[name]));
+							});
+							$(panel).find("select").each(function(index){
+								var name = $(this).attr("name");
+								var v = info[name];
+								$(this).find("option").prop("selected", false);
+								$(this).find("option[value='" + v + "']").prop("selected", true);
+								$(this).trigger('change');
+							});
+							$(panel).find("textarea").each(function(index){
+								var name = $(this).attr("name");
+								$(this).val(nullToStr(info[name]));
+							});
+							//编辑框
+							$(panel).find(".summernote").code(info.guestRoomContentStr);
+							
+							var plist = data.plist;
+							var tb = [];
+							
+							if(flag=='view'){
+								if(plist && plist.length>0){
+									for (var i = 0; i < plist.length; i++) {
+										var ob = plist[i];
+// 										tb[tb.length] = "<img src='"+nullToStr(ob.picUrl)+"' onclick=\"viewimg('"+ob.picUrlOld+"')\" style='margin-right:10px;'/>";
+										tb[tb.length] = "<img src='"+nullToStr(ob.picUrl)+"' style='margin-right:10px;max-width:150px;'/>";
+									}
+								}
+								$(panel).find(".viewImg").html(tb.join(""));
+							}else{
+								$(panel).find(".addimg").parent().find(".loadimgdiv").remove();
+								setLoad(1);
+								if(plist && plist.length>0){
+									for (var i = 0; i < plist.length; i++) {
+										var ob = plist[i];
+										var ch = "";
+										var mflag = 0;
+										if(ob.mainPicFlag=='1'){
+											ch = "checked";
+											mflag = 1;
+										}
+										tb[tb.length] = "<div class='loadimgdiv' style='float:left;margin-right:10px;height:180px;'>";
+						            	tb[tb.length] = "<span class='del delete' data-val='"+ob.id+"' data-url='"+nullToStr(ob.picUrl)+"'></span>";
+						            	tb[tb.length] = "<img src='"+nullToStr(ob.picUrl)+"' style='max-width:150px;'/>";
+						            	tb[tb.length] = "<input type='hidden' value='"+nullToStr(ob.picUrl)+"' name='picUrl'/>";
+						            	tb[tb.length] = "<p style='margin-top:3px;'>";
+						            	tb[tb.length] = "主图:<input type='checkbox' "+ch+" value='"+mflag+"'/><input type='hidden' value='"+mflag+"' name='mainPicFlag'/>&nbsp;&nbsp;";
+						            	tb[tb.length] = "排序:<input type='text' value='"+nullToStr(ob.picOrder)+"' name='picOrder' style='width:55px;'/>";
+						            	tb[tb.length] = "</p>";
+						            	tb[tb.length] = "</div>";
+									}
+								}
+								$(panel).find(".addimg").before(tb.join(""));
+								//主图
+		        				checkFun($(panel).find(".addimg").parent(),'mainPicFlag');
+								//删除
+		        				imgdel($(panel),'/fegoods/delImg');
+							}
+	                    }
+	            	},
+	            	error : function() {
+	            		wxm.dialog({type : 'error',message : '操作失败，请重试！'});
+	            	}
+	    		});
+		}
+		//删除 
+		function del(ob,id){
+			var panel = $(ob).attr("data-target");
+			$(panel).find("input[name='roomId']").val(id);
+		}
+		//删除 
+		function delFun(id){
+			wxm.dialog({
+                type : 'confirm',
+                message : "确定是否删除？",
+                callback : {
+                    correct : function() {
+                        wxm.maskLayer();
+						$.ajax({
+				            	url:"/guestRoom/delete",
+				            	data:{'roomId':id},
+				            	type:'POST',
+				            	cache:false,
+				            	async:false,
+				            	dataType:'json',
+				            	success:function(data) {
+	                                wxm.maskLayer.close();
+				            		if (data.isError === "1") {
+				                        wxm.dialog({type : 'error',message : data.msg});
+				                    } else {
+				                        wxm.dialog({type : 'success',message : data.msg});
+				                        selectList(1);
+				                    }
+				            	},
+				            	error : function() {
+	                                wxm.maskLayer.close();
+				            		wxm.dialog({type : 'error',message : '操作失败，请重试！'});
+				            	}
+				    	});
+				    }
+                }
+            });
+		}
+		//区别新增，修改区域里的图片
+		function setLoad(n){
+			if(n==0){
+				clearInpt("#subForm");
+			}
+			$("#addImgBtn").attr("data-addimg",n);
+		}
+		
+		$(function () {
+			if(isAuth($('#issearch'),'search')){
+				selectList(1);
+			}
+			isAuth($('#isadd'),'add');
+			//新增
+			$("#subForm").find("a[data-name='subbtn']").click(function(){
+                wxm.maskLayer();
+				$("#subForm").find("input[name='guestRoomContent']").val($("#subForm").find(".summernote").code());
+				var data = $("#subForm").serializeArray();
+				$.ajax({
+	            	url:"/guestRoom/saveOrUpdate",
+	            	data:data,
+	            	type:'POST',
+	            	cache:false,
+	            	async:false,
+	            	dataType:'json',
+	            	success:function(data) {
+                        wxm.maskLayer.close();
+	            		if (data.isError === "1") {
+	                        wxm.dialog({type : 'error',message : data.msg});
+	                    } else {
+	                        wxm.dialog({type : 'success',message : data.msg});
+	                        selectList(1);
+	                        $("#myModal0_1").find("a[data-dismiss='modal']").click();
+	                    }
+	            	},
+	            	error : function() {
+                        wxm.maskLayer.close();
+	            		wxm.dialog({type : 'error',message : '操作失败，请重试！'});
+	            	}
+	    		});
+			});
+			
+			//修改
+			$("#subFormUpt").find("a[data-name='subbtn']").click(function(){
+                wxm.maskLayer();
+				$("#subFormUpt").find("input[name='guestRoomContent']").val($("#subFormUpt").find(".summernote").code());
+				var data = $("#subFormUpt").serializeArray();
+				$.ajax({
+	            	url:"/guestRoom/saveOrUpdate",
+	            	data:data,
+	            	type:'POST',
+	            	cache:false,
+	            	async:false,
+	            	dataType:'json',
+	            	success:function(data) {
+                        wxm.maskLayer.close();
+	            		if (data.isError === "1") {
+	                        wxm.dialog({type : 'error',message : data.msg});
+	                    } else {
+	                        wxm.dialog({type : 'success',message : data.msg});
+	                        selectList(1);
+	                        $("#myModal").find("a[data-dismiss='modal']").click();
+	                    }
+	            	},
+	            	error : function() {
+                        wxm.maskLayer.close();
+	            		wxm.dialog({type : 'error',message : '操作失败，请重试！'});
+	            	}
+	    		});
+			});
+			// 点击确定追加已上传的图片
+		    $('#addImgBtn').bind('click',function(){
+		        var tb = [];
+		        var arr = ($('#uploader').plupload('getFiles'));
+		        var num = $(this).attr("data-addimg");
+		        var imgnum = $(".addimg").eq(num).parent().find("img").length;
+		        for(var i=0;i<arr.length;i++){
+		        	var url = $('.pictures').eq(i).val();
+		        	var ch = "";
+		        	var flag = 0;
+		        	if(i==0 && imgnum<=0){
+		        		ch = "checked";
+		        		flag = 1;
+		        	}
+		            if (url) {
+		            	tb[tb.length] = "<div class='loadimgdiv' style='float:left;margin-right:10px;height:180px;'>";
+		            	tb[tb.length] = "<span class='del delete' data-val='' data-url='"+url+"'></span>";
+		            	tb[tb.length] = "<img src='"+url+"' style='max-width:150px;'/>";
+		            	tb[tb.length] = "<input type='hidden' value='"+url+"' name='picUrl'/>";
+		            	tb[tb.length] = "<p style='margin-top:3px;'>";
+		            	tb[tb.length] = "主图:<input type='checkbox' "+ch+" value='"+flag+"'/><input type='hidden' value='"+flag+"' name='mainPicFlag'/>&nbsp;&nbsp;";
+		            	tb[tb.length] = "排序:<input type='text' value='"+(imgnum+i+1)+"' name='picOrder' style='width:55px;'/>";
+		            	tb[tb.length] = "</p>";
+		            	tb[tb.length] = "</div>";
+		            }
+		        }
+		        
+		        $("#uploadimg").find("button[data-dismiss='modal']").click();
+		        $(".addimg").eq(num).before(tb.join(""));
+		        $(".addimg").eq(num).parent().find("img").each(function(i){
+		        	var img = $(this);
+		        	
+    				img[0].onload = function(){
+			            var rect = clacImgZoomParam(150, 120, img[0].offsetWidth, img[0].offsetHeight);
+			            img.width(rect.width);
+			    		img.height(rect.height);
+			//          img.style.marginLeft = rect.left+'px';
+			//          img.style.marginTop = rect.top+'px';
+			        }
+		        });
+		        $('#uploader').plupload('clearQueue');
+		        //主图
+		        checkFun($(".addimg").eq(num).parent(),'mainPicFlag');
+		        //删除
+		        imgdel($(".addimg").eq(num).parent(),'/fegoods/delImg');
+		        
+		    });
+			
+		});
+		
+	</script>
+</body>
+</html>

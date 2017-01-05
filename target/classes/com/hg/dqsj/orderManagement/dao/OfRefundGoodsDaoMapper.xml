@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.orderManagement.dao.OfRefundGoodsDao">
+    <!-- 根据退款ID查询商品信息 -->
+    <select id="selectGoodsByRefundId" parameterType="java.lang.String" resultType="com.hg.dqsj.orderManagement.view.VOfRefundGoods">
+		select (select goodsName from dqsj_fe_goods where id = org.goodsId) as goodsName,
+		       goodsNum,
+		       goodsPrice,
+		       remark
+		  from dqsj_of_refund_goods org
+		 where org.refundId = #{refundId}
+    </select>
+    
+    <!-- 根据退款ID查询客房信息 -->
+    <select id="selectGuestRoomByRefundId" parameterType="java.lang.String" resultType="com.hg.dqsj.orderManagement.view.VOfRefundGoods">
+        select (select guestRoomName from dqsj_fe_guest_room where id = org.goodsId) as goodsName,
+               goodsNum,
+               goodsPrice,
+               remark
+           from dqsj_of_refund_goods org
+         where org.refundId = #{refundId}
+    </select>
+     <!-- 查询该退款ID的所有退款商品 -->
+    <select id="selectByRefundId" parameterType="java.lang.String" resultType="com.hg.dqsj.orderManagement.entity.OfRefundGoods">
+        select goodsId,
+               goodsNum,
+               goodsPrice,
+               remark
+           from dqsj_of_refund_goods org
+         where org.refundId = #{refundId}
+    </select>
+</mapper>

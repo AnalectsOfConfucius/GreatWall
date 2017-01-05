@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>民生大千世界梦幻乐园管理系统-评价管理-评价列表</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/pagination.css" rel="stylesheet">
+<link href="/css/summernote.css" rel="stylesheet">
+<link href="/css/summernote-bs3.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<div class="tabcc">
+							<table>
+								<tr>
+									<td>商品名称：</td>
+									<td><input id="hideGoodsName" type="text" class="form-control-c"></td>
+									<td><button id="issearch" type="button" class="binCont" onclick="loadData(1)">搜索</button></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div id="tbListContent" class="ibox-content">
+						<input id="hideIsReply" type="hidden" value="">
+						<input id="hideUserName" type="hidden" value="">
+						<input id="hideUserPhone" type="hidden" value="">
+						<input id="hideEvalLevel" type="hidden" value="">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>商品名称</th>
+									<th>评价人</th>
+									<th>评价总分</th>
+									<th>评价时间</th>
+									<th id="thOperate">操作</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+						<!--分页 S-->
+						<div class="pages clearfix">
+							<div id="Pagination" class="pagecontent"></div>
+							<div class="searchPage">
+								<span class="page-sum">
+									共<strong class="allPage">0</strong>页
+								</span>
+							</div>
+						</div>
+						<!--分页 E-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 查看  Modal-->
+	<div class="modal fade" id="viewModal" tabindex="0" role="dialog" aria-labelledby="evalModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">查看</h2>
+					<a type="button" class="btn btn-primary close-modal" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" id="viewForm">
+							<input name="id" type="hidden" />
+							<div class="form-group">
+								<label class="col-sm-2 control-label">商品名称</label>
+								<div class="col-sm-4">
+									<input name="goodsName" type="text" class="form-control" required aria-required="true" readonly="readonly" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">评价者总评分：</label>
+								<div class="col-sm-10">
+									<input name="evalTotalScore" class="form-control" readonly="readonly" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">评价内容：</label>
+								<div class="col-sm-10">
+									<textarea name="evalComment" class="form-control" disabled></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<textarea name="remark" class="form-control" disabled></textarea>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 查看  Modal -->
+
+	<script src="/js/jquery.min.js?v=2.1.4"></script>
+	<script src="/js/bootstrap.min.js?v=3.3.5"></script>
+	<script src="/js/script.js"></script>
+	<script src="/js/wxm.dialog.js"></script>
+	<script src="/js/jquery.form.js"></script>
+	<script>
+        function loadData(currentPageNo) {
+            wxm.maskLayer();
+            if (!currentPageNo) {
+                currentPageNo = 1;
+            }
+            var goodsName = $("#hideGoodsName").val();
+            $.ajax({
+                type : 'POST',
+                url : '/eval/selectList',
+                data : {
+                    "goodsName" : goodsName,
+                    "currentPageNo" : currentPageNo,
+                    "pageSize" : 10
+                },
+                dataType : 'json',
+                success : function(result) {
+                    if (result.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            eval : result.msg
+                        });
+                    } else {
+                        loadHtml(result);
+                    }
+                    wxm.maskLayer.close();
+                }
+            });
+        }
+
+        // 加载元素
+        function loadHtml(result) {
+            // 详细信息列表容器
+            var $tbListContentTBody = $("#tbListContent table tbody");
+            // 清空详细信息列表
+            $tbListContentTBody.empty();
+            // 分页
+            paginationFun($("#Pagination"), (result.totalCount || 0), 10, (result.currentPageNo || 0), "loadData");
+            // 若返回结果为空，则退出
+            if (typeof (result) == "undefined" || typeof (result.list) == "undefined" || result.list.length <= 0) {
+                return;
+            }
+            // 添加查询结果
+            var list = result.list;
+            if (list != null && list.length > 0) {
+                for (var i = 0; i < list.length; i++) {
+                    var $tr = $('<tr><td>' + (list[i].goodsName || '') + '</td><td>' + (list[i].userName || '') + '</td><td>' + (list[i].evalTotalScore || '') + '</td><td>' + (list[i].updateDate || '') + '</td></tr>');
+                    var $td = $('<td class="thOperate"></td>');
+                    var $view = $('<a href="#" class="view-eval" data-toggle="modal" data-target="#viewModal" data-id="'
+							+ list[i].id + '">查看</a>');
+                    var $remove = $("<a href='#' class='delete-eval'  onclick='delFun(this, \""+list[i].id+"\");'>删除</a>");
+                    $td.append($view);
+                    $td.append($remove);
+                    $tr.append($td);
+                    $tbListContentTBody.append($tr);
+                }
+            }
+            //权限管理
+            var isview = isAuth($('.thOperate .view-eval'), 'view');
+            //var isupt = isAuth($('.thOperate .isupt'),'update');
+            var isdel = isAuth($('.thOperate .delete-eval'), 'delete');
+            if (!isview && !isdel) {
+                $('#thOperate').remove();
+                $('.thOperate').remove();
+            }
+
+            $('.view-eval').off('click').on('click', function() {
+                viewDetail($(this).attr('data-target'), $(this).attr('data-id'));
+            })
+        }
+
+        function viewDetail(modelId, objId) {
+            $.ajax({
+                url : "/eval/selectById",
+                data : {
+                    'id' : objId
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            eval : data.msg
+                        });
+                    } else {
+                        clearForm(modelId);
+                        var detail = data.detail;
+                        $(modelId).find("input[name='id']").val(eval.id);
+                        $(modelId).find("input[name='goodsName']").val(detail.goodsName);
+                        $(modelId).find("input[name='evalTotalScore']").val(detail.evalTotalScore);
+                        $(modelId).find("textarea[name='evalCommnet']").val(detail.evalComment);
+                        $(modelId).find("textarea[name='remark']").val(detail.remark);
+                    }
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        eval : "操作失败，请重试！"
+                    });
+                }
+            });
+        }
+
+        $(".close-modal").bind('click', function() {
+            clearForm("#" + $(this).parents('.modal.fade').attr("id"))
+        })
+
+        function clearForm(panel) {
+            $(panel).find("input[type='text']").val("");
+            $(panel).find("input[name='id']").val("");
+            $(panel).find("textarea").val("");
+        }
+
+        //删除
+        function delFun(ob, id) {
+            wxm.dialog({
+                type : 'confirm',
+                message : "确定是否删除？",
+                callback : {
+                    correct : function() {
+                        wxm.maskLayer();
+                        $.ajax({
+                            url : "/eval/delete",
+                            data : {
+                                'id' : id
+                            },
+                            type : 'POST',
+                            cache : false,
+                            async : false,
+                            dataType : 'json',
+                            success : function(data) {
+                                wxm.maskLayer.close();
+                                if (data.isError === "1") {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : data.msg
+                                    });
+                                } else {
+                                    wxm.dialog({
+                                        type : 'success',
+                                        message : data.msg
+                                    });
+                                    loadData();
+                                }
+                            },
+                            error : function() {
+                                wxm.maskLayer.close();
+                                wxm.dialog({
+                                    type : 'error',
+                                    message : "操作失败，请重试！"
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        $(function() {
+            if (isAuth($('#issearch'), 'search')) {
+                loadData();
+            }
+        })
+    </script>
+</body>
+</html>

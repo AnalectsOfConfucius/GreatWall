@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>海南航冠电子科技有限公司-系统管理-角色列表</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/pagination.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="input-group query">
+									<input type="text" name="roleName" class="form-control" placeholder="角色名称">
+									<span class="input-group-btn">
+										<button type="button" id="issearch" class="btn btn-primary" onclick="selectList(1)">搜索</button>
+									</span>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="ibox-content">
+						<button id="isadd" class="btn btn-primary" type="submit" data-toggle="modal" data-target="#myModal0_1" onclick="clearInput('#myModal0_1')">添加</button>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>角色名称</th>
+									<th>排序</th>
+									<th>备注</th>
+									<th id="thOperate">操作</th>
+								</tr>
+							</thead>
+							<tbody id="tabcontent">
+
+							</tbody>
+						</table>
+						<!--分页 S-->
+						<div class="pages clearfix">
+							<div id="Pagination" class="pagecontent"></div>
+							<div class="searchPage">
+								<span class="page-sum">
+									共<strong class="allPage"></strong>页
+								</span>
+							</div>
+						</div>
+						<!--分页 E-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 2016-4-7 add -->
+	<!--添加 S-->
+	<div class="modal fade" id="myModal0_1" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">添加角色信息</h2>
+					<a type="button" class="btn btn-primary" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" action="" method="post" id="subForm">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">角色名称：</label>
+								<div class="col-sm-10">
+									<input name="roleName" type="text" class="form-control" required="" aria-required="true">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">排序：</label>
+								<div class="col-sm-10">
+									<input name="roleOrder" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<input name="remark" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-2 pb20">
+									<a class="btn btn-primary" data-name="subbtn">保存</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!--添加 E-->
+	<!--查看 S-->
+	<div class="modal fade" id="myModal0" tabindex="0" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">查看用户列表信息</h2>
+					<a type="button" class="btn btn-primary" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">角色名称：</label>
+								<div class="col-sm-10">
+									<input name="roleName" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">排序：</label>
+								<div class="col-sm-10">
+									<input name="roleOrder" class="form-control" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<input name="remark" type="text" class="form-control" disabled>
+								</div>
+							</div>
+
+							<div class="pb20" style="clear: both;"></div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!--查看 E-->
+	<!--  修改（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-worppar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h5Class">查看用户列表信息</h2>
+					<a type="button" class="btn btn-primary" data-dismiss="modal" style="position: absolute; right: 31px; top: 10px;">关闭</a>
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" novalidate="novalidate" action="" method="post" id="subFormUpt" enctype="multipart/form-data">
+							<input type="hidden" name="roleId" value="" />
+							<div class="form-group">
+								<label class="col-sm-2 control-label">角色名称：</label>
+								<div class="col-sm-10">
+									<input name="roleName" type="text" class="form-control" required="" aria-required="true">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">排序：</label>
+								<div class="col-sm-10">
+									<input name="roleOrder" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-10">
+									<input name="remark" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-2 pb20">
+									<a class="btn btn-primary" data-name="subbtn">保存</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- （修改 （Modal））  -->
+
+	<!--  删除（Modal） -->
+	<div class="modal fade" id="myModal2" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog custom_modal">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">
+						是否删除
+						<span data-dismiss="modal">
+							<Img src="/img/close.png">
+						</span>
+					</h4>
+
+				</div>
+				<div class="modal-body wilq">
+					<div class="modal-body-img">
+						<img src="/img/11.png">
+					</div>
+					<div class="modal-body-p">
+						<p>你确定要删除吗？</p>
+						<p>如果是请点击"确定"，否则点"取消"</p>
+						<p class="add_button">
+							<input type="hidden" name="roleId" />
+							<button type="button" class="btn btn-primary qd" data-dismiss="modal" onclick="delFun(this)">确定</button>
+							<button type="button" class="btn btn-primary qx" data-dismiss="modal">取消</button>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!-- 删除 （Modal） -->
+
+	<!--分配管理 S-->
+	<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 700px;">
+			<div class="modal-content">
+				<form action="" id="subFormAuth">
+					<input type="hidden" name="roleId" />
+					<div class="modal-header">
+						<h4 class="modal-title">分配管理</h4>
+					</div>
+					<div class="modal-body">
+						<dl class="bodgdl">
+						</dl>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" name="subbtn">确认</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+					</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<!--分配管理 E-->
+
+	<style>
+.bodgdl dd {
+	margin-bottom: 5px;
+}
+
+.bodgdl dd span {
+	float: left;
+	margin-top: -3px;
+}
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+	margin-top: 0;
+}
+
+.wilq a {
+	font-size: 15px;
+	padding-right: 5px;
+}
+
+.h5Class {
+	padding: 0;
+	margin: 0;
+	height: 50px;
+	line-height: 50px;
+	text-indent: 20px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.modal-worppar {
+	max-width: 1200px;
+	background: #fff;
+	border-radius: 5px;
+	margin: 30px auto;
+}
+
+.ibox-content table tr th, .ibox-content table tr td {
+	text-align: center;
+	font-size: 14px;
+	height: 27px;
+	line-height: 27px;
+}
+
+.ibox-content table tr td a {
+	padding: 0 5px;
+}
+
+.titleCon {
+	margin-top: -10px;
+}
+
+.titleCon a i {
+	position: relative;
+	font-size: 25px;
+	color: #000;
+}
+
+.ibox-title {
+	margin-top: 10px;
+	border-width: 1px 0 0;
+}
+/*弹出框*/
+.theme-popover-mask {
+	z-index: 9998;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.4;
+	filter: alpha(opacity = 40);
+	display: none;
+}
+
+.theme-popover {
+	z-index: 9999;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	background-color: #f3f3f4;
+	display: none;
+}
+
+.theme-poptit {
+	border-bottom: 1px solid #eef1f6;
+	padding: 15px;
+	position: relative;
+}
+
+.theme-poptit .close {
+	float: right;
+	color: #999;
+	padding: 5px;
+	margin: -2px -5px -5px;
+	font: bold 14px/14px simsun;
+	text-shadow: 0 1px 0 #ddd;
+}
+</style>
+	<script src="/js/jquery.min.js?v=2.1.4"></script>
+	<script src="/js/bootstrap.min.js?v=3.3.5"></script>
+	<script src="/js/wxm.dialog.js"></script>
+	<script src="/js/script.js"></script>
+
+	<script type="text/javascript">
+        function clearInput(panel) {
+            $(panel).find("input[type='text']").val("");
+        }
+        
+        function selectList(currentPageNo) {
+            if (!currentPageNo) {
+                currentPageNo = 1;
+            }
+            var roleName = $(".query").find("input[name='roleName']").val();
+            $.ajax({
+                url : "/role/search",
+                data : {
+                    "currentPageNo" : currentPageNo,
+                    'roleName' : roleName
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : data.msg
+                        });
+                    } else {
+                        selectHtml(data);
+                    }
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : '操作失败，请重试！'
+                    });
+                }
+            });
+        }
+        function selectHtml(data) {
+            var rows = data.rows;
+            var tb = [];
+            if (rows && rows.length > 0) {
+                for (var i = 0; i < rows.length; i++) {
+                    var ob = rows[i];
+                    ob.roleId = ob.id;
+                    tb[tb.length] = '<tr>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.roleName) + '</td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.roleOrder) + '</td>';
+                    tb[tb.length] = '<td>' + nullToStr(ob.remark) + '</td>';
+                    tb[tb.length] = '<td class="thOperate">';
+                    tb[tb.length] = "    <a class='isview' data-target='#myModal0' data-toggle='modal' data-val='" + JsonToStr(ob) + "' onclick='viewWin(this,\"view\");'>查看</a>";
+                    tb[tb.length] = "    <a class='isupt' data-target='#myModal' data-toggle='modal' data-val='" + JsonToStr(ob) + "' onclick='viewWin(this,\"upt\");'>修改</a>";
+                    tb[tb.length] = "    <a class='isdel' onclick='delFun(\"" + ob.roleId + "\");'>删除</a>";
+                    tb[tb.length] = "    <a data-target='#myModal3' data-toggle='modal' onclick='authSet(this,\"" + ob.roleId + "\");'>分配</a>";
+                    tb[tb.length] = '</td>';
+                    tb[tb.length] = '</tr>';
+                }
+                paginationFun($("#Pagination"), data.totalCnt, 10, data.currentPage, "selectList");
+            }
+            $("#tabcontent").html(tb.join(""));
+            //权限管理
+			var isview = isAuth($('.thOperate .isview'),'view');
+			var isupt = isAuth($('.thOperate .isupt'),'update');
+			var isdel = isAuth($('.thOperate .isdel'),'delete');
+			
+        }
+        function viewWin(ob, flag) {
+            var panel = $(ob).attr("data-target");
+            clearInput(panel);
+            var jsonstr = $(ob).attr("data-val");
+            var data = eval('(' + jsonstr + ')');
+            $(panel).find("input").each(function(index) {
+                var name = $(this).attr("name");
+                $(this).val(nullToStr(data[name]));
+            });
+
+        }
+        //删除 
+        function del(ob, id) {
+            var panel = $(ob).attr("data-target");
+            $(panel).find("input[name='roleId']").val(id);
+        }
+        //删除 
+        function delFun(id) {
+            wxm.dialog({
+                type : 'confirm',
+                message : "确定是否删除？",
+                callback : {
+                    correct : function() {
+                        //var roleId = $(ob).parent().find("input[name='roleId']").val();
+                        $.ajax({
+                            url : "/role/delete",
+                            data : {
+                                'roleId' : id
+                            },
+                            type : 'POST',
+                            cache : false,
+                            async : false,
+                            dataType : 'json',
+                            success : function(data) {
+                                if (data.isError === "1") {
+                                    wxm.dialog({
+                                        type : 'error',
+                                        message : data.msg
+                                    });
+                                } else {
+                                    wxm.dialog({
+                                        type : 'success',
+                                        message : data.msg
+                                    });
+                                    selectList(1);
+                                }
+                            },
+                            error : function() {
+                                wxm.dialog({
+                                    type : 'error',
+                                    message : '操作失败，请重试！'
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        //分配
+        function authSet(ob, id) {
+            var panel = $(ob).attr("data-target");
+            $(panel).find("input[name='roleId']").val(id);
+            $.ajax({
+                url : "/role/selectRoleAuth",
+                data : {
+                    'roleId' : id
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : data.msg
+                        });
+                    } else {
+                        var rows = data.rows;
+                        var oc = data.operCheck;
+                        var tb = [];
+                        if (rows && rows.length > 0) {
+                            for (var i = 0; i < rows.length; i++) {
+                                var mob = rows[i];
+                                tb[tb.length] = "<dd style='border-bottom:1px solid #e5e5e5;'>";
+                                tb[tb.length] = "<span style='display:block;width:200px;'><input type='checkbox' value='1' onclick='checkfun(this)'> " + mob.menuName + "：</span>";
+                                var olist = mob.olist;
+                                if (olist && olist.length > 0) {
+                                    for (var j = 0; j < olist.length; j++) {
+                                        var obj = olist[j];
+                                        var ch = "";
+                                        var str = mob.menuId + "+" + obj.operateId;
+                                        if (oc[str] == 1) {
+                                            ch = "checked";
+                                        }
+                                        tb[tb.length] = "<input type='checkbox' " + ch + " data-menuId='" + nullToStr(mob.menuId) + "' name='opId' value='" + nullToStr(obj.operateId) + "'/> " + nullToStr(obj.opName) + "&nbsp;&nbsp;";
+                                    }
+                                }
+                                tb[tb.length] = "</dd>";
+                            }
+                        }
+
+                        $(panel).find(".bodgdl").html(tb.join(""));
+                    }
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : '操作失败，请重试！'
+                    });
+                }
+            });
+        }
+        //全选/全不选
+        function checkfun(ob) {
+            var v = $(ob).val();
+            $(ob).parent().parent().find("input[name='opId']").prop('checked', $(ob).prop('checked'));
+        }
+        $(function() {
+        	if(isAuth($('#issearch'),'search')){
+				selectList(1);
+			}
+			isAuth($('#isadd'),'add');
+            //新增
+            $("#subForm").find("a[data-name='subbtn']").click(function() {
+                var data = $("#subForm").serializeArray();
+                $.ajax({
+                    url : "/role/add",
+                    data : data,
+                    type : 'POST',
+                    cache : false,
+                    async : false,
+                    dataType : 'json',
+                    success : function(data) {
+                        if (data.isError === "1") {
+                            wxm.dialog({
+                                type : 'error',
+                                message : data.msg
+                            });
+                        } else {
+                            wxm.dialog({
+                                type : 'success',
+                                message : data.msg
+                            });
+                            selectList(1);
+                            $("#myModal0_1").find("a[data-dismiss='modal']").click();
+                        }
+                    },
+                    error : function() {
+                        wxm.dialog({
+                            type : 'error',
+                            message : '操作失败，请重试！'
+                        });
+                    }
+                });
+            });
+            //修改
+            $("#subFormUpt").find("a[data-name='subbtn']").click(function() {
+                var data = $("#subFormUpt").serializeArray();
+                $.ajax({
+                    url : "/role/update",
+                    data : data,
+                    type : 'POST',
+                    cache : false,
+                    async : false,
+                    dataType : 'json',
+                    success : function(data) {
+                        if (data.isError === "1") {
+                            wxm.dialog({
+                                type : 'error',
+                                message : data.msg
+                            });
+                        } else {
+                            wxm.dialog({
+                                type : 'success',
+                                message : data.msg
+                            });
+                            selectList(1);
+                            $("#myModal").find("a[data-dismiss='modal']").click();
+                        }
+                    },
+                    error : function() {
+                        wxm.dialog({
+                            type : 'error',
+                            message : '操作失败，请重试！'
+                        });
+                    }
+                });
+            });
+            //修改
+            $("#subFormAuth").find("button[name='subbtn']").click(function() {
+                var roleId = $("#subFormAuth").find("input[name='roleId']").val();
+                var data = jsondata();
+                $.ajax({
+                    url : "/role/roleAuthSet",
+                    data : {
+                        'roleId' : roleId,
+                        'brows' : JsonToStr(data)
+                    },
+                    type : 'POST',
+                    cache : false,
+                    async : false,
+                    dataType : 'json',
+                    success : function(data) {
+                        if (data.isError === "1") {
+                            wxm.dialog({
+                                type : 'error',
+                                message : data.msg
+                            });
+                        } else {
+                            wxm.dialog({
+                                type : 'success',
+                                message : data.msg
+                            });
+                            selectList(1);
+                            $("#myModal3").find("button[data-dismiss='modal']").click();
+                        }
+                    },
+                    error : function() {
+                        wxm.dialog({
+                            type : 'error',
+                            message : '操作失败，请重试！'
+                        });
+                    }
+                });
+            });
+        });
+        function jsondata() {
+            var list = [];
+            var roleId = $("#subFormAuth").find("input[name='roleId']").val();
+            var check = $("#subFormAuth").find("input[name='opId']:checked");
+            check.each(function(i) {
+                var menuId = $(this).attr("data-menuId");
+                var opId = $(this).val();
+                var json = {};
+                json.roleId = roleId;
+                json.menuId = menuId;
+                json.opId = opId;
+                list[list.length] = json;
+            });
+            return list;
+        }
+    </script>
+</body>
+</html>

@@ -2,646 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7fc5f8d-e1c9-4331-968e-4bf397fd05a7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/dqsj_ms_war.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/dqsj_ms_war_exploded.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/GreatWall.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/center/profile.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/company/abnormalList.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/company/normalList.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/doublerandom/history.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/doublerandom/ing.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/doublerandom/result.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/doublerandom/start.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/doublerandom/start/first.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/doublerandom/start/fourth.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/doublerandom/start/second.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/doublerandom/start/third.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/home/backhome.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/home/fronthome.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/law/config.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/law/list.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/main/backend.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/main/frontend.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/main/gw1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/manager/list.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/publicity/publicity.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/report/perception.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/service/filter.service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/service/login.service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/support/ie.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/system/config.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/task/dashboard.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/task/list.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/task/taskDetail.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/task/taskList.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/task/taskboxList.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/task/taskboxRed.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/task/taskboxYellow.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/animate.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/animate.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/bootstrap-rtl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/core.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/cropper.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/demo/webuploader-demo.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/font-awesome.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/font-awesome.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/jquery-ui.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/login.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/login.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/main.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/pagination.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/patterns/header-profile-skin-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/patterns/header-profile-skin-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/patterns/header-profile.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/patterns/shattered.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/blueimp/css/blueimp-gallery-indicator.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/blueimp/css/blueimp-gallery-video.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/blueimp/css/blueimp-gallery.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/blueimp/css/blueimp-gallery.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/blueimp/css/demo.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/blueimp/img/error.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/blueimp/img/error.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/blueimp/img/loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/blueimp/img/play-pause.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/blueimp/img/play-pause.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/blueimp/img/video-play.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/blueimp/img/video-play.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/bootstrap-table/bootstrap-table.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/chosen/chosen-sprite.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/chosen/chosen-sprite@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/chosen/chosen.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/chosen/chosen.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/clockpicker/clockpicker.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/codemirror/ambiance.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/codemirror/codemirror.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/colorpicker/css/bootstrap-colorpicker.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/colorpicker/img/bootstrap-colorpicker/alpha-horizontal.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/colorpicker/img/bootstrap-colorpicker/alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/colorpicker/img/bootstrap-colorpicker/hue-horizontal.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/colorpicker/img/bootstrap-colorpicker/hue.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/colorpicker/img/bootstrap-colorpicker/saturation.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/cropper/cropper.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/dataTables/dataTables.bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/datapicker/datepicker3.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/dropzone/basic.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/dropzone/dropzone.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/duallistbox/bootstrap-duallistbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/footable/fonts/footable.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/footable/fonts/footable.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/footable/fonts/footable.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/footable/fonts/footable.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/footable/footable.core.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/fullcalendar/fullcalendar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/fullcalendar/fullcalendar.print.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/iCheck/custom.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/iCheck/green.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/iCheck/green@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/images/sort_asc.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/images/sort_desc.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/images/sprite-skin-flat.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/images/spritemap.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/images/spritemap@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/ionRangeSlider/ion.rangeSlider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/jQueryUI/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/jQueryUI/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/jQueryUI/images/ui-icons_222222_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/jQueryUI/images/ui-icons_454545_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/jQueryUI/images/ui-icons_888888_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/jasny/jasny-bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/jqgrid/ui.jqgrid.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/jsTree/32px.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/jsTree/style.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/jsTree/throbber.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/markdown/bootstrap-markdown.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/morris/morris-0.4.3.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/multiselect/bootstrap-multiselect.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/nouslider/jquery.nouislider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/plyr/plyr.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/plyr/sprite.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/simditor/simditor.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/steps/jquery.steps.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/summernote/summernote-bs3.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/summernote/summernote.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/sweetalert/sweetalert.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/switchery/switchery.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/toastr/toastr.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/treeview/bootstrap-treeview.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/plugins/webuploader/webuploader.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/style.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/summernote-bs3.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/summernote.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/zyUpload.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/FontAwesome.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/fontawesome-webfont.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/11.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/1464332827309.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/1464332865001.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/a1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/a2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/a3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/a4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/a5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/a6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/a7.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/a8.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/a9.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/add_img.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/browser.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/browser.psd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/close.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/gslogo.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/gszjshtgs.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/gywm.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/iconfont-logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/index.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/index_4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/loading-upload.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/locked.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/login-background.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/ly-plate.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/p1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/p2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/p3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/p_big1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/p_big2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/p_big3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/pay.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/piao.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/profile.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/profile_big.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/profile_small.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/profile_small.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/progress.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/qr_code.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/qyxxgs.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/rotate-static.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/sprite-skin-flat.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/success.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/table_a.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/user.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/webuploader.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/wenku_logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/contabs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/contabs.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/content.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/content.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/cropper.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/bootstrap-table-demo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/bootstrap_table_test.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/bootstrap_table_test2.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/echarts-demo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/flot-demo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/form-validate-demo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/layer-demo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/morris-demo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/peity-demo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/photos.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/rickshaw-demo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/sparkline-demo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/table_base.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/treeview-demo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/demo/webuploader-demo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/file.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/hplus.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/hplus.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jQueryRotate.2.2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jquery-1.7.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jquery-ui-1.10.4.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jquery-ui.custom.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jquery-ui.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jquery.SuperSlide.2.1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jquery.easing.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jquery.form.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jquery.min.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jquery.pagination.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jquery.ui.plupload.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jquery.ui.plupload/jquery.ui.plupload.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/jquery.ui.plupload/jquery.ui.plupload.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/laydate.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/main.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/need/laydate.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/beautifyhtml/beautifyhtml.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/blueimp/jquery.blueimp-gallery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/bootstrap-table/bootstrap-table.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/chartJs/Chart.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/chosen/chosen.jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/chosen/chosen.jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/clockpicker/clockpicker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/codemirror.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/apl/apl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/apl/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/asterisk/asterisk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/asterisk/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/clike/clike.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/clike/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/clike/scala.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/clojure/clojure.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/clojure/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/cobol/cobol.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/cobol/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/coffeescript/coffeescript.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/coffeescript/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/commonlisp/commonlisp.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/commonlisp/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/css/css.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/css/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/css/less.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/css/less_test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/css/scss.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/css/scss_test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/css/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/cypher/cypher.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/cypher/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/d/d.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/d/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/dart/dart.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/dart/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/diff/diff.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/diff/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/django/django.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/django/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/dockerfile/dockerfile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/dockerfile/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/dtd/dtd.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/dtd/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/dylan/dylan.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/dylan/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/ebnf/ebnf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/ebnf/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/ecl/ecl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/ecl/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/eiffel/eiffel.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/eiffel/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/erlang/erlang.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/erlang/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/fortran/fortran.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/fortran/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/gas/gas.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/gas/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/gfm/gfm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/gfm/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/gfm/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/gherkin/gherkin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/gherkin/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/go/go.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/go/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/groovy/groovy.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/groovy/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/haml/haml.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/haml/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/haml/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/haskell/haskell.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/haskell/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/haxe/haxe.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/haxe/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/htmlembedded/htmlembedded.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/htmlembedded/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/htmlmixed/htmlmixed.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/htmlmixed/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/http/http.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/http/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/idl/idl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/idl/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/jade/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/jade/jade.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/javascript/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/javascript/javascript.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/javascript/json-ld.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/javascript/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/javascript/typescript.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/jinja2/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/jinja2/jinja2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/julia/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/julia/julia.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/kotlin/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/kotlin/kotlin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/livescript/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/livescript/livescript.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/lua/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/lua/lua.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/markdown/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/markdown/markdown.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/markdown/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/meta.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/mirc/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/mirc/mirc.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/mllike/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/mllike/mllike.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/modelica/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/modelica/modelica.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/nginx/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/nginx/nginx.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/ntriples/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/ntriples/ntriples.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/octave/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/octave/octave.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/pascal/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/pascal/pascal.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/pegjs/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/pegjs/pegjs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/perl/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/perl/perl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/php/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/php/php.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/php/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/pig/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/pig/pig.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/properties/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/properties/properties.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/puppet/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/puppet/puppet.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/python/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/python/python.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/q/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/q/q.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/r/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/r/r.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/rpm/changes/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/rpm/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/rpm/rpm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/rst/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/rst/rst.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/ruby/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/ruby/ruby.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/ruby/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/rust/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/rust/rust.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/sass/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/sass/sass.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/scheme/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/scheme/scheme.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/shell/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/shell/shell.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/shell/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/sieve/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/sieve/sieve.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/slim/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/slim/slim.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/slim/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/smalltalk/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/smalltalk/smalltalk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/smarty/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/smarty/smarty.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/smartymixed/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/smartymixed/smartymixed.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/solr/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/solr/solr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/soy/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/soy/soy.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/sparql/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/sparql/sparql.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/spreadsheet/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/spreadsheet/spreadsheet.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/sql/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/sql/sql.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/stex/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/stex/stex.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/stex/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/tcl/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/tcl/tcl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/textile/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/textile/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/textile/textile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/tiddlywiki/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/tiddlywiki/tiddlywiki.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/tiddlywiki/tiddlywiki.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/tiki/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/tiki/tiki.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/tiki/tiki.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/toml/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/toml/toml.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/tornado/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/tornado/tornado.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/turtle/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/turtle/turtle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/vb/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/vb/vb.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/vbscript/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/vbscript/vbscript.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/velocity/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/velocity/velocity.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/verilog/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/verilog/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/verilog/verilog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/xml/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/xml/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/xml/xml.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/xquery/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/xquery/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/xquery/xquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/yaml/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/yaml/yaml.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/z80/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/codemirror/mode/z80/z80.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/colorpicker/bootstrap-colorpicker.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/cropper/cropper.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/dataTables/dataTables.bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/dataTables/jquery.dataTables.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/datapicker/bootstrap-datepicker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/diff_match_patch/diff_match_patch.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/dropzone/dropzone.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/duallistbox/jquery.bootstrap-duallistbox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/easypiechart/jquery.easypiechart.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/echarts/echarts-all.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/fancybox/blank.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/fancybox/fancybox_loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/fancybox/fancybox_loading@2x.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/fancybox/fancybox_overlay.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/fancybox/fancybox_sprite.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/fancybox/fancybox_sprite@2x.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/fancybox/jquery.fancybox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/fancybox/jquery.fancybox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/flot/curvedLines.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/flot/jquery.flot.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/flot/jquery.flot.pie.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/flot/jquery.flot.resize.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/flot/jquery.flot.spline.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/flot/jquery.flot.symbol.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/flot/jquery.flot.tooltip.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/footable/footable.all.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/fullcalendar/fullcalendar.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/fullcalendar/moment.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/gritter/images/gritter-light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/gritter/images/gritter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/gritter/images/ie-spacer.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/gritter/jquery.gritter.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/gritter/jquery.gritter.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/iCheck/icheck.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/ionRangeSlider/ion.rangeSlider.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/ionRangeSlider/jasny/jasny-bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/jasny/jasny-bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/jeditable/jquery.jeditable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/jqgrid/i18n/grid.locale-cn.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/jqgrid/i18n/grid.locale-cn.js0820" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/jqgrid/jquery.jqGrid.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/jqgrid/jquery.jqGrid.min.js0820" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/jquery-ui/jquery-ui.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/jsKnob/jquery.knob.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/jsTree/jstree.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/jsTree/jstree.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/extend/layer.ext.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/laydate/laydate.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/laydate/need/laydate.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/laydate/skins/default/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/laydate/skins/default/laydate.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/layer.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/layim/data/chatlog.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/layim/data/friend.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/layim/data/group.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/layim/data/groups.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/layim/layim.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/layim/layim.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/layim/loading.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/default/icon-ext.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/default/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/default/icon_ext.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/default/loading-0.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/default/loading-1.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/default/loading-2.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/default/textbg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/default/xubox_ico0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/default/xubox_loading0.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/default/xubox_loading1.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/default/xubox_loading2.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/default/xubox_loading3.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/default/xubox_title0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/layer.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/layer.ext.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/layer.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/moon/default.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/layer/skin/moon/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/markdown/bootstrap-markdown.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/markdown/bootstrap-markdown.zh.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/markdown/markdown.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/markdown/to-markdown.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/metisMenu/jquery.metisMenu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/morris/morris.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/morris/raphael-2.1.0.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/multiselect/bootstrap-multiselect.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/nestable/jquery.nestable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/nouslider/jquery.nouislider.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/pace/pace.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/peity/jquery.peity.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/plyr/plyr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/preetyTextDiff/jquery.pretty-text-diff.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/prettyfile/bootstrap-prettyfile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/rickshaw/rickshaw.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/rickshaw/vendor/d3.v3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/simditor/hotkeys.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/simditor/hotkeys.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/simditor/jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/simditor/module.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/simditor/module.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/simditor/simditor.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/simditor/simditor.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/simditor/uploader.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/simditor/uploader.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/slimscroll/jquery.slimscroll.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/sparkline/jquery.sparkline.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/staps/jquery.steps.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/suggest/bootstrap-suggest.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/suggest/data.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/summernote/summernote-zh-CN.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/summernote/summernote.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/sweetalert/sweetalert.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/switchery/switchery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/toastr/toastr.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/treeview/bootstrap-treeview.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/validate/additional-methods.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/validate/jquery.validate.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/validate/messages_zh.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/Uploader.swf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.custom.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.custom.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.fis.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.flashonly.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.flashonly.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.html5only.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.html5only.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.noimage.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.noimage.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.nolog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.nolog.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.withoutimage.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plugins/webuploader/webuploader.withoutimage.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/plupload.full.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/script.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/dahong/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/dahong/laydate.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/danlan/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/danlan/laydate.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/default/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/default/laydate.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/molv/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/molv/laydate.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/qianhuang/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/qianhuang/laydate.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/yahui/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/yahui/laydate.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/yalan/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/skins/yalan/laydate.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/welcome.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/wxm.dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/zh_CN.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/asp.net/c#/Upload.aspx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/asp.net/c#/Upload.aspx.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/asp.net/c#/bin/Newtonsoft.Json.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/asp.net/vb/Upload.aspx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/asp.net/vb/Upload.aspx.vb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/asp.net/vb/bin/Newtonsoft.Json.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/asp/Upload.asp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/asp/Upload.asp.cls" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/crossdomain.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/expressInstall.swf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/fullAvatarEditor.swf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/jsp/WEB-INF/lib/commons-fileupload-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/jsp/WEB-INF/lib/fastjson-1.1.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/jsp/upload.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/php/upload.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/scripts/fullAvatarEditor.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/scripts/jQuery.Cookie.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/scripts/jQuery.Drag.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/scripts/jQuery.Resize.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/scripts/jQuery.dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/scripts/swfobject.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/scripts/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/plugins/fullavatareditor/simpleDemo.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/index.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -661,24 +22,53 @@
       <file leaf-file-name="application-context.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/config/application-context.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="34" column="44" lean-forward="true" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+            <state relative-caret-position="299">
+              <caret line="34" column="44" lean-forward="false" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="true">
+      <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/config/jdbc.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="184">
+              <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/hg/dqsj/system/auth/web/LoginController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="119" column="13" lean-forward="false" selection-start-line="119" selection-start-column="13" selection-end-line="119" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="10" column="47" lean-forward="true" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -694,6 +84,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/config/jdbc.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/hg/dqsj/system/auth/web/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Test.java" />
       </list>
     </option>
   </component>
@@ -702,6 +94,13 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -762,6 +161,9 @@
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -800,6 +202,14 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -899,6 +309,176 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj_ms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GreatWall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj_ms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GreatWall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj_ms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GreatWall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="auth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj_ms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GreatWall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="auth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj_ms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GreatWall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane">
@@ -911,6 +491,102 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="dqsj_ms" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj_ms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj_ms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.hg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj_ms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj_ms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.hg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj_ms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj_ms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.hg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="auth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj_ms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj_ms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.hg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dqsj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="auth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -940,8 +616,39 @@
     <property name="nodejs_interpreter_path" value="D:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="D:\Program Files\nodejs\node.exe" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="ignore_missing_gitignore" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Test">
+    <configuration default="false" name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="dqsj_ms" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings />
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <method />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -1337,6 +1044,88 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
+    <configuration default="false" name="greatwall" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.91" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="dqsj_ms:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_dqsj_ms" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="51099" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="dqsj_ms:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Tomcat Server.greatwall" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Test" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Application.Test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -1348,21 +1137,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1483624789781</updated>
-      <workItem from="1483624792808" duration="595000" />
+      <workItem from="1483624792808" duration="1165000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="595000" />
+    <option name="totallyTimeSpent" value="1165000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1444563" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39479393" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1444563" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -1374,15 +1164,16 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.54121476" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25906184" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22228146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -1404,6 +1195,10 @@
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/dqsj_ms.iml">
@@ -1432,19 +1227,126 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/config/application-context.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="34" column="44" lean-forward="true" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+        <state relative-caret-position="299">
+          <caret line="34" column="44" lean-forward="false" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/config/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="184">
+          <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hg/dqsj/system/auth/web/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="119" column="13" lean-forward="false" selection-start-line="119" selection-start-column="13" selection-end-line="119" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="10" column="47" lean-forward="true" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>dqsj_ms:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>dqsj_ms</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: aopalliance:aopalliance:1.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

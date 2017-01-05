@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.goods.guestRoom.dao.GuestRoomDao">
+
+    <!-- 根据查询条件查询所有详细信息 -->
+    <select id="selectGuestRoom" parameterType="map" resultType="com.hg.dqsj.goods.guestRoom.entity.GuestRoomInfo">
+		select 
+		    t.id,
+		    t.storeId,
+		    a.storeName,
+		    a.storeNo,
+		    a.isOpen,
+		    t.guestRoomName,
+		    t.sellPrice,
+		    t.guestRoomBrief,
+		    t.guestRoomTel,
+		    t.guestRoomAddress,
+		    t.guestRoomOrder,
+		    t.remark
+		from dqsj_fe_guest_room t
+		left join dqsj_fe_store a on t.storeId=a.id
+		where t.deleteFlag='0'
+		<if test="guestRoomName != null and guestRoomName != ''"><![CDATA[ and t.guestRoomName like '%${guestRoomName}%' ]]></if>
+		<if test="startPrice != null and startPrice != ''"><![CDATA[ and t.sellPrice >= #{startPrice} ]]></if>
+		<if test="endPrice != null and endPrice != ''"><![CDATA[ and t.sellPrice <= #{endPrice} ]]></if>
+		<if test="isvali == 1">
+			<![CDATA[ and t.id<>'${id}' 
+				and t.storeId = '${storeId}' 
+				and t.guestRoomName = '${roomName}' ]]>
+		</if>
+		order by
+		    t.guestRoomOrder asc,
+		    t.updateDate desc
+        <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>
+    </select>
+    
+    <!-- 根据查询条件查询总条数 -->
+    <select id="getCount" parameterType="map" resultType="java.lang.Integer">
+        select 
+            count(t.id) countTotal
+        from dqsj_fe_guest_room t 
+        where t.deleteFlag='0'
+        <if test="guestRoomName != null and guestRoomName != ''"><![CDATA[ and t.guestRoomName like '%${guestRoomName}%' ]]></if>
+		<if test="startPrice != null and startPrice != ''"><![CDATA[ and t.sellPrice >= #{startPrice} ]]></if>
+		<if test="endPrice != null and endPrice != ''"><![CDATA[ and t.sellPrice <= #{endPrice} ]]></if>
+    </select>
+    
+    <!-- 根据ID查询详细信息 -->
+    <select id="selectById" parameterType="map" resultType="com.hg.dqsj.goods.guestRoom.entity.GuestRoomInfo">
+        select 
+		    t.id,
+		    t.storeId,
+		    a.storeName,
+		    a.storeNo,
+		    a.isOpen,
+		    t.guestRoomName,
+		    t.sellPrice,
+		    t.guestRoomBrief,
+		    t.guestRoomTel,
+		    t.guestRoomAddress,
+		    t.guestRoomContent,
+		    t.guestRoomOrder,
+		    t.remark
+		from dqsj_fe_guest_room t
+		left join dqsj_fe_store a on t.storeId=a.id
+		where t.deleteFlag='0' and t.id=#{id}
+    </select>
+    <!-- 保存 -->
+    <insert id="save" parameterType="com.hg.dqsj.goods.guestRoom.entity.GuestRoom">
+		insert into dqsj_fe_guest_room (
+		    id,
+		    storeId,
+		    guestRoomName,
+		    sellPrice,
+		    guestRoomBrief,
+		    guestRoomTel,
+		    guestRoomAddress,
+		    guestRoomContent,
+		    guestRoomOrder,
+			remark,
+			createDate,
+			createUserId,
+			updateDate,
+			updateUserId,
+			deleteFlag
+		)
+		values
+		    (
+		        #{id},
+				#{storeId},
+		    	#{guestRoomName},
+		    	#{sellPrice},
+		    	#{guestRoomBrief},
+		    	#{guestRoomTel},
+		    	#{guestRoomAddress},
+		    	#{guestRoomContent},
+		    	#{guestRoomOrder},
+				#{remark},
+				#{createDate},
+				#{createUserId},
+				#{updateDate},
+				#{updateUserId},
+				#{deleteFlag}
+		    )
+    </insert>
+    
+     <!-- 更新 -->
+    <update id="update" parameterType="com.hg.dqsj.goods.store.entity.Store">
+        UPDATE dqsj_fe_guest_room
+        SET guestRoomName=#{guestRoomName},
+		    sellPrice=#{sellPrice},
+		    guestRoomBrief=#{guestRoomBrief},
+		    guestRoomTel=#{guestRoomTel},
+		    guestRoomAddress=#{guestRoomAddress},
+		    guestRoomContent=#{guestRoomContent},
+		    guestRoomOrder=#{guestRoomOrder},
+	        remark = #{remark},
+	        updateDate = #{updateDate},
+	        updateUserId = #{updateUserId}
+        WHERE
+            id = #{id}
+    </update>
+    
+    <!-- 删除 -->
+    <update id="delete" parameterType="map">
+        UPDATE dqsj_fe_guest_room
+        SET 
+        updateDate = #{updateDate},
+        updateUserId = #{updateUserId},
+        deleteFlag = #{deleteFlag}
+        WHERE
+            id = #{id}
+    </update>
+    
+</mapper>

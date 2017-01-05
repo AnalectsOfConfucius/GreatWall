@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>民生大千世界梦幻乐园管理系统-资讯管理-资讯详情</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+<link href="/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="/css/animate.min.css" rel="stylesheet">
+<link href="/css/core.min.css?v=4.0.0" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link href="/css/pagination.css" rel="stylesheet">
+<link href="/css/summernote.css" rel="stylesheet">
+<link href="/css/summernote-bs3.css" rel="stylesheet">
+</head>
+
+<body class="gray-bg wrapper wrapper-content">
+	<div class="ibox-content form-content">
+		<form class="form-horizontal m-t" novalidate="novalidate" id="editForm" enctype="multipart/form-data">
+			<a type="button" class="btn btn-primary change_button" style="position: absolute; right: 100px; top: 50px;" onclick="changeDetail(this, false)">编辑</a>
+			<a type="button" class="btn btn-primary change_button" style="position: absolute; right: 100px; top: 50px; display: none;" onclick="changeDetail(this, true)">保存</a>
+			<input id="hideTypeCode" name="typeCode" type="hidden" value="${(typeCode)!''}" />
+			<input id="hideInfoMapType" name="infoMapType" type="hidden" value="${(infoMapType)!''}" />
+			<input name="id" type="hidden" />
+			<input name="isRelease" type="hidden" value="1" />
+			<input name="isRecommend" type="hidden" value="1" />
+			<input name="infoPicUrl" type="hidden" />
+			<input name="infoMapOrder" type="hidden" />
+			<div class="form-group">
+				<label class="col-sm-3 control-label">标题：</label>
+				<div class="col-sm-5">
+					<input name="infoTitle" type="text" class="form-control" required aria-required="true" disabled />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">封面图片：</label>
+				<div class="col-sm-5 imgFileUp">
+					<span class="span_imgFileUp" style="display: none;">
+						<input type="file" name="filepath" id="addImg" onchange="preImg(this.id,'addImgPre',100,100);" style="display: none;">
+						<img id="addImgPre" src="/images/add_img.png" data-name="picPath" style="max-width: 100px; max-height: 100px;" onclick="javascript:$('#addImg').click();">
+						<p style="margin-top: 10px;">
+							<a class="btn btn-info" style="padding: 5px 20px; border-radius: 0;" onclick="javascript:$('#addImg').click();">修改</a>
+							<a style="margin-left: 10px; padding: 5px 20px; border-radius: 0;" class="btn btn-info" onclick="removImg(this)">删除</a>
+						</p>
+					</span>
+					<img class="img_infoPicUrl" src="/images/add_img.png" style="max-width: 100px; max-height: 100px;">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">简介：</label>
+				<div class="col-sm-5">
+					<textarea name="infoBrief" class="form-control" disabled></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">内容：</label>
+				<div class="col-sm-3">
+					<input name="infoContent" type="text" class="summernote" disabled />
+				</div>
+			</div>
+		</form>
+	</div>
+	<script src="/js/jquery.min.js?v=2.1.4"></script>
+	<script src="/js/bootstrap.min.js?v=3.3.5"></script>
+	<script src="/js/script.js"></script>
+	<script src="/js/jquery.form.js"></script>
+	<script src="/js/wxm.dialog.js"></script>
+	<script src="/js/plugins/summernote/summernote.min.js"></script>
+	<script src="/js/plugins/summernote/summernote-zh-CN.js"></script>
+	<script>
+        /* 将图片显示在浏览器上 */
+        function preImg(sourceId, targetId, mw, mh) {
+            var url = getFileUrl(sourceId);
+            var imgPre = document.getElementById(targetId);
+            imgPre.src = url;
+            $('#' + sourceId).parent().find("input[name='filepath']").val("1");
+        }
+
+        /* 将浏览器上显示的图片删除，然后显示默认的图片 */
+        function removImg(ob) {
+            $(ob).parent().parent().find("input").val("");
+            var img = $(ob).parent().parent().find("img[data-name='picPath']");
+            img.attr("src", "/images/add_img.png");
+        }
+
+        // 保存详细信息
+        function saveDetail(_this) {
+            wxm.maskLayer();
+            var $form = $("#editForm");
+            $form.find('input[name="infoContent"]').val($form.find('.summernote').code());
+            var data = $form.serialize();
+            $form.ajaxSubmit({
+                type : 'POST',
+                url : '/info/saveOrUpdate',
+                data : data,
+                dataType : 'json',
+                success : function(result) {
+                    if (!result || !result.isError) {
+                        wxm.dialog({
+                            type : 'error',
+                            message : "操作失败，请重试!"
+                        });
+                        wxm.maskLayer.close();
+                        return;
+                    }
+                    if (result.isError == "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                        wxm.maskLayer.close();
+                        return;
+                    }
+
+                    // 加载资讯详细信息
+                    viewDetail();
+                    $form.find(":text").attr("disabled", true);
+                    $form.find("textarea").attr("disabled", true);
+                    $form.find(".span_imgFileUp").hide();
+                    $form.find(".img_infoPicUrl").show();
+                    $form.find("[contenteditable]").attr('contenteditable', false);
+                    $('.change_button').show();
+                    $(_this).hide();
+                    wxm.maskLayer.close();
+                    wxm.dialog({
+                        type : 'error',
+                        message : "保存成功！"
+                    });
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "系统错误，请重试!"
+                    });
+                    wxm.maskLayer.close();
+                }
+            });
+        }
+        // 加载资讯详细信息
+        function viewDetail() {
+            $.ajax({
+                url : "/info/detailByInfoMapTypeAndTypeCode",
+                data : {
+                    "infoMapType" : $("#hideInfoMapType").val(),
+                    "typeCode" : $("#hideTypeCode").val(),
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    if (data.isError === "1") {
+                        wxm.dialog({
+                            type : 'error',
+                            message : result.msg
+                        });
+                    } else {
+                        var $form = $("#editForm");
+                        $form.find("input[name='id']").val(data.detail.id);
+                        $form.find("input[name='infoTitle']").val(data.detail.infoTitle);
+                        $form.find("input[name='infoMapOrder']").val(data.detail.infoMapOrder);
+                        $form.find("textarea[name='infoBrief']").val(data.detail.infoBrief);
+                        $form.find(".summernote").code(data.detail.infoContentStr);
+
+                        // image type
+                        if (data.detail.infoPicUrl) {
+                            var img = "";
+                            img = "<img src='" + data.detail.infoPicUrl + "' style=\"max-width:300px;max-height:300px;\"/>";
+                            $form.find(".viewImg").html(img);
+                            $form.find(".img_infoPicUrl").attr("src", data.detail.infoPicUrl);
+                            $form.find("#addImgPre").attr("src", data.detail.infoPicUrl);
+                            $form.find("input[name=infoPicUrl]").val(data.detail.infoPicUrl);
+                        } else {
+                            $form.find(".imgFileUp img").attr("src", "/images/add_img.png");
+                        }
+                    }
+                },
+                error : function() {
+                    wxm.dialog({
+                        type : 'error',
+                        message : "系统错误，请重试!"
+                    });
+                }
+            });
+        }
+
+        // 更改详细信息编辑样式
+        function changeDetail(_this, isDisabled) {
+            var $form = $("#editForm")
+            if (isDisabled) {
+                saveDetail(_this);
+            } else {
+                $form.find(":text").attr("disabled", isDisabled);
+                $form.find("textarea").attr("disabled", isDisabled);
+                $form.find(".span_imgFileUp").show();
+                $form.find(".img_infoPicUrl").hide();
+                $form.find("[contenteditable]").attr('contenteditable', true);
+                $('.change_button').show();
+                $(_this).hide();
+            }
+        }
+
+        $(function() {
+            if (isAuth($('.form-content'), 'view')) {
+                // 加载资讯详细信息
+                viewDetail();
+            }
+
+            isAuth($('.change_button'), 'update');
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.eval.dao.EvalDao">
+
+    <select id="selectByCriterias" parameterType="java.util.Map" resultType="com.hg.dqsj.eval.entity.Eval">
+        select
+        ev.id,
+        ev.orderId,
+        ev.goodsId,
+        ev.evalTotalScore,
+        ev.serviceTotalScore,
+        ev.tasteTotalScore,
+        ev.environmentTotalScore,
+        ev.evalUserId,
+        ev.evalComment,
+        ev.evalUserIp,
+        ev.remark,
+        ev.createDate,
+        ev.createUserId,
+        ev.updateDate,
+        ev.updateUserId,
+        ev.deleteFlag,
+        fg.goodsName,
+        fu.userName
+        FROM dqsj_ev_eval ev
+        LEFT JOIN dqsj_fe_goods fg on ev.goodsId = fg.id
+        LEFT JOIN dqsj_fe_user fu on ev.evalUserId = fu.id
+        WHERE ev.deleteFlag = '0'
+        <if test="goodsName != null and goodsName != ''"><![CDATA[ and fg.goodsName like '%${goodsName}%' ]]></if>
+        <if test="userName != null and userName != ''"><![CDATA[ and fu.userName like '%${userName}%' ]]></if>
+        ORDER BY
+        ev.updateDate DESC
+        <if
+                test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>
+    </select>
+
+    <select id="selectById" parameterType="java.util.Map" resultType="com.hg.dqsj.eval.entity.Eval">
+        select
+        ev.id,
+        ev.orderId,
+        ev.goodsId,
+        ev.evalTotalScore,
+        ev.serviceTotalScore,
+        ev.tasteTotalScore,
+        ev.environmentTotalScore,
+        ev.evalUserId,
+        ev.evalComment,
+        ev.evalUserIp,
+        ev.remark,
+        ev.createDate,
+        ev.createUserId,
+        ev.updateDate,
+        ev.updateUserId,
+        ev.deleteFlag,
+        fg.goodsName,
+        fu.userName
+        FROM dqsj_ev_eval ev
+        LEFT JOIN dqsj_fe_goods fg on ev.goodsId = fg.id
+        LEFT JOIN dqsj_fe_user fu on ev.evalUserId = fu.id
+        WHERE ev.deleteFlag = '0' and ev.id = #{id}
+    </select>
+
+
+    <select id="countByCriterias" parameterType="java.util.Map"
+            resultType="java.lang.Integer">
+        SELECT
+        count(DISTINCT ev.id)
+        FROM dqsj_ev_eval ev INNER JOIN dqsj_fe_goods fg on ev.goodsId = fg.id
+        WHERE ev.deleteFlag = '0'
+        <if test="goodsName != null and goodsName != ''"><![CDATA[ and fg.goodsName like '%${goodsName}%' ]]></if>
+    </select>
+
+    <update id="delete" parameterType="com.hg.dqsj.eval.entity.Eval">
+        update dqsj_ev_eval set
+        deleteFlag = '1',
+        updateDate = #{updateDate},
+        updateUserId = #{updateUserId}
+        where id = #{id}
+    </update>
+
+</mapper>

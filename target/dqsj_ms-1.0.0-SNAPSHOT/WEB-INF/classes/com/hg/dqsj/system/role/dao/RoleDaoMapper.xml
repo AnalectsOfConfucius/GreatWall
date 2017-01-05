@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.system.role.dao.RoleDao">
+
+    <!-- 查询所有的角色信息 -->
+    <select id="selectAllRole" resultType="com.hg.dqsj.system.role.entity.Role">
+        select
+            id,
+            roleName,
+            roleOrder,
+            remark
+        from dqsj_sm_role 
+        where deleteFlag = '0'
+        order by roleOrder asc, updateDate desc
+    </select>
+	
+	<!-- 新建角色信息 -->
+    <insert id="insertRole" parameterType="com.hg.dqsj.system.role.entity.Role">
+        insert into dqsj_sm_role (
+            id,
+            roleName,
+            roleOrder,
+            remark,
+            createDate,
+            createUserId,
+            updateDate,
+            updateUserId,
+            deleteFlag
+        ) values (
+            #{id},
+            #{roleName},
+            #{roleOrder},
+            #{remark},
+            #{createDate},
+            #{createUserId},
+            #{updateDate},
+            #{updateUserId},
+            #{deleteFlag}
+        )
+    </insert>
+    
+    <!-- 修改角色信息 -->
+    <update id="updateRole" parameterType="com.hg.dqsj.system.role.entity.Role">
+        update dqsj_sm_role
+        set roleName=#{roleName},
+            roleOrder=#{roleOrder},
+            remark=#{remark},
+            updateDate=#{updateDate},
+            updateUserId=#{updateUserId}
+        where id=#{id}
+    </update>
+    
+    <!-- 逻辑删除角色 -->
+    <update id="deleteRole" parameterType="map">
+        update dqsj_sm_role
+        set updateDate=#{updateDate},
+            updateUserId=#{updateUserId},
+            deleteFlag='1'
+        where id=#{id}
+    </update>
+    
+    <!-- 根据角色ID和角色名称查询角色信息 -->
+    <select id="selectRoleByIdAndName" parameterType="map" resultType="com.hg.dqsj.system.role.entity.Role">
+        select
+            id,
+            roleName,
+            roleOrder,
+            remark
+        from dqsj_sm_role 
+        where deleteFlag = '0'
+        <if test="roleId != null and roleId != ''"><![CDATA[ and roleId = '${roleId}' ]]></if>
+        <if test="roleName != null and roleName != ''"><![CDATA[ and roleName like '%${roleName}%' ]]></if>
+        order by roleOrder asc, updateDate desc
+    </select>
+   <!-- 角色权限列表 -->
+	<resultMap id="roleOperateResult" type="com.hg.dqsj.system.role.entity.RoleAuth">
+		<id property="id" column="id"/>
+		<result property="roleName" column="roleName"/>
+		<!-- 菜单 -->
+		<collection property="mlist" javaType="list" resultMap="menuResult"/>
+	</resultMap>
+   <!-- 菜单 -->
+	<resultMap id="menuResult" type="com.hg.dqsj.system.role.entity.RoleMenu">
+		<id property="menuId" column="menuId"/>
+		<result property="menuName" column="menuName"/>
+		<!-- 操作 -->
+		<collection property="olist" javaType="list" resultMap="operateResult"/>
+	</resultMap>
+   <!-- 操作 -->
+	<resultMap id="operateResult" type="com.hg.dqsj.system.role.entity.Operate">
+		<id property="operateId" column="operateId"/>
+		<result property="opName" column="opName"/>
+	</resultMap>
+	<!-- 用户权限列表 -->
+    <select id="selectRoleAuth" parameterType="map" resultMap="roleOperateResult">
+        select
+            a.id,
+            a.roleName,
+            b.id roleOpId,
+            c.Id menuId,
+            c.menuName,
+            d.id operateId,
+            d.opName
+        from dqsj_sm_role a 
+        left join dqsj_sm_role_operate b on a.id=b.roleId and b.deleteFlag = '0'
+        left join dqsj_sm_menu c on b.menuId=c.id and c.deleteFlag = '0'
+        left join dqsj_sm_operate d on b.opId=d.id and d.deleteFlag = '0'
+        where a.deleteFlag = '0'
+        <if test="roleId != null and roleId != ''"><![CDATA[ and a.id = '${roleId}' ]]></if>
+        order by a.roleOrder asc
+    </select>
+    <!-- 所有操作 -->
+    <select id="selectOperate" parameterType="map" resultType="com.hg.dqsj.system.role.entity.Operate">
+        select
+            a.id operateId,
+            a.opCode,
+            a.opName,
+            a.opOrder,
+            a.remark
+        from dqsj_sm_operate a 
+        where a.deleteFlag = '0'
+        order by a.opOrder asc
+    </select>
+    <!-- 所有二级菜单 -->
+    <select id="selectMenu" parameterType="map" resultType="com.hg.dqsj.system.role.entity.RoleMenu">
+		select a.id menuId, a.menuName, a.menuOrder, a.remark
+		  from dqsj_sm_menu a, dqsj_sm_menu b
+		 where a.deleteFlag = '0'
+		   and b.deleteFlag = '0'
+		   and a.parentId = b.id
+		 order by b.menuOrder asc, a.menuOrder asc
+    </select>
+    <!-- 新建角色信息 -->
+    <insert id="insertRoleOperate" parameterType="com.hg.dqsj.system.role.entity.RoleOperate">
+        insert into dqsj_sm_role_operate (
+            id,
+            roleId,
+            menuId,
+            opId,
+            createDate,
+            createUserId,
+            updateDate,
+            updateUserId,
+            deleteFlag
+        ) values (
+            #{id},
+            #{roleId},
+            #{menuId},
+            #{opId},
+            #{createDate},
+            #{createUserId},
+            #{updateDate},
+            #{updateUserId},
+            #{deleteFlag}
+        )
+    </insert>
+    <delete id="deleteRoleOperate" parameterType="map">
+    	delete from dqsj_sm_role_operate where roleId=#{roleId}
+    </delete>
+</mapper>

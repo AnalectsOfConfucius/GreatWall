@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.system.role.dao.UserRoleDao">
+	<!-- 用户角色信息保存操作 -->
+	<insert id="insertUserRole" parameterType="com.hg.dqsj.system.role.entity.UserRole">
+		insert into dqsj_sm_user_role(
+			id,
+			roleId,
+			userId,
+            createDate,
+            createUserId,
+            updateDate,
+            updateUserId,
+            deleteFlag
+		)values(
+			#{id},
+			#{roleId},
+			#{userId},
+            #{createDate},
+            #{createUserId},
+            #{updateDate},
+            #{updateUserId},
+            #{deleteFlag}
+		)
+	</insert>
+	<!-- 根据用户获取角色列表 -->
+	<select id="selectUserRole" parameterType="map" resultType="com.hg.dqsj.system.role.entity.UserRoleInfo">
+		select 
+			ur.id,
+			u.userName,
+			u.userPhone,
+			u.userTel,
+			u.userEmail,
+			r.roleName
+		from dqsj_sm_user_role ur
+		left join dqsj_sm_user u on ur.userId=u.id
+		left join dqsj_sm_role r on ur.roleId=r.id
+		where ur.deleteFlag='0'
+		<if test="id != null and id != ''"><![CDATA[ and ur.id = '${id}' ]]></if>
+	</select>
+	<!-- 修改用户角色信息 -->
+	<update id="updateUserRole" parameterType="com.hg.dqsj.system.role.entity.UserRole">
+		update dqsj_sm_user_role set 
+			roleId=#{roleId},
+			updateDate=#{updateDate},
+            updateUserId=#{updateUserId}
+		where id=#{id}
+	</update>
+
+	<!-- 删除用户角色信息 -->
+	<delete id="deleteUserRole" parameterType="com.hg.dqsj.system.role.entity.UserRole">
+		update dqsj_sm_user_role set 
+			updateDate=#{updateDate},
+            updateUserId=#{updateUserId},
+			deleteFlag=#{deleteFlag}
+		where id=#{id}
+	</delete>
+</mapper>

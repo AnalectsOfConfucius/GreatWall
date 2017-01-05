@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.ad.dao.FEAdDao">
+
+    <!-- 根据查询条件查询所有详细信息 -->
+    <select id="selectByCriterias" parameterType="java.util.Map" resultType="com.hg.dqsj.ad.view.VFEAd">
+		SELECT DISTINCT fa.id,
+                        fa.adTitle,
+		                fa.typeId,
+		                fa.linkTypeId,
+		                fa.linkObjId,
+		                fa.adMiniPicUrl,
+		                fa.adUrl,
+		                fa.adOrder,
+		                fa.remark,
+		                fa.createDate,
+		                fa.createUserId,
+		                fa.updateDate,
+		                fa.updateUserId,
+		                fa.deleteFlag,
+		                (SELECT typeName FROM dqsj_sm_type WHERE id = fa.typeId) AS typeName,
+		                (SELECT typeName FROM dqsj_sm_type WHERE id = fa.linkTypeId) AS linkTypeName
+		  FROM dqsj_fe_ad fa
+		 WHERE fa.deleteFlag = '0'
+		<if test="adTitle != null and adTitle != ''"><![CDATA[ and fa.adTitle like '%${adTitle}%' ]]></if>
+        <if test="typeId != null and typeId != ''"><![CDATA[ and fa.typeId = '${typeId}' ]]></if>
+		<if test="linkTypeId != null and linkTypeId != ''"><![CDATA[ and fa.linkTypeId = '${linkTypeId}' ]]></if>
+         ORDER BY fa.adOrder, fa.updateDate desc
+        <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>
+    </select>
+    
+    <!-- 根据查询条件查询所有详细信息数 -->
+    <select id="countByCriterias" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT 
+            count(DISTINCT fa.id)
+          FROM dqsj_fe_ad fa
+         WHERE fa.deleteFlag = '0'
+        <if test="adTitle != null and adTitle != ''"><![CDATA[ and fa.adTitle like '%${adTitle}%' ]]></if>
+        <if test="typeId != null and typeId != ''"><![CDATA[ and fa.typeId = '${typeId}' ]]></if>
+        <if test="linkTypeId != null and linkTypeId != ''"><![CDATA[ and fa.linkTypeId = '${linkTypeId}' ]]></if>
+    </select>
+    
+    <!-- 根据ID查询详细信息 -->
+    <select id="selectById" parameterType="java.util.Map" resultType="com.hg.dqsj.ad.entity.FEAd">
+        SELECT
+            id,
+            adTitle,
+            typeId,
+            linkTypeId,
+            linkObjId,
+            adMiniPicUrl,
+            adUrl,
+            adOrder,
+            remark,
+            createDate,
+            createUserId,
+            updateDate,
+            updateUserId,
+            deleteFlag
+        FROM
+            dqsj_fe_ad
+        WHERE
+            deleteFlag = '0'
+        AND id = '${id}'
+    </select>
+    
+    <!-- 保存 -->
+    <insert id="save" parameterType="com.hg.dqsj.ad.entity.FEAd">
+		INSERT INTO dqsj_fe_ad
+		  (id,
+           adTitle,
+		   typeId,
+		   linkTypeId,
+		   linkObjId,
+		   adMiniPicUrl,
+		   adUrl,
+		   adOrder,
+		   remark,
+		   createDate,
+		   createUserId,
+		   updateDate,
+		   updateUserId,
+		   deleteFlag)
+		VALUES
+		  (#{id},
+           #{adTitle},
+		   #{typeId},
+		   #{linkTypeId},
+		   #{linkObjId},
+		   #{adMiniPicUrl},
+		   #{adUrl},
+		   #{adOrder},
+		   #{remark},
+		   #{createDate},
+		   #{createUserId},
+		   #{updateDate},
+		   #{updateUserId},
+		   #{deleteFlag})
+    </insert>
+    
+     <!-- 更新 -->
+    <update id="update" parameterType="com.hg.dqsj.ad.entity.FEAd">
+		UPDATE dqsj_fe_ad
+		   SET 
+               adTitle      = #{adTitle},
+               typeId       = #{typeId},
+		       linkTypeId   = #{linkTypeId},
+		       linkObjId    = #{linkObjId},
+		       adMiniPicUrl = #{adMiniPicUrl},
+		       adUrl        = #{adUrl},
+		       adOrder      = #{adOrder},
+		       remark       = #{remark},
+		       createDate   = #{createDate},
+		       createUserId = #{createUserId},
+		       updateDate   = #{updateDate},
+		       updateUserId = #{updateUserId},
+		       deleteFlag   = #{deleteFlag}
+		 WHERE id = #{id}
+    </update>
+    
+    <!-- 根据ID查询详细信息 -->
+    <select id="selectVById" parameterType="java.util.Map" resultType="com.hg.dqsj.ad.view.VFEAd">
+		SELECT DISTINCT fa.id,
+                        fa.adTitle,
+		                fa.typeId,
+		                fa.linkTypeId,
+		                fa.linkObjId,
+		                fa.adMiniPicUrl,
+		                fa.adUrl,
+		                fa.adOrder,
+		                fa.remark,
+		                fa.createDate,
+		                fa.createUserId,
+		                fa.updateDate,
+		                fa.updateUserId,
+		                fa.deleteFlag,
+		                (SELECT typeName FROM dqsj_sm_type WHERE id = fa.typeId) AS typeName,
+		                (SELECT typeName FROM dqsj_sm_type WHERE id = fa.linkTypeId) AS linkTypeName
+		  FROM dqsj_fe_ad fa
+		 WHERE fa.deleteFlag = '0'
+		   AND fa.id = '${id}'
+    </select>
+    
+    <!-- 更新删除标识 -->
+    <update id="updateDeleteFlagById" parameterType="com.hg.dqsj.ad.entity.FEAd">
+		UPDATE dqsj_fe_ad
+		   SET updateDate   = #{updateDate},
+		       updateUserId = #{updateUserId},
+		       deleteFlag   = #{deleteFlag}
+		 WHERE id = #{id}
+    </update>
+    
+    <!-- 更新删除标识 -->
+    <update id="updateDeleteFlagByLinkTypeIdAndLinkObjId" parameterType="com.hg.dqsj.ad.entity.FEAd">
+		UPDATE dqsj_fe_ad
+		   SET updateDate = now(), deleteFlag = '1'
+		 WHERE linkTypeId = '${linkTypeId}'
+		   AND linkObjId = '${linkObjId}'
+    </update>
+    
+    <!-- 根据查询条件查询所有资讯详细信息 -->
+    <select id="selectInfosByCriterias" parameterType="java.util.Map" resultType="com.hg.dqsj.ad.view.AdObjLinkDetail">
+        SELECT DISTINCT fi.id as objId,
+                        fi.infoTitle as objName,
+                        fi.infoBrief as objBrief,
+                        (select feAction from dqsj_sm_type where id = st.id) as objFEAction
+          FROM dqsj_fe_info fi, dqsj_fe_info_map fim, dqsj_sm_type st
+         WHERE fi.deleteFlag = '0'
+           AND fim.deleteFlag = '0'
+           AND st.deleteFlag = '0'
+           AND fi.id = fim.infoId
+           AND fim.typeId = st.id
+           AND st.id = '${linkTypeId}'
+           AND fi.isRelease = '1'
+        <if test="objName != null and objName != ''"><![CDATA[ and fi.infoTitle like '%${objName}%' ]]></if>
+        ORDER BY
+            fim.infoMapOrder,
+            fi.updateDate DESC
+        <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>
+    </select>
+    
+    <!-- 根据查询条件查询所有资讯详细信息数 -->
+    <select id="countInfosByCriterias" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(DISTINCT fi.id)
+          FROM dqsj_fe_info fi, dqsj_fe_info_map fim, dqsj_sm_type st
+         WHERE fi.deleteFlag = '0'
+           AND fim.deleteFlag = '0'
+           AND st.deleteFlag = '0'
+           AND fi.id = fim.infoId
+           AND fim.typeId = st.id
+           AND st.id = '${linkTypeId}'
+           AND fi.isRelease = '1'
+        <if test="objName != null and objName != ''"><![CDATA[ and fi.infoTitle like '%${objName}%' ]]></if>
+    </select>
+    
+    <!-- 根据查询条件查询所有店铺详细信息 -->
+    <select id="selectStoreByCriterias" parameterType="java.util.Map" resultType="com.hg.dqsj.ad.view.AdObjLinkDetail">
+        select 
+            t.id as objId,
+            t.storeName as objName,
+            t.storeBrief as objBrief,
+            (select feAction from dqsj_sm_type where id = st.id) as objFEAction
+        from dqsj_fe_store t 
+        where t.deleteFlag='0'
+        <if test="objName != null and objName != ''"><![CDATA[ and t.storeName like '%${objName}%' ]]></if>
+        <if test="storeType != null and storeType != ''"><![CDATA[ and t.storeType = '${storeType}' ]]></if>
+        order by
+            t.storeOrder asc,
+            t.updateDate desc
+        <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>
+    </select>
+    
+    <!-- 根据查询条件查询所有店铺详细信息数 -->
+    <select id="countStoreByCriterias" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(t.id)
+        from dqsj_fe_store t 
+        where t.deleteFlag='0'
+        <if test="objName != null and objName != ''"><![CDATA[ and t.storeName like '%${objName}%' ]]></if>
+        <if test="storeType != null and storeType != ''"><![CDATA[ and t.storeType = '${storeType}' ]]></if>
+    </select>
+    
+    <!-- 根据查询条件查询所有商品详细信息 -->
+    <select id="selectGoodsByCriterias" parameterType="java.util.Map" resultType="com.hg.dqsj.ad.view.AdObjLinkDetail">
+        select 
+            t.id as objId,
+            t.goodsName as objName,
+            a.storeName as objParentName,
+            t.goodsBrief as objBrief,
+            (select feAction from dqsj_sm_type where id = '${linkTypeId}') as objFEAction
+        from dqsj_fe_goods t 
+        left join dqsj_fe_store a on t.storeId=a.id
+        where t.deleteFlag='0'
+        <if test="objName != null and objName != ''"><![CDATA[ and t.goodsName like '%${objName}%' ]]></if>
+        <if test="typeCode != null and typeCode != ''"><![CDATA[ and t.typeCode = '${typeCode}' ]]></if>
+        <if test="objParentName != null and objParentName != ''"><![CDATA[ and a.storeName like '%${objParentName}%' ]]></if>
+        order by
+            a.storeName asc,
+            t.goodsOrder asc,
+            t.updateDate desc
+        <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>
+    </select>
+    
+    <!-- 根据查询条件查询所有商品详细信息数 -->
+    <select id="countGoodsByCriterias" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(DISTINCT t.id)
+        from dqsj_fe_goods t 
+        left join dqsj_fe_store a on t.storeId=a.id
+        where t.deleteFlag='0'
+        <if test="objName != null and objName != ''"><![CDATA[ and t.goodsName like '%${objName}%' ]]></if>
+        <if test="typeCode != null and typeCode != ''"><![CDATA[ and t.typeCode = '${typeCode}' ]]></if>
+        <if test="objParentName != null and objParentName != ''"><![CDATA[ and a.storeName like '%${objParentName}%' ]]></if>
+    </select>
+    
+    <!-- 根据查询条件查询所有客房详细信息 -->
+    <select id="selectGuestRoomByCriterias" parameterType="java.util.Map" resultType="com.hg.dqsj.ad.view.AdObjLinkDetail">
+        select 
+            t.id as objId,
+            a.storeName as objName,
+            a.storeName as objParentName,
+            t.guestRoomBrief as objBrief,
+            (select feAction from dqsj_sm_type where id = '${linkTypeId}') as objFEAction
+        from dqsj_fe_guest_room t
+        left join dqsj_fe_store a on t.storeId=a.id
+        where t.deleteFlag='0'
+        <if test="objName != null and objName != ''"><![CDATA[ and t.guestRoomName like '%${objName}%' ]]></if>
+        <if test="objParentName != null and objParentName != ''"><![CDATA[ and a.storeName like '%${objParentName}%' ]]></if>
+        order by
+            t.guestRoomOrder asc,
+            t.updateDate desc
+        <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>
+    </select>
+    
+    <!-- 根据查询条件查询所有客房详细信息数 -->
+    <select id="countGuestRoomByCriterias" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(DISTINCT t.id)
+        from dqsj_fe_guest_room t
+        left join dqsj_fe_store a on t.storeId=a.id
+        where t.deleteFlag='0'
+        <if test="objName != null and objName != ''"><![CDATA[ and t.guestRoomName like '%${objName}%' ]]></if>
+        <if test="objParentName != null and objParentName != ''"><![CDATA[ and a.storeName like '%${objParentName}%' ]]></if>
+    </select>
+</mapper>

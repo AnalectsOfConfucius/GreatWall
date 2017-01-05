@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.system.user.dao.UsersDao">
+
+    <!-- 查询所有的用户信息 -->
+    <select id="selectAllUser" parameterType="map" resultType="com.hg.dqsj.system.user.entity.User">
+        select
+            id,
+			userName,
+			userPhone,
+			userTel,
+			userPassWord,
+			userEmail,
+			userGender,
+			userPicUrl,
+			userBirthday,
+			isLocked,
+			adminFlag,
+			userOrder,
+			remark
+        from dqsj_sm_user
+        where deleteFlag = '0' 
+        order by userOrder asc, updateDate desc
+    </select>
+    <!-- 查询用户角色 -->
+    <select id="selectUserRoleByUserId" parameterType="map" resultType="com.hg.dqsj.system.role.entity.UserRole">
+        select
+            id,
+			userId,
+			roleId
+        from dqsj_sm_user_role
+        where deleteFlag = '0'
+        <if test="userId != null and userId != ''"><![CDATA[ and userId = '${userId}' ]]></if>
+    </select>
+	<!-- 根据用户ID、用户名称和手机号码查询角色信息 -->
+    <select id="selectUserByName" parameterType="map" resultType="com.hg.dqsj.system.user.entity.User">
+        select
+            id,
+            userName,
+            userPhone,
+            userTel,
+            userPassWord
+        from dqsj_sm_user 
+        where deleteFlag = '0'
+        <if test="userId != null and userId != ''"><![CDATA[ and id <> '${userId}' ]]></if>
+        <if test="userName != null and userName != ''"><![CDATA[ and userName = '${userName}' ]]></if>
+        
+    </select>
+	<!-- 新建用户信息 -->
+    <insert id="insertUser" parameterType="com.hg.dqsj.system.user.entity.User">
+        insert into dqsj_sm_user (
+            id,
+            userName,
+            userPhone,
+            userTel,
+            userPassWord,
+            userEmail,
+            userGender,
+            userPicUrl,
+            userBirthday,
+            isLocked,
+            adminFlag,
+            userOrder,
+            remark,
+            createDate,
+            createUserId,
+            updateDate,
+            updateUserId,
+            deleteFlag
+        ) values (
+            #{id},
+			#{userName},
+			#{userPhone},
+			#{userTel},
+			#{userPassWord},
+			#{userEmail},
+			#{userGender},
+			#{userPicUrl},
+			#{userBirthday},
+			#{isLocked},
+			#{adminFlag},
+			#{userOrder},
+			#{remark},
+			#{createDate},
+			#{createUserId},
+			#{updateDate},
+			#{updateUserId},
+			#{deleteFlag}
+        )
+    </insert>
+    
+    <!-- 修改用户信息 -->
+    <update id="updateUser" parameterType="com.hg.dqsj.system.user.entity.User">
+        update dqsj_sm_user
+        set userName=#{userName},
+			userPhone=#{userPhone},
+			userTel=#{userTel},
+			userEmail=#{userEmail},
+			userGender=#{userGender},
+			userPicUrl=#{userPicUrl},
+			userBirthday=#{userBirthday},
+			adminFlag=#{adminFlag},
+			userOrder=#{userOrder},
+			remark=#{remark},
+            updateDate=#{updateDate},
+            updateUserId=#{updateUserId}
+        where id=#{id}
+    </update>
+    
+    <!-- 逻辑删除用户 -->
+    <update id="deleteUser" parameterType="map">
+        update dqsj_sm_user
+        set updateDate=#{updateDate},
+            updateUserId=#{updateUserId},
+            deleteFlag='1'
+        where id=#{id}
+    </update>
+    
+    <!-- 根据用户ID、用户名称和手机号码查询角色信息 -->
+    <select id="getUserCount" parameterType="map" resultType="java.lang.Integer">
+        select
+            count(id) totalCount
+        from dqsj_sm_user 
+        where deleteFlag = '0'
+        <if test="userId != null and userId != ''"><![CDATA[ and id = '${userId}' ]]></if>
+        <if test="userName != null and userName != ''"><![CDATA[ and userName like '%${userName}%' ]]></if>
+        <if test="userPhone != null and userPhone != ''"><![CDATA[ and userPhone like '%${userPhone}%' ]]></if>
+        
+    </select>
+    <!-- 根据用户ID、用户名称和手机号码查询角色信息 -->
+    <select id="selectUserByIdAndNameAndPhone" parameterType="map" resultType="com.hg.dqsj.system.user.entity.User">
+        select
+            id,
+            userName,
+            userPhone,
+            userTel,
+            userPassWord,
+            userEmail,
+            userGender,
+            userPicUrl,
+            userBirthday,
+            isLocked,
+            adminFlag,
+            userOrder,
+            remark
+        from dqsj_sm_user 
+        where deleteFlag = '0'
+        <if test="userId != null and userId != ''"><![CDATA[ and id = '${userId}' ]]></if>
+        <if test="userName != null and userName != ''"><![CDATA[ and userName like '%${userName}%' ]]></if>
+        <if test="userPhone != null and userPhone != ''"><![CDATA[ and userPhone like '%${userPhone}%' ]]></if>
+        order by userOrder asc, updateDate desc
+        <if test="startRowNo != null and startRowNo != '' and endRowNo != null and endRowNo != ''">
+            <![CDATA[ limit ${startRowNo} , ${endRowNo} ]]>
+        </if>
+    </select>
+    
+    <!-- 查询用户原密码是否正确 -->
+    <select id="selectUserByPw" parameterType="map" resultType="com.hg.dqsj.system.user.entity.User">
+        select
+            t.id,
+            t.userName,
+            t.userPhone
+        from dqsj_sm_user t
+        where t.id = #{userId}
+            and t.userPassWord = #{password}
+    </select>
+    
+    <!-- 修改用户密码 -->
+    <update id="changePassword" parameterType="com.hg.dqsj.system.user.entity.User">
+        update dqsj_sm_user
+        set userPassWord=#{userPassWord},
+            updateDate=#{updateDate},
+            updateUserId=#{updateUserId}
+        where id=#{id}
+    </update>
+	
+    <!-- 修改用户信息 -->
+    <update id="updateUserAuth" parameterType="com.hg.dqsj.system.user.entity.User">
+        update dqsj_sm_user
+        set 
+			isLocked=#{isLocked},
+            updateDate=#{updateDate},
+            updateUserId=#{updateUserId}
+        where id=#{id}
+    </update>
+    <!-- 查询普通用户操作日志 -->
+    <select id="getLogCount" parameterType="map" resultType="java.lang.Integer">
+        select
+        	count(a.id) totalCount
+        from dqsj_sm_user_history a
+        left join dqsj_sm_user b on a.userId=b.id 
+        where 1=1
+        <if test="startTime != null and startTime != ''"><![CDATA[ and a.operateTime >= '${startTime}' ]]></if>
+        <if test="endTime != null and endTime != ''"><![CDATA[ and a.operateTime <= '${endTime}' ]]></if>
+        <if test="operateFlag != null and operateFlag != ''"><![CDATA[ and a.operateFlag = '${operateFlag}' ]]></if>
+        <if test="adminFlag != null and adminFlag != ''"><![CDATA[ and b.adminFlag = '${adminFlag}' ]]></if>
+        
+    </select>
+</mapper>

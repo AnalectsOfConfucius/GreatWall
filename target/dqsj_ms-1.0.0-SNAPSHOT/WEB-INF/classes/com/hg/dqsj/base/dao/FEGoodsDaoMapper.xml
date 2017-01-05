@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.base.dao.FeGoodsDao">
+
+    <!-- 根据查询条件查询所有详细信息 -->
+    <select id="selectByCriterias" parameterType="map" resultType="com.hg.dqsj.base.entity.FeGoodsInfo">
+		select 
+		    t.id,
+		    t.goodsName,
+		    t.typeCode,
+		    t.storeId,
+		    t.sellPrice,
+		    t.goodsBrief,
+		    t.goodsOrder,
+		    t.remark,
+		    a.storeName
+		from dqsj_fe_goods t 
+		left join dqsj_fe_store a on t.storeId=a.id
+		where t.deleteFlag='0'
+		<if test="goodsName != null and goodsName != ''"><![CDATA[ and t.goodsName like '%${goodsName}%' ]]></if>
+		<if test="isvali == 1">
+		<![CDATA[ and t.id<>'${id}' and t.goodsName = '${gName}' ]]>
+		</if>
+		<if test="typeCode != null and typeCode != ''"><![CDATA[ and t.typeCode = '${typeCode}' ]]></if>
+		<if test="storeId != null and storeId != ''"><![CDATA[ and t.storeId = '${storeId}' ]]></if>
+		order by
+		    t.goodsOrder asc,
+		    t.updateDate desc
+        <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>
+    </select>
+    
+    <!-- 根据查询条件查询总条数 -->
+    <select id="countByCriterias" parameterType="map" resultType="java.lang.Integer">
+        select 
+            count(t.id)
+        from dqsj_fe_goods t 
+        where t.deleteFlag='0'
+        <if test="goodsName != null and goodsName != ''"><![CDATA[ and t.goodsName like '%${goodsName}%' ]]></if>
+		<if test="typeCode != null and typeCode != ''"><![CDATA[ and t.typeCode = '${typeCode}' ]]></if>
+		<if test="storeId != null and storeId != ''"><![CDATA[ and t.storeId = '${storeId}' ]]></if>
+    </select>
+    
+    <!-- 根据ID查询详细信息 -->
+    <select id="selectById" parameterType="map" resultType="com.hg.dqsj.base.entity.FeGoodsInfo">
+        select 
+		    t.id,
+		    t.goodsName,
+		    t.typeCode,
+		    t.storeId,
+		    t.sellPrice,
+		    t.goodsBrief,
+		    t.goodsContent,
+		    t.goodsOrder,
+		    t.remark,
+		    a.storeName
+		from dqsj_fe_goods t 
+		left join dqsj_fe_store a on t.storeId=a.id
+		where t.deleteFlag='0' and t.id=#{id}
+    </select>
+    <!-- 根据ID查询图片详细信息 -->
+    <select id="selectPicById" parameterType="map" resultType="com.hg.dqsj.base.entity.FePic">
+        select 
+		    id,
+		    objType,
+		    objId,
+		    picUrl,
+		    picName,
+		    picOrder,
+		    mainPicFlag,
+		    remark
+		from dqsj_fe_pic t 
+		where t.deleteFlag='0' and t.objId=#{objId}
+		order by picOrder asc
+    </select>
+    
+    <!-- 保存 -->
+    <insert id="save" parameterType="com.hg.dqsj.base.entity.FeGoods">
+		insert into dqsj_fe_goods (
+		    id,
+		    goodsName,
+		    typeCode,
+		    storeId,
+		    sellPrice,
+		    goodsBrief,
+		    goodsContent,
+		    goodsOrder,
+			remark,
+			createDate,
+			createUserId,
+			updateDate,
+			updateUserId,
+			deleteFlag
+		)
+		values
+		    (
+		        #{id},
+				#{goodsName},
+			    #{typeCode},
+			    #{storeId},
+			    #{sellPrice},
+			    #{goodsBrief},
+			    #{goodsContent},
+			    #{goodsOrder},
+				#{remark},
+				#{createDate},
+				#{createUserId},
+				#{updateDate},
+				#{updateUserId},
+				#{deleteFlag}
+		    )
+    </insert>
+    <!-- 保存 -->
+    <insert id="savePic" parameterType="com.hg.dqsj.base.entity.FePic">
+		insert into dqsj_fe_pic (
+		    id,
+		    objType,
+		    objId,
+		    picUrl,
+		    picName,
+		    picOrder,
+		    mainPicFlag,
+			remark,
+			createDate,
+			createUserId,
+			updateDate,
+			updateUserId,
+			deleteFlag
+		)
+		values
+		    (
+		        #{id},
+				#{objType},
+			    #{objId},
+			    #{picUrl},
+			    #{picName},
+			    #{picOrder},
+			    #{mainPicFlag},
+				#{remark},
+				#{createDate},
+				#{createUserId},
+				#{updateDate},
+				#{updateUserId},
+				#{deleteFlag}
+		    )
+    </insert>
+    
+     <!-- 更新 -->
+    <update id="update" parameterType="com.hg.dqsj.base.entity.FeGoods">
+        UPDATE dqsj_fe_goods
+        SET goodsName=#{goodsName},
+		typeCode=#{typeCode},
+		storeId=#{storeId},
+		sellPrice=#{sellPrice},
+		goodsBrief=#{goodsBrief},
+		goodsContent=#{goodsContent},
+		goodsOrder=#{goodsOrder},
+        remark = #{remark},
+        updateDate = #{updateDate},
+        updateUserId = #{updateUserId}
+        WHERE
+            id = #{id}
+    </update>
+    
+    <!-- 删除 -->
+    <update id="updateDeleteFlagById" parameterType="map">
+        UPDATE dqsj_fe_goods
+        SET 
+        updateDate = #{updateDate},
+        updateUserId = #{updateUserId},
+        deleteFlag = #{deleteFlag}
+        WHERE
+            id = #{id}
+    </update>
+    <!-- 删除 -->
+    <update id="updateDeleteFlagPic" parameterType="map">
+        update dqsj_fe_pic
+        SET 
+        updateDate = #{updateDate},
+        updateUserId = #{updateUserId},
+        deleteFlag = #{deleteFlag}
+        where objId = #{objId}
+        <if test="id != null and id != ''"><![CDATA[ and id = '${id}' ]]></if>
+    </update>
+    <!-- 删除 -->
+    <delete id="deletePic" parameterType="map">
+        delete from dqsj_fe_pic
+        where 
+        <if test="id != null and id != ''"><![CDATA[  id = '${id}' ]]></if>
+        <if test="id == null or id == ''"><![CDATA[ objId = #{objId} ]]></if>
+    </delete>
+</mapper>

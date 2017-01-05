@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.orderManagement.dao.OfOrderDao">
+    <!-- 根据查询条件查询订单信息 -->
+    <select id="selectByCriterias" parameterType="java.util.Map" resultType="com.hg.dqsj.orderManagement.view.VOfOrder">
+		SELECT oo.id,
+		       oo.orderNo,
+		       oo.orderTypeCode,
+		       oo.userId,
+		       oo.orderPrice,
+		       oo.orderQRCode,
+		       oo.orderTime,
+		       oo.invalidEndTime,
+		       oo.payFlag,
+		       oo.getFlag,
+		       oo.evalFlag,
+		       oo.rowLockNum,
+		       oo.remark,
+		       oo.createDate,
+		       oo.createUserId,
+		       oo.updateDate,
+		       oo.updateUserId,
+		       oo.deleteFlag,
+               ood.useDate,
+		       ood.linkUserName,
+		       ood.linkUserPhone,
+		       ood.checkInDate,
+		       ood.checkOutDate,
+		       fu.userName,
+               fu.userPhone
+		  FROM dqsj_of_order oo
+		  left join dqsj_of_order_detail ood
+		    ON oo.id = ood.orderId
+		  left join dqsj_fe_user fu
+		    on oo.userId = fu.id
+		 WHERE oo.deleteFlag = '0'
+           <if test="orderNo != null and orderNo != ''"><![CDATA[ and oo.orderNo like '%${orderNo}%' ]]></if>
+           <if test="orderQRCode != null and orderQRCode != ''"><![CDATA[ and oo.orderQRCode like '%${orderQRCode}%' ]]></if>
+           <if test="orderTypeCode != null and orderTypeCode != ''"><![CDATA[ and oo.orderTypeCode = '${orderTypeCode}' ]]></if>
+           <if test="orderTypeCode == null or orderTypeCode == ''"><![CDATA[ and oo.orderTypeCode <> '2' ]]></if>
+           <if test="userName != null and userName != ''"><![CDATA[ and fu.userName like '%${userName}%' ]]></if>
+           <if test="linkUserName != null and linkUserName != ''"><![CDATA[ and ood.linkUserName like '%${linkUserName}%' ]]></if>
+           <if test="linkUserPhone != null and linkUserPhone != ''"><![CDATA[ and ood.linkUserPhone like '%${linkUserPhone}%' ]]></if>
+           <if test="flagType != null and flagType == 'bookFlag'"><![CDATA[
+           and oo.payFlag = '0'
+            ]]></if>
+           <if test="flagType != null and flagType == 'payFlag'"><![CDATA[
+           and oo.payFlag = '0'
+           and str_to_date(oo.invalidEndTime, '%Y-%m-%d %T') >= now()
+            ]]></if>
+           <if test="flagType != null and flagType == 'cancelFlag'"><![CDATA[
+           and oo.payFlag = '0'
+           and str_to_date(oo.invalidEndTime, '%Y-%m-%d %T') < now()
+            ]]></if>
+           <if test="flagType != null and flagType == 'getFlag'"><![CDATA[
+           and oo.payFlag = '1'
+           and oo.getFlag = '0'
+            ]]></if>
+           <if test="flagType != null and flagType == 'evalFlag'"><![CDATA[
+           and oo.payFlag = '1'
+           and oo.getFlag = '1'
+           and oo.evalFlag = '0'
+            ]]></if>
+           <if test="flagType != null and flagType == 'doneFlag'"><![CDATA[
+           and oo.payFlag = '1'
+           and oo.getFlag = '1'
+           and oo.evalFlag = '1'
+            ]]></if>
+         order by oo.orderNo desc
+            <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+	        </if>
+    </select>
+    
+    <!-- 根据查询条件查询订单信息数 -->
+    <select id="countByCriterias" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(oo.id)
+          FROM dqsj_of_order oo
+          left join dqsj_of_order_detail ood
+            ON oo.id = ood.orderId
+          left join dqsj_fe_user fu
+            on oo.userId = fu.id
+         WHERE oo.deleteFlag = '0'
+           <if test="orderNo != null and orderNo != ''"><![CDATA[ and oo.orderNo like '%${orderNo}%' ]]></if>
+           <if test="orderQRCode != null and orderQRCode != ''"><![CDATA[ and oo.orderQRCode like '%${orderQRCode}%' ]]></if>
+           <if test="orderTypeCode != null and orderTypeCode != ''"><![CDATA[ and oo.orderTypeCode = '${orderTypeCode}' ]]></if>
+           <if test="orderTypeCode == null or orderTypeCode == ''"><![CDATA[ and oo.orderTypeCode <> '2' ]]></if>
+           <if test="userName != null and userName != ''"><![CDATA[ and fu.userName like '%${userName}%' ]]></if>
+           <if test="linkUserName != null and linkUserName != ''"><![CDATA[ and ood.linkUserName like '%${linkUserName}%' ]]></if>
+           <if test="linkUserPhone != null and linkUserPhone != ''"><![CDATA[ and ood.linkUserPhone like '%${linkUserPhone}%' ]]></if>
+           <if test="flagType != null and flagType == 'bookFlag'"><![CDATA[
+           and oo.payFlag = '0'
+            ]]></if>
+           <if test="flagType != null and flagType == 'payFlag'"><![CDATA[
+           and oo.payFlag = '0'
+           and str_to_date(oo.invalidEndTime, '%Y-%m-%d %T') >= now()
+            ]]></if>
+           <if test="flagType != null and flagType == 'cancelFlag'"><![CDATA[
+           and oo.payFlag = '0'
+           and str_to_date(oo.invalidEndTime, '%Y-%m-%d %T') < now()
+            ]]></if>
+           <if test="flagType != null and flagType == 'getFlag'"><![CDATA[
+           and oo.payFlag = '1'
+           and oo.getFlag = '0'
+            ]]></if>
+           <if test="flagType != null and flagType == 'evalFlag'"><![CDATA[
+           and oo.payFlag = '1'
+           and oo.getFlag = '1'
+           and oo.evalFlag = '0'
+            ]]></if>
+           <if test="flagType != null and flagType == 'doneFlag'"><![CDATA[
+           and oo.payFlag = '1'
+           and oo.getFlag = '1'
+           and oo.evalFlag = '1'
+            ]]></if>
+    </select>
+    
+    <!-- 根据订单ID查询订单详细信息 -->
+    <select id="selectVById" parameterType="java.lang.String" resultType="com.hg.dqsj.orderManagement.view.VOfOrder">
+        SELECT oo.id,
+               oo.orderNo,
+               oo.orderTypeCode,
+               oo.userId,
+               oo.orderPrice,
+               oo.orderQRCode,
+               oo.orderTime,
+               oo.invalidEndTime,
+               oo.payFlag,
+               oo.getFlag,
+               oo.evalFlag,
+               oo.rowLockNum,
+               oo.remark,
+               oo.createDate,
+               oo.createUserId,
+               oo.updateDate,
+               oo.updateUserId,
+               oo.deleteFlag,
+               ood.linkUserName,
+               ood.linkUserPhone,
+               ood.useDate,
+               ood.linkUserName,
+               ood.linkUserPhone,
+               ood.checkInDate,
+               ood.checkOutDate,
+               fu.userName,
+               fu.userPhone
+          FROM dqsj_of_order oo
+          left join dqsj_of_order_detail ood
+            ON oo.id = ood.orderId
+          left join dqsj_fe_user fu
+            on oo.userId = fu.id
+         WHERE oo.deleteFlag = '0'
+           and oo.id = #{id}
+    </select>
+    
+    <!-- 更新领取状态 -->
+    <update id="updateGetFlag" parameterType="com.hg.dqsj.orderManagement.entity.OfOrder" >
+		update dqsj_of_order
+		   set getFlag      = #{getFlag},
+		       updateDate   = #{updateDate},
+		       updateUserId = #{updateUserId},
+		       rowLockNum   = #{rowLockNum} + 1
+		 where id = #{id}
+		   and rowLockNum = #{rowLockNum}
+    </update>
+</mapper>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.system.type.dao.SMTypeDao">
+
+    <!-- 根据查询条件查询所有详细信息 -->
+    <select id="selectByCriterias" parameterType="java.util.Map" resultType="com.hg.dqsj.system.type.view.VSMType">
+		SELECT id,
+		       typeFlag,
+		       typeCode,
+		       typeName,
+		       feAction,
+		       typeOrder,
+		       remark,
+		       createDate,
+		       createUserId,
+		       updateDate,
+		       updateUserId,
+		       deleteFlag
+		  FROM dqsj_sm_type
+		 WHERE deleteFlag = '0'
+           <if test="typeFlag != null and typeFlag != ''">
+           AND typeFlag = '${typeFlag}'
+           </if>
+           <if test="typeCode != null and typeCode != ''">
+           AND typeCode like '%${typeCode}%'
+           </if>
+           <if test="typeName != null and typeName != ''">
+           AND typeName like '%${typeName}%'
+           </if>
+         order by typeOrder asc, updateDate desc
+    </select>
+    
+    <!-- 根据ID查询详细信息 -->
+    <select id="selectById" parameterType="java.lang.String" resultType="com.hg.dqsj.system.type.entity.SMType">
+		SELECT id,
+		       typeFlag,
+		       typeCode,
+		       typeName,
+		       feAction,
+		       typeOrder,
+		       remark,
+		       createDate,
+		       createUserId,
+		       updateDate,
+		       updateUserId,
+		       deleteFlag
+		  FROM dqsj_sm_type
+		 WHERE deleteFlag = '0'
+		   AND id = #{id}
+    </select>
+    
+    <!-- 根据类别代码获取类别信息 -->
+    <select id="selectByTypeCode" parameterType="java.lang.String" resultType="com.hg.dqsj.system.type.entity.SMType">
+		SELECT id,
+		       typeFlag,
+		       typeCode,
+		       typeName,
+		       feAction,
+		       typeOrder,
+		       remark,
+		       createDate,
+		       createUserId,
+		       updateDate,
+		       updateUserId,
+		       deleteFlag
+		  FROM dqsj_sm_type
+		 WHERE deleteFlag = '0'
+		   AND typeCode = #{typeCode}
+    </select>
+    
+    <!-- 保存 -->
+    <insert id="save" parameterType="com.hg.dqsj.system.type.entity.SMType">
+		INSERT INTO dqsj_sm_type
+		  (id,
+		   typeFlag,
+		   typeCode,
+		   typeName,
+		   feAction,
+		   typeOrder,
+		   remark,
+		   createDate,
+		   createUserId,
+		   updateDate,
+		   updateUserId,
+		   deleteFlag)
+		VALUES
+		  (#{id},
+		   #{typeFlag},
+		   #{typeCode},
+		   #{typeName},
+		   #{feAction},
+		   #{typeOrder},
+		   #{remark},
+		   #{createDate},
+		   #{createUserId},
+		   #{updateDate},
+		   #{updateUserId},
+		   #{deleteFlag})
+    </insert>
+    
+    <!-- 更新 -->
+    <update id="update" parameterType="com.hg.dqsj.system.type.entity.SMType">
+		UPDATE dqsj_sm_type
+		   SET typeFlag     = #{typeFlag},
+		       typeCode     = #{typeCode},
+		       typeName     = #{typeName},
+		       feAction     = #{feAction},
+		       typeOrder    = #{typeOrder},
+		       remark       = #{remark},
+		       createDate   = #{createDate},
+		       createUserId = #{createUserId},
+		       updateDate   = #{updateDate},
+		       updateUserId = #{updateUserId},
+		       deleteFlag   = #{deleteFlag}
+		 WHERE id = #{id}
+    </update>
+    
+       
+    <!-- 更新删除标识 -->
+    <update id="updateDeleteFlagById" parameterType="com.hg.dqsj.system.type.entity.SMType">
+		UPDATE dqsj_sm_type
+		   SET updateDate   = #{updateDate},
+		       updateUserId = #{updateUserId},
+		       deleteFlag   = #{deleteFlag}
+		 WHERE id = #{id}
+    </update>
+    
+    <!-- 查询所有类别标识不为空的信息 -->
+    <select id="selectByTypeFlagNotNull" resultType="com.hg.dqsj.system.type.entity.SMType">
+		SELECT id,
+		       typeFlag,
+		       typeCode,
+		       typeName,
+		       feAction,
+		       typeOrder,
+		       remark,
+		       createDate,
+		       createUserId,
+		       updateDate,
+		       updateUserId,
+		       deleteFlag
+		  FROM dqsj_sm_type
+		 WHERE deleteFlag = '0'
+		   AND typeFlag IS NOT NULL
+		 ORDER BY typeOrder, updateDate desc
+    </select>
+</mapper>
