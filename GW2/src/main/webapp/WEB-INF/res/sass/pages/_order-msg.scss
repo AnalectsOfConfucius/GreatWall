@@ -1,0 +1,50 @@
+/* =======================order-msg==================*/
+.common-div{
+    float: left;
+    margin-top:10px;
+    background: $link-white;
+    border-radius: 20px;
+    padding:.5rem .8rem;
+    font-size: $font-size;
+    line-height: 24px;
+}
+.order-msg{
+    margin: 0 .6rem;
+    .time{
+        line-height: 40px;
+        text-align: center;
+        display: block;
+        color: $link-gray-e9;
+    }
+    ul{
+        li{
+            margin-bottom: 20px;
+            overflow: hidden;
+            a.photo{
+                width: 18%;
+                display: block;
+                float: left;
+                margin-right: .8rem;
+                img{
+                    border-radius: 50%;
+                    width: 100%;
+                }
+            }
+            div.ticket-msg{
+                width: 50.67%;
+                @extend .common-div;
+                a{
+                    color: $link-primary;
+                }
+            }
+            div.webcode{
+                width: 30%;
+                @extend .common-div;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+}

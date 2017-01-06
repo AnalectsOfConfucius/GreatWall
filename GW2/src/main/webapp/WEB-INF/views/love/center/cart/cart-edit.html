@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1" >
+    <title>民生大千世界游乐园-提交订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="keywords" content="民生大千世界游乐园">
+    <meta name="description" content="民生大千世界游乐园">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link type="text/css" rel="stylesheet" href="/css/mui.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <script>
+		(function() {
+			var b = document.documentElement,
+			a = function() {
+				var a = b.getBoundingClientRect().width;
+				b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+			},
+			c = null;
+			window.addEventListener("resize",
+			function() {
+				clearTimeout(c);
+				c = setTimeout(a, 300)
+			});
+			a()
+		})();
+    </script>
+</head>
+<body>
+
+<!-- header S -->
+    <div class="header">
+      <div class="headbar">
+      	<a href="javascript:history.go(-1)" class="return"><i class="icon-return"></i>返回</a>
+      	<h3>购物车</h3>
+      </div>
+    </div>
+<!-- header E -->
+<!--wrapper S-->
+<div id	="wrapper">
+		<!--container S-->
+		<div class="container">
+			<!-- 购物车 S -->
+			  <section class="order-submit clearfix">
+			  	
+			        <div class="cart-edit-list clearfix">
+			        	<ul>
+			        		<li><span class="active shop" data-val="0">商品</span><span data-val="1" class="shop">年卡</span><a href="/shoppingCart" class="pull-right">完成</a></li>
+			        	</ul>
+			        	<ul class="shop-content">
+			        		[#if goodsList??]
+			        		[#list goodsList as l]
+			        		<li data-id="${(l.id)!''}">
+			        			<span class="checkbox_item pull-left">
+						            <label class="check_label">	
+										<i class="checkbox_icon_y"></i>
+						            </label>
+								</span>
+								<a href=""><img src="${(l.picUrl)!'/upload/10.png'}"></a>
+								<div class="cart-content">
+									<div class="title">${(l.goodsName)!''}</div>
+									<div class="cart-price">
+										<span>￥${(l.sellPrice)!'0'}</span>
+									</div>
+								</div>
+							</li>
+							[/#list]
+							[/#if]
+			        	</ul>
+			        	<ul class="shop-content">
+			        		[#if cardList??]
+			        		[#list cardList as l]
+			        		<li data-id="${(l.id)!''}">
+			        			<span class="checkbox_item pull-left">
+						            <label class="check_label">	
+										<i class="checkbox_icon_y"></i>
+						            </label>
+								</span>
+								<a href=""><img src="${(l.picUrl)!'/upload/10.png'}"></a>
+								<div class="cart-content">
+									<div class="title">${(l.goodsName)!''}</div>
+									<div class="cart-price">
+										<span>￥${(l.sellPrice)!'0'}</span>
+									</div>
+								</div>
+							</li>
+							[/#list]
+							[/#if]
+			        	</ul>
+			        </div>
+			  </section>
+			<!-- 购物车 E -->
+		</div>
+		<!--container E-->
+</div>
+<!--wrapper E-->
+<!-- 结算 S-->
+<section class="cal">
+    <button class=" btn-warning btn-radius btn" onclick="del()">删除</button>
+	<a href="#"></a>
+	<a href="#">
+		<span class="checkbox_item pull-left">
+            <label class="check_label check-all">		
+				全选
+				<i class="checkbox_icon_y"></i>
+            </label>
+		</span>	
+	</a>
+</section>
+<!-- 结算 E-->
+<!--弹出框 S-->
+<div class="mask"></div>
+<div class="del-msg">
+	<ul>
+		<li><span>删除提示</span></li>
+		<li class="mt15"><span>确定删除吗？</span></li>
+	</ul>
+	<div>
+		<button class="btn-block btn-radius-sm btn-warning" onclick="delFun()">确定</button>
+		<button class="btn-block btn-radius-sm cancel" >取消</button>
+	</div>
+	
+</div>
+
+<!--弹出框 S-->
+  <script src="/js/swiper.min.js"></script> 
+  <script src="/js/jquery-2.1.4.min.js"></script>
+  <script src="/js/checkbox.js" ></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/mui.min.js"></script>
+  <script type="text/javascript">
+    $(".check_label").checkbox();
+  	$(".cart-list ul li a img").height($(".cart-list ul li a img").width()*153/218);
+  	$(".shop-content").eq(1).hide();
+  	var n;
+  	$(".shop").click(function(){
+  		n=$(".shop").index(this);
+  		$(".shop-content").hide().eq(n).show();
+  		$(".shop").removeClass("active");
+  		$(this).addClass("active");
+  	})
+  </script>
+  <script type="text/javascript">
+  function show(){
+  	$(".comfirm-msg").fadeIn();
+  	$(".mask").fadeIn();
+  }
+  function del(){
+  	var n = $(".cart-edit-list .active").attr("data-val");
+  	var panel = $(".shop-content").eq(n).find(".on").parent().parent();
+  	if(panel.length>0){
+	  	$(".comfirm-msg").fadeOut();
+	  	$(".del-msg").fadeIn();
+	  	$(".mask").fadeIn();
+  	}else{
+  		mui.toast('请选择要删除的商品');
+  	}
+  }
+  	$(".mask").click(function(){
+  		$(".comfirm-msg").fadeOut(300);
+  		$(".del-msg").fadeOut(300);
+  		$(".mask").fadeOut(500);
+  	});
+  	$(".cancel").click(function(){
+  		$(".comfirm-msg").fadeOut(300);
+  		$(".del-msg").fadeOut(300);
+  		$(".mask").fadeOut(500);
+  	})
+  </script>
+  <script type="text/javascript">
+  	// 全选        
+	$(".check-all").click(function () {
+		if($(this).hasClass("on")){
+			$(".cart-edit-list ul li label").each(function () {
+				$(this).addClass('on');
+			});
+		}
+		else
+   		{
+			$(".cart-edit-list ul li label").each(function () {
+					$(this).removeClass("on");
+			});
+   		}
+		
+	});
+	$('.cart-edit-list ul li label').click(function(){
+		$('.check-all').removeClass('on');
+	})
+  </script>
+	<script type="text/javascript">
+		//删除
+  		function delFun(){
+  			var n = $(".cart-edit-list .active").attr("data-val");
+  			var panel = $(".shop-content").eq(n).find(".on").parent().parent();
+  			if(panel.length>0){
+  				var ids = "";
+	  			panel.each(function(i){
+	  				var id = $(this).attr("data-id");
+	  				if(i==0){
+	  					ids = id;
+	  				}else{
+	  					ids += ","+id;
+	  				}
+	  			});
+	  			$.ajax({
+	            	url:"/shoppingCart/deleteGoods",
+	            	data:{'goodsIds':ids},
+	            	type:'POST',
+	            	cache:false,
+	            	async:false,
+	            	dataType:'json',
+	            	success:function(data) {
+	            		if (data.isError === "1") {
+	                        mui.toast(data.msg);
+	                    } else {
+	                        mui.toast(data.msg);
+	                        //panel.remove();
+	                        window.location.reload();
+	                    }
+	            	},
+	            	error : function() {
+	            		mui.toast('系统错误，请联系系统管理员');
+	            	}
+	    		});
+  			}
+  		}
+	</script>
+</body>
+</html>

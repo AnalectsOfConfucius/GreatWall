@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.base.dao.FEUserDao">
+    <!-- 根据ID查询用户信息 -->
+    <select id="selectById" parameterType="java.util.Map" resultType="com.hg.dqsj.base.entity.FEUser">
+		select id,
+		       userPlatformId,
+		       userName,
+		       userPhone,
+		       userTel,
+		       userPassWord,
+		       userEmail,
+		       userGender,
+		       userPicUrl,
+		       userBirthday,
+		       isLocked,
+		       userOrder,
+		       remark,
+	           createDate,
+	           createUserId,
+	           updateDate,
+	           updateUserId,
+	           deleteFlag
+		  from dqsj_fe_user
+		 where deleteFlag = '0'
+		   and id = '${id}'
+    </select>
+    
+    <!-- 根据用户名查询用户信息 -->
+    <select id="selectByUserName" parameterType="java.util.Map" resultType="com.hg.dqsj.base.entity.FEUser">
+        select id,
+               userPlatformId,
+               userName,
+               userPhone,
+               userTel,
+               userPassWord,
+               userEmail,
+               userGender,
+               userPicUrl,
+               userBirthday,
+               isLocked,
+               userOrder,
+               remark,
+               createDate,
+               createUserId,
+               updateDate,
+               updateUserId,
+               deleteFlag
+          from dqsj_fe_user
+         where deleteFlag = '0'
+           and userName = '${userName}'
+    </select>
+    
+    <!-- 根据手机号码查询用户信息 -->
+    <select id="selectByUserPhone" parameterType="java.util.Map" resultType="com.hg.dqsj.base.entity.FEUser">
+        select id,
+               userPlatformId,
+               userName,
+               userPhone,
+               userTel,
+               userPassWord,
+               userEmail,
+               userGender,
+               userPicUrl,
+               userBirthday,
+               isLocked,
+               userOrder,
+               remark,
+               createDate,
+               createUserId,
+               updateDate,
+               updateUserId,
+               deleteFlag
+          from dqsj_fe_user
+         where deleteFlag = '0'
+           and userPhone = '${userPhone}'
+    </select>
+    
+    <!-- 根据ID查询用户信息 -->
+    <select id="selectVById" parameterType="java.util.Map" resultType="com.hg.dqsj.base.view.VFEUser">
+        select id,
+               userPlatformId,
+               userName,
+               userPhone,
+               userTel,
+               userPassWord,
+               userEmail,
+               userGender,
+               userPicUrl,
+               userBirthday,
+               isLocked,
+               userOrder,
+               remark,
+               createDate,
+               createUserId,
+               updateDate,
+               updateUserId,
+               deleteFlag,
+               (select creditNum from dqsj_pc_credit_user where userId = fu.id) as creditNum
+          from dqsj_fe_user fu
+         where deleteFlag = '0'
+           and id = '${id}'
+    </select>
+    
+    <!-- 更新用户信息 -->
+    <update id="updateUser" parameterType="com.hg.dqsj.base.entity.FEUser">
+        update dqsj_fe_user
+           set userName     = #{userName},
+	           userPhone    = #{userPhone},
+	           userGender   = #{userGender},
+	           userPicUrl   = #{userPicUrl},
+               userBirthday = #{userBirthday},
+               updateDate   = #{updateDate},
+               updateUserId = #{updateUserId}
+         where deleteFlag = '0'
+           and id = #{id}
+    </update>
+    
+</mapper>

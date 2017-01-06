@@ -1,0 +1,27 @@
+/* =======================apply-detail==================*/
+.apply-detail-list{
+    background: $link-white;
+    li{
+        @extend .common;
+        span{
+            float: left;
+            color: $link-gray-e6;
+            font-weight: normal;
+            &:nth-of-type(2){
+                color: $link-gray-e3;
+            }
+        }
+        &:first-of-type{
+            
+            .situaition{
+                color: $link-primary;
+            }
+            .success{
+                color: $link-gray-e9;
+            }
+            .fail{
+                color:$link-fail;
+            }
+        }
+    }
+}

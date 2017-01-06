@@ -1,0 +1,30 @@
+/* =======================apply-list=================*/
+.apply-list{
+    background: $link-white;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    li{
+        @extend .common;
+        line-height: 32px;
+        border-bottom: none;
+        span{
+            float: left;
+            color: $link-gray-e6;
+            font-weight: normal;
+        }
+        &:first-of-type{
+            border-bottom: 1px solid #eef1f6;
+            line-height: $link-height+6;
+            margin-bottom: 10px;
+            .situaition{
+                color: $link-primary;
+            }
+            .success{
+                color: $link-gray-e9;
+            }
+            .fail{
+                color:$link-fail;
+            }
+        }
+    }
+}

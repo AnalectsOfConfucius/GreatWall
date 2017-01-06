@@ -1,0 +1,65 @@
+@charset "utf-8";
+// font-family
+$font-family-sans-serif:     "Hiragino Sans GB", Helvetica, Arial, sans-serif !default;
+$font-family-base:           $font-family-sans-serif !default;
+
+// color
+$white:            #fff         !default;              //白色
+$primary:          #2dacfe      !default;             //蓝色
+$success:          #38cf88      !default;            //绿色
+$warning:          #fcc930      !default;           //黄色
+$danger:           #fa624b      !default;          //红色
+$fail:             #ff0000      !default;          //红色
+$royal:            #8a6de9      !default;         //紫色
+$wag-color:        #fe7d00      !default;
+
+$black:            #000         !default;       //黑色
+$black-total:      #010101      !default;       //黑色
+$gray-e3:          #333         !default;      //灰色
+$gray-e6:          #666         !default;     //灰色
+$gray-e9:          #999         !default;    //灰色
+
+
+$bgc:              #f5f5f5      !default;
+$bgc-seek:         #ffe8cc      !default;  
+$gray-bor:         #d6d6d6      !default;
+$bgc-btn:          #fcc930      !default;
+$foot-color:       #4c4c4c      !default;
+$color-ul:         #eef1f6      !default;
+
+$link-white:       $white       !default; 
+$link-primary:     $primary     !default; 
+$link-success:     $success     !default;  
+$link-warning:     $warning     !default;
+$link-danger:      $danger      !default;
+$link-fail:        $fail        !default;
+$link-royal:       $royal       !default;
+
+$link-black:       $black       !default;
+$link-black-total: $black-total !default;
+$link-gray-e3:     $gray-e3     !default;
+$link-gray-e6:     $gray-e6     !default;
+$link-gray-e9:     $gray-e9     !default;
+
+
+$link-bgc:        $bgc          !default;
+$link-bgc-seek:   $bgc-seek     !default;
+$link-gray-bor:   $gray-bor     !default;
+$link-bgc-btn:    $bgc-btn      !default;
+$link-foot-color: $foot-color   !default;
+$link-wag-color:  $wag-color    !default;
+$link-color-ul:   $color-ul     !default;
+
+
+// Witdh
+$Witdh:            100%           !default;
+$container:        750px          !default;
+$link-body:        $container     !default;
+
+
+// height
+$height:           44px           !default; 
+$link-height:      $height        !default; 
+
+// font-size
+$font-size:        14px           !default;

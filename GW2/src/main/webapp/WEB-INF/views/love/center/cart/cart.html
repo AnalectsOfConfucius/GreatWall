@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1" >
+    <title>民生大千世界游乐园-提交订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="keywords" content="民生大千世界游乐园">
+    <meta name="description" content="民生大千世界游乐园">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link type="text/css" rel="stylesheet" href="/css/mui.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <script>
+		(function() {
+			var b = document.documentElement,
+			a = function() {
+				var a = b.getBoundingClientRect().width;
+				b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+			},
+			c = null;
+			window.addEventListener("resize",
+			function() {
+				clearTimeout(c);
+				c = setTimeout(a, 300)
+			});
+			a()
+		})();
+    </script>
+</head>
+<body>
+
+<!-- header S -->
+    <div class="header">
+      <div class="headbar">
+      	<a href="javascript:history.go(-1)" class="return"><i class="icon-return"></i>返回</a>
+      	<h3>购物车</h3>
+      </div>
+    </div>
+<!-- header E -->
+<!--wrapper S-->
+<div id	="wrapper">
+		<!--container S-->
+		<div class="container">
+			<!-- 购物车 S -->
+			  <section class="order-submit clearfix">
+			  	
+			        <div class="cart-list clearfix">
+			        	<ul>
+			        		<li><span>全部商品</span><a href="/shoppingCart/toDelete" class="pull-right">编辑</a></li>
+			        		[#if goodsList??]
+			        		[#list goodsList as l]
+			        		<li>
+			        			<input type="hidden" name="typeCode" value="${(l.typeCode)!''}">
+			        			<input type="hidden" name="storeId" value="${(l.storeId)!''}">
+			        			<input type="hidden" name="goodsId" value="${(l.goodsId)!''}">
+			        			<input type="hidden" name="goodsName" value="${(l.goodsName)!''}">
+			        			<input type="hidden" name="sellPrice" value="${(l.sellPrice)!'0.0'}">
+			        			<span class="checkbox_item pull-left">
+						            <label class="check_label check">
+										<i class="checkbox_icon_y"></i>
+						            </label>
+								</span>
+								<a href=""><img src="${(l.picUrl)!'/upload/10.png'}"></a>
+								<div class="cart-content">
+									<div class="title">${(l.goodsName)!''}</div>
+									<div class="cart-price">
+										<span class="totalPrice">￥${(l.totalPrice)!''}</span>
+										<button class="add">+</button>
+										<input type="text" name="goodsNum" data-price="${(l.sellPrice)!'0.0'}" value="${(l.goodsNum)!'0'}" class="text_box"/>
+										<button class="minus">-</button>
+									</div>
+								</div>
+							</li>
+							[/#list]
+							[/#if]
+			        	</ul>
+			        </div>
+			  </section>
+			<!-- 购物车 E -->
+		</div>
+		<!--container E-->
+		<input type="hidden" name="orderPrice" value="0">
+</div>
+<!--wrapper E-->
+<!-- 结算 S-->
+<section class="cal">
+    <button class=" btn-warning btn-radius btn" onclick="payFun()">结算</button>
+	<a href="#">共计：<span id="total">0.0元</span></a>
+	<a href="#">
+		<span class="checkbox_item pull-left">
+            <label class="check_label check-all check">		
+				全选
+				<i class="checkbox_icon_y"></i>
+            </label>
+		</span>	
+	</a>
+</section>
+<!-- 结算 E-->
+<!--弹出框 S-->
+<div class="mask"></div>
+
+<div class="success-msg">
+	<ul>
+		<li><span>提示信息</span></li>
+		<li class="mt15"><span>您选择的商品类别或店铺不同，不能一起结算。请分开结算，谢谢！</span></li>
+	</ul>
+	<button class="btn-block btn-radius-sm mt15 cancel" >我知道了</button>
+</div>
+
+<!--弹出框 S-->
+  <script src="/js/swiper.min.js"></script> 
+  <script src="/js/jquery-2.1.4.min.js"></script>
+  <script src="/js/checkbox.js" ></script>
+  <script src="/js/app.js"></script>
+<script src="/js/mui.min.js"></script>
+<script src="/js/script.js"></script>
+  <script type="text/javascript">
+    $(".check_label").checkbox();
+  	$(".cart-list ul li a img").height($(".cart-list ul li a img").width()*153/218);
+  </script>
+	  <script type="text/javascript">
+	  
+	  function infoMsg(){
+	  	$(".comfirm-msg").fadeOut();
+	  	$(".success-msg").fadeIn();
+	  	$(".mask").fadeIn();
+	  }
+	  	$(".mask").click(function(){
+	  		$(".comfirm-msg").fadeOut(300);
+	  		$(".success-msg").fadeOut(300);
+	  		$(".mask").fadeOut(500);
+	  	});
+	  	$(".cancel").click(function(){
+	  		$(".comfirm-msg").fadeOut(300);
+	  		$(".success-msg").fadeOut(300);
+	  		$(".mask").fadeOut(500);
+	  	})
+	  </script>
+  	
+  	
+  	
+  	<!--商品加减-->
+	<script type="text/javascript">
+		$(function(){
+			$(".minus").click(function(){
+				var t=$(this).parent().find('input[class*=text_box]');
+				t.val(parseInt(t.val())-1);
+				if(parseInt(t.val()) <= 0){
+					$(this).attr("disabled",true);
+					$(this).css({"color":"#d5d5d5"});
+					t.val(0);
+				}
+				
+				setOneGoodsTotal($(this));
+				setTotal();
+			})
+			$(".add").click(function(){
+				var t=$(this).parent().find('input[class*=text_box]');
+				t.val(parseInt(t.val())+1);
+				$(this).parent().find(".minus").attr("disabled",false);
+				$(this).parent().find(".minus").css({"color":"#2dacfe"});
+				
+				setOneGoodsTotal($(this));
+				setTotal();
+			})
+			//单个商品总价
+			function setOneGoodsTotal(ob){
+				var panel = ob.parent();
+				var num = panel.find("input[name='goodsNum']").val();
+				var price = panel.find("input[name='goodsNum']").attr("data-price");
+				if(!num){
+					num = 0;
+				}
+				if(!price){
+					price = 0;
+				}
+				var total = (1*num)*(1*price);
+				panel.find(".totalPrice").text("￥"+total);
+			}
+			//总价
+			function setTotal(){
+				var part = $("#wrapper").find('.cart-list .on').parent().parent();
+				var orderPrice = 0.0;
+				if(part.length>0){
+					part.each(function(i){
+						var price = $(this).find('input[name=sellPrice]').val();
+						if(!price){
+							price = 0;
+						}
+						var num = $(this).find('input[name=goodsNum]').val();
+						if(!num){
+							num = 0;
+						}
+						orderPrice += (1*price)*(1*num);
+					});
+				}
+				orderPrice = orderPrice.toFixed(2);
+				$("#total").text(orderPrice+"元");
+				$('#wrapper').find("input[name='orderPrice']").val(orderPrice);
+			}
+			// 全选        
+			$(".check-all").click(function () {
+				if($(this).hasClass("on")){
+					$(".cart-list ul li label").each(function () {
+						$(this).addClass('on');
+					});
+				}
+				else
+		   		{
+					$(".cart-list ul li label").each(function () {
+							$(this).removeClass("on");
+					});
+		   		}
+				setTotal();
+			});
+			$('.cart-list ul li label').click(function(){
+				$('.check-all').removeClass('on');
+				setTotal();
+			});
+		});
+		
+		//获得数据
+		function jsondata(){
+			var list = [];
+			var part = $(".cart-list").find(".on").parent().parent();
+			part.each(function(i){
+				var json = {};
+				$(this).find("input").each(function(){
+					var v = $(this).val();
+					var name = $(this).attr("name");
+					json[name] = v;
+				});
+				list[list.length] = json;
+			});
+			return list;
+		}
+		//支付
+		function payFun(){
+			var part = $(".cart-list").find(".on").parent().parent();
+			var issame = true;
+			for (var i = 0; i < part.length; i++) {
+				var v = part.eq(i).find("input[name='typeCode']").val();
+				var len = part.find("input[name='typeCode'][value='"+v+"']").length;
+				if(len!=part.length){
+					issame = false;
+					break;
+				}
+				if(v==2){
+					var storeId = part.eq(i).find("input[name='storeId']").val();
+					var slen = part.find("input[name='storeId'][value='"+storeId+"']").length;
+					if(slen!=part.length){
+						issame = false;
+						break;
+					}
+				}
+			}
+			
+			if(!issame){
+				infoMsg();
+			}else{
+				var data = jsondata();
+				if(data.length>0){
+					var orderPrice = $('#wrapper').find("input[name='orderPrice']").val();
+					window.location.href = '/shoppingCart/toSubmit?goods='+JsonToStr(data)+'&orderPrice='+orderPrice;
+				}else{
+					mui.toast('请至少选择一个商品');
+				}
+			}
+		}
+	</script>
+</body>
+</html>

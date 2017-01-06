@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.love.center.order.dao.OfOrderDao">
+    <!-- 保存订单信息 -->
+    <insert id="save" parameterType="com.hg.dqsj.love.center.order.entity.OfOrder">
+		insert into dqsj_of_order
+		  (id,
+		   orderNo,
+		   orderTypeCode,
+		   userId,
+		   orderPrice,
+		   orderQRCode,
+		   orderTime,
+		   invalidEndTime,
+		   payFlag,
+		   getFlag,
+		   evalFlag,
+		   rowLockNum,
+		   remark,
+		   createDate,
+		   createUserId,
+		   updateDate,
+		   updateUserId,
+		   deleteFlag)
+		values
+		  (#{id},
+		   #{orderNo},
+		   #{orderTypeCode},
+		   #{userId},
+		   #{orderPrice},
+		   #{orderQRCode},
+		   #{orderTime},
+		   #{invalidEndTime},
+		   #{payFlag},
+		   #{getFlag},
+		   #{evalFlag},
+		   #{rowLockNum},
+		   #{remark},
+		   #{createDate},
+		   #{createUserId},
+		   #{updateDate},
+		   #{updateUserId},
+		   #{deleteFlag})
+    </insert>
+    <!-- 订单详情 -->
+    <insert id="insertOrderDetail" parameterType="com.hg.dqsj.love.center.order.entity.OfOrderDetail">
+    	insert into dqsj_of_order_detail (
+	    	id,
+	    	orderId,
+	    	storeId,
+		    useDate,
+		    linkUserName,
+		    linkUserPhone,
+		    checkInDate,
+		    checkOutDate,
+		    remark,
+		    createDate,
+		    createUserId,
+		    updateDate,
+		    updateUserId,
+		   	deleteFlag
+	    	) 
+	    values (
+	    	#{id},
+			#{orderId},
+			#{storeId},
+			#{useDate},
+			#{linkUserName},
+			#{linkUserPhone},
+			#{checkInDate},
+			#{checkOutDate},
+			#{remark},
+			#{createDate},
+			#{createUserId},
+			#{updateDate},
+			#{updateUserId},
+			#{deleteFlag}
+	    )
+    </insert>
+    <!-- 根据订单号查询订单信息 -->
+    <select id="selectByOrderNo" parameterType="java.lang.String" resultType="com.hg.dqsj.love.center.order.entity.OfOrder">
+        select id,
+	           orderNo,
+	           orderTypeCode,
+	           userId,
+	           orderPrice,
+	           orderQRCode,
+	           orderTime,
+	           invalidEndTime,
+	           payFlag,
+	           getFlag,
+	           evalFlag,
+	           rowLockNum,
+	           remark,
+	           createDate,
+	           createUserId,
+	           updateDate,
+	           updateUserId,
+	           deleteFlag
+          from dqsj_of_order
+         where orderNo = #{orderNo}
+    </select>
+    
+    <!-- 根据订单ID查询订单信息 -->
+    <select id="selectById" parameterType="java.lang.String" resultType="com.hg.dqsj.love.center.order.entity.OfOrder">
+        select id,
+	           orderNo,
+	           orderTypeCode,
+	           userId,
+	           orderPrice,
+	           orderQRCode,
+	           orderTime,
+	           invalidEndTime,
+	           payFlag,
+	           getFlag,
+	           evalFlag,
+	           rowLockNum,
+	           remark,
+	           createDate,
+	           createUserId,
+	           updateDate,
+	           updateUserId,
+	           deleteFlag,
+	           storeId
+          from dqsj_of_order
+         where id = #{id}
+    </select>
+    
+    <!-- 根据查询条件查询订单信息 -->
+    <select id="selectByCriterias" parameterType="java.util.Map" resultType="com.hg.dqsj.love.center.order.view.VOfOrder">
+		SELECT distinct oo.id,
+		                oo.orderTypeCode,
+		                oo.orderPrice,
+		                oo.orderQRCode,
+		                oo.invalidEndTime,
+		                oo.payFlag,
+		                oo.getFlag,
+		                oo.evalFlag,
+		                oo.rowLockNum,
+		                ood.useDate,
+		                ood.linkUserName,
+		                ood.linkUserPhone,
+		                ood.checkInDate,
+		                ood.checkOutDate
+		  FROM dqsj_of_order oo
+		  left JOIN dqsj_of_order_detail ood
+		    ON ood.orderId = oo.id
+		 WHERE oo.deleteFlag = '0'
+           AND oo.userId = '${userId}'
+           <if test="orderType != null and orderType == 'entranceTicket'"><![CDATA[
+           and oo.orderTypeCode = '1'
+            ]]></if>
+           <if test="orderType != null and orderType == 'hotel'"><![CDATA[
+           and oo.orderTypeCode = '2'
+            ]]></if>
+           <if test="orderType != null and orderType == 'other'"><![CDATA[
+           and oo.orderTypeCode in ('3', '4', '5')
+            ]]></if>
+           <if test="flagType != null and flagType == 'bookFlag'"><![CDATA[
+           and oo.payFlag = '0'
+            ]]></if>
+           <if test="flagType != null and flagType == 'payFlag'"><![CDATA[
+           and oo.orderTypeCode <> '2'
+           and oo.payFlag = '0'
+           and str_to_date(oo.invalidEndTime, '%Y-%m-%d %T') > now()
+            ]]></if>
+           <if test="flagType != null and flagType == 'getFlag'"><![CDATA[
+           and oo.payFlag = '1'
+           and oo.getFlag = '0'
+            ]]></if>
+           <if test="flagType != null and flagType == 'evalFlag'"><![CDATA[
+           and oo.payFlag = '1'
+           and oo.getFlag = '1'
+           and oo.evalFlag = '0'
+            ]]></if>
+         order by orderNo desc
+            <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+	        </if>
+    </select>
+    
+    <!-- 根据查询条件查询订单信息数 -->
+    <select id="countByCriterias" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(distinct oo.id)
+          FROM dqsj_of_order oo
+          left JOIN dqsj_of_order_detail ood
+            ON ood.orderId = oo.id
+         WHERE oo.deleteFlag = '0'
+           AND oo.userId = '${userId}'
+           <if test="orderType != null and orderType == 'entranceTicket'"><![CDATA[
+           and oo.orderTypeCode = '1'
+            ]]></if>
+           <if test="orderType != null and orderType == 'hotel'"><![CDATA[
+           and oo.orderTypeCode = '2'
+            ]]></if>
+           <if test="orderType != null and orderType == 'other'"><![CDATA[
+           and oo.orderTypeCode in ('3', '4', '5')
+            ]]></if>
+           <if test="flagType != null and flagType == 'bookFlag'"><![CDATA[
+           and oo.payFlag = '0'
+            ]]></if>
+           <if test="flagType != null and flagType == 'payFlag'"><![CDATA[
+           and oo.orderTypeCode <> '2'
+           and oo.payFlag = '0'
+           and str_to_date(oo.invalidEndTime, '%Y-%m-%d %T') > now()
+            ]]></if>
+           <if test="flagType != null and flagType == 'getFlag'"><![CDATA[
+           and oo.payFlag = '1'
+           and oo.getFlag = '0'
+            ]]></if>
+           <if test="flagType != null and flagType == 'evalFlag'"><![CDATA[
+           and oo.payFlag = '1'
+           and oo.getFlag = '1'
+           and oo.evalFlag = '0'
+            ]]></if>
+    </select>
+
+    <!-- 更新支付状态 -->
+    <update id="updatePayFlag" parameterType="com.hg.dqsj.love.center.order.entity.OfOrder">
+		update dqsj_of_order
+		   set payFlag    = #{payFlag},
+		       updateDate = #{updateDate},
+		       rowLockNum = #{rowLockNum} + 1
+		 where id = #{id}
+		   and payFlag = '0'
+		   and rowLockNum = #{rowLockNum}
+    </update>
+    
+    <!-- 更新领取状态 -->
+    <update id="updateGetFlag" parameterType="com.hg.dqsj.love.center.order.entity.OfOrder">
+		update dqsj_of_order
+		   set getFlag    = #{getFlag},
+		       updateDate = #{updateDate},
+		       rowLockNum = #{rowLockNum} + 1
+		 where id = #{id}
+		   and getFlag = '0'
+		   and rowLockNum = #{rowLockNum}
+    </update>
+    
+    <!-- 更新评价状态 -->
+    <update id="updateEvalFlag" parameterType="com.hg.dqsj.love.center.order.entity.OfOrder">
+		update dqsj_of_order
+		   set evalFlag   = #{evalFlag},
+		       updateDate = #{updateDate},
+		       rowLockNum = #{rowLockNum} + 1
+		 where id = #{id}
+		   and evalFlag = '0'
+		   and rowLockNum = #{rowLockNum}
+    </update>
+    
+    <!-- 删除订单 -->
+    <update id="deleteOrder" parameterType="com.hg.dqsj.love.center.order.entity.OfOrder">
+		update dqsj_of_order
+		   set deleteFlag = '1',
+		       updateDate = #{updateDate},
+		       rowLockNum = #{rowLockNum} + 1
+		 where id = #{id}
+		   and deleteFlag = '0'
+		   and rowLockNum = #{rowLockNum}
+    </update>
+    
+    <!-- 根据订单ID查询订单详细信息 -->
+    <select id="selectOrderDetailsById" parameterType="java.lang.String" resultType="com.hg.dqsj.love.center.order.view.VOfOrder">
+		SELECT
+		    oo.id,
+		    oo.orderNo,
+		    oo.orderTypeCode,
+		    oo.orderPrice,
+		    oo.orderQRCode,
+		    oo.orderTime,
+		    oo.invalidEndTime,
+		    oo.payFlag,
+		    oo.getFlag,
+		    oo.evalFlag,
+		    oo.rowLockNum,
+		    ood.useDate,
+		    ood.linkUserName,
+		    ood.linkUserPhone,
+		    ood.checkInDate,
+		    ood.checkOutDate,
+		    oog.goodsNum,
+		    oog.refundGoodsNum,
+		    oog.goodsPrice,
+		    fg.id AS goodsId,
+		    fg.goodsName,
+		    fgr.id AS guestRoomId,
+		    fgr.guestRoomName,
+		    pcc.deductCredit,
+		    pcc.isWorthMoney,
+		    (select updateDate from dqsj_of_order_pay where orderId = oo.id and deleteFlag = '0' and payFlag = '1' and notifyFlag = '0') as payTime
+		FROM
+		    dqsj_of_order oo
+		LEFT JOIN dqsj_of_order_detail ood ON ood.orderId = oo.id
+		LEFT JOIN dqsj_of_order_goods oog ON oog.orderId = oo.id
+		LEFT JOIN dqsj_fe_goods fg ON fg.id = oog.goodsId
+		LEFT JOIN dqsj_fe_guest_room fgr ON oog.goodsId = fgr.id
+		LEFT JOIN dqsj_pc_credit_consume pcc ON pcc.orderId = oo.id
+		WHERE
+		    oo.deleteFlag = '0'
+		AND oo.id = '${id}'
+    </select>
+    
+    <!-- 查询当前用户未支付失效订单订单详细信息 -->
+    <select id="selectInvalidOrder" parameterType="java.lang.String" resultType="com.hg.dqsj.love.center.order.entity.OfOrder">
+		select id,
+		       orderNo,
+		       orderTypeCode,
+		       userId,
+		       orderPrice,
+		       orderQRCode,
+		       orderTime,
+		       invalidEndTime,
+		       payFlag,
+		       getFlag,
+		       evalFlag,
+		       rowLockNum,
+		       remark,
+		       createDate,
+		       createUserId,
+		       updateDate,
+		       updateUserId,
+		       deleteFlag
+		  from dqsj_of_order
+		 where deleteFlag = '0'
+		   <![CDATA[and orderTypeCode <> '2']]>
+		   and payFlag = '0'
+		   <![CDATA[and str_to_date(invalidEndTime, '%Y-%m-%d %T') < now()]]>
+		   and userId = #{userId}
+    </select>
+</mapper>

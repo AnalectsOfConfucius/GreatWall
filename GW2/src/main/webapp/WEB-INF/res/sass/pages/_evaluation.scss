@@ -1,0 +1,135 @@
+/* =======================evaluation ==================*/
+.evaluation{
+    .item{
+        background-color: $link-white;
+        margin-bottom: $font-size;
+        .listimg{
+            padding: .3rem .5rem;
+            border-bottom: 1px solid #e0e0e0;
+            .pic{
+                float: left;
+                width: 5rem;
+                height: 3.825rem;
+                background-position: center center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            .text{
+                float: right;
+                width: 9.5rem;
+                h3{
+                    color: $link-black;
+                }
+                p{
+                    padding-top: 1.75rem;
+                    color:$link-gray-e6;
+                }
+            }
+        }
+    }
+}
+.overall{
+    height: $height;
+    line-height: $height;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 .5rem;
+    ul{ 
+        margin-left: 15px;
+        li{
+            margin-top: 8px;
+            float: left;
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            line-height: 1;
+            background: url("../img/sprite.png") no-repeat;
+            background-size: 96px auto;
+            overflow: hidden;
+            background-position: -75px -59px;
+            &.on{
+                background-position: -50px -59px;
+            }
+            &.an{
+                background-position: -50px -131px;
+            }   
+        }
+    }
+}
+
+.input-text{
+    
+    padding: .5rem;
+    border-bottom: 1px solid #e0e0e0;
+    .texta{
+        width: 100%;
+        border: none;
+        line-height: 24px;
+        color:$link-gray-e9;
+    }
+    .tex{
+        display: block;
+        text-align: right;
+        font-size:12px;
+        color: $link-gray-e6;
+    }
+}
+
+.uploadImg{
+    padding: .5rem;
+    border-bottom: 1px solid #e0e0e0;
+    
+    .por{
+        width: 2.6rem;
+        height: 1.8rem;
+        position: relative;
+        background-color: #fafafa;
+        border: 2px dashed $link-color-ul;
+        text-align: center;
+        figure{
+            margin-top: .2rem; 
+            img{
+                width: .8rem;
+                height: .8rem;
+            }
+            figcaption{
+              margin-top: .2rem;
+              color: $link-gray-e9;
+              font-size:12px ;   
+            }
+        }
+        .J_UploadInput{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2.6rem;
+            height: 1.8rem;
+            -webkit-appearance: none;
+           opacity: 0;
+           cursor: pointer;
+        }
+    }
+}
+.imgCont{
+    width: 11.7rem;
+    ul{
+        li{
+            float: left;
+            width: 2.6rem;
+            height: 2rem;
+            margin: 0 .16rem;
+            img{
+             width: 100%;
+            
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+

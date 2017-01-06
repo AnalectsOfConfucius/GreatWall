@@ -1,0 +1,130 @@
+/* =======================Tablist==================*/
+.Tablist{
+    background-color: $link-white;
+    border-top: 1px solid $link-gray-bor;
+    .tabs{
+        height: $height;
+        line-height: $height;
+        border-bottom: 1px solid $link-gray-bor;
+        a{
+            position: relative;
+            float: left;
+            width: 50%;
+            display: block;
+            text-align: center;
+            &.active span {
+                height: $height - 2;
+                padding: 0 .3rem;
+                display: inline-block;
+                border-bottom:2px solid $link-primary;
+                color:$link-primary;
+            }
+            &:first-child:before{
+                position: absolute;
+                top: 12px;
+                right: 0;
+                width: 1px;
+                height: 20px;
+                content: "";
+                background-color: $link-gray-bor;
+            }
+        } 
+    }
+}
+.content-slide{
+    width: 100%;
+    text-align: left;
+    background-color: $link-white;
+    .text-word{
+        padding: .5rem ;
+    p{
+        line-height: $height - 15;
+        color: $link-gray-e6;
+        text-indent: 2em;
+    }
+    img{
+        margin: .5rem 0;
+    }
+    }
+    
+    
+}
+  .review{
+        padding: .5rem;
+        border-bottom: 1px solid $link-color-ul;
+        .pic{
+            width: 2.7rem;
+            text-align: center;
+            img{
+                margin: 0;
+                border-radius:50% ;
+                height: 2.7rem;
+                width: 2.7rem;
+            }
+            figcaption{
+                padding-top: .3rem;
+                color: $link-gray-e6;
+                font-size: $font-size - 1;
+            }
+        }
+        .soldar{
+            width: 11.5rem;
+            .tiem{
+                color: $link-gray-e9;
+                line-height: 24px;
+            }
+            .stars{
+                li{
+                    float: left;
+                    display: inline-block;
+                    width: 24px;
+                    height: 24px;
+                    line-height: 1;
+                    background: url("../img/sprite.png") no-repeat;
+                    background-size: 96px auto;
+                    overflow: hidden;
+                    background-position: -75px -59px;
+                    &.on{
+                       background-position: -50px -59px; 
+                    }
+                    &.an{
+                       background-position: -50px -131px;
+                    }
+                }
+            }
+        }
+    }
+    .soldar {
+      .text{
+         padding: .3rem 0;
+         line-height: 24px;
+         color: $link-gray-e6; 
+      }
+      .imgs{
+          margin-top: .3rem;
+          img{
+              margin: 0;
+              width: 4.25rem;
+              margin-right: .3rem;
+              display: inline-block;
+          }
+      }
+      .woder{
+          span{
+              padding-right: .5rem;
+              color: $link-gray-e6; 
+          }
+      }
+  }
+.morediv{
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    line-height: 44px;
+    color: $link-primary;
+}
+
+.swiper-container-tabs{
+  overflow: hidden;
+
+}

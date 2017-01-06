@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.love.center.order.dao.OfOrderGoodsDao">
+    <!-- 保存订单信息 -->
+    <insert id="save" parameterType="com.hg.dqsj.love.center.order.entity.OfOrderGoods">
+		insert into dqsj_of_order_goods
+		  (id,
+		   orderId,
+		   goodsId,
+		   goodsNum,
+		   goodsPrice,
+		   remark,
+		   createDate,
+		   createUserId,
+		   updateDate,
+		   updateUserId,
+		   deleteFlag)
+		values
+		  (#{id},
+		   #{orderId},
+		   #{goodsId},
+		   #{goodsNum},
+		   #{goodsPrice},
+		   #{remark},
+		   #{createDate},
+		   #{createUserId},
+		   #{updateDate},
+		   #{updateUserId},
+		   #{deleteFlag})
+    </insert>
+    
+    <!-- 根据订单ID和商品ID查询商品信息 -->
+    <select id="selectByOrderIdAndGoodsId" parameterType="java.util.Map" resultType="com.hg.dqsj.love.center.order.entity.OfOrderGoods">
+		select id,
+		       orderId,
+		       goodsId,
+		       goodsNum,
+		       goodsPrice,
+		       remark,
+		       createDate,
+		       createUserId,
+		       updateDate,
+		       updateUserId,
+		       deleteFlag
+		  from dqsj_of_order_goods
+		 where orderId = '${orderId}'
+		   and goodsId = '${goodsId}'
+    </select>
+    
+    <!-- 根据订单ID查询商品信息 -->
+    <select id="selectGoodsByOrderId" parameterType="java.util.Map" resultType="com.hg.dqsj.love.center.order.view.VOfOrderGoods">
+        select id,
+               orderId,
+               goodsId,
+               goodsNum,
+               goodsPrice,
+               (select goodsName from dqsj_fe_goods where id = oog.goodsId) as goodsName,
+               (select picUrl from dqsj_fe_pic where objId = oog.goodsId and mainPicFlag = '1') as picUrl
+          from dqsj_of_order_goods oog
+         where orderId = '${orderId}'
+    </select>
+    
+    <!-- 根据订单ID查询客房信息 -->
+    <select id="selectGuestRoomByOrderId" parameterType="java.util.Map" resultType="com.hg.dqsj.love.center.order.view.VOfOrderGoods">
+        select id,
+               orderId,
+               goodsId,
+               goodsNum,
+               goodsPrice,
+               (select guestRoomName from dqsj_fe_guest_room where id = oog.goodsId) as goodsName
+          from dqsj_of_order_goods oog
+         where orderId = '${orderId}'
+    </select>
+</mapper>

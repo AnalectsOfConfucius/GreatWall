@@ -1,0 +1,103 @@
+[class*="icon-"] {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 1;
+    background: url("../img/sprite.png") no-repeat;
+    background-size: 96px auto;
+    overflow: hidden;
+}
+
+
+.icon-guide{
+    @include appicon(0, 0);
+}
+.icon-cart{
+    @include appicon(-25px, 0);
+}
+.icon-love{
+    @include appicon(-50px, 0);
+}
+.icon-return{
+    @include appicon(-85px, 0);
+}
+.icon-go{
+    @include appicon(-75px, 0);
+}
+.icon-l{
+    @include appicon(-75px, 0);
+}
+.icon-addrss{
+    @include appicon(-18px, -20px);
+}
+.icon-phone{
+    @include appicon(3px, -40px);
+}
+.icon-tick{
+    @include appicon(-60px, -20px);
+    margin-top: 10px;
+}
+.icon-down{
+    @include appicon(-80px, -20px);
+}
+.icon-up{
+    @include appicon(-80px, -146px);
+    margin-top: 3px;
+}
+.icon-ticket{
+    @include appicon(0, -24px);
+}
+
+.icon-inerr{
+    @include appicon(-40px, -40px);
+}
+
+.icon-hotel{
+    @include appicon(-20px, -43px);
+}
+.icon-card{
+    @include appicon(-64px, -43px);
+}
+.icon-shop{
+    @include appicon(-42px, -43px);
+}
+
+.icon-time{
+    @include appicon(-43px, -24px);
+}
+.icon-complete{
+    @include appicon(0, -86px);
+}
+.icon-non-com{
+    @include appicon(-8px, -84px);
+}
+.icon-set{
+    @include appicon(0, -193px);
+}
+.icon-myorder{
+    @include appicon(2px, -110px);
+}
+.icon-myratingb{
+    @include appicon(-47px, -110px);
+}
+.icon-mypointsa{
+    @include appicon(-22px, -110px);
+}
+.icon-cartX{
+    @include appicon(-65px, -85px);
+}
+.icon-message{
+    @include appicon(2px, -134px);
+}
+
+.icon-refunda{
+    @include appicon(-72px, -110px);
+}
+
+
+
+
+
+
+
+

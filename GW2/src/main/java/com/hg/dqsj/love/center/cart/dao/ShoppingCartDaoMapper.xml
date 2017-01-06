@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.love.center.cart.dao.ShoppingCartDao">
+
+    <!-- 根据用户ID查询购物车 -->
+    <select id="selectShoppingCart" parameterType="map" resultType="com.hg.dqsj.love.center.cart.entity.ShoppingCart">
+        select 
+		    t.id,
+		    t.userId,
+		    t.typeCode,
+		    t.goodsId,
+		    t.goodsNum,
+		    t.remark,
+		    a.storeId,
+		    a.goodsName,
+		    a.sellPrice,
+		    (t.goodsNum*a.sellPrice) totalPrice,
+		    b.picUrl
+		from dqsj_of_shopping_cart_goods t 
+		left join dqsj_fe_goods a on t.goodsId=a.id
+		left join dqsj_fe_pic b on a.id=b.objId and b.deleteFlag='0' and b.mainPicFlag='1'
+		where t.deleteFlag='0' and t.userId=#{userId}
+		<if test="typeCode != null and typeCode != '' and othCode != 1"><![CDATA[ and t.typeCode='${typeCode}' ]]></if>
+		<if test="othCode == 1"><![CDATA[ and t.typeCode<>'${typeCode}' ]]></if>
+    </select>
+    <!-- 保存购物车信息 -->
+    <insert id="insertCart" parameterType="com.hg.dqsj.love.center.cart.entity.ShoppingCartGoods">
+		insert into dqsj_of_shopping_cart_goods
+		  (id,
+		   userId,
+		   typeCode,
+		   goodsId,
+		   goodsNum,
+		   remark,
+		   createDate,
+		   createUserId,
+		   updateDate,
+		   updateUserId,
+		   deleteFlag)
+		values
+		  (#{id},
+		   #{userId},
+		   #{typeCode},
+		   #{goodsId},
+		   #{goodsNum},
+		   #{remark},
+		   #{createDate},
+		   #{createUserId},
+		   #{updateDate},
+		   #{updateUserId},
+		   #{deleteFlag})
+    </insert>
+    <!-- 删除 -->
+    <update id="delete" parameterType="map">
+	   	update dqsj_of_shopping_cart_goods
+	        SET 
+	        updateDate = #{updateDate},
+	        updateUserId = #{updateUserId},
+	        deleteFlag = #{deleteFlag}
+	    where id in 
+        <foreach collection="ids" item="id" open="(" separator="," close=")">  
+                #{id}  
+        </foreach>  
+    </update>
+</mapper>

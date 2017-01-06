@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.base.dao.FeMenuDao">
+	<!-- 查询父菜单 -->
+	<select id="selectParentMenu" resultType="com.hg.dqsj.base.view.VFeMenuInfo">
+		select id, menuName, parentId, menuUrl, picUrl, menuCss, menuOrder
+		  from dqsj_fe_menu
+		 where deleteFlag = '0'
+		   and parentId is null
+		 order by menuOrder asc, updateDate desc
+	</select>
+	<!-- 查询子菜单 -->
+	<select id="selectChildMenu" parameterType="java.util.Map" resultType="com.hg.dqsj.base.entity.FeMenuInfo">
+		select a.id,
+		       a.menuName,
+		       a.parentId,
+		       b.menuName parentName,
+		       a.menuUrl,
+		       a.picUrl,
+		       a.menuCss,
+		       a.menuOrder
+		  from dqsj_fe_menu a
+		  left join dqsj_fe_menu b
+		    on a.parentId = b.id
+		 where a.deleteFlag = '0'
+		   and a.parentId is not null
+		   and a.parentId = '${parentId}'
+		 order by a.menuOrder asc, a.updateDate desc
+	</select>
+
+</mapper>

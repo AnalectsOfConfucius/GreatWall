@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.core.platform.dao.PlatformDao">
+
+	<!-- 根据平台信息 -->
+    <select id="selectPlatformAccount" parameterType="string" resultType="com.hg.core.platform.entity.PlatformAccount">
+        select
+            id,
+			appId,
+			appSecret
+        from sm_platform_account
+        where deleteFlag = '0'
+          and platformFlag = #{platformFlag}
+    </select>
+
+    <!-- 根据OpenId查询用户信息 -->
+    <select id="selectUserByOpenId" parameterType="map" resultType="com.hg.core.weixin.entity.UserAccount">
+        select
+            sm_user.id,
+			sm_user.userName,
+			sm_user.userPhone,
+			sm_user.userTel,
+			sm_user.userPassWord,
+			sm_user.userEmail,
+			sm_user.userGender,
+			sm_user.userPicUrl,
+			sm_user.userFlag,
+			sm_user.isLocked,
+			sm_user.adminFlag,
+			sm_user.userOrder,
+			sm_user.remark,
+			sm_user.deleteFlag,
+			user_p.id as platformId,
+			user_p.userPlatformId,
+			user_p.accessToken,
+			user_p.expiresEndTime
+        from dqsj_fe_user sm_user, dqsj_fe_user_platform user_p
+        where user_p.deleteFlag = '0'
+          and user_p.userPlatformId = #{openId},
+          and user_p.platformFlag = #{platformFlag}
+          and sm_user.id = user_p.userId
+    </select>
+	
+	<!-- 新建用户信息 -->
+    <insert id="insertUser" parameterType="com.hg.dqsj.base.entity.FEUser">
+        insert into dqsj_fe_user (
+            id,
+            userName,
+            userPhone,
+            userTel,
+            userPassWord,
+            userEmail,
+            userGender,
+            userPicUrl,
+            userFlag,
+            isLocked,
+            adminFlag,
+            userOrder,
+            remark,
+            createDate,
+            createUserId,
+            updateDate,
+            updateUserId,
+            deleteFlag
+        ) values (
+            #{id},
+			#{userName},
+			#{userPhone},
+			#{userTel},
+			#{userPassWord},
+			#{userEmail},
+			#{userGender},
+			#{userSign},
+			#{userPicUrl},
+			#{userFlag},
+			#{isLocked},
+			#{adminFlag},
+			#{userOrder},
+			#{remark},
+			#{createDate},
+			#{createUserId},
+			#{updateDate},
+			#{updateUserId},
+			#{deleteFlag}
+        )
+    </insert>
+    
+    <!-- 新建用户平台信息 -->
+    <insert id="insertUserPlatform" parameterType="com.hg.core.weixin.entity.UserPlatform">
+        insert into dqsj_fe_user_platform (
+            id,
+            userPlatformId,
+            platformFlag,
+            userId,
+            accessToken,
+            expiresEndTime,
+            refreshToken,
+            createDate,
+            createUserId,
+            updateDate,
+            updateUserId,
+            deleteFlag
+        ) values (
+            #{id},
+			#{userPlatformId},
+			#{platformFlag},
+			#{userId},
+			#{accessToken},
+			#{expiresEndTime},
+			#{refreshToken},
+			#{createDate},
+			#{createUserId},
+			#{updateDate},
+			#{updateUserId},
+			#{deleteFlag}
+        )
+    </insert>
+    
+    <!-- 修改用户信息 -->
+    <update id="updateUser" parameterType="com.hg.dqsj.base.entity.FEUser">
+        update dqsj_fe_user
+        set userName=#{userName},
+			userPicUrl=#{userPicUrl},
+            updateDate=#{updateDate}
+        where id=#{id}
+    </update>
+    
+    <!-- 修改用户平台信息 -->
+    <update id="updateUserPlatform" parameterType="com.hg.core.weixin.entity.UserPlatform">
+        update dqsj_fe_user_platform
+        set accessToken=#{accessToken},
+            expiresEndTime=#{expiresEndTime},
+            refreshToken=#{refreshToken}
+            updateDate=#{updateDate}
+        where id=#{id}
+    </update>
+	
+</mapper>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>民生大千世界 梦幻乐园</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="/css/leaflet.css" />
+<script src="/js/leaflet-include.js"></script>
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script>
+    function loaded() {
+        // 页面加载完 移除loading
+        $('#loading').remove();
+    }
+    function init() {
+        var mapMinZoom = 3;
+        var mapMaxZoom = 5;
+        var map = L.map('map', {
+            maxZoom : mapMaxZoom,
+            minZoom : mapMinZoom,
+            crs : L.CRS.Simple
+        }).setView([ 0, 0 ], 3);
+
+        var mapBounds = new L.LatLngBounds(map.unproject([ 0, 3530 ], mapMaxZoom), map.unproject([ 4850, 0 ], mapMaxZoom));
+        map.fitBounds(mapBounds);
+        map.setMaxBounds(mapBounds);
+        var layersControl = new L.Control.Layers({}, {});
+
+        map.addControl(layersControl);
+        map.addControl(new L.Control.Scale());
+        $(".leaflet-control-layers-toggle").click(function() {
+            window.location.href = 'http://192.168.0.135:8087';
+        });
+        $(".leaflet-control-layers-toggle").html("走进景区");
+
+        bounds = new L.LatLngBounds(new L.LatLng(-111, 4.125), new L.LatLng(-1, 147.875));
+        L.tileLayer('/img/{z}/{x}/{y}.png', {
+            minZoom : mapMinZoom,
+            maxZoom : mapMaxZoom,
+            bounds : bounds,
+            attribution : '',
+            noWrap : true,
+            tms : true
+        }).addTo(map);
+        var marker1 = new L.Marker([ -57.6875, 32.9375 ]).bindPopup('童话木马').addTo(map);
+        var marker2 = new L.Marker([ -56.90625, 26.75 ]).bindPopup('精灵派队').addTo(map);
+        var marker3 = new L.Marker([ -51.90625, 24.6875 ]).bindPopup('泡泡球战城').addTo(map);
+        var marker4 = new L.Marker([ -49.125, 25.21875 ]).bindPopup('4D王国').addTo(map);
+        var marker5 = new L.Marker([ -48.15625, 35.15625 ]).bindPopup('醉醉杯').addTo(map);
+        var marker6 = new L.Marker([ -50.5, 35 ]).bindPopup('梦幻伞').addTo(map);
+        var marker7 = new L.Marker([ -43.09375, 38.15625 ]).bindPopup('激情对对碰').addTo(map);
+        var marker8 = new L.Marker([ -46.03125, 26.34375 ]).bindPopup('欢乐水战').addTo(map);
+        var marker9 = new L.Marker([ -46.03125, 19.71875 ]).bindPopup('迷你飞车').addTo(map);
+        var marker10 = new L.Marker([ -35.5, 29.0625 ]).bindPopup('星空靓队').addTo(map);
+        var marker11 = new L.Marker([ -31.875, 30.8125 ]).bindPopup('逍遥水母').addTo(map);
+        var marker12 = new L.Marker([ -31.25, 26.3125 ]).bindPopup('罗盘求生').addTo(map);
+        var marker13 = new L.Marker([ -59.625, 37.125 ]).bindPopup('攀爬滑梯').addTo(map);
+        var marker14 = new L.Marker([ -52.25, 27 ]).bindPopup('哈哈城').addTo(map);
+        var marker15 = new L.Marker([ -52.625, 31.3125 ]).bindPopup('梦幻喷泉').addTo(map);
+        var marker16 = new L.Marker([ -62.15625, 33.3125 ]).bindPopup('魔幻汉堡餐厅').addTo(map);
+        var marker17 = new L.Marker([ -33.90625, 25.15625 ]).bindPopup('鱼米之乡餐厅').addTo(map);
+        var marker18 = new L.Marker([ -42.8125, 28.65625 ]).bindPopup('鄱湖之谜商店').addTo(map);
+        var marker19 = new L.Marker([ -50.0625, 37.28125 ]).bindPopup('快乐驿站零售店').addTo(map);
+        var marker20 = new L.Marker([ -28.09375, 28.53125 ]).bindPopup('儿童剧场（二期开放）').addTo(map);
+        //未来世界
+        var marker21 = new L.Marker([ -41.9375, 43.3125 ]).bindPopup('奇幻宇宙').addTo(map);
+        var marker22 = new L.Marker([ -39.6875, 49.625 ]).bindPopup('缤纷海洋').addTo(map);
+        var marker23 = new L.Marker([ -30.4375, 41.625 ]).bindPopup('地球之怒（二期开放）').addTo(map);
+        var marker24 = new L.Marker([ -31.375, 37.46875 ]).bindPopup('人类奥秘（二期开放）').addTo(map);
+        var marker25 = new L.Marker([ -23.9375, 36.25 ]).bindPopup('飞越地球').addTo(map);
+        var marker26 = new L.Marker([ -26.46875, 45.1875 ]).bindPopup('露天剧场').addTo(map);
+        var marker27 = new L.Marker([ -32.4375, 49.9375 ]).bindPopup('嬉戏阁').addTo(map);
+        var marker28 = new L.Marker([ -37.59375, 41.53125 ]).bindPopup('奥秘星空商店').addTo(map);
+        var marker29 = new L.Marker([ -36.0625, 45.78125 ]).bindPopup('海洋之星商店').addTo(map);
+        //仙踪世界
+
+        var marker30 = new L.Marker([ -52.9375, 54.75 ]).bindPopup('绮梦廊桥').addTo(map);
+        var marker31 = new L.Marker([ -51.125, 49.375 ]).bindPopup('天瀑探险').addTo(map);
+        var marker32 = new L.Marker([ -48.9375, 52.28125 ]).bindPopup('仙人桥').addTo(map);
+        var marker33 = new L.Marker([ -56, 44.625 ]).bindPopup('观瀑桥').addTo(map);
+        //梦想世界  
+        var marker34 = new L.Marker([ -73.75, 60.4375 ]).bindPopup('音乐喷泉').addTo(map);
+        var marker35 = new L.Marker([ -71.5625, 56.34375 ]).bindPopup('售票中心').addTo(map);
+        var marker36 = new L.Marker([ -69.15625, 64.46875 ]).bindPopup('备用售票中心').addTo(map);
+        var marker37 = new L.Marker([ -67.875, 56.84375 ]).bindPopup('寄存中心').addTo(map);
+        var marker38 = new L.Marker([ -68.15625, 60.15625 ]).bindPopup('游客服务中心').addTo(map);
+        var marker39 = new L.Marker([ -68.8125, 54.75 ]).bindPopup('年卡中心').addTo(map);
+        var marker40 = new L.Marker([ -63.15625, 58.625 ]).bindPopup('补票窗口').addTo(map);
+        var marker41 = new L.Marker([ -64.125, 61.5 ]).bindPopup('检票口').addTo(map);
+        var marker42 = new L.Marker([ -70.1875, 51.4375 ]).bindPopup('警务室').addTo(map);
+        var marker43 = new L.Marker([ -62.1875, 53.15625 ]).bindPopup('梦幻乐园度假酒店').addTo(map);
+        var marker44 = new L.Marker([ -61.375, 58.25 ]).bindPopup('梦幻出口商店').addTo(map);
+        //历险世界   
+        var marker45 = new L.Marker([ -13.96875, 38.25 ]).bindPopup('雷霆战锤').addTo(map);
+        var marker46 = new L.Marker([ -12.25, 47.28125 ]).bindPopup('矿山历险').addTo(map);
+        var marker47 = new L.Marker([ -19.3125, 44.375 ]).bindPopup('风火轮').addTo(map);
+        var marker48 = new L.Marker([ -8.40625, 57.59375 ]).bindPopup('飓风眼').addTo(map);
+        var marker49 = new L.Marker([ -12.75, 69.90625 ]).bindPopup('九龙传奇').addTo(map);
+        var marker50 = new L.Marker([ -18.53125, 50.34375 ]).bindPopup('矿工美食餐厅').addTo(map);
+        var marker51 = new L.Marker([ -14.9375, 48.1875 ]).bindPopup('矿工之家商店').addTo(map);
+        var marker52 = new L.Marker([ -16.75, 68.0625 ]).bindPopup('神龙殿商店').addTo(map);
+        //史前世界   
+        var marker53 = new L.Marker([ -26.6875, 55.15625 ]).bindPopup('旋转飞椅').addTo(map);
+        var marker54 = new L.Marker([ -25.09375, 60.59375 ]).bindPopup('热力冲击').addTo(map);
+        var marker55 = new L.Marker([ -29.8125, 68.90625 ]).bindPopup('天旋地转').addTo(map);
+        var marker56 = new L.Marker([ -24.125, 54.0625 ]).bindPopup('恐龙谷').addTo(map);
+        var marker57 = new L.Marker([ -37.875, 63.84375 ]).bindPopup('恐龙山').addTo(map);
+        var marker58 = new L.Marker([ -24.09375, 64.96875 ]).bindPopup('恐龙化石馆（二期开发）').addTo(map);
+        var marker59 = new L.Marker([ -40.46875, 54.96875 ]).bindPopup('紫云桥').addTo(map);
+        var marker60 = new L.Marker([ -31.40625, 57.3125 ]).bindPopup('恐龙餐厅').addTo(map);
+        var marker61 = new L.Marker([ -29.09375, 62.78125 ]).bindPopup('远古使者零售店').addTo(map);
+        //史前世界   
+        var marker62 = new L.Marker([ -24.21875, 74.59375 ]).bindPopup('海盗船').addTo(map);
+        var marker63 = new L.Marker([ -15.75, 86 ]).bindPopup('云霄飞龙').addTo(map);
+        var marker64 = new L.Marker([ -18.6875, 100.40625 ]).bindPopup('直升机体验区').addTo(map);
+        var marker65 = new L.Marker([ -30.28125, 75.34375 ]).bindPopup('卧龙桥').addTo(map);
+        var marker66 = new L.Marker([ -28.8125, 71.625 ]).bindPopup('穿越港').addTo(map);
+        var marker67 = new L.Marker([ -21.3125, 79.21875 ]).bindPopup('勇敢者之家商店').addTo(map);
+        var marker68 = new L.Marker([ -28.6875, 88.875 ]).bindPopup('蛟龙探秘').addTo(map);
+        var marker70 = new L.Marker([ -54.8125, 62.5625 ]).bindPopup('阳光港').addTo(map);
+        var marker71 = new L.Marker([ -41.125, 74.5 ]).bindPopup('欢乐港').addTo(map);
+        var marker72 = new L.Marker([ -28.125, 93.4375 ]).bindPopup('海底星宫商店').addTo(map);
+
+    }
+    $(document).ready(function() {
+        init();
+    })
+</script>
+<style>
+html, body, #map {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.leaflet-marker-icon {
+	width: 20px !important;
+	height: 30px !important;
+}
+
+.leaflet-shadow-pane {
+	display: none;
+}
+
+@media screen and (min-width:1000px) {
+	body {
+		width: 1155px !important;
+		height: 865px !important;
+		margin: 0 auto !important;
+	}
+}
+</style>
+</head>
+<body onload="loaded()">
+	<div id="loading" class="loading">
+		<div class="toast">
+			<div class="toast-text">
+				<span class="toast-icon-loading"></span>
+				载入中...
+			</div>
+		</div>
+	</div>
+	<div id="map"></div>
+</body>
+</html>

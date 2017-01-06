@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1">
+<title>民生大千世界游乐园-个人资料</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<meta name="keywords" content="民生大千世界游乐园">
+<meta name="description" content="民生大千世界游乐园">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<link type="text/css" rel="stylesheet" href="/css/main.css">
+<style type="text/css">
+.mui-toast-container{position:fixed;z-index:9999;bottom:50px;width:100%;-webkit-transition:opacity .8s;transition:opacity .8s;opacity:0}.mui-toast-container.mui-active{opacity:1}.mui-toast-message{font-size:14px;width:270px;margin:5px auto;padding:5px;text-align:center;color:#000;border-radius:7px;background-color:#d8d8d8}</style>
+<script>
+    (function() {
+        var b = document.documentElement, a = function() {
+            var a = b.getBoundingClientRect().width;
+            b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+        }, c = null;
+        window.addEventListener("resize", function() {
+            clearTimeout(c);
+            c = setTimeout(a, 300)
+        });
+        a()
+    })();
+</script>
+</head>
+<body>
+	<!-- 用户ID -->
+	<input id="hideId" type="hidden" value="${(user.id)! ''}" />
+	<input id="hideUserGender" type="hidden" value="${(user.userGender)! ''}" />
+	<!-- header S -->
+	<header>
+		<a href="/center" class="return">
+			<i class="icon-return"></i>返回
+		</a>
+		<h3>个人资料</h3>
+	</header>
+	<!-- header E -->
+	<!--wrapper S-->
+	<div id="wrapper" style="margin-top: 0;">
+		<!--container S-->
+		<div class="container">
+			<!-- 个人资料 S -->
+			<section class="personal-data">
+
+				<div class="title clearfix">
+					<label>头&nbsp;&nbsp;&nbsp;像</label>
+					<div class="J_avatar">
+						<img id="J_avatar" src="${(user.userPicUrl)!'/img/default_person.jpg'}" style="border-radius: 50%;">
+					</div>
+				</div>
+				<ul>
+					<li class="username">
+						<span id="spanUserName">${(user.userName)!''}</span>
+						用户名
+					</li>
+					<li class="sex">
+						<span id="spanUserGender">${(user.userGenderStr)!''}</span>
+						性&nbsp;&nbsp;&nbsp;别
+					</li>
+					<li class="born-day">
+						<span class="laydate-icon-l" id="start" class="f-text"></span>
+						${(user.userBirthday)!''} 生&nbsp;&nbsp;&nbsp;日
+					</li>
+					<li class="mobile">
+						<span id="spanUserPhone">${(user.userPhone)!''}</span>
+						手机号
+					</li>
+				</ul>
+			</section>
+			<!-- 个人资料 E -->
+
+		</div>
+		<!--container E-->
+	</div>
+	<!--wrapper E-->
+	<!--弹出框 S-->
+	<div class="mask"></div>
+	<!--更改头像 S-->
+	<div class="modify_tx">
+		<ul>
+			<li>
+				<span>更改头像</span>
+			</li>
+			<li>
+				<span onclick="takePicture()">拍照</span>
+			</li>
+			<li>
+				<span onclick="selectPicture()">从相册选择</span>
+			</li>
+		</ul>
+		<div class="close">
+			<img src="/img/close.png" alt="" width="30" height="30" />
+		</div>
+	</div>
+	<!--更改头像 E-->
+	<!--更改用户名 S-->
+	<div class="modify_username">
+		<ul>
+			<li>
+				<span>修改用户名</span>
+			</li>
+			<li>
+				<input type="text" id="txtUserName" value="${(user.userName)!''}" />
+			</li>
+			<li>
+				<button type="button" class="btn-block btn-primary" value="">确认</button>
+			</li>
+		</ul>
+		<div class="close">
+			<img src="/img/close.png" alt="" width="30" height="30" />
+		</div>
+	</div>
+	<!--更改用户名 E-->
+
+	<!--更改性别 S-->
+	<div class="modify_sex">
+		<ul>
+			<li>
+				<span>性别</span>
+			</li>
+			<li>
+				<span class="modify_sex_ctn">
+					<input type="radio" name="sex" id="boy" value="1" />
+					<label for="boy">男</label>
+				</span>
+				<span class="modify_sex_ctn">
+					<input type="radio" name="sex" id="girl" value="2" />
+					<label for="girl">女</label>
+				</span>
+			</li>
+			<li>
+				<button type="button" class="btn-block btn-primary" value="">确认</button>
+			</li>
+		</ul>
+		<div class="close">
+			<img src="/img/close.png" alt="" width="30" height="30" />
+		</div>
+	</div>
+	<!--更改性别 E-->
+
+	<!--更改手机号 S-->
+	<div class="modify_mobile">
+		<ul>
+			<li>
+				<span>手机号码修改</span>
+			</li>
+			<li>
+				<input type="text" id="txtUserPhone" value="${(user.userPhone)!''}" />
+			</li>
+			<li>
+				<button type="button" class="btn-block btn-primary" value="">确认</button>
+			</li>
+		</ul>
+		<div class="close">
+			<img src="/img/close.png" alt="" width="30" height="30" />
+		</div>
+	</div>
+	<!--更改手机号 E-->
+	<!--弹出框 E-->
+	<script src="/js/jquery-2.1.4.min.js"></script>
+	<script src="/js/swiper.min.js"></script>
+	<script src="/js/mui.min.js"></script>
+	<script src="/js/app.js"></script>
+	<script src="/js/laydate.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<!--更改头像-->
+	<script type="text/javascript">
+        $(".J_avatar").click(function() {
+            $(".modify_tx").fadeIn();
+            $(".mask").fadeIn();
+            $(".close").fadeIn();
+        })
+        $(".close").click(function() {
+            $(".modify_tx").fadeOut();
+            $(".mask").fadeOut();
+            $("close").fadeOut();
+        })
+
+        function takePicture() {
+            wx.chooseImage({
+                count : 1, // 默认9
+                sizeType : [ 'compressed' ], // 可以指定是原图还是压缩图，默认二者都有
+                sourceType : [ 'camera' ], // 可以指定来源是相册还是相机，默认二者都有
+                success : function(res) {
+                    console.log(res)
+                    var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                }
+            });
+        }
+
+        function selectPicture() {
+            wx.chooseImage({
+                count : 1, // 默认9
+                sizeType : [ 'compressed' ], // 可以指定是原图还是压缩图，默认二者都有
+                sourceType : [ 'album' ], // 可以指定来源是相册还是相机，默认二者都有
+                success : function(res) {
+                    console.log(res)
+                    var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                }
+            });
+        }
+    </script>
+
+	<!--更改用户名-->
+	<script type="text/javascript">
+        $(".username").click(function() {
+            $('#txtUserName').val($('#spanUserName').text())
+            $(".modify_username").fadeIn();
+            $(".mask").fadeIn();
+            $(".close").fadeIn();
+        })
+        $(".close").click(function() {
+            $(".modify_username").fadeOut();
+            $(".mask").fadeOut();
+            $("close").fadeOut();
+        })
+        $(".modify_username button").click(function() {
+            if ($("#txtUserName").val() == "") {
+                mui.toast("用户名不能为空！");
+                return;
+            }
+            $.ajax({
+                type : 'POST',
+                url : '/personalInfo/updateUser',
+                data : {
+                    "id" : $("#hideId").val(),
+                    "userName" : $("#txtUserName").val()
+                },
+                dataType : 'json',
+                success : function(result) {
+                    if (!result || !result.isError) {
+                        mui.toast("系统错误，请联系管理员！");
+                        $("#txtUserName").focus();
+                        return;
+                    }
+                    if (result.isError == "1") {
+                        mui.toast(result.msg);
+                        $("#txtUserName").focus();
+                    } else {
+                        $("#spanUserName").text($("#txtUserName").val());
+                        $(".modify_username").fadeOut();
+                        $(".mask").fadeOut();
+                        $("close").fadeOut();
+                        mui.toast("用户名修改成功！");
+                    }
+                }
+            });
+        })
+    </script>
+
+	<!--更改性别-->
+	<script type="text/javascript">
+        $('.modify_sex_ctn input[value="' + $("#hideUserGender").val() + '"]').attr("checked", true);
+        $('.modify_sex_ctn input[value="' + $("#hideUserGender").val() + '"]').siblings().addClass('checked')
+
+        $(".sex").click(function() {
+            $(".modify_sex").fadeIn();
+            $(".mask").fadeIn();
+            $(".close").fadeIn();
+        })
+        $(".close").click(function() {
+            $(".modify_sex").fadeOut();
+            $(".mask").fadeOut();
+            $("close").fadeOut();
+        })
+
+        $('.modify_sex_ctn').click(function() {
+            $('.modify_sex_ctn label').removeClass('checked');
+            $('.modify_sex_ctn input').attr('checked', false);
+            $(this).find('input').attr('checked', true);
+            $(this).find('label').addClass('checked');
+            $("#hideUserGender").val($(this).find('input').val());
+        })
+
+        $(".modify_sex button").click(function() {
+            $.ajax({
+                type : 'POST',
+                url : '/personalInfo/updateUser',
+                data : {
+                    "id" : $("#hideId").val(),
+                    "userGender" : $("#hideUserGender").val()
+                },
+                dataType : 'json',
+                success : function(result) {
+                    if (!result || !result.isError) {
+                        mui.toast("系统错误，请联系管理员！");
+                        return;
+                    }
+                    if (result.isError == "1") {
+                        mui.toast(result.msg);
+                    } else {
+                        $("#spanUserGender").text(($("#hideUserGender").val() == "1" ? "男" : "女"));
+                        $(".modify_sex").fadeOut();
+                        $(".mask").fadeOut();
+                        $("close").fadeOut();
+                        mui.toast("性别修改成功！");
+                    }
+                }
+            });
+        })
+    </script>
+
+	<!--更改生日-->
+	<script type="text/javascript">
+        $(".J_avatar").click(function() {
+            $(".modify_tx").fadeIn();
+            $(".mask").fadeIn();
+            $(".close").fadeIn();
+        })
+        $(".close").click(function() {
+            $(".modify_tx").fadeOut();
+            $(".mask").fadeOut();
+            $("close").fadeOut();
+        })
+    </script>
+
+	<!--更改手机号-->
+	<script type="text/javascript">
+        $(".mobile").click(function() {
+            $('#txtUserPhone').val($('#spanUserPhone').text())
+            $(".modify_mobile").fadeIn();
+            $(".mask").fadeIn();
+            $(".close").fadeIn();
+        })
+        $(".close").click(function() {
+            $(".modify_mobile").fadeOut();
+            $(".mask").fadeOut();
+            $("close").fadeOut();
+        })
+
+        $(".modify_mobile button").click(function() {
+            if ($("#txtUserPhone").val() == "") {
+                mui.toast("手机号码不能为空！");
+                return;
+            }
+            $.ajax({
+                type : 'POST',
+                url : '/personalInfo/updateUser',
+                data : {
+                    "id" : $("#hideId").val(),
+                    "userPhone" : $("#txtUserPhone").val()
+                },
+                dataType : 'json',
+                success : function(result) {
+                    if (!result || !result.isError) {
+                        mui.toast("系统错误，请联系管理员！");
+                        $("#txtUserPhone").focus();
+                        return;
+                    }
+                    if (result.isError == "1") {
+                        mui.toast(result.msg);
+                        $("#txtUserPhone").focus();
+                    } else {
+                        $("#spanUserPhone").text($("#txtUserPhone").val());
+                        $(".modify_mobile").fadeOut();
+                        $(".mask").fadeOut();
+                        $("close").fadeOut();
+                        mui.toast("手机号码修改成功！");
+                    }
+                }
+            });
+        })
+    </script>
+	<script type="text/javascript">
+        !function() {
+            laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+            laydate({
+                elem : '#demo'
+            });//绑定元素
+        }();
+
+        //日期范围限制
+        var start = {
+            elem : '#start',
+            format : 'YYYY-MM-DD',
+            min : '', //设定最小日期为当前日期
+            max : laydate.now(), //最大日期
+            istime : true,
+            istoday : false,
+            value : '请选择入园时间',
+        };
+
+        laydate(start);
+    </script>
+</body>
+</html>

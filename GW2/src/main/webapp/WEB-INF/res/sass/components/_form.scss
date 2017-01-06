@@ -1,0 +1,65 @@
+/* =======================message ==================*/
+.message-form{
+	background-color: $link-white;
+	ul{
+		
+		li{
+			border-bottom: 1px solid $link-gray-bor;
+			padding: .5rem;
+			overflow: hidden;
+			line-height: $height - 20;
+			label{
+			    float: left;
+			    display: block;
+			    width: 25%;
+			}
+			.inputCont{
+			    float: left;
+                width: 70%;
+				border: none;
+				height: 24px;
+                font-family: "microsoft yahei";
+			}
+		}
+	}
+}
+.message-form .appraise{
+     width: 70%;
+     a{
+     	border-radius: 3px;
+     	display: inline-block;
+     	padding: .3rem;
+     	border: 1px solid $link-gray-bor;
+     	color:$link-gray-e6;
+     	margin-right: .4rem;
+     	margin-top: .3rem;
+
+     	&:hover,&.active{
+     		border-color:$link-primary;
+     		color:$link-primary;
+     	}
+     }
+}
+
+.controls{
+	> textarea{
+		width: 96%;
+		padding: .5rem 2%;
+		border: none;
+		height: 5.4rem;
+		border-top: 1px solid $link-gray-bor;
+		border-bottom: 1px solid $link-gray-bor;
+		line-height: 24px;
+		font-family: "microsoft yahei";
+	}
+}
+.message{
+
+	.btn{
+		width: 94%;
+		margin: 1.75rem 3%;
+		line-height: 25px;
+		border: none;
+		font-size: 16px;
+	}
+}

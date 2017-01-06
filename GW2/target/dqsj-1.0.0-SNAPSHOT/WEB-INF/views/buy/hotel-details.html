@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1" >
+    <title>民生大千世界游乐园-酒店客房详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="民生大千世界游乐园">
+    <meta name="description" content="民生大千世界游乐园">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link type="text/css" rel="stylesheet" href="/css/mui.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <script>
+		(function() {
+			var b = document.documentElement,
+			a = function() {
+				var a = b.getBoundingClientRect().width;
+				b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+			},
+			c = null;
+			window.addEventListener("resize",
+			function() {
+				clearTimeout(c);
+				c = setTimeout(a, 300)
+			});
+			a()
+		})();
+    </script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=qdQBZ6jU6zMTclkLjW7GpiwT"></script>
+</head>
+<body>
+
+<!-- header S -->
+    <div class="header">
+      <div class="headbar">
+      	<a href="javascript:history.go(-1)" class="return"><i class="icon-return"></i>返回</a>
+      	<h3>酒店客房详情</h3>
+      </div>
+    </div>
+<!-- header E -->
+<!--wrapper S-->
+<div id	="wrapper" style="margin-bottom: 44px;">
+		<!--container S-->
+		<div class="container">
+
+          <!-- banner S -->
+			    <section class="banner">
+             <div class="swiper-container swiper-cat-index-ad ">
+               <div class="swiper-wrapper">
+                    [#if plist??]
+                    [#list plist as l]
+                    <a href="#" class="swiper-slide">
+                        <img data-src="${(l.picUrl)!''}" class="swiper-lazy">
+                        <div class="swiper-lazy-preloader"></div>
+                    </a>
+                    [/#list]
+                    [/#if]
+               </div>
+               <!-- Add Pagination -->
+               <div class="swiper-pagination"></div>
+              </div>    
+          </section>
+          <!-- banner S -->
+         
+          <!-- 酒店客房详情 S -->
+          <section class="hotel-details">
+
+              <div class="text">
+                <ul>
+                  <li>
+                    <span class="pull-right money">￥${(info.sellPrice)!'0'}/晚</span> 
+                    <strong>${(info.guestRoomName)!''}</strong>
+                  </li>
+                  <li>
+                    <span class="pull-right flip"><a href="/hotelMap"><i class="icon-l"></i>查看地图 </a></span>
+                    <span><i class="icon-addrss"></i>${(info.guestRoomAddress)!''}</span>
+                    <div style="clear:both;"></div>
+                  </li>
+                  <li>
+                    <span class="pull-right"><a href="tel:${(info.guestRoomTel)!''}"><i class="icon-l"></i>联系客服 </a></span>
+                    <span><i class="icon-phone"></i>${(info.guestRoomTel)!''}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- 商品详情 S -->
+              <article class="shop-details mt15">
+                  <h3 class="title">商品详情</h3>
+                   <article class="trace">
+                       ${(info.guestRoomContentStr)!''}
+                   </article>
+              </article>
+              <!-- 商品详情 S -->
+
+          </section>
+         <!-- 酒店客房详情 E -->
+
+		</div>
+		<!--container E-->
+</div>
+<!--wrapper E-->
+
+<!-- 点击预订 S-->
+<section class="reserve">
+    <button class=" btn-warning btn-radius btn-block" onclick="show()"> 点击预订 </button>
+</section>
+<!-- 点击预订 E-->
+<!--弹出框 S-->
+<div class="mask"></div>
+<div class="hotel-comfirm-msg">
+	<input type="hidden" data-type="text" name="goodsId" value="${(info.id)!''}"/>
+	<input type="hidden" data-type="text" name="goodsPrice" value="${(info.sellPrice)!''}"/>
+	<input type="hidden" data-type="order" name="orderTypeCode" value="2"/>
+	<ul>
+		<li>请提交入住信息</li>
+		<li><span>${(info.guestRoomName)!''}</span></li>
+		<li><label for="">房间数量</label><input type="text" data-type="text" name="goodsNum" placeholder="请输入订房数量"/></li>
+		<li><label for="">联系人</label><input type="text" data-type="order" name="linkUserName" placeholder="请输入联系人"/></li>
+		<li><label for="">手机号</label><input type="text" data-type="order" name="linkUserPhone" placeholder="请输入手机号"/></li>
+		<li><label for="">入住时间</label><span class="laydate-icon" id="start" type="text" class="f-text" value="" /></span></li>
+		<li><label for="">离开时间</label><span class="laydate-icon" id="end" type="text" class="f-text" value="" /></span></li>
+	</ul>
+	<button class="btn-block btn-radius-sm btn-warning" onclick="subFun()">确认提交</button>
+</div>
+<div class="success-msg">
+	<ul>
+		<li><span>成功提示</span></li>
+		<li class="mt15"><span>您已成功提交住房信息!</span></li>
+		<li><span>稍后我们的客服会跟您联系</span></li>
+	</ul>
+	<button class="btn-block btn-radius-sm mt15" onclick="addOrder()">我知道了</button>
+</div>
+
+<!--弹出框 S-->
+
+
+  <script src="/js/swiper.min.js"></script> 
+  <script src="/js/jquery-2.1.4.min.js"></script>
+  <script src="/js/app.js"></script>
+	<script src="/js/mui.min.js"></script>
+  <script type="text/javascript"> 
+	$(document).ready(function(){
+	$(".flip").click(function(){
+	    $(".panel").toggle();
+	  });
+	});
+ </script>
+  <script type="text/javascript">
+  $("a.swiper-slide img").height($("a.swiper-slide img").width()*524/750);
+  function show(){
+  	$(".hotel-comfirm-msg").fadeIn();
+  	$(".mask").fadeIn();
+  }
+  function success(){
+  	$(".hotel-comfirm-msg").fadeOut();
+  	$(".success-msg").fadeIn();
+  	$(".mask").fadeIn();
+  }
+  	$(".mask").click(function(){
+  		$(".hotel-comfirm-msg").fadeOut(300);
+  		$(".success-msg").fadeOut(300);
+  		$(".mask").fadeOut(500);
+  	});
+  </script>
+  <script src="/js/laydate.js"></script>
+  <script src="/js/script.js"></script>
+<script type="text/javascript">
+!function(){
+	laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+	laydate({elem: '#demo'});//绑定元素
+}();
+
+//日期范围限制
+var start = {
+    elem: '#start',
+    format: 'YYYY-MM-DD',
+    min: laydate.now(), //设定最小日期为当前日期
+    max: '2099-06-16', //最大日期
+    istime: true,
+    istoday: false,
+    choose: function(datas){
+         end.min = datas; //开始日选好后，重置结束日的最小日期
+         end.start = datas //将结束日的初始值设定为开始日
+    }
+};
+
+var end = {
+    elem: '#end',
+    format: 'YYYY-MM-DD',
+    min: laydate.now(),
+    max: '2099-06-16',
+    istime: true,
+    istoday: false,
+    choose: function(datas){
+        start.max = datas; //结束日选好后，充值开始日的最大日期
+    }
+};
+laydate(start);
+laydate(end);
+
+function subFun(){
+	var inpt = $('.hotel-comfirm-msg').find('ul input');
+	var checkInDate = $('#start').text();
+	var checkOutDate = $('#end').text();
+	if(!inpt.eq(0).val()){
+		mui.toast('请输入房价数量');
+	}else if(!isInt(inpt.eq(0).val())){
+		mui.toast('请输入正确的房价数量');
+	}else if(!inpt.eq(1).val()){
+		mui.toast('请输入联系人');
+	}else if(!inpt.eq(2).val()){
+		mui.toast('请输入手机号');
+	}else if(!validatePhone(inpt.eq(2).val())){
+		mui.toast('请输入正确的手机号');
+	}else if(!checkInDate){
+		mui.toast('请选择入住时间');
+	}else if(!checkOutDate){
+		mui.toast('请选择离开时间');
+	}else{
+		var data = {};
+		$('.hotel-comfirm-msg').find('input[data-type="order"]').each(function(){
+		  	var v = $(this).val();
+		  	var name = $(this).attr('name');
+		  	data[name] = v;
+	  	});
+	  	data.checkInDate = $('#start').text();
+	  	data.checkOutDate = $('#end').text();
+	  var json = {};
+	  var goods = [];
+	  $('.hotel-comfirm-msg').find('input[data-type="text"]').each(function(){
+		  var v = $(this).val();
+		  var name = $(this).attr('name');
+		  json[name] = v;
+	  });
+	  goods[0] = json;
+	  data.goods = JsonToStr(goods);
+	  $.ajax({
+      	data:data,
+          type: 'POST',
+          url: '/addOrder',
+          dataType: 'json',
+          success: function(data){
+          	if(data.isError==1){
+	          	mui.toast(data.msg);
+          	}else{
+	          	success();
+          	}
+          },
+          error: function(xhr, type){
+          	mui.toast('系统错误，请联系管理员');
+          }
+      });
+	}
+}
+
+</script>
+</body>
+</html>

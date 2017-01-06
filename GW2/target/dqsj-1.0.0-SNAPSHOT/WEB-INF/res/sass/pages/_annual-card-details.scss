@@ -1,0 +1,186 @@
+/* =======================annual-card-details==================*/
+.card{
+    background-color: $link-white;
+    padding: .625rem;
+    .text{
+        width: 9rem;
+        h3{
+            color: $link-black;
+            padding-bottom: .5rem;
+        }
+        .price{
+            display: block;
+            color: $link-wag-color;
+        }
+    }
+    .addbox{
+        margin-top: .2rem;
+        .spinnerExample{
+            width: $height - 14;
+            height: $height - 22;
+            line-height: $height - 20;
+            float: left;
+            margin: 3px .3rem;
+            text-align: center;
+            border: 1px solid $link-gray-bor;
+            color: $link-gray-e6;
+        }
+        button{
+           float: left;
+           width: $height - 14;
+           height: $height - 14;
+           border-radius: 50%;
+           display: inline-block;
+           border: 1px solid $link-gray-bor;
+           text-align: center;
+           font-size: $font-size + 2;
+           line-height: $height - 16;
+           font-weight: bold;
+           background: none;
+           color: $link-gray-e9;
+           &:active{
+               border-color: $link-primary;
+               color: $link-primary; 
+           }
+        }
+        
+    }
+}
+
+.annual-card{
+    background-color: $link-white;
+    .title{
+        border-bottom: 1px solid $link-gray-bor;
+        position: relative;
+        height: $height;
+        line-height: $height;
+        padding-left: .7rem;
+        &:before{
+            width: 3px;
+            height: 17px;
+            position: absolute;
+            top: $font-size;
+            left: .3rem;
+            content: "";
+            background-color: $link-primary;
+        }
+    }
+    .words{
+        padding: .625rem;
+        line-height: $height - 20;
+        color: $link-gray-e6;
+        figure{
+            margin-top: .5rem;
+        }
+    }
+}
+
+.footer-fixed{
+    width: $Witdh;
+    position: fixed;
+    bottom: $height * 0;
+    left: $height * 0;
+    height: 44px;
+    background: #fff;
+    z-index: 999;
+    
+}
+ .btnCont{
+        padding: 5px 0; 
+        width: $Witdh;
+        height: $height;
+        a{
+            width: 46%;
+            margin-left: 2%;
+            line-height: 32px;
+            float: left;
+            text-align: center;
+            display: block;
+        }
+    }
+.reading{
+        position: fixed;
+        z-index: 1;
+        bottom: 44px;
+        width: 100%;
+        border-bottom: 1px solid $link-gray-bor;
+        border-top: 1px solid $link-gray-bor;
+        height: $height;
+        line-height: $height;
+        background-color: $link-white;
+        .checkbox_item{
+                margin-right: .3rem;
+                margin-left: .3rem;
+            }
+        ul{
+            
+            
+            li{
+                a{
+                   padding-left: .5rem; 
+                   display: block;
+                   color: $link-gray-e6;
+                   
+                   .icon-l,.icon-down{
+                       margin-top: $font-size + 1;
+                   }
+                }
+            }
+        }
+    }
+ .reading{
+     .checkbox_item{
+    position:relative;
+    display:inline-block;
+    height:16px;
+    input{
+        position:absolute;
+        top:-9999px;
+        left:-9999px;
+        }
+    .check_label{
+        display:inline-block;
+        cursor:default;
+        }
+    }
+.checkbox_icon{
+    display:block;
+    float:left;
+    margin-top:13px;
+    width:16px;
+    height:16px;
+    background:url(../img/checkbox_icon2.png) 0 0;
+    
+    }
+.check_label.on .checkbox_icon{
+    background-position:-16px 0;
+    }
+
+ }   
+    
+    
+    
+ .top{
+     top: 44px;
+     position: fixed;
+     width: 100%;
+ }
+ .bottom{
+     bottom: 44px;
+ }
+footer .btnCont{
+    border-top:none;
+}
+#wrapper.borderCon{
+    background-color: $link-white;
+    padding: .5rem;
+    line-height: 27px;
+    font-size: $font-size - 1;
+    color: $link-gray-e6;
+    width: 94%;
+    margin-top: 44px;
+    h4{
+        padding-bottom: .6rem;
+        color: $link-gray-e3;
+    }
+}

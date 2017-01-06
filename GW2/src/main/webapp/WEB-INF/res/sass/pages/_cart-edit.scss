@@ -1,0 +1,155 @@
+/* =======================cart-edit==================*/
+.cart-edit-list{
+    background-color: $link-white;
+    ul{
+        li{
+            padding: 0 .5rem;
+            display: block;
+            height:  4.6rem;
+            border-bottom: 1px solid $link-color-ul ;
+            &:last-child{
+                border: none;
+            }
+            
+            .ticket{
+                color: $link-wag-color;
+            }
+            .price{
+                @extend .ticket;
+            }
+            a{
+                width: 36%;
+                display: block;
+                float: left;
+                img{
+                    width: 100%;
+                    margin-top:.35rem;
+                }
+            }
+            .cart-content{
+                padding-top:.35rem;
+                padding-left: .6rem;
+                float: left;
+                width: 50%;
+                .title{
+                    margin-bottom: 1.6rem;
+                }
+                .cart-price{
+                    overflow: hidden;
+                    span{
+                        color: $link-gray-e6;
+                        float: left;
+                        line-height: 28px;
+                    }
+                    button{
+                        float: right;
+                        height: 30px;
+                        width: 30px;
+                        background: none;
+                        border: 1px solid #d5d5d5;
+                        color: $link-primary;
+                        &:active{
+                            background: #d5d5d5;
+                        }
+                    }
+                    input{
+                        width: 10%;
+                        float: right;
+                        height: 28px;
+                        width: 28px;
+                        line-height: 28px;
+                        outline: none;
+                        border-top: 1px solid #d5d5d5;
+                        border-bottom: 1px solid #d5d5d5;
+                        border-left: none;
+                        border-right: none;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        &:first-of-type{
+                height:  $height;
+                line-height: $height;
+                border-bottom: 1px solid $link-color-ul ;
+                a{
+                    width: 20%;
+                    text-align: center;
+                    color: $link-gray-e6;
+                    position: relative;
+                    &:before{
+                        position: absolute;
+                        content: "";
+                        width: 1px;
+                        height: 44px;
+                        background: $link-color-ul;
+                        left: -10px;
+                    }
+                }
+                span{
+                    width: 36%;
+                    display: block;
+                    float: left;
+                    text-align: center;
+                    position: relative;
+                    &:first-of-type:after{
+                        position: absolute;
+                        width: 1px;
+                        height: 16px;
+                        content: "";
+                        background: $link-color-ul;
+                        right: 0;
+                        top: 15px;
+                    }
+                }
+                .active{
+                    color: $link-primary;
+                }
+            }
+    }
+}
+.del-msg{
+    background: $link-white;
+    position: fixed;
+    z-index: 1001;
+    top: 30%;
+    left: 10%;
+    width: 80%;
+    display: none;
+    border-radius: 5px;
+    ul{
+        li{
+            line-height:$height - 14;
+            color:$link-gray-e9;
+            padding:0 .6rem; 
+            text-align: center; 
+            &:first-of-type{
+                border-bottom: 1px solid $link-color-ul;
+                line-height:$height;
+            }
+            span{
+                color:$link-gray-e3; 
+                a{
+                    color: $link-primary;
+                }
+            }
+        }
+    }
+    div{
+        width: 80%;
+        margin: 15px auto;
+        overflow: hidden;
+        button{
+            width: 40%;
+            float: left;
+            margin-left: 10px;
+            &:last-of-type{
+                background: none;
+                border: 1px solid $link-bgc-btn;
+                margin-bottom: 10px;
+                color: $link-bgc-btn;
+            }
+        }
+    }
+    
+}

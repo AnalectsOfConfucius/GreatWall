@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1" >
+    <title>民生大千世界游乐园-年卡详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="keywords" content="民生大千世界游乐园">
+    <meta name="description" content="民生大千世界游乐园">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link type="text/css" rel="stylesheet" href="/css/mui.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <script>
+		(function() {
+			var b = document.documentElement,
+			a = function() {
+				var a = b.getBoundingClientRect().width;
+				b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+			},
+			c = null;
+			window.addEventListener("resize",
+			function() {
+				clearTimeout(c);
+				c = setTimeout(a, 300)
+			});
+			a()
+		})();
+    </script>
+</head>
+<body>
+
+<!-- header S -->
+    <div class="header">
+      <div class="headbar">
+      	<a href="javascript:history.go(-1)" class="return"><i class="icon-return"></i>返回</a>
+      	<h3>年卡详情</h3>
+      </div>
+    </div>
+<!-- header E -->
+<!--wrapper S-->
+<div id	="wrapper" style="padding-bottom: 90px;">
+		<!--container S-->
+		<div class="container">
+
+          <!-- banner S -->
+			    <section class="banner">
+             <div class="swiper-container swiper-cat-index-ad ">
+               <div class="swiper-wrapper">
+                    [#if plist??]
+                    [#list plist as l]
+                    <a href="javascript:void(0);" class="swiper-slide">
+                        <img data-src="${(l.picUrl)!''}" class="swiper-lazy">
+                        <div class="swiper-lazy-preloader"></div>
+                    </a>
+                    [/#list]
+                    [/#if]
+               </div>
+               <!-- Add Pagination -->
+               <div class="swiper-pagination"></div>
+              </div>    
+          </section>
+          <!-- banner S -->
+          
+          <!--card S-->
+          <section class="card clearfix">
+          		<input type="hidden" name="sellPrice" value="${(info.sellPrice)!''}"/>
+          		<input type="hidden" name="goodsId" value="${(info.id)!''}"/>
+          		<input type="hidden" name="goodsName" value="${(info.goodsName)!''}"/>
+          		<input type="hidden" name="sellPrice" value="${(info.sellPrice)!''}"/>
+          		<input type="hidden" name="typeCode" value="1"/>
+          	  <div class="text pull-left">
+          	  	  <h3>${(info.goodsName)!''}</h3>
+          	  	  <span class="price">￥${(info.sellPrice)!''}</span>
+          	  </div>
+          	  <div class="addbox pull-right">
+          	  	<i class="minus mui-icon mui-icon-minus" style="margin-top: 0;"></i>
+                  <input type="text" name="goodsNum" class="spinnerExample text_box" value="1"/>
+                <i class="add mui-icon mui-icon-plus"></i>
+          	  </div>
+          </section>
+          <!--card E-->
+          
+          <!-- 年卡详情 S -->
+          <section class="annual-card mt15">
+                <h3 class="title">年卡介绍</h3>
+                <article class="words">
+                	${(info.goodsContentStr)!''}
+                </article>
+          </section>
+         <!-- 年卡详情 E -->
+
+		</div>
+		<!--container E-->
+		
+		<!-- 阅读购票须知 S -->
+        <section class="annual-card borderCon" id="wrapper">
+               <h4>旅客购票须知</h4>
+               <p>1、全价票：1.5米以上、65岁以下、无证件购票者。<br/>
+2、半票价：6周岁（不含6周岁）—18周岁（含18周岁）未成年人、全日制在校大学本科及以下学历学生，凭本人学生证购票（不包含成人院校学生）<br/>
+3、免票：6周岁（含6周岁）以下或身高1.20米（含1.20米）以下的儿童（需成人陪同）、65岁以上老人、残疾人、现役军人、军队离退休干部、
+军队院校学员凭本人有效证件（寿星证、残疾证、军官证、文职干部证、士兵证、学员证）换取免票（老人及残疾人建议有陪同）。<br/>
+4、售出门票当日有效，一张门票只可入园一次，副劵自行撕毁即视无效。<br/>
+5、售出门票概不退换，门票遗失，自行负责。<br/>
+6、门票对园区内需另行付费的项目无效，门票可作为商业发票及报销凭证使用。<br/>
+7、请游客在园区规定的营业时间内持有效门票入园。<br/>
+8、本门票最终解释权属民生大千世界有限公司。</p>
+        </section>
+        <!-- 阅读购票须知 E -->
+</div>
+<!--wrapper E-->
+<!--footer S-->
+	<div class="reading">
+		
+   	   	  	<span class="checkbox_item pull-left" style="padding-right: 5px;">
+                <label class="check_label on">
+				    <i class="checkbox_icon "></i>
+                </label>
+			</span>		
+   	   	  <ul>
+   	   	  	<li>
+   	   	  		<a>
+   	   	  			
+   	   	  			阅读购票须知 
+   	   	  			<span class="icon-down pull-right"></span>
+   	   	  			<span class="icon-up pull-right"></span>
+   	   	  		</a>
+   	   	  	</li>
+   	   	  </ul>
+   	   	  
+   	   </div>
+   	
+   <section class="footer-fixed">
+   	   <div class="btnCont">
+   	   	  <a class="btn-primary btn-radius" data-name="addCart">加入购物车</a>
+   	   	  <a href="javascript:void(0);" class="btn-warning  btn-radius" data-name="buySub">立即购买</a>
+   	   </div>
+   </section>
+<!--footer E-->
+
+  <script src="/js/swiper.min.js"></script> 
+  <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="/js/checkbox.js" ></script>
+  <script src="/js/app.js"></script>
+<script src="/js/mui.min.js"></script>
+  <script type="text/javascript">
+  	$(".swiper-slide img").height($(".swiper-slide img").width()*320/750);
+  </script>
+  <script type="text/javascript">
+  	$('.icon-up').hide();
+  	$('.borderCon').hide();
+ 	
+  	$(".reading ul").click(function(){
+  		var $t = $(this).parent('.reading');
+  		if($t.hasClass('top')){
+  			$('.reading').removeClass('top');
+  			$('.borderCon').hide();
+  			$(".container").show();
+  			$("button").show();
+  			$(".icon-up").hide();
+  			$(".icon-down").show();
+  		}else{
+  			$('.reading').removeClass('top');
+  			$('.borderCon').hide();
+  			$('.reading').addClass('top');
+  			$('.borderCon').show();
+  			$(".container").hide();
+  			$("button").hide();
+  			$(".icon-up").show();
+  			$(".icon-down").hide();
+  		}
+  	})
+  </script>
+    <script>
+  	//check_label
+     $(".check_label").checkbox();
+  </script>
+  
+    <!--商品加减-->
+	<script type="text/javascript">
+		$('.add').css({"color":"#2dacfe"});
+		$('.minus').css({"color":"#2dacfe"});
+		$(function(){
+			$(".minus").click(function(){
+				var t=$(this).parent().find('input[class*=text_box]');
+				t.val(parseInt(t.val())-1);
+				if(parseInt(t.val()) <= 1){
+					$(this).attr("disabled",true);
+					$(this).css({"color":"#d5d5d5"});
+					t.val(1);
+				}
+				setTotal();
+			})
+			$(".add").click(function(){
+				var t=$(this).parent().find('input[class*=text_box]');
+				t.val(parseInt(t.val())+1);
+				$(this).parent().find(".minus").attr("disabled",false);
+				$(this).parent().find(".minus").css({"color":"#2dacfe"});
+				setTotal();
+			})
+			
+			function setTotal(){
+				var price = $('#wrapper').find('input[name="sellPrice"]').val();
+				var num = $('#wrapper').find('input[name="goodsNum"]').val();
+				if(!price){
+					price = 0;
+				}
+				if(!num){
+					num = 0;
+				}
+				var total = (1*price)*(1*num);
+				$('#wrapper').find('.price').text('￥'+total);
+			}
+			setTotal();
+			
+			//加入购物车
+			$('.footer-fixed').find('a[data-name="addCart"]').click(function(){
+				var num = $('.card').eq(0).find("input[name='goodsNum']").val();
+				if(num>0){
+					 var data = {};
+					 $('.card').eq(0).find("input").each(function(){
+					 	var name = $(this).attr('name');
+					 	var v = $(this).val();
+					 	data[name] = v;
+					 });
+					 $.ajax({
+		            	data:data,
+		                type: 'POST',
+		                url: '/shoppingCart/addCart',
+		                dataType: 'json',
+		                success: function(data){
+		                	mui.toast(data.msg);
+		                },
+		                error: function(xhr, type){
+		                	mui.toast('系统错误，请联系管理员');
+		                }
+		            });
+				}else{
+					mui.toast('商品数量至少是一个');
+				}
+			});
+			//购买
+			$('.footer-fixed').find('a[data-name="buySub"]').click(function(){
+				var num = $('.card').eq(0).find("input[name='goodsNum']").val();
+				if(num>0){
+					 var data = {};
+					 var url = '';
+					 $('.card').eq(0).find("input").each(function(i){
+					 	var name = $(this).attr('name');
+					 	var v = $(this).val();
+					 	data[name] = v;
+					 	if(i==0){
+					 		url += name+'='+v;
+					 	}else{
+					 		url += '&'+name+'='+v;
+					 	}
+					 });
+// 					 $.ajax({
+// 		            	data:data,
+// 		                type: 'GET',
+// 		                url: '/toBuySubmit',
+// 		                dataType: 'json',
+// 		                success: function(data){
+// 		                	mui.toast(data.msg);
+// 		                },
+// 		                error: function(xhr, type){
+// 		                	mui.toast('系统错误，请联系管理员');
+// 		                }
+// 		            });
+					window.location.href = '/toBuySubmit?'+url;
+				}else{
+					mui.toast('商品数量至少是一个');
+				}
+			});
+		}); 
+	</script>
+
+</body>
+</html>

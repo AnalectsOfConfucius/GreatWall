@@ -1,0 +1,65 @@
+/* =======================play-raiders==================*/
+.play-raiders{
+    //border-top: 1px solid $link-gray-bor;
+    background-color: $link-white;
+    padding: 0 .5rem;
+    position: relative;
+    .item{
+        width: $Witdh;
+        @include flexbox(flexbox);
+        border-bottom: 1px solid $link-bgc;
+        padding: .75rem 0;
+        &:last-child{
+            border: none;
+        }
+    
+        &:hover a{
+           color:$link-primary;
+        }  
+    
+        figure{
+            @include css3(flex, 1 6.2rem);
+            width: 6.2rem;
+         
+        }
+        aside{
+            @include css3(flex, 1 10rem);
+            width: 10rem;
+            padding-left: .5rem;
+            h3{
+                color: $link-black;
+                @include text-overflow(text-overflow);
+            
+
+                a{
+                  color: $link-black;
+                }
+            }
+            p{  
+                padding-top: .5rem;
+                line-height: $font-size + 8;
+                color:$link-gray-e9;
+                @include overflow(overflow);
+                font-size: $font-size;
+            }
+            .moer{
+                padding-top: .5rem;
+                display: block;
+                float: right;
+                color:$link-primary;
+                font-size: $font-size;
+            }
+            .price{
+                padding-top: .5rem;
+                display: block;
+                float: right;
+                color:$link-wag-color;
+                font-size: $font-size;
+            }
+
+        }
+    }
+}
+
+
+    

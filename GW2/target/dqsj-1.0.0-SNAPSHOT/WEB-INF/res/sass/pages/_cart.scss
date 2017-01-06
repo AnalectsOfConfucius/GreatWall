@@ -1,0 +1,151 @@
+/* =======================cart==================*/
+.cal-common{
+    margin: .3rem 2%;
+    line-height: 30px;
+    display: block;
+    font-size: $font-size + 1;
+}
+.cal{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 44px;
+    background-color: $link-white;
+    border-top: 1px solid $link-gray-bor;
+    a{
+        &:last-of-type{
+            width: 16%;
+            color: $link-black-total;
+            float: right;
+            text-align: right;
+            @extend .cal-common;
+        }
+        &:first-of-type{
+            width: 36%;
+            float: right;
+            text-align: center;
+            color: $link-black-total;
+            @extend .cal-common;
+            span{
+                color: $link-wag-color;
+            }
+        }
+    }
+    button{
+        float: right;
+        width: 35%;
+        @extend .cal-common;
+        line-height: 20px;
+    }
+}  
+.cart-list{
+    background-color: $link-white;
+    ul{
+        li{
+            padding: 0 .5rem;
+            display: block;
+            height:  4.6rem;
+            border-bottom: 1px solid $link-color-ul ;
+            &:last-child{
+                border: none;
+            }
+            &:first-of-type{
+                height:  $height;
+                line-height: $height;
+                a{
+                    width: 20%;
+                    text-align: center;
+                    color: $link-gray-e6;
+                    position: relative;
+                    &:before{
+                        position: absolute;
+                        content: "";
+                        width: 1px;
+                        height: 44px;
+                        background: $link-color-ul;
+                        left: -10px;
+                    }
+                }
+            }
+            .ticket{
+                color: $link-wag-color;
+            }
+            .price{
+                @extend .ticket;
+            }
+            a{
+                width: 36%;
+                display: block;
+                float: left;
+                img{
+                    width: 100%;
+                    margin-top:.35rem;
+                }
+            }
+            .cart-content{
+                padding-top:.35rem;
+                padding-left: .6rem;
+                float: left;
+                width: 50%;
+                .title{
+                    margin-bottom: 1.6rem;
+                }
+                .cart-price{
+                    overflow: hidden;
+                    span{
+                        color: $link-gray-e6;
+                        float: left;
+                        line-height: 28px;
+                    }
+                    button{
+                        float: right;
+                        height: 30px;
+                        width: 30px;
+                        background: none;
+                        border: 1px solid #d5d5d5;
+                        color: $link-primary;
+                        &:active{
+                            background: #d5d5d5;
+                        }
+                    }
+                    input{
+                        width: 10%;
+                        float: right;
+                        height: 28px;
+                        width: 28px;
+                        line-height: 28px;
+                        outline: none;
+                        border-top: 1px solid #d5d5d5;
+                        border-bottom: 1px solid #d5d5d5;
+                        border-left: none;
+                        border-right: none;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.checkbox_icon_y{
+    display:block;
+    float:left;
+    width:16px;
+    margin-top:2.0rem;
+    margin-right: 10px;
+    height:16px;
+    background:url(../img/checkbox_icon_y.png) 0 0;
+    }
+.cal a .checkbox_icon_y{
+    display:block;
+    float:left;
+    width:16px;
+    margin-top: 6px;
+    margin-right: 5px;
+    height:16px;
+    background:url(../img/checkbox_icon_y.png) 0 0;
+    }
+.check_label.on .checkbox_icon_y{
+    background-position:-16px 0;
+    }

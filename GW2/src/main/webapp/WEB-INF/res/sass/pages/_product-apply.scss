@@ -1,0 +1,64 @@
+/* =======================product-apply==================*/
+.product-detail-list{
+    background: $link-white;
+    li{
+        @extend .common;
+        span{
+            float: left;
+            font-weight: normal;
+            color:$link-gray-e3; 
+            &:first-of-type{
+                color:$link-gray-e6; 
+            }
+            
+            &:nth-of-type(2){
+                display: block;
+                width: 30%;
+                text-align: right;
+            }
+        }
+    &:first-of-type span,&:nth-of-type(2) span{
+        color: $link-gray-e3;
+        width: auto;
+    }
+    &:last-of-type{
+        border-bottom: none;
+        span:nth-of-type(2){
+            color: $link-wag-color;
+        }
+    } 
+    }
+}
+
+.product-detail-num{
+    background: $link-white;
+    li{
+    @extend .common;
+        span{
+            float: left;
+            color: $link-gray-e6;
+            font-weight: normal;
+        }
+        div{
+            @extend .div-common;
+            span:first-of-type{
+                display: block;
+                width: 6.5rem;
+                color: $link-gray-e3;
+            }
+            button{
+                @extend .btn-common;
+            }
+            input{
+                @extend .input-common;
+            }
+            &:last-of-type *{
+                float: right;
+            }
+        }
+    }
+}
+.declare{
+    padding: 0 0.6rem;
+    color: $link-gray-e9;
+}

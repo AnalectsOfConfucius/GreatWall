@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.base.dao.FEInfoDao">
+
+    <!-- 根据查询条件查询所有详细信息 -->
+    <select id="selectByCriterias" parameterType="java.util.Map" resultType="com.hg.dqsj.base.view.VFEInfo">
+		select info.*
+		  from (SELECT DISTINCT fi.id,
+		                        fi.infoTitle,
+		                        fi.infoPicUrl,
+		                        fi.infoBrief,
+		                        'INFO' as infoType,
+		                        fim.infoMapOrder as infoOrder,
+		                        fi.updateDate
+		          FROM dqsj_fe_info fi, dqsj_fe_info_map fim, dqsj_sm_type st
+		         WHERE fi.deleteFlag = '0'
+		           AND fim.deleteFlag = '0'
+		           AND st.deleteFlag = '0'
+		           AND fi.id = fim.infoId
+		           AND fim.typeId = st.id
+		           AND st.typeCode = '${typeCode}'
+                   <if test="isRecommend != null and isRecommend != ''">
+                   AND fi.isRecommend = '${isRecommend}'
+                   </if>
+		        <if test="typeCode != null and typeCode == 'promotions'">
+		        union all
+		        select sv.id,
+                       sv.voteTitle as infoTitle,
+                       sv.votePicUrl as infoPicUrl,
+                       sv.voteDescribe as infoBrief,
+                       'VOTE' as infoType,
+                       sv.voteOrder as infoOrder,
+                       sv.updateDate
+		          from dqsj_sm_vote sv
+		         where sv.deleteFlag = '0'
+                   <if test="isRecommend != null and isRecommend == 1"><![CDATA[
+                   and str_to_date(sv.voteStartTime, '%Y-%m-%d') <= now()
+                   and str_to_date(sv.voteEndTime, '%Y-%m-%d') >= now()
+                   and sv.stateFlag = '1']]></if>
+                   <if test="isRecommend != null and isRecommend == 0"><![CDATA[
+                   and str_to_date(sv.voteStartTime, '%Y-%m-%d') <= now()
+                   and str_to_date(sv.voteEndTime, '%Y-%m-%d') <= now()
+                   or sv.stateFlag = '2']]></if></if>) info
+		 order by info.updateDate desc
+        <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>
+    </select>
+    
+    <!-- 根据查询条件查询所有详细信息数 -->
+    <select id="countByCriterias" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(distinct info.id)
+          from (SELECT DISTINCT fi.id,
+                                fi.infoTitle,
+                                fi.infoPicUrl,
+                                fi.infoBrief,
+                                'INFO' as infoType,
+                                fim.infoMapOrder as infoOrder,
+                                fi.updateDate
+                  FROM dqsj_fe_info fi, dqsj_fe_info_map fim, dqsj_sm_type st
+                 WHERE fi.deleteFlag = '0'
+                   AND fim.deleteFlag = '0'
+                   AND st.deleteFlag = '0'
+                   AND fi.id = fim.infoId
+                   AND fim.typeId = st.id
+                   AND st.typeCode = '${typeCode}'
+                   <if test="isRecommend != null and isRecommend != ''">
+                   AND fi.isRecommend = '${isRecommend}'
+                   </if>
+                <if test="typeCode != null and typeCode == 'promotions'">
+                union all
+                select sv.id,
+                       sv.voteTitle as infoTitle,
+                       sv.votePicUrl as infoPicUrl,
+                       sv.voteDescribe as infoBrief,
+                       'VOTE' as infoType,
+                       sv.voteOrder as infoOrder,
+                       sv.updateDate
+                  from dqsj_sm_vote sv
+                 where sv.deleteFlag = '0'
+                   <if test="isRecommend != null and isRecommend == 1"><![CDATA[
+                   and str_to_date(sv.voteStartTime, '%Y-%m-%d') <= now()
+                   and str_to_date(sv.voteEndTime, '%Y-%m-%d') >= now()
+                   and sv.stateFlag = '1']]></if>
+                   <if test="isRecommend != null and isRecommend == 0"><![CDATA[
+                   and str_to_date(sv.voteStartTime, '%Y-%m-%d') <= now()
+                   and str_to_date(sv.voteEndTime, '%Y-%m-%d') <= now()
+                   or sv.stateFlag = '2']]></if></if>) info
+    </select>
+    
+    <!-- 根据【类别代码】查询资讯信息 （单条） -->
+    <select id="selectVSingleByTypeCode" parameterType="java.util.Map" resultType="com.hg.dqsj.base.view.VFEInfo">
+		SELECT fi.id,
+		       fi.infoTitle,
+		       fi.infoPicUrl,
+		       fi.infoBrief,
+		       fi.infoContent,
+		       fi.isRecommend,
+		       fi.isRelease,
+		       fi.releaseDate,
+		       fi.remark,
+		       fi.createDate,
+		       fi.createUserId,
+		       fi.updateDate,
+		       fi.updateUserId,
+		       fi.deleteFlag,
+		       (SELECT infoMapOrder FROM dqsj_fe_info_map WHERE infoId = fi.id) AS infoMapOrder,
+		       (SELECT userName FROM dqsj_sm_user WHERE id = fi.updateUserId) AS releaseUserName
+		  FROM dqsj_fe_info fi, dqsj_fe_info_map fim, dqsj_sm_type st
+		 WHERE fi.id = fim.infoId
+		   AND fim.typeId = st.id
+		   AND fi.deleteFlag = '0'
+		   AND fim.deleteFlag = '0'
+		   AND st.deleteFlag = '0'
+		   and fim.infoMapType = '1'
+		   and st.typeCode = '${typeCode}'
+    </select>
+    
+    <!-- 根据ID查询详细信息 -->
+    <select id="selectVById" parameterType="java.util.Map" resultType="com.hg.dqsj.base.view.VFEInfo">
+        SELECT fi.id,
+               fi.infoTitle,
+               fi.infoPicUrl,
+               fi.infoBrief,
+               fi.infoContent,
+               fi.isRecommend,
+               fi.isRelease,
+               fi.releaseDate,
+               fi.remark,
+               fi.createDate,
+               fi.createUserId,
+               fi.updateDate,
+               fi.updateUserId,
+               fi.deleteFlag,
+               (SELECT infoMapOrder FROM dqsj_fe_info_map WHERE infoId = fi.id) AS infoMapOrder
+          FROM dqsj_fe_info fi
+         WHERE fi.deleteFlag = '0'
+           AND fi.id = '${id}'
+    </select>
+</mapper>

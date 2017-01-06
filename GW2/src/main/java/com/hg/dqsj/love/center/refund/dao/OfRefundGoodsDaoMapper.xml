@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.love.center.refund.dao.OfRefundGoodsDao">
+    <!-- 根据退款ID查询商品信息 -->
+    <select id="selectGoodsByRefundId" parameterType="java.lang.String" resultType="com.hg.dqsj.love.center.refund.view.VOfRefundGoods">
+		select (select goodsName from dqsj_fe_goods where id = org.goodsId) as goodsName,
+		       goodsNum,
+		       goodsPrice,
+		       createDate,
+		       remark
+		  from dqsj_of_refund_goods org
+		 where org.refundId = #{refundId}
+    </select>
+    
+    <!-- 根据退款ID查询客房信息 -->
+    <select id="selectGuestRoomByRefundId" parameterType="java.lang.String" resultType="com.hg.dqsj.love.center.refund.view.VOfRefundGoods">
+        select (select guestRoomName from dqsj_fe_guest_room where id = org.goodsId) as goodsName,
+               goodsNum,
+               goodsPrice,
+               createDate,
+               remark
+           from dqsj_of_refund_goods org
+         where org.refundId = #{refundId}
+    </select>
+    <!-- 新增退款商品-->
+    <insert id="saveRefundGoods" parameterType="com.hg.dqsj.love.center.refund.entity.OfRefundGoods">
+		INSERT INTO dqsj_of_refund_goods (
+		    id,
+			refundId,
+			goodsId,
+			goodsNum,
+			goodsPrice,			
+			createDate,
+			createUserId,
+			updateDate,
+			updateUserId,
+			deleteFlag
+		)
+		VALUES
+		    (
+		        #{id},
+				#{refundId},
+				#{goodsId},
+				#{goodsNum},
+				#{goodsPrice},					
+				#{createDate},
+				#{createUserId},
+				#{updateDate},
+				#{updateUserId},
+				#{deleteFlag}
+		    )
+    </insert>
+</mapper>

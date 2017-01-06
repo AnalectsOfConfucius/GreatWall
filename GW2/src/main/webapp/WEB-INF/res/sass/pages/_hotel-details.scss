@@ -1,0 +1,154 @@
+/* =======================hotel-details==================*/
+.hotel-details{
+    .text{
+        background-color:$link-white;
+        ul{
+            li{
+                display: block;
+                line-height: $height - 4;
+                border-bottom: 1px solid $link-color-ul;
+                padding: 0 .5rem;
+                color: $link-gray-e6;
+                font-size:$font-size - 2;
+                position: relative;
+                &:last-child{
+                    border:none;
+                }
+                    a{
+                     color: $link-gray-e6;   
+                    }
+                    i.icon-l{
+                     float: right;
+                     position: relative;
+                     right: -$font-size - 2;
+                     margin-top: $font-size;
+                   
+                    }
+                    i.icon-down{
+                     float: right;
+                     position: relative;
+                     right: -10px;
+                     margin-top: $font-size;
+                   
+                    }
+                    i.icon-addrss,i.icon-phone{
+                        float: left;
+                        margin-top: 8px;
+                    }   
+            }
+        }
+    }
+}
+.hotel-details .text ul li .mapboxwp{ 
+    border-top: 1px solid #eef1f6; 
+    padding-bottom: 15px; 
+    display: none;
+    width: 100%;
+    height: 200px;
+    max-height: 200px;
+    background: green;
+    padding: 15px 0; 
+}
+
+.shop-details{
+    background-color:$link-white;
+    .title{
+        text-indent: 1rem;
+        height: $height;
+        line-height: $height;
+        color: $link-gray-e3;
+        position: relative;
+        font-size: 16px;
+        &:before{
+            position: absolute;
+            top: $font-size;
+            left: .5rem;
+            width: 3px;
+            height:17px;
+            background-color: $link-primary;
+            content: "";
+        }
+    }
+    .trace{
+      border-top: 1px solid $link-color-ul;
+      padding: .5rem;
+      line-height: $font-size + 10;
+      color: $link-gray-e6;
+      font-size:$font-size; 
+      text-indent: 2em;
+      figure{
+        margin: .5rem 0;
+      text-indent: 0em;
+      }  
+    }
+}
+.reserve{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 44px;
+    background-color: $link-white;
+    border-top: 1px solid $link-gray-bor;
+    a{
+        margin: 6px 4%;
+        width: 92%;
+        line-height: 30px;
+        display: block;
+        font-size: $font-size + 1;
+        text-align: center;
+    }
+}  
+.hotel-comfirm-msg{
+    background: $link-white;
+    position: fixed;
+    z-index: 1001;
+    top: 15%;
+    left: 10%;
+    width: 80%;
+    display: none;
+    border-radius: 5px;
+    ul{
+        li{
+            line-height:$height - 14;
+            color:$link-gray-e6;
+            background: #f5f5f5;
+            border-radius: 3px;
+            margin:.2rem .6rem;  
+            padding:0 .4rem; 
+            &:first-of-type{
+                border-bottom: 1px solid $link-color-ul;
+                text-align: center;
+                background: none;
+                line-height:$height - 4;
+                margin: 0;
+                color:$link-gray-e3; 
+            }
+            span{
+                color:$link-primary; 
+            }
+            input{
+                border: none;
+                color: $link-gray-e9;
+                background: none;
+                text-align: right;
+                float: right;
+                line-height:$height - 14; 
+                width: 60%;
+            }
+            .laydate-icon{
+                border: none;
+                background-color: #f5f5f5;
+                color: $link-gray-e3;
+                text-align: right;
+                float: right;
+                line-height:$height - 14; 
+                width: 60%;
+            }
+        }
+    }
+    button{
+        width: 90%;
+        margin: 10px auto;
+    }
+}

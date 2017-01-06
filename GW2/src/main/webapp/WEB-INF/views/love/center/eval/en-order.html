@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1">
+    <title>民生大千世界游乐园-特产商品评价</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="keywords" content="民生大千世界游乐园">
+    <meta name="description" content="民生大千世界游乐园">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <script>
+        (function () {
+            var b = document.documentElement,
+                    a = function () {
+                        var a = b.getBoundingClientRect().width;
+                        b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+                    },
+                    c = null;
+            window.addEventListener("resize",
+                    function () {
+                        clearTimeout(c);
+                        c = setTimeout(a, 300)
+                    });
+            a()
+        })();
+    </script>
+</head>
+<body>
+
+<!-- header S -->
+<div class="header">
+    <div class="headbar">
+        <a href="javascript:history.go(-1)" class="return"><i class="icon-return"></i>返回</a>
+        <h3>特产食品评价</h3>
+    </div>
+</div>
+<!-- header E -->
+<!--wrapper S-->
+<div id="wrapper">
+    <!--container S-->
+    <div class="container">
+        <!-- 评价订单 S -->
+        <section class="evaluation">
+            <#if ofOrderGoods??>
+                <#list ofOrderGoods as og>
+                    <!--item S-->
+                    <form action="/eval/add" method="post"
+                          novalidate="novalidate" id="${og.id!''}"
+                          enctype="multipart/form-data" class="submitForm">
+                        <input name="goodsId" value="${og.goodsId}" type="hidden">
+                        <input name="orderId" value="${og.orderId}" type="hidden">
+                        <div class="item">
+                            <!--listimg S-->
+                            <div class="listimg clearfix">
+                                <div class="pic" style="background-image: url(${og.picUrl!''})"></div>
+                                <div class="text">
+                                    <h3>${og.goodsName}</h3>
+                                    <p>￥${og.goodsPrice * og.goodsNum}</p>
+                                </div>
+                            </div>
+                            <!--listimg E-->
+
+                            <!--overall S-->
+                            <div class="overall clearfix">
+                                <span class="pull-left">总体</span>
+                                <input name="evalTotalScore" value="5" type="hidden">
+                                <ul class="pull-left evstar">
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                                <span class="pull-right evstar-count"></span>
+                            </div>
+                            <!--overall E-->
+
+                            <!--input-text S-->
+                            <div class="input-text">
+		            	 	 <textarea class="texta" name="evalComment"  cols="" rows="5" onkeyup="javascript:checkWord(this);"
+                                       onmousedown="javascript:checkWord(this);" placeholder="请分享您的体验感受..."></textarea>
+                                <span class="tex">还可以再输入<span class="word-check">80</span>个字</span>
+                            </div>
+                            <!--input-text E-->
+
+                            <!--bgctm15 S-->
+                            <div class="bgctm15"></div>
+                            <!--bgctm15 S-->
+
+                            <!--uploadImg S-->
+                            <div class="uploadImg clearfix">
+                                <div class="pull-left por">
+                                    <figure>
+                                        <img src="/img/add.png" alt="">
+                                        <figcaption>最多4张</figcaption>
+                                    </figure>
+                                    <input id="fileinput" name="filepath" type="file" class="J_UploadInput"
+                                           multiple="multiple" onchange="preImg(this.id, '${og.id}');">
+                                </div>
+                                <!--上传图片位置 S-->
+                                <div class="pull-right imgCont">
+                                    <ul class="imgPre">
+                                    </ul>
+                                </div>
+                                <!--上传图片位置 E-->
+                            </div>
+                            <!--uploadImg S-->
+
+                        </div>
+                        <!--item E-->
+                    </form>
+                </#list>
+            </#if>
+
+        </section>
+        <!-- 评价订单 E -->
+
+    </div>
+    <!--container E-->
+</div>
+<!--wrapper E-->
+
+<!-- 提交评论 S-->
+<section class="reserve">
+    <a id="submitButton" class=" btn-warning btn-radius "> 提交评论 </a>
+</section>
+<!-- 提交评论 E-->
+
+
+<script src="/js/swiper.min.js"></script>
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/jquery.form.js"></script>
+<script>
+    var flag = true;
+    var count = ${ofOrderGoods?size};
+    var submitButton = document.querySelector("#submitButton");
+    submitButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        if (flag) {
+            <#list ofOrderGoods as og>
+        commit('${og.id}');
+        </#list>
+            if (count == 2) {
+                alert("评论成功!");
+                flag = false;
+            }
+        } else {
+           alert("请不要重复评论!");
+        }
+    }, false);
+
+    function commit(formId) {
+        $("#" + formId).ajaxSubmit({
+            type: 'POST',
+            url: '/eval/add',
+            async: false,
+            dataType: 'json',
+            success: function (result) {
+                if (!result || !result.isError) {
+                }
+                if (result.isError == "1") {
+                }
+                if (result.isError == "0") {
+                    flag++;
+                }
+            },
+            error: function () {
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

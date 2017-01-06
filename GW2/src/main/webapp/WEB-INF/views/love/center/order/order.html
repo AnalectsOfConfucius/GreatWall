@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1">
+<title>民生大千世界游乐园-首页</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<meta name="keywords" content="民生大千世界游乐园">
+<meta name="description" content="民生大千世界游乐园">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<link type="text/css" rel="stylesheet" href="/css/mui.min.css">
+<link type="text/css" rel="stylesheet" href="/css/main.css">
+<script>
+    (function() {
+        var b = document.documentElement, a = function() {
+            var a = b.getBoundingClientRect().width;
+            b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+        }, c = null;
+        window.addEventListener("resize", function() {
+            clearTimeout(c);
+            c = setTimeout(a, 300)
+        });
+        a()
+    })();
+</script>
+</head>
+<body style="height: auto;">
+	<!-- 订单类别 -->
+	<input id="hideOrderType" type="hidden" />
+	<!-- 订单标识 -->
+	<input id="hideFlagType" type="hidden" />
+	<!-- header S -->
+	<div class="header">
+		<div class="headbar">
+			<a href="javascript:history.go(-1)" class="return">
+				<i class="icon-return"></i>返回
+			</a>
+			<h3>我的订单</h3>
+		</div>
+	</div>
+	<!-- header E -->
+	<!--wrapper S-->
+	<div id="wrapper">
+		<!--container S-->
+		<div class="container">
+			<div class="all_pro_type">
+				<ul>
+					<li class="current">
+						<a>全部订单</a>
+					</li>
+					<li data-type="entranceTicket">
+						<a>门票订单</a>
+					</li>
+					<li data-type="hotel">
+						<a>酒店订单</a>
+					</li>
+					<li data-type="other">
+						<a>商品/年卡</a>
+					</li>
+				</ul>
+			</div>
+			<div class="all_sit_type">
+				<ul>
+					<li class="current">
+						<a>全部</a>
+					</li>
+					<li data-type="payFlag">
+						<a>待支付</a>
+					</li>
+					<li data-type="getFlag">
+						<a>待领取</a>
+					</li>
+					<li data-type="evalFlag">
+						<a>待评价</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--container E-->
+	</div>
+	<!--wrapper E-->
+	<!-- 上下拉详细信息列表容器 -->
+	<div id="divPullRefresh" class="mui-scroll-wrapper" style="top: 135px;">
+		<div class="mui-scroll">
+			<ul id="ulPullRefresh" class="pro-content" style="background: #eef1f6;"></ul>
+		</div>
+	</div>
+	<script src="/js/jquery-2.1.4.min.js"></script>
+	<script src="/js/mui.min.js"></script>
+	<!--切换-->
+	<script type="text/javascript">
+        // 上下拉详细信息列表
+        var detailList = {
+            divPullRefresh : "#divPullRefresh",
+            ulPullRefresh : "#ulPullRefresh",
+            /**
+             * 初始化
+             */
+            init : function() {
+                mui.init({
+                    pullRefresh : {
+                        // 下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+                        container : detailList.divPullRefresh,
+                        down : {
+                            // 必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据
+                            callback : detailList.pulldownRefresh
+                        },
+                        up : {
+                            // 必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据
+                            callback : detailList.pullupRefresh
+                        }
+                    }
+                });
+
+                // 第一次加载数据
+                if (mui.os.plus) {
+                    mui.plusReady(function() {
+                        setTimeout(function() {
+                            mui(detailList.divPullRefresh).pullRefresh().pullupLoading();
+                        }, 1000);
+                    });
+                } else {
+                    mui.ready(function() {
+                        setTimeout(function() {
+                            mui(detailList.divPullRefresh).pullRefresh().pullupLoading();
+                        }, 1000);
+                    });
+                }
+
+                mui('.all_pro_type ul').off('tap').on('tap', 'li', function() {
+                    $(".all_pro_type ul li").removeClass("current");
+                    $(".all_sit_type ul li").removeClass("current");
+                    $(".all_sit_type ul li").eq(0).addClass("current");
+                    $(this).addClass("current");
+                    // 订单类别
+                    $("#hideOrderType").val("");
+                    $("#hideOrderType").val($(this).attr("data-type"));
+                    // 订单标识
+                    $("#hideFlagType").val("");
+                    detailList.pulldownRefresh();
+                });
+
+                mui('.all_sit_type ul').off('tap').on('tap', 'li', function() {
+                    $(".all_sit_type ul li").removeClass("current");
+                    $(this).addClass("current");
+                    // 订单标识
+                    $("#hideFlagType").val($(this).attr("data-type"));
+                    detailList.pulldownRefresh();
+                });
+            },
+            /**
+             * 下拉刷新
+             */
+            pulldownRefresh : function() {
+                detailList.loadDetails(0, true);
+            },
+            /**
+             * 上拉刷新
+             */
+            pullupRefresh : function() {
+                var currentRecords = $(detailList.ulPullRefresh).children().length; // 当前记录数
+                detailList.loadDetails(currentRecords, false);
+            },
+            /**
+             * 加载详细信息
+             * 
+             * @param currentRecords
+             * @param isRemoveAll
+             */
+            loadDetails : function(currentRecords, isRemoveAll) {
+                var orderType = $("#hideOrderType").val(); // 订单类别
+                var flagType = $("#hideFlagType").val(); // 订单标识
+                $.ajax({
+                    type : 'POST',
+                    url : '/order/loadDetails',
+                    data : {
+                        "currentRecords" : currentRecords,
+                        "orderType" : orderType,
+                        "flagType" : flagType
+                    },
+                    dataType : 'json',
+                    success : function(result) {
+                        if (isRemoveAll) {
+                            $(detailList.ulPullRefresh).empty();
+                            // 启用上拉加载
+                            mui(detailList.divPullRefresh).pullRefresh().enablePullupToRefresh();
+                            mui(detailList.divPullRefresh).pullRefresh().scrollTo(0, 0, 100);
+                        }
+                        if (typeof (result) == "undefined" || typeof (result.details) == "undefined" || result.details.length <= 0) {
+                            // 加载完毕
+                            $(detailList.ulPullRefresh).height(45);
+                            mui(detailList.divPullRefresh).pullRefresh().endPullupToRefresh(true);
+                            return;
+                        }
+                        var details = result.details;
+                        if (details != null && details.length > 0) {
+                            // 详细信息当前记录数
+                            var currentRecords = $(detailList.ulPullRefresh).children().length + details.length;
+                            // 详细信息总记录数
+                            var totalRecords = result.totalRecords;
+                            // 若数据已加载完毕
+                            if (!currentRecords || (currentRecords >= totalRecords)) {
+                                // 显示加载完毕字样
+                                mui(detailList.divPullRefresh).pullRefresh().endPullupToRefresh(true);
+                                // 结束上拉加载
+                                mui(detailList.divPullRefresh).pullRefresh().disablePullupToRefresh();
+                            } else {
+                                // 结束加载，但数据没加载完毕
+                                mui(detailList.divPullRefresh).pullRefresh().endPullupToRefresh(false);
+                                // 启用上拉加载
+                                mui(detailList.divPullRefresh).pullRefresh().enablePullupToRefresh();
+                            }
+
+                            for (var i = 0; i < details.length; i++) {
+                                var $ul = $('<ul class="mt15" data-id="' + details[i].id + '"></ul>');
+
+                                // 门票
+                                if (details[i].orderTypeCode == "1") {
+                                    $ul.append('<li class="normal"><i class="icon-ticket"></i><span>' + (details[i].orderTypeCodeStr || '') + '</span><span class="pull-right order_state">' + (details[i].orderState || '') + '</span></li>');
+                                    var goodsDetails = details[i].goodsDetails;
+                                    if (goodsDetails != null && goodsDetails.length > 0) {
+                                        for (var j = 0; j < goodsDetails.length; j++) {
+                                            if (j == goodsDetails.length - 1) {
+                                                $ul.append('<li class="normal"><span>' + (goodsDetails[j].goodsName || '') + '：' + (goodsDetails[j].goodsNum || 0) + '张</span><span class="pull-right price">￥' + (details[i].orderPrice || 0) + '</span></li>');
+                                            } else {
+                                                $ul.append('<li class="normal"><span>' + (goodsDetails[j].goodsName || '') + '：' + (goodsDetails[j].goodsNum || 0) + '张</span></li>');
+                                            }
+                                        }
+                                    }
+                                    $ul.append('<li><span>入园时间：' + (details[i].useDate || '') + '</span></li>')
+                                } else if (details[i].orderTypeCode == "2") {
+                                    $ul.append('<li class="hotel"><i class="icon-hotel"></i><span>' + (details[i].orderTypeCodeStr || '') + '</span><span class="pull-right order_state">' + (details[i].orderState || '') + '</span></li>');
+                                    var goodsDetails = details[i].goodsDetails;
+                                    if (goodsDetails != null && goodsDetails.length > 0) {
+                                        for (var j = 0; j < goodsDetails.length; j++) {
+                                            $ul.append('<li><span>房&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间：' + (goodsDetails[j].goodsName || '') + 'x ' + (goodsDetails[j].goodsNum || 0) + '间</span></li>');
+                                        }
+                                    }
+                                    $ul.append('<li><span>联&nbsp;&nbsp;系&nbsp;&nbsp;人：' + (details[i].linkUserName || '') + '</span><span class="pull-right">手机号：' + (details[i].linkUserPhone || '') + '</span></li>');
+                                    $ul.append('<li><span>入住时间：' + (details[i].checkInDate || '') + '</span><span class="pull-right">离开时间：' + (details[i].checkOutDate || '') + '</span></li>');
+                                } else if (details[i].orderTypeCode == "3") {
+                                    $ul.append('<li class="normal"><i class="icon-card"></i><span>' + (details[i].orderTypeCodeStr || '') + '</span><span class="pull-right order_state">' + (details[i].orderState || '') + '</span></li>');
+                                    var goodsDetails = details[i].goodsDetails;
+                                    if (goodsDetails != null && goodsDetails.length > 0) {
+                                        for (var j = 0; j < goodsDetails.length; j++) {
+                                            if (j == goodsDetails.length - 1) {
+                                                $ul.append('<li class="normal"><span>' + (goodsDetails[j].goodsName || '') + '：' + (goodsDetails[j].goodsNum || 0) + '张</span><span class="pull-right price">￥' + (details[i].orderPrice || 0) + '</span></li>');
+                                            } else {
+                                                $ul.append('<li class="normal"><span>' + (goodsDetails[j].goodsName || '') + '：' + (goodsDetails[j].goodsNum || 0) + '张</span></li>');
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    $ul.append('<li class="normal"><i class="icon-shop"></i><span>' + (details[i].orderTypeCodeStr || '') + '</span><span class="pull-right order_state">' + (details[i].orderState || '') + '</span></li>');
+                                    $ul.append('<li class="normal"><span>' + (details[i].goodsInfo || 0) + '</span><span class="pull-right price">￥' + (details[i].orderPrice || 0) + '</span></li>');
+                                }
+
+                                if (details[i].orderState == '待支付') {
+                                    $ul.append('<li class="action"><button class="btn-primary btn-radius-sm pull-right">去支付</button></li>');
+                                } else if (details[i].orderState == '待领取') {
+                                    if (details[i].isRefundFlag === "1") {
+                                        $ul.append('<li class="action"><button class="btn-primary btn-radius-sm pull-right">确定领取</button><button class="refund btn-radius-sm pull-right">申请退款</button></li>');
+                                    } else {
+                                        $ul.append('<li class="action"><button class="btn-primary btn-radius-sm pull-right">确定领取</button></li>');
+                                    }
+                                } else if (details[i].orderState == '待领取') {
+                                    $ul.append('<li class="action"><button class="btn-primary btn-radius-sm pull-right">去评价</button></li>');
+                                }
+
+                                $(detailList.ulPullRefresh).append($ul);
+
+                                if (details[i].orderState == '已完成' || details[i].orderState == '已失效') {
+                                    $ul.find('.order_state').css('color', '#d6d6d6');
+                                } else if (details[i].orderState == '到店支付') {
+                                    $ul.find('.order_state').css('color', '#000');
+                                }
+                            }
+                        }
+
+                        $('.mui-pull-top-pocket').css('top', '20px');
+
+                        // 绑定详细信息单击事件
+                        mui(detailList.ulPullRefresh + ' ul').off('tap').on('tap', 'li.normal', function() {
+                            var id = $(this).parents('.mt15').attr("data-id");
+                            location.href = "/order/detail?id=" + id;
+                        });
+                        // 绑定详细信息单击事件
+                        mui(detailList.ulPullRefresh + ' li.action').off('tap').on('tap', 'button', function() {
+                            var id = $(this).parents('.mt15').attr("data-id");
+                            if ($(this).hasClass('refund')) {
+                                location.href = "/refund/applyPage?id=" + id;
+                            } else {
+                                location.href = "/order/detail?id=" + id;
+                            }
+                        });
+
+                        setTimeout(function() {
+                            var height = 0;
+                            $(detailList.ulPullRefresh).children().each(function() {
+                                height += $(this).outerHeight() + 15;
+                            })
+                            $(detailList.ulPullRefresh).height(height);
+                        }, 100);
+                    }
+                });
+            }
+        };
+
+        detailList.init();
+    </script>
+</body>
+</html>

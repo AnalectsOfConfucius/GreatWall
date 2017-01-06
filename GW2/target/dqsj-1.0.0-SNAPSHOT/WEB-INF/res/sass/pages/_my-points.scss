@@ -1,0 +1,56 @@
+/* =======================my- points ==================*/
+.my-points{
+    .title{
+        padding: 0 .5rem;
+        background-color: $link-white;
+        height: $height;
+        line-height: $height;
+        border-bottom: 1px solid #e0e0e0;
+        a{
+            float: right;
+            color: $link-gray-e9;
+        }
+        .error{
+            font-style: normal;
+            font-weight: normal;
+            color: $link-wag-color; 
+        }
+    }
+}
+
+.tablecox ol li{
+   float: left;
+   width: 33.3333%;
+   text-align: center;
+   line-height: 44px;
+   border-bottom: 1px solid #e0e0e0;
+   background-color: #fafafa;
+   color: $link-gray-e9;
+}
+.tablecox ul{ 
+     border-bottom: 1px dashed  #e0e0e0;
+     &:last-child{
+         border: none;
+     }
+    li{
+    float: left;
+   width: 33.3333%;
+   text-align: center;
+   line-height: 44px;
+   
+   background-color: $link-white;
+   .error{
+       color: $link-wag-color; 
+   }
+}
+  
+}
+.content{
+    padding: .6rem;
+    p{
+        line-height: 24px;
+        &:first-of-type{
+            margin-top: 10px;
+        }
+    }
+}

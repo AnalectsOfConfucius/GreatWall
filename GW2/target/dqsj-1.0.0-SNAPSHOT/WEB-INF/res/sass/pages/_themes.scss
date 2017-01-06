@@ -1,0 +1,47 @@
+/* =======================themes==================*/
+.themes .title{
+   height: $height;
+   line-height: $height;
+   position: relative;
+   display: block;
+   padding: 0 .5rem;
+   text-indent: .5rem;
+   font-size: 15px;
+   &:before{
+   	position: absolute;
+   	top: $font-size;
+   	left: .5rem;
+   	width: 3px;
+   	height: 17px;
+   	background-color: $link-primary;
+   	content: "";
+   }
+
+}
+.themes {
+    ul{
+        li{
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.themes .text{
+	border: 1px solid $link-gray-bor;
+	border-left: none;
+	border-right: none;
+    padding: .75rem;
+    background-color: $link-white;
+    
+    h3{
+    	height: 44px;
+    	line-height: 44px;
+    	display: block;
+    	color:$link-black;
+    	font-size: 16px;
+    }
+    p{
+    	line-height: $height - 20;
+    	color:$link-gray-e9;
+    } 
+}

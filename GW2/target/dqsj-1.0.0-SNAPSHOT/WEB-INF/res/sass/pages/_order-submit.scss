@@ -1,0 +1,173 @@
+/* =======================order-submit==================*/
+.list-submit{
+    background-color: $link-white;
+    ul{
+        li{
+            padding: 0 .5rem;
+            display: block;
+            height:  $height;
+            line-height: $height;
+            border-bottom: 1px solid $link-color-ul ;
+            &:nth-of-type(even){
+                border: none;
+            }
+            .ticket{
+                color: $link-wag-color;
+            }
+            .price{
+                @extend .ticket;
+            }
+            &:first-of-type{
+                color: $link-black;
+            }
+        }
+    }
+}
+
+.reading-ticket{
+        border-bottom: 1px solid $link-gray-bor;
+        border-top: 1px solid $link-gray-bor;
+        height: $height;
+        line-height: $height;
+        background-color: $link-white;
+        span.checkbox_item{
+            margin-right: .3rem;
+            margin-left: .3rem;
+        }
+        ul{
+            li{
+                a{
+                   padding-left: .5rem; 
+                   display: block;
+                   color: $link-gray-e6;
+                  
+                   .icon-down{
+                       margin-top: $font-size + 1;
+                   }
+                }
+            }
+        }
+    }
+  .reading-ticket{
+     .checkbox_item{
+    position:relative;
+    display:inline-block;
+    height:16px;
+    input{
+        position:absolute;
+        top:-9999px;
+        left:-9999px;
+        }
+    .check_label{
+        display:inline-block;
+        cursor:default;
+        }
+    }
+.checkbox_icon{
+    display:block;
+    float:left;
+    margin-top:13px;
+    width:16px;
+    height:16px;
+    background:url(../img/checkbox_icon2.png) 0 0;
+    
+    }
+.check_label.on .checkbox_icon{
+    background-position:-16px 0;
+    }
+
+ }   
+ .borderCon{
+    background-color: $link-white;
+    padding: .5rem;
+    line-height: 27px;
+    font-size: $font-size - 1;
+    color: $link-gray-e6;
+    width: 94%;
+    margin-top: 44px;
+    h4{
+        padding-bottom: .6rem;
+        color: $link-gray-e3;
+    }
+}
+.comfirm-msg{
+    background: $link-white;
+    position: fixed;
+    z-index: 1001;
+    top: 30%;
+    left: 10%;
+    width: 80%;
+    display: none;
+    border-radius: 5px;
+    ul{
+        li{
+            line-height:$height;
+            color:$link-gray-e9;
+            padding:0 .8rem;  
+            &:first-of-type{
+                border-bottom: 1px solid $link-color-ul;
+                text-align: center;
+            }
+            span{
+                color:$link-gray-e3; 
+            }
+        }
+    }
+    button{
+        width: 90%;
+        &:last-of-type{
+            background: none;
+            border: none;
+            color: $link-gray-e6;
+        }
+    }
+}
+.success-msg{
+    background: $link-white;
+    position: fixed;
+    z-index: 1001;
+    top: 30%;
+    left: 10%;
+    width: 80%;
+    display: none;
+    border-radius: 5px;
+    ul{
+        li{
+            line-height:$height - 14;
+            color:$link-gray-e9;
+            padding:0 .6rem; 
+            text-align: center; 
+            &:first-of-type{
+                border-bottom: 1px solid $link-color-ul;
+                line-height:$height;
+            }
+            span{
+                color:$link-gray-e3; 
+                a{
+                    color: $link-primary;
+                }
+            }
+        }
+    }
+    button{
+        width: 90%;
+        background: none;
+        border: 1px solid $link-bgc-btn;
+        margin-bottom: 20px;
+        color: $link-bgc-btn;
+    }
+}
+.mask{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 1000;
+    top: 0;
+    background: $link-black;
+    opacity: .3;
+    filter: alpha(opacity=30);
+}
+button a{
+    color: $link-white;
+}

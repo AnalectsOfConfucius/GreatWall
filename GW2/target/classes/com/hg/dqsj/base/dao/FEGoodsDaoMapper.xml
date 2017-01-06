@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.base.dao.FeGoodsDao">
+
+    <!-- 根据查询条件查询所有详细信息 -->
+    <select id="selectByCriterias" parameterType="map" resultType="com.hg.dqsj.base.entity.FeGoodsInfo">
+		select 
+		    t.id,
+		    t.goodsName,
+		    t.typeCode,
+		    t.storeId,
+		    t.sellPrice,
+		    t.goodsBrief,
+		    t.goodsOrder,
+		    t.remark,
+		    a.storeName,
+		    b.picUrl,
+		    c.monthlySales
+		from dqsj_fe_goods t 
+		left join dqsj_fe_store a on t.storeId=a.id
+		left join dqsj_fe_pic b on t.id = b.objId and b.deleteFlag='0' and b.mainPicFlag='1'
+		left join (select sum(a1.goodsNum) monthlySales,a1.goodsId from dqsj_of_order o
+		    left join dqsj_of_order_pay t1 on o.id=t1.id
+		    left join dqsj_of_order_goods a1 on t1.orderId=a1.orderId
+		    where t1.deleteFlag='0' and a1.deleteFlag='0' 
+		   	and o.payFlag='1' and t1.notifyFlag='0'
+		   	and t1.updateDate>#{monthDate} group by a1.goodsId) c
+		 on t.id=c.goodsId
+		where t.deleteFlag='0'
+		<if test="goodsName != null and goodsName != ''"><![CDATA[ and t.goodsName like '%${goodsName}%' ]]></if>
+		<if test="typeCode != null and typeCode != ''"><![CDATA[ and t.typeCode = '${typeCode}' ]]></if>
+		<if test="storeId != null and storeId != ''"><![CDATA[ and t.storeId = '${storeId}' ]]></if>
+		order by
+		    t.goodsOrder asc,
+		    t.updateDate desc
+        <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>
+    </select>
+    
+    <!-- 根据查询条件查询总条数 -->
+    <select id="countByCriterias" parameterType="map" resultType="java.lang.Integer">
+        select 
+            count(t.id)
+        from dqsj_fe_goods t 
+        where t.deleteFlag='0'
+        <if test="goodsName != null and goodsName != ''"><![CDATA[ and t.goodsName like '%${goodsName}%' ]]></if>
+		<if test="typeCode != null and typeCode != ''"><![CDATA[ and t.typeCode = '${typeCode}' ]]></if>
+		<if test="storeId != null and storeId != ''"><![CDATA[ and t.storeId = '${storeId}' ]]></if>
+    </select>
+    
+    <!-- 根据ID查询详细信息 -->
+    <select id="selectById" parameterType="map" resultType="com.hg.dqsj.base.entity.FeGoodsInfo">
+        select 
+		    t.id,
+		    t.goodsName,
+		    t.typeCode,
+		    t.storeId,
+		    t.sellPrice,
+		    t.goodsBrief,
+		    t.goodsContent,
+		    t.goodsOrder,
+		    t.remark,
+		    a.storeName,
+		    (select sum(a1.goodsNum) monthSales from dqsj_of_order o
+		    left join dqsj_of_order_pay t1 on o.id=t1.id
+		    left join dqsj_of_order_goods a1 on t1.orderId=a1.orderId
+		    where t1.deleteFlag='0' and a1.deleteFlag='0' 
+		   	and o.payFlag='1' and t1.notifyFlag='0'
+		   	and t1.updateDate>#{monthDate} and a1.goodsId=#{id}) monthlySales
+		 
+		from dqsj_fe_goods t 
+		left join dqsj_fe_store a on t.storeId=a.id
+		
+		where t.deleteFlag='0' and t.id=#{id}
+    </select>
+    <!-- 根据ID查询图片详细信息 -->
+    <select id="selectPicById" parameterType="map" resultType="com.hg.dqsj.base.entity.FePic">
+        select 
+		    id,
+		    objType,
+		    objId,
+		    picUrl,
+		    picName,
+		    picOrder,
+		    mainPicFlag,
+		    remark
+		from dqsj_fe_pic t 
+		where t.deleteFlag='0' 
+		<if test="objId != null and objId != ''"><![CDATA[ and t.objId=#{objId} ]]></if>
+		<if test="objType != null and objType != ''"><![CDATA[ and t.objType = #{objType} ]]></if>
+		order by picOrder asc
+    </select>
+    <!-- 商户详情 -->
+	<resultMap id="evalBaseResult" type="com.hg.dqsj.base.entity.EvalInfo">
+		<id property="id" column="id"/>
+		<id property="orderId" column="orderId"/>
+		<id property="goodsId" column="goodsId"/>
+		<id property="evalTotalScore" column="evalTotalScore"/>
+		<id property="serviceTotalScore" column="serviceTotalScore"/>
+		<id property="tasteTotalScore" column="tasteTotalScore"/>
+		<id property="environmentTotalScore" column="environmentTotalScore"/>
+		<id property="evalUserId" column="evalUserId"/>
+		<id property="userName" column="userName"/>
+		<id property="userPicUrl" column="userPicUrl"/>
+		<id property="evalComment" column="evalComment"/>
+		<id property="evalUserIp" column="evalUserIp"/>
+		<result property="updateDate" column="updateDate"/>
+		<!-- 评价图片 -->
+		<collection property="plist" javaType="list" column="id" select="getEvalPic"/>
+	</resultMap>
+    <!-- 根据商品id查询评价总条数 -->
+    <select id="selectEvalCount" parameterType="map" resultType="java.lang.Integer">
+        select 
+		    count(t.id) totalCount
+		from dqsj_ev_eval t 
+		where t.deleteFlag='0' 
+		<if test="orderId != null and orderId != ''"><![CDATA[ and t.orderId=#{orderId} ]]></if>
+		<if test="goodsId != null and goodsId != ''"><![CDATA[ and t.goodsId = #{goodsId} ]]></if>
+		
+    </select>
+    <!-- 根据商品id查询评价信息 -->
+    <select id="selectEval" parameterType="map" resultMap="evalBaseResult">
+        select 
+		    t.id,
+		    t.orderId,
+		    t.goodsId,
+		    t.evalTotalScore,
+		    t.serviceTotalScore,
+		    t.tasteTotalScore,
+		    t.environmentTotalScore,
+		    t.evalUserId,
+		    a.userName,
+		    a.userPicUrl,
+		    t.evalComment,
+		    t.evalUserIp,
+		    t.remark,
+		    DATE_FORMAT(t.updateDate,'%m-%d %H:%i') updateDate
+		from dqsj_ev_eval t 
+		left join dqsj_fe_user a on t.evalUserId=a.id
+		where t.deleteFlag='0' 
+		<if test="orderId != null and orderId != ''"><![CDATA[ and t.orderId=#{orderId} ]]></if>
+		<if test="goodsId != null and goodsId != ''"><![CDATA[ and t.goodsId = #{goodsId} ]]></if>
+		order by t.updateDate desc
+		<if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>
+    </select>
+    <!-- 根据商品id查询评价信息 -->
+    <select id="getEvalPic" parameterType="map" resultType="com.hg.dqsj.love.center.eval.entity.EvalPic">
+        select 
+		    id,
+		    evalId,
+		    picUrl,
+		    picName,
+		    remark
+		from dqsj_ev_eval_pic t 
+		where t.deleteFlag='0' and t.evalId=#{id}
+		order by t.updateDate desc
+    </select>
+    
+</mapper>

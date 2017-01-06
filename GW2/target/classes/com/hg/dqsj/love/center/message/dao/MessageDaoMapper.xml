@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.love.center.message.dao.MessageDao">
+
+	<select id="selectMessageByCriterias" parameterType="map"
+		resultType="com.hg.dqsj.love.center.message.entity.Message">
+		select
+		fm.id,
+		fm.userId,
+		fm.userName,
+		fm.userPhone,
+		fm.isReply,
+		fm.evalLevel,
+		fm.messageContent,
+		fm.messageDate,
+		fm.replyDate,
+		fm.replyUserId,
+		fm.remark,
+		fm.replyContent,
+		fm.createDate,
+		fm.createUserId,
+		fm.updateDate,
+		fm.updateUserId,
+		fm.deleteFlag
+		FROM
+		dqsj_fe_message fm
+		where deleteFlag = '0'
+		<if test="userId != null and userId != ''"><![CDATA[ and fm.userId like '%${userId}%' ]]></if>
+		<if test="userName != null and userName != ''"><![CDATA[ and fm.userName like '%${userName}%' ]]></if>
+		<if test="userPhone != null and userPhone != ''"><![CDATA[ and fm.userPhone like '%${userPhone}%' ]]></if>
+		<if test="isReply != null and isReply != ''"><![CDATA[ and fm.isReply = '${isReply}' ]]></if>
+		<if test="evalLevel != null and evalLevel != ''"><![CDATA[ and fm.evalLevel = '${evalLevel}' ]]></if>
+		ORDER BY
+		fm.updateDate DESC
+		<if
+			test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+		</if>
+	</select>
+
+	<select id="countMessageByCriterias" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		SELECT
+		count(DISTINCT fm.id)
+		FROM
+		dqsj_fe_message fm
+		WHERE
+		fm.deleteFlag =
+		'0'
+		<if test="userName != null and userName != ''"><![CDATA[ and fm.userName like '%${userName}%' ]]></if>
+		<if test="userPhone != null and userPhone != ''"><![CDATA[ and fm.userPhone like '%${userPhone}%' ]]></if>
+		<if test="isReply != null and isReply != ''"><![CDATA[ and fm.isReply = '${isReply}' ]]></if>
+		<if test="evalLevel != null and evalLevel != ''"><![CDATA[ and fm.evalLevel = '${evalLevel}' ]]></if>
+	</select>
+
+	<insert id="insertMessage" parameterType="com.hg.dqsj.love.center.message.entity.Message">
+		INSERT INTO dqsj_fe_message (
+		id,
+		userId,
+		userName,
+		userPhone,
+		isReply,
+		evalLevel,
+		messageContent,
+		messageDate,
+		replyDate,
+		replyUserId,
+		remark,
+		replyContent,
+		createDate,
+		createUserId,
+		updateDate,
+		updateUserId,
+		deleteFlag
+		) VALUES (
+		#{id},
+		#{userId},
+		#{userName},
+		#{userPhone},
+		#{isReply},
+		#{evalLevel},
+		#{messageContent},
+		#{messageDate},
+		#{replyDate},
+		#{replyUserId},
+		#{remark},
+		#{replyContent},
+		#{createDate},
+		#{createUserId},
+		#{updateDate},
+		#{updateUserId},
+		#{deleteFlag}
+		)
+	</insert>
+
+	<select id="selectMessageById" parameterType="String"
+		resultType="com.hg.dqsj.love.center.message.entity.Message">
+		SELECT
+		fm.id,
+		fm.userId,
+		fm.userName,
+		fm.userPhone,
+		fm.isReply,
+		fm.evalLevel,
+		fm.messageContent,
+		fm.messageDate,
+		fm.replyDate,
+		fm.replyUserId,
+		fm.remark,
+		fm.replyContent,
+		fm.createDate,
+		fm.createUserId,
+		fm.updateDate,
+		fm.updateUserId,
+		fm.deleteFlag
+		FROM
+		dqsj_fe_message fm
+		where deleteFlag = '0' AND
+		fm.id = #{id}
+	</select>
+
+	<update id="updateMessage" parameterType="com.hg.dqsj.love.center.message.entity.Message">
+		update dqsj_fe_message set
+		userName = #{userName},
+		userPhone = #{userPhone},
+		messageContent = #{messageContent},
+		evalLevel = #{evalLevel},
+		remark = #{remark},
+		replyContent = #{replyContent},
+		isReply = #{isReply},
+		updateDate = #{updateDate},
+		updateUserId = #{updateUserId}
+		where id = #{id}
+	</update>
+	
+	<update id="deleteMessage" parameterType="com.hg.dqsj.love.center.message.entity.Message">
+		update dqsj_fe_message set
+		deleteFlag = '1',
+		updateDate = #{updateDate},
+		updateUserId = #{updateUserId}
+		where id = #{id}
+	</update>
+
+
+
+
+</mapper>

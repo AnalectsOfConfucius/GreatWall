@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1" >
+    <title>民生大千世界游乐园-交通指引</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="keywords" content="民生大千世界游乐园">
+    <meta name="description" content="民生大千世界游乐园">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <script>
+		(function() {
+			var b = document.documentElement,
+			a = function() {
+				var a = b.getBoundingClientRect().width;
+				b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+			},
+			c = null;
+			window.addEventListener("resize",
+			function() {
+				clearTimeout(c);
+				c = setTimeout(a, 300)
+			});
+			a()
+		})();
+    </script>
+</head>
+<body style="background: #f5f5f5;">
+
+<!-- header S -->
+    <div class="header">
+      <div class="headbar">
+      	<a href="javascript:history.go(-1)" class="return"><i class="icon-return"></i>返回</a>
+      	<h3>交通指引</h3>
+      </div>
+    </div>
+<!-- header E -->
+<!--wrapper S-->
+<div id	="wrapper" style="background: #f5f5f5;">
+	<!--scroller S-->
+	<div id="scroller">
+		<!--container S-->
+		<div class="container">
+			<!-- 交通指引 S -->
+			    <section class="map">
+              <h3 class="title">如何到达</h3>
+
+              <!-- 公交方式  S-->
+              <div class="word">
+                 <div class="tt">01 ${transportation.infoTitle!''}</div>
+                 <div class="text">
+                    <figure>
+                      <a href="/trafficDirection/transportation"><img src="${transportation.infoPicUrl!''}" alt=""></a>
+                    </figure>
+                    ${transportation.infoContentStr!''}
+                 </div>
+              </div>
+              <!-- 公交方式  E-->
+              
+              <!-- 自驾  S-->
+              <div class="word mt15">
+                 <div class="tt">02 自驾</div>
+                 <div class="text">
+                 	   <div id="l-map"></div>
+	                   <div id="r-result"></div>
+              
+                    	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=qdQBZ6jU6zMTclkLjW7GpiwT"></script>
+                    	<script type="text/javascript">
+							// 百度地图API功能
+							var sContent ="九江市民生大千世界, <br/> 地址：江西九江长江二桥八里湖大桥桥头赛湖凤凰岛	<br/>电话：(0792)6765555,4000792000	";
+							var map = new BMap.Map("l-map");
+							var point = new BMap.Point(115.892861,29.647935);
+							map.enableScrollWheelZoom(true);
+						    map.enableDragging(); 
+							map.centerAndZoom(point, 18);
+							var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+							map.openInfoWindow(infoWindow,point); //开启信息窗口
+							//document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + infoWindow.getContent();
+                        </script>
+                       <style>
+                       	#l-map{height:250px;width:100%;}
+		                #r-result{width:100%;}
+                       </style>
+                  
+                 </div>
+                 <div class="moerCont"> <a href="index.html" class="icon-go por"></a> 您可一键导航前往 </div>  
+              </div>
+              <!-- 自驾  E-->
+              
+              <!-- 联系方式 S -->
+              <div class="word mt15">
+                 <div class="tt">03 ${contactWay.infoTitle!''}</div>
+                   <div class="contact">
+                   <p>${contactWay.infoContentStr!''}</p>
+                   </div>
+              </div>
+              <!-- 联系方式 S -->
+
+          </section>
+			<!-- 交通指引 E -->
+		</div>
+		<!--container E-->
+	</div>
+	<!--scroller E-->
+</div>
+<!--wrapper E-->
+
+  <script src="/js/swiper.min.js"></script> 
+  <script src="/js/jquery-2.1.4.min.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

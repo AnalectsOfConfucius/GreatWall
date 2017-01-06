@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1" >
+    <title>民生大千世界游乐园-酒店客地图</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="民生大千世界游乐园">
+    <meta name="description" content="民生大千世界游乐园">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <script>
+		(function() {
+			var b = document.documentElement,
+			a = function() {
+				var a = b.getBoundingClientRect().width;
+				b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+			},
+			c = null;
+			window.addEventListener("resize",
+			function() {
+				clearTimeout(c);
+				c = setTimeout(a, 300)
+			});
+			a()
+		})();
+    </script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=qdQBZ6jU6zMTclkLjW7GpiwT"></script>
+</head>
+<body>
+
+<!-- header S -->
+    <div class="header">
+      <div class="headbar">
+      	<a href="javascript:history.go(-1)" class="return"><i class="icon-return"></i>返回</a>
+      	<h3>酒店客地图</h3>
+      </div>
+    </div>
+<!-- header E -->
+<!--wrapper S-->
+
+<div id="l-map" style="margin-top: 44px;"></div>
+	                   <div id="r-result"></div>
+              
+                    	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=qdQBZ6jU6zMTclkLjW7GpiwT"></script>
+                    	<script type="text/javascript">
+							// 百度地图API功能
+							var sContent ="民生.大千世界未来城, <br/> 地址：九江市	<br/>电话：(0792)6765555,4000792000	";
+							var map = new BMap.Map("l-map");
+							var point = new BMap.Point(115.88592,29.650618);
+							map.enableScrollWheelZoom(true);
+						    map.enableDragging(); 
+							map.centerAndZoom(point, 18);
+							var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+							map.openInfoWindow(infoWindow,point); //开启信息窗口
+							//document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + infoWindow.getContent();
+                        </script>
+                       <style>
+                       	#l-map{height:800px;width:100%;}
+		                #r-result{width:100%;}
+                       </style>
+
+<!--wrapper E-->
+
+
+
+
+
+
+
+
+
+</body>
+</html>

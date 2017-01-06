@@ -1,0 +1,56 @@
+/* =======================hotel-rooms==================*/
+.tabTa{
+    height: $height;
+    background-color: $link-white;
+    ul{
+        li{ 
+            position: relative;
+            float: left;
+            width: 33.3333%;
+            height: $height;
+            line-height: $height;
+            display: block;
+            text-align: center;
+            &:first-child:after,&:nth-child(2):after{
+                position: absolute;
+                top: 15px;
+                right: 0;
+                width: 1px;
+                height: 20px;
+                content: "";
+                background-color:$link-gray-bor;
+            }
+
+            i{
+                    position: absolute;
+                    top: 15px;
+                    right: 15%;
+                    width: 8px;
+                    height: 15px;
+                    content: "";
+                    background: url("../img/up.png") no-repeat;  
+                    &.icons-up{
+                         -webkit-transform: rotate(0deg);
+                         transform: rotate(0deg);
+                    }
+                    &.icons-down{
+                       -webkit-transform: rotate(180deg);
+                       transform: rotate(180deg);
+                       background: url("../img/dp.png") no-repeat;  
+            
+                    }
+         }
+           
+      
+
+            a{
+                color: $link-foot-color;
+                display: inline-block;
+                &:hover,&.active{
+                  color: $link-primary;
+
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.buy.goods.dao.StoreDao">
+
+    <!-- 根据查询条件查询所有详细信息 -->
+    <select id="selectStore" parameterType="map" resultType="com.hg.dqsj.buy.goods.entity.Store">
+		select 
+		    t.id,
+		    t.storeName,
+		    t.storeNo,
+		    t.storeType,
+		    t.isOpen,
+		    t.longitude,
+		    t.latitude,
+		    t.storeBrief,
+		    t.storeOrder,
+		    t.remark,
+		    a.picUrl
+		from dqsj_fe_store t 
+		left join dqsj_fe_pic a on t.id=a.objId and a.deleteFlag='0' and a.mainPicFlag='1'
+		where t.deleteFlag='0'
+		<if test="storeId != null and storeId != ''"><![CDATA[ and t.id = '${storeId}' ]]></if>
+		<if test="storeName != null and storeName != ''"><![CDATA[ and t.storeName like '%${storeName}%' ]]></if>
+		<if test="storeNo != null and storeNo != ''"><![CDATA[ and t.storeNo like '%${storeNo}%' ]]></if>
+		<if test="storeType != null and storeType != ''"><![CDATA[ and t.storeType = '${storeType}' ]]></if>
+		order by
+		    t.storeOrder asc,
+		    t.updateDate desc
+        <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>
+    </select>
+    
+    <!-- 根据查询条件查询总条数 -->
+    <select id="getCount" parameterType="map" resultType="java.lang.Integer">
+        select 
+            count(t.id) countTotal
+        from dqsj_fe_store t 
+        where t.deleteFlag='0' and t.isOpen='1'
+        <if test="storeName != null and storeName != ''"><![CDATA[ and t.storeName like '%${storeName}%' ]]></if>
+		<if test="storeNo != null and storeNo != ''"><![CDATA[ and t.storeNo like '%${storeNo}%' ]]></if>
+		<if test="storeType != null and storeType != ''"><![CDATA[ and t.storeType = '${storeType}' ]]></if>
+    </select>
+    
+    <!-- 根据ID查询详细信息 -->
+    <select id="selectById" parameterType="map" resultType="com.hg.dqsj.buy.goods.entity.Store">
+        select 
+		   t.id,
+		    t.storeName,
+		    t.storeNo,
+		    t.storeType,
+		    t.isOpen,
+		    t.longitude,
+		    t.latitude,
+		    t.storeBrief,
+		    t.storeContent,
+		    t.storeOrder,
+		    t.remark
+		from dqsj_fe_store t 
+		where t.deleteFlag='0' and t.id=#{id}
+    </select>
+    
+</mapper>

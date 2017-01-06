@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1">
+<title>民生大千世界游乐园-订单详情</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<meta name="keywords" content="民生大千世界游乐园">
+<meta name="description" content="民生大千世界游乐园">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<link type="text/css" rel="stylesheet" href="/css/main.css">
+<style type="text/css">
+.mui-toast-container {
+	position: fixed;
+	z-index: 9999;
+	bottom: 50px;
+	width: 100%;
+	-webkit-transition: opacity .8s;
+	transition: opacity .8s;
+	opacity: 0
+}
+
+.mui-toast-container.mui-active {
+	opacity: 1
+}
+
+.mui-toast-message {
+	font-size: 14px;
+	width: 270px;
+	margin: 5px auto;
+	padding: 5px;
+	text-align: center;
+	color: #000;
+	border-radius: 7px;
+	background-color: #d8d8d8
+}
+</style>
+<script>
+    (function() {
+        var b = document.documentElement, a = function() {
+            var a = b.getBoundingClientRect().width;
+            b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+        }, c = null;
+        window.addEventListener("resize", function() {
+            clearTimeout(c);
+            c = setTimeout(a, 300)
+        });
+        a()
+    })();
+</script>
+</head>
+<body>
+	<!-- 订单ID-->
+	<input id="hideOrderId" type="hidden" value="${(detail.id)!''}" />
+	<!-- 消费码-->
+	<input id="hideOrderQRCode" type="hidden" value="${(detail.orderQRCode)!''}" />
+	<!-- header S -->
+	<div class="header">
+		<div class="headbar">
+			<a href="javascript:history.go(-1)" class="return">
+				<i class="icon-return"></i>返回
+			</a>
+			<h3>订单详情</h3>
+		</div>
+	</div>
+	<!-- header E -->
+	<!--wrapper S-->
+	<div id="wrapper">
+		<!--container S-->
+		<div class="container">
+			<#if (detail.payFlag=='0')>
+			<div class="pay-situation">
+				<ul class="wait_time">
+					<li>
+						<i class="icon-time"></i>
+						<span class="pull-left">${(detail.orderState)!''}</span>
+					</li>
+					<li>
+						<span>1小时后订单取消</span>
+					</li>
+				</ul>
+				<#else>
+				<div class="receive-situation">
+					<ul class="receive_time">
+						<li>
+							<#if (detail.payFlag=='1') && (detail.getFlag=='1') && (detail.evalFlag=='1')> <i class="yiwc"></i>
+							<span class="pull-left" style="padding-left: 5px;">${(detail.orderState)!''}</span>
+							<#else><i class="icon-time"></i>
+							<span class="pull-left">${(detail.orderState)!''}</span>
+							</#if>
+						</li>
+						<#if (detail.payFlag=='1') && (detail.getFlag=='0')>
+						<li>
+							<span>请凭二维码领取</span>
+						</li>
+						<#elseif (detail.getFlag=='1') && (detail.evalFlag=='0')>
+						<li>
+							<span>欢迎提交您的消费评价</span>
+						</li>
+						</#if>
+						</li>
+					</ul>
+					</#if> <#if (detail.getFlag=='0')>
+					<ul class="first_stage">
+						<#else>
+						<ul class="last_stage">
+							</#if>
+							<li>
+								<span>待付款</span>
+								<span>待领取</span>
+								<#if (detail.evalFlag=='1')>
+								<span style="color: #505050;">待评价</span>
+								<#else>
+								<span>待评价</span>
+								</#if>
+							</li>
+							<li>
+								<span>
+									<i class="icon-complete"></i>
+								</span>
+								<span>
+									<#if (detail.payFlag=='1')> <i class="icon-complete"></i> <#else> <i class="icon-non-com"></i> </#if>
+								</span>
+								<span>
+									<#if (detail.getFlag=='1')> <i class="icon-complete"></i> <#else> <i class="icon-non-com"></i> </#if>
+								</span>
+							</li>
+						</ul>
+				</div>
+				<#if (detail.orderTypeCode=='1')>
+				<ul class="order-wait-detail">
+					<li>民生大千世界梦幻乐园门票</li>
+					<#if goodsDetails??> <#list goodsDetails as goods>
+					<li>
+						<span>${(goods.goodsName)!''}：</span>
+						<span>${(goods.goodsNum)!''}张</span>
+					</li>
+					</#list></#if>
+					<li>
+						<span>入园时间：</span>
+						<span>${(detail.useDate)!''}</span>
+					</li>
+					<#else>
+					<ul class="order-wait-receive">
+						<li>订单信息</li>
+						<#if goodsDetails??> <#list goodsDetails as goods>
+						<li>
+							<span>${(goods.goodsName)!''}</span>
+							<span class="pull-right">￥${(goods.goodsPrice)!''}</span>
+							<span class="pull-right">x${(goods.goodsNum)!''}</span>
+						</li>
+						</#list></#if></#if>
+						<li>
+							<span>总计：</span>
+							<span>
+								<span class="money">￥${(detail.orderPrice)!'0'}</span>
+								<#if (detail.deductCredit)?? && (detail.isWorthMoney)??>
+								<span>&nbsp;(含${(detail.deductCredit)!'0'}积分抵扣${(detail.isWorthMoney)!'0'}元)</span>
+								</#if>
+							</span>
+						</li>
+
+					</ul>
+					<#if (detail.payFlag=='1')>
+					<div class="wait-webcode">
+						<div class="l-y"></div>
+						<div class="r-y"></div>
+						<ul>
+							<li>请商家扫描二维码领取商品</li>
+							<li id="output"></li>
+							<li>
+								<span>消费码：${(detail.orderQRCode)!''}</span>
+							</li>
+						</ul>
+					</div>
+					</#if>
+					<ul class="order-wait-detail mt15">
+						<li>
+							<span>订单编号&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							<span>${(detail.orderNo)!''}</span>
+						</li>
+						<#if (detail.payFlag=='0')>
+						<li>
+							<span>下单时间&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							<span>${(detail.orderTime)!''}</span>
+						</li>
+						<#else>
+						<li>
+							<span>付款时间&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							<span>${(detail.payTime)!''}</span>
+						</li>
+						</#if>
+					</ul>
+				</ul>
+			</div>
+			<!--container E-->
+		</div>
+		<!--wrapper E-->
+		<!-- 去支付 S-->
+		<#if (detail.payFlag=='0')>
+		<section class="reserve">
+			<button class=" btn-warning btn-radius btn-block pay_order">去支付</button>
+		</section>
+		<#elseif (detail.getFlag=='0')>
+		<section class="reserve">
+			<button class=" btn-warning btn-radius btn-block get_order">确认领取</button>
+		</section>
+		<#elseif (detail.evalFlag=='0')>
+		<section class="reserve">
+			<button class=" btn-warning btn-radius btn-block eval_order">去评价</button>
+		</section>
+		</#if>
+		<!-- 去支付 E-->
+		<script src="/js/jquery-2.1.4.min.js"></script>
+		<script src="/js/qrcode.js"></script>
+		<script src="/js/jquery.qrcode.js"></script>
+		<script src="/js/mui.min.js"></script>
+		<script src="/js/pay.js"></script>
+		<script type="text/javascript">
+            if ($('.wait-webcode').html() != null && $('.wait-webcode').html() != "" && $('#hideOrderQRCode').val() != "undefined") {
+                $('#output').qrcode({
+                    width : 116,
+                    height : 116,
+                    correctLevel : 0,
+                    text : $('#hideOrderQRCode').val()
+                });
+            }
+
+            // 去支付
+            $('.pay_order').bind('click', function() {
+                var orderId = $('#hideOrderId').val();
+                wxPay(orderId);
+                
+            });
+            // 确认领取
+            $('.get_order').bind('click', function() {
+                var id = $("#hideOrderId").val(); // 订单ID
+                $.ajax({
+                    type : 'POST',
+                    url : '/order/updateGetFlag',
+                    data : {
+                        "id" : id
+                    },
+                    dataType : 'json',
+                    success : function(result) {
+                        if (!result || !result.isError) {
+                            mui.toast("操作失败，请联系管理员！");
+                            return;
+                        }
+                        if (result.isError == "1") {
+                            mui.toast(result.msg);
+                            return;
+                        }
+                        mui.toast("确认领取成功！");
+                        setTimeout(function() {
+                            location.href = "/order/detail?id=" + $("#hideOrderId").val();
+                        }, 1000);
+                    }
+                });
+            });
+
+            // 去评价
+            $('.eval_order').bind('click', function() {
+                location.href = "/order/eval?orderId=" + $("#hideOrderId").val();
+            })
+        </script>
+</body>
+</html>

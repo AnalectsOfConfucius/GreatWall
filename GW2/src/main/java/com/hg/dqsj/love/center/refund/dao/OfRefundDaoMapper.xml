@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.love.center.refund.dao.OfRefundDao">
+ <!-- 新增退款-->
+    <insert id="saveRefund" parameterType="com.hg.dqsj.love.center.refund.entity.OfRefund">
+		INSERT INTO dqsj_of_refund (
+		    id,
+			refundNo,
+			orderId,
+			userId,
+			refundTotalAmount,
+			refundFlag,
+			refundDate,
+			confirmDate,
+			accountFlag,
+			rowLockNum,
+			createDate,
+			createUserId,
+			updateDate,
+			updateUserId,
+			deleteFlag
+		)
+		VALUES
+		    (
+		        #{id},
+				#{refundNo},
+				#{orderId},
+				#{userId},
+				#{refundTotalAmount},
+				#{refundFlag},
+				#{refundDate},
+				#{confirmDate},
+				#{accountFlag},		
+				#{rowLockNum},		
+				#{createDate},
+				#{createUserId},
+				#{updateDate},
+				#{updateUserId},
+				#{deleteFlag}
+		    )
+    </insert>
+   <!-- 根据查询条件查询订单信息 -->
+    <select id="selectByCriterias" parameterType="java.util.Map" resultType="com.hg.dqsj.love.center.refund.view.VOfRefund">
+		SELECT ord.id, 	
+		       ord.refundNo,	       
+               ord.refundDate,
+               (SELECT platformFlag FROM dqsj_of_order_pay WHERE refundId = ord.id) AS platformFlag,
+               ord.confirmDate,
+               ord.failReason,
+               ord.accountFlag,
+               ord.accountDate,
+		       ord.refundFlag,
+		       ord.refundTotalAmount,
+		       ord.rowLockNum,
+		       ord.remark,
+		       ord.orderId,
+		       ord.createDate,
+		       ord.createUserId,
+		       ord.updateDate,
+		       ord.updateUserId,
+		       ord.deleteFlag,
+		       oo.orderNo,
+		       oo.orderTypeCode
+           FROM dqsj_of_refund ord 
+		  left join dqsj_of_order oo
+		    ON oo.id = ord.orderId	 
+		 WHERE ord.deleteFlag = '0'
+		 <if test="userId != null and userId != ''"><![CDATA[ and ord.userId = '${userId}' ]]></if>     
+		 <if test="refundId != null and refundId != ''"><![CDATA[ and ord.id = '${refundId}' ]]></if>       
+         order by ord.updateDate desc
+            <if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+	        </if>
+    </select>
+        <!-- 根据退款号查询订单信息 -->
+    <select id="selectByRefundNo" parameterType="java.lang.String" resultType="com.hg.dqsj.love.center.refund.entity.OfRefund">
+        select id,
+	        refundNo,
+			orderId,
+			userId,
+			refundTotalAmount,
+			refundFlag,
+			refundDate,
+			confirmDate,
+			accountFlag,
+			rowLockNum,
+			createDate,
+			createUserId,
+			updateDate,
+			updateUserId,
+			deleteFlag
+          from dqsj_of_refund
+         where refundNo = #{refundNo}
+    </select>
+    <!-- 根据查询条件查询订单信息数 -->
+    <select id="countByCriterias" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(ord.id)
+          FROM dqsj_of_refund ord 
+		 WHERE ord.deleteFlag = '0'
+         and ord.userId = '${userId}'    
+    </select>
+    
+    <!-- 根据订单ID查询订单详细信息 -->
+    <select id="selectVById" parameterType="java.lang.String" resultType="com.hg.dqsj.love.center.refund.view.VOfRefund">
+        	SELECT ord.id, 		       
+               ord.refundDate,
+               ord.confirmDate,
+               ord.failReason,
+               ord.accountFlag,
+               ord.accountDate,
+		       ord.refundFlag,
+		       ord.refundTotalAmount,
+		       ord.remark,
+		       ord.orderId,
+		       ord.createDate,
+		       ord.createUserId,
+		       ord.updateDate,
+		       ord.updateUserId,
+		       ord.deleteFlag,
+		       oo.orderNo,
+               ood.useDate,
+		       ood.linkUserName,
+		       ood.linkUserPhone,
+		       ood.checkInDate,
+		       ood.checkOutDate
+           FROM dqsj_of_refund ord 
+		  left join dqsj_of_order oo
+		    ON oo.id = ord.orderId
+		  left join dqsj_of_order_detail ood
+		    ON ord.orderId = ood.orderId		 
+		 WHERE ord.deleteFlag = '0'
+           and ord.id = #{id}
+    </select>
+    
+    <!-- 更新退款状态 -->
+    <update id="updateGetFlag" parameterType="com.hg.dqsj.love.center.refund.entity.OfRefund" >
+		update dqsj_of_refund
+		   set refundFlag = #{refundFlag},
+               failReason = #{failReason},
+		       updateDate   = #{updateDate},
+		       updateUserId = #{updateUserId},
+		       rowLockNum   = #{rowLockNum} + 1
+		 where id = #{id}
+		 and rowLockNum = #{rowLockNum}
+    </update>
+     <!-- 更新到账状态 -->
+    <update id="updateAccountFlag" parameterType="com.hg.dqsj.love.center.refund.entity.OfRefund" >
+		update dqsj_of_refund
+		   set accountFlag = #{accountFlag},
+		       accountDate = #{accountDate},
+		       updateDate   = #{updateDate},
+		       rowLockNum = #{rowLockNum} + 1,
+		       updateUserId = #{updateUserId}		      
+		 where id = #{id}
+		  and rowLockNum = #{rowLockNum}
+    </update>
+</mapper>

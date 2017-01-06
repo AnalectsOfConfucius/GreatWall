@@ -1,0 +1,77 @@
+/* =======================ca-introduce ==================*/
+.ca-introduce{
+    .text{
+        ol{
+            padding: .3rem .5rem;
+            background-color: $link-white;
+            li{
+                display: block;
+                height: $height - 14;
+                line-height: $height - 14;
+                color: $link-black;
+                .price{
+                    color: $link-wag-color;
+                }
+                
+                &:last-child{
+                    color: $link-gray-e6;
+                }
+            }
+        }
+    }
+}
+
+
+/* =======================ca-introduce-list ==================*/
+.ca-introduce-list{
+    padding: 0 .2rem;
+    a{  
+        background-color: $link-white;
+        float: left;
+        width: 7.4rem;
+        display: block;
+        margin: .2rem;
+        color: $link-gray-e3;
+        
+        &:hover{
+            color: $link-primary;
+            background-color: #f0f0f0;
+        }
+        .pic{
+            width: 100%;
+            height: 5.45rem;
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .text{
+            padding: .5rem;
+            h3{
+                padding-bottom: .5rem;
+            }
+            .box-bdy{
+                color: $link-gray-e9;
+               .price{
+                    float: right;
+                    color: $link-wag-color;
+                } 
+            }
+            
+        }
+    }
+}
+
+.titleM{
+    background-color: $link-white;
+    padding: .75rem .5rem ;
+    h3{
+       color: $link-gray-e3;
+       
+    }
+    p{
+        padding-top: .3rem;
+        overflow: hidden;
+        color: $link-gray-e6;
+        @include text-overflow(text-overflow);
+    }
+}

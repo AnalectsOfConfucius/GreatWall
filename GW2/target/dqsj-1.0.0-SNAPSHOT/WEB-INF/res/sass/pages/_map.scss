@@ -1,0 +1,55 @@
+/* =======================map==================*/
+.map .title{
+    height: $height;
+    line-height: $height;
+    background-color:$link-bgc;
+    text-indent: .5rem;
+}
+.map .word{
+	border: 1px solid $link-gray-bor;
+	border-left: none;
+	border-right: none;
+	background-color: #fff;
+
+	.tt{
+		height: $height;
+        line-height: $height;
+		border-bottom: 1px solid $link-gray-bor;
+		padding: 0 .5rem;
+	}
+
+	.text{
+		padding: .5rem;
+		figure{
+			margin-bottom: .5rem;
+		}
+		p{
+			line-height: $height - 20;
+			color: $link-gray-e6;
+		}
+	}
+}
+
+.mapbox{
+	height: 200px;
+	background: #333;
+}
+.map .word .moerCont{
+	position: relative;
+    height: $height;
+    line-height: $height;
+    border-top: 1px solid $link-gray-bor;
+    padding: 0 .5rem;
+    .por{
+    	position: absolute;
+    	top: $font-size + 1;
+    	right: 0;
+    }
+}
+.map .word .contact{
+    padding: .3rem;
+    p{
+    	line-height: $height - 20;
+	    color: $link-gray-e6;
+    }
+}

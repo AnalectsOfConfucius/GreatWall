@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.love.center.credit.dao.CreditDao">   
+ <!--查询用户总积分 -->
+    <select id="selectCreditUser" parameterType="java.util.Map" resultType="com.hg.dqsj.love.center.credit.entity.CreditUser">
+		SELECT DISTINCT
+		    v.id,
+		    (SELECT creditComment FROM dqsj_pc_credit_money m where m.deleteFlag = '0' ) as creditRule,
+	        v.creditNum,
+	        v.rowLockNum,
+	        v.remark
+		FROM
+		    dqsj_pc_credit_user v 
+		WHERE
+		    v.deleteFlag = '0'	
+		    and v.userId = '${userId}'	
+		    
+    </select>   
+     <!--查询用户获得积分明细 -->
+    <select id="selectCreditGet" parameterType="java.util.Map" resultType="com.hg.dqsj.love.center.credit.entity.CreditGet">
+		SELECT DISTINCT
+		    d.id,
+	        d.creditNum,
+	        d.getFlag,
+	        d.remark,
+	        d.giveCreditId,
+	        d.receiveTime,
+	        d.createDate,
+	        d.userId
+		FROM
+		    dqsj_pc_credit_detail d
+		WHERE
+		    d.deleteFlag = '0'	
+		    and d.userId = '${userId}'	
+		  order by d.updateDate desc
+	<if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>	    
+    </select> 
+   <!--查询用户获得积分明细条数 -->
+    <select id="selectCreditGetCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT count(distinct d.id)				   
+		FROM
+		    dqsj_pc_credit_detail d
+		WHERE
+		    d.deleteFlag = '0'	
+		    and d.userId = '${userId}'	
+		    
+    </select> 
+    <!--查询用户消费积分明细 -->
+    <select id="selectCreditUse" parameterType="java.util.Map" resultType="com.hg.dqsj.love.center.credit.entity.CreditConsume">
+		SELECT DISTINCT
+		    d.id,
+	        d.orderId,
+	        (SELECT o.orderTypeCode FROM dqsj_of_order o where o.id=d.orderId ) as useType,
+	        d.deductCredit,
+	        d.remark,
+	        d.isWorthMoney,
+	        d.createDate,
+	        d.userId
+		FROM
+		    dqsj_pc_credit_consume d
+		WHERE
+		    d.deleteFlag = '0'	
+		    and d.userId = '${userId}'	
+		  order by d.updateDate desc
+	<if test="startRowNo != null and startRowNo != '' and rowSize != null and rowSize != ''">
+            <![CDATA[LIMIT ${startRowNo}, ${rowSize}]]>
+        </if>	    
+    </select> 
+   <!--查询用户消费积分明细条数 -->
+    <select id="selectCreditUseCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT count(distinct d.id)				   
+		FROM
+		    dqsj_pc_credit_consume d
+		WHERE
+		    d.deleteFlag = '0'	
+		    and d.userId = '${userId}'	
+		    
+    </select> 
+   <!--查询积分抵金额 -->
+    <select id="selectCreditMoney" parameterType="map" resultType="com.hg.dqsj.love.center.credit.entity.CreditMoney">
+		SELECT usableCondition,isWorthMoney
+		FROM
+		    dqsj_pc_credit_money t
+		WHERE
+		    t.deleteFlag = '0'
+    </select>
+</mapper>

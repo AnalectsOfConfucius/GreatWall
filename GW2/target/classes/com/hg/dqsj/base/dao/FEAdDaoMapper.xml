@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hg.dqsj.base.dao.FEAdDao">
+    <!-- 根据类别代码查询所有详细信息 -->
+    <select id="selectByTypeCode" parameterType="java.util.Map" resultType="com.hg.dqsj.base.view.VFEAd">
+		SELECT DISTINCT fa.id,
+		                fa.adTitle,
+		                fa.typeId,
+		                fa.linkTypeId,
+		                fa.linkObjId,
+		                fa.adMiniPicUrl,
+		                fa.adUrl,
+		                fa.adOrder,
+		                fa.remark,
+		                fa.createDate,
+		                fa.createUserId,
+		                fa.updateDate,
+		                fa.updateUserId,
+		                fa.deleteFlag,
+		                (SELECT typeName FROM dqsj_sm_type WHERE id = fa.typeId) AS typeName,
+		                (SELECT typeName FROM dqsj_sm_type WHERE id = fa.linkTypeId) AS linkTypeName
+		  FROM dqsj_fe_ad fa, dqsj_sm_type st
+		 WHERE fa.typeId = st.id
+		   and fa.deleteFlag = '0'
+		   and st.deleteFlag = '0'
+		   and st.typeCode = '${typeCode}'
+		 ORDER BY fa.adOrder, fa.updateDate desc
+    </select>
+</mapper>

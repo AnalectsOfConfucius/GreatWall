@@ -1,0 +1,35 @@
+/* =======================ie-park ==================*/
+.ie-park{
+    background-color: $link-bgc;
+    padding: .75rem;
+    .title{
+        padding-top: .5rem;
+        text-align: center;
+        h3{
+            color: $link-gray-e3;
+            font-size: 18px;
+        }
+        p{ 
+            font-size: 15px;
+            line-height: 44px;
+            time{
+                color: $link-gray-e9;
+                padding-right: .3rem;
+            }
+            color: $link-gray-e6;
+        }
+    }
+  
+}   
+.compile{
+    color: $link-gray-e3;
+    line-height: $font-size + 9; 
+    font-size: $font-size;
+    figure{
+        padding: 10px 0;  
+    }
+    p{
+        text-indent: 2em;
+        line-height: 28px;
+    }
+}

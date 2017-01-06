@@ -1,0 +1,147 @@
+/* =======================footer ==================*/
+footer{
+    width: $Witdh; 
+    height: $height + 5;
+    position: fixed;
+    z-index:999;
+    bottom: $font-size * 0;
+    left: $font-size * 0;
+    background-color: $link-white;
+    border-top:1px solid $link-gray-bor;
+    ul{
+        li{
+           position: relative; 
+           float: left;
+           display: block;
+           width: 33%;
+           text-align: center;
+           border-left: 1px solid $link-gray-bor;
+           &:first-child{
+               border: none ;
+           }
+           a{
+               color: $link-foot-color;
+               font-size: $font-size;
+               display: block;
+               line-height: $font-size + 1;
+               padding-top: $container / 125;
+               span{
+                display: block;
+               }
+           } 
+        }
+    }
+   
+    
+}
+
+.submenu{
+    display: none;
+    position: absolute;
+    bottom: $height + 4;
+    left: $Witdh / 2;
+    min-width: 94px;
+    margin-left: -47px;
+    @include css3(transform,translateY(-10px));
+    border: 1px solid $link-gray-bor;
+    background-color: $link-white;
+    border-radius: 5px;
+    
+    &:after, &:before{
+        position: absolute;
+        bottom: -8px;
+        left: $Witdh / 2;
+        width: $font-size * 0;
+        height: $font-size * 0;
+        margin-left: -8px;
+        content: '';
+        border-right: $font-size - 6 solid transparent;
+        border-top: $font-size - 6 solid $link-gray-bor;
+        border-left: $font-size - 6 solid transparent;
+    }
+    
+    &:after{
+       bottom: -$font-size / 2;
+       margin-left: -$font-size / 2;
+       border-right: $font-size / 2 solid transparent;
+       border-top: $font-size / 2 solid $link-white;
+       border-left: $font-size / 2 solid transparent;
+    }
+    
+}
+
+.submenu{
+    a{
+        position: relative;
+        display: block;
+        padding: $font-size;
+        line-height: $font-size / $font-size;
+        color: $link-foot-color;
+        font-size: $font-size;
+        text-align: center;
+     
+     &:hover,&:active,&:active{
+        color: $link-primary;
+     }
+     
+     &:after{
+        content: "";
+        position: absolute;
+        right: $container / 75;
+        left: $container / 75;
+        bottom: $font-size * 0;
+        width: auto;
+        height: $font-size * 0;
+        border-bottom: 1px solid $link-gray-bor;
+     }
+     
+     &:last-child:after{
+         border: 0;
+     }
+    }
+}
+
+
+
+//teb-item-footer
+.teb-item-footer{
+    position: fixed;
+    width: $Witdh;
+    bottom: 0;
+    left: 0;
+    height: $height;
+    line-height: $height;
+    background-color: #f4f4f4;
+    z-index: 999;
+}
+
+//tab-muen
+.tab-muen{
+    position: fixed;
+    width: $Witdh;
+    bottom: 0;
+    left: 0;
+    height: $height;
+    line-height: $height;
+    background-color: $link-white;
+    z-index: 999;
+    border-top: 1px solid  $link-gray-bor;
+    .boc{
+        padding:  0 .5rem;
+        .price{
+            color: $link-wag-color;
+            font-style: normal;
+        }
+        a{  
+            margin-top: 6px;
+            display: inline-block;
+            line-height: 30px;
+            width: 50%;
+            text-align: center;
+            font-weight:bold;
+            
+        }
+    }
+}
+
+

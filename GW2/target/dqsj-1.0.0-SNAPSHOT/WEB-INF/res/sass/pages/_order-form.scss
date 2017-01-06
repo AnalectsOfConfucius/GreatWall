@@ -1,0 +1,204 @@
+/* =======================order-form==================*/
+.list-form{
+    background-color: $link-white;
+    ul{
+        li{
+             padding: 0 .5rem;
+            display: block;
+            height:  $height;
+            line-height: $height;
+            border-bottom: 1px solid $link-color-ul ;
+            &:last-child{
+                border: none;
+            }
+            .ticket{
+                color: $link-wag-color;
+            }
+            .price{
+                @extend .ticket;
+            }
+            span{
+                padding-left: .3rem;
+            }
+        }
+    }
+}
+
+.cellphone{
+    background-color: $link-white;
+    
+    
+    .title{
+        height: $height;
+        line-height: $height;
+        position: relative;
+        display: block;
+        padding: 0 .7rem;
+        color: $link-gray-e3;
+        font-weight: normal;
+        &:before{
+            position: absolute;
+            top: 15px;
+            left: .3rem;
+            width: 3px;
+            height: 16px;
+            background-color: $link-primary;
+            content: "";
+        }
+        .must{
+            font-style: normal;
+            color: $link-gray-e9;
+            font-weight: normal;
+        }
+    }
+    ul{
+        li{
+            padding: 0 .5rem;
+            background-color: $link-white;
+            display: block;
+            height: $height;
+            line-height: $height;
+            border-top: 1px solid $link-color-ul ;
+            .inputCont{
+                height: $height - 14;
+                line-height: $height - 14;
+                margin-left: .6rem;
+                border: none;
+            }
+            .refund{
+                border-radius: 2px;
+                padding: 2px 3px;
+                border: 1px solid $link-wag-color;
+                color:$link-wag-color;
+                margin-right: 5px;
+            }
+            .holiday{
+                color: $link-primary;
+                border-radius: 2px;
+                padding: 2px 3px;
+                border: 1px solid $link-primary;
+                margin-right: 5px;
+            }
+            .week{
+                color: $link-success;
+                border-radius: 2px;
+                padding: 2px 3px;
+                border: 1px solid $link-success;
+            }
+            .icon-tickc{
+                cursor: pointer;
+                margin-top:$font-size - 1;
+       
+            }
+            
+            .price{
+                color:$link-wag-color;
+            }
+        }
+    }
+}
+
+.btnWorp{
+   
+    margin:  1.5rem .5rem;
+    text-align: center;
+    a{  
+        width: $Witdh;
+        display: inline-block;
+        height: $height;
+        line-height: $height;
+        font-size: 17px;
+    }
+}
+.form-ui{
+    background-color: $link-white;
+    ol{
+        li{
+            padding: 0 .5rem;
+            display: block;
+            height: $height;
+            line-height: $height;
+            color: $link-gray-e3;
+            border-top: 1px solid $link-color-ul ;
+            a{
+                 color: $link-gray-e3;
+            }
+            span{
+                float: right;
+                position: relative;
+            }
+            .price{
+                color:$link-wag-color;
+            }
+        }
+    }
+}
+
+
+.checkbox_item{
+    position:relative;
+    display:inline-block;
+    height:16px;
+    input{
+        position:absolute;
+        top:-9999px;
+        left:-9999px;
+        }
+    .check_label{
+        display:inline-block;
+        cursor:default;
+        }
+    }
+.checkbox_icon{
+    display:block;
+    float:left;
+    margin-top:15px;
+    width:16px;
+    height:16px;
+    background:url(../img/checkbox_icon.png) 0 0;
+    
+    }
+.check_label.on .checkbox_icon{
+    background-position:-16px 0;
+    }
+
+.checkbox_text{
+    float:left;
+    height:16px;
+    line-height:16px;
+    }
+    
+.subtract,.number,.append{
+    float: left;
+    border: 1px solid #d5d5d5;
+    margin-top: 10px;
+}    
+.subtract,.append{
+    display: block;
+    cursor: pointer;
+    width: 22px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    color: $link-primary;
+    font-weight: 700;
+    background: none;
+}    
+
+.number{
+    width: 40px;
+    height: 22px;
+    line-height: 22px;
+    border-left:none ;
+    border-right:none ;
+    text-align: center;
+    color: $link-gray-e3;
+
+}    
+    
+.text-ee{
+    max-height: 150px;
+    padding: .5rem;
+    color: $link-gray-e9;
+}    
+    

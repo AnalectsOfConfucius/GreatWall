@@ -1,0 +1,107 @@
+/* =======================order-detail==================*/
+.common{
+   line-height: $link-height+6;
+    padding: 0 0.6rem;
+    font-size: 16px;
+    color:$link-gray-e3;
+    border-bottom: 1px solid #eef1f6;
+    overflow: hidden; 
+}
+
+.btn-common{
+    font-style: normal;
+                border: 1px solid $link-gray-bor;
+                color: #d5d5d5;
+                border-radius: 50%;
+                height: 30px;
+                width: 30px;
+                margin: 0 5px;
+                line-height: 22px;
+                background: none;
+                color: $link-primary;
+                
+                &:first-of-type{
+                margin-right: 0;
+                }
+                &:last-of-type{
+                margin-left: 0;
+                }
+                &:active{
+                    background: #eee;
+                }
+}
+.div-common{
+    &:nth-of-type(1){
+    width: 9rem;
+    font-size: 14px;
+    }
+    &:nth-of-type(2){
+    width: 110px;
+    position: relative;
+    top: 10px;
+    }
+}
+.input-common{
+                width:38px;
+                position: relative;
+                top: 2px;
+                border: 1px solid #d5d5d5;
+                height: 24px;
+                line-height: 24px;
+                text-align: center;
+                color: $link-gray-e3;
+}
+.order-detail-list{
+    background: $link-white;
+    li{
+        @extend .common;
+        span{
+            float: left;
+            color: $link-gray-e6;
+            font-weight: normal;
+            
+        }
+    &:first-of-type span{
+        color: $link-gray-e3;
+    }
+    &:last-of-type{
+        border-bottom: none;
+        span:nth-of-type(2){
+            color: $link-wag-color;
+        }
+    } 
+    }
+}
+
+.order-detail-num{
+    background: $link-white;
+    li{
+    @extend .common;
+        span{
+            float: left;
+            color: $link-gray-e6;
+            font-weight: normal;
+        }
+        div{
+            @extend .div-common;
+            span:first-of-type{
+                display: block;
+                width: 4.2rem;
+                color: $link-gray-e3;
+            }
+            button{
+                @extend .btn-common;
+            }
+            input{
+                @extend .input-common;
+            }
+            &:last-of-type *{
+                float: right;
+            }
+        }
+    }
+}
+.declare{
+    padding: 0 0.6rem;
+    color: $link-gray-e9;
+}

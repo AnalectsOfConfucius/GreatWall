@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1">
+<title>民生大千世界游乐园-园区导览</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<meta name="keywords" content="民生大千世界游乐园">
+<meta name="description" content="民生大千世界游乐园">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<link type="text/css" rel="stylesheet" href="/css/main.css">
+</head>
+<body style="background: #f5f5f5;">
+
+	<!-- header S -->
+	<div class="header">
+		<div class="headbar">
+			<a href="/index" class="return">
+				<i class="icon-return"></i>返回
+			</a>
+			<h3>园区概括</h3>
+		</div>
+		<div class="tabCotn clearfix">
+			<ul>
+				<li>
+					<a href="/navigation" class="active">园区导览</a>
+				</li>
+				<li>
+					<a href="/parkSummary">园区概括</a>
+				</li>
+				<li>
+					<a href="/tenWorlds">十大世界</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- header E -->
+	<!--container S-->
+	<div class="container" style="top: 88px;">
+		<!-- 园区介绍 S -->
+		<iframe src="/navigation/map" width="100%" height="100%" SCROLLING="NO" frameborder="0" id="iframe"></iframe>
+		<!-- 园区介绍 E -->
+	</div>
+	<!--container E-->
+	<script src="/js/swiper.min.js"></script>
+	<script src="/js/jquery-2.1.4.min.js"></script>
+	<script src="/js/app.js"></script>
+	<script>
+        (function() {
+            var b = document.documentElement, a = function() {
+                var a = b.getBoundingClientRect().width;
+                b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+            }, c = null;
+            window.addEventListener("resize", function() {
+                clearTimeout(c);
+                c = setTimeout(a, 300)
+            });
+            a()
+        })();
+        window.onload = function() {
+            var a = $(window).height();
+            $("#iframe").css({
+                "height" : (a - 88)
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1" >
+    <title>民生大千世界游乐园-提交订单 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="keywords" content="民生大千世界游乐园">
+    <meta name="description" content="民生大千世界游乐园">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link type="text/css" rel="stylesheet" href="/css/mui.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <script>
+		(function() {
+			var b = document.documentElement,
+			a = function() {
+				var a = b.getBoundingClientRect().width;
+				b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+			},
+			c = null;
+			window.addEventListener("resize",
+			function() {
+				clearTimeout(c);
+				c = setTimeout(a, 300)
+			});
+			a()
+		})();
+    </script>
+</head>
+<body>
+ 	
+ 	
+
+<!-- header S -->
+    <div class="header">
+      <div class="headbar">
+      	<a href="javascript:history.go(-1)" class="return"><i class="icon-return"></i>返回</a>
+      	<h3>提交订单</h3>
+      </div>
+    </div>
+<!-- header E -->
+<!--wrapper S-->
+<div id	="wrapper">
+		<!--container S-->
+		<div class="container">
+			<!-- 立即购买  S -->
+			  <section class="order-form clearfix">
+			  		<input type="hidden" data-type="order" name="storeId" value="${(storeId)!''}">
+			  		<input type="hidden" data-type="text" name="goodsId" value="${(goodsId)!''}">
+			  		<input type="hidden" data-type="text" name="goodsPrice" value="${(goodsPrice)!'0'}">
+			  		<input type="hidden" data-type="text" name="goodsName" value="${(goodsName)!''}">
+			  		<input type="hidden" data-type="order" name="orderTypeCode" value="${(orderTypeCode)!''}">
+			       <div class="form-ui">
+				        <ol>
+				        	<li><span class="price">￥${(goodsPrice)!'0'}</span>${(goodsName)!''}</li>
+				        	<li>
+				        		<span>
+				        			<a class="subtract minus"> - </a>
+				        			<input class="number text_box" style="height:24px;line-height:24px;" name="goodsNum" type="text" data-type="text" value="1" readonly/>
+				        			<a class="append add"> + </a>
+				        		</span>
+				        		
+				        		数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量
+				        	</li>
+				        	<li><span class="price">￥${(goodsPrice)!'0'}</span>小&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计</li>
+				        	<li>
+				        		<a>
+				        		<span>
+				        			<input class="peeip" type="text" data-type="order" name="linkUserPhone" 
+				        			required placeholder="请输入手机号码">
+				        		</span>
+				        		手机号码
+				        		</a>
+				        	</li>
+				        </ol>
+			       </div>
+			        
+		           <div class="cellphone mt15 clearfix">
+			        	<ul>
+			        		<li class="useCredit">
+			        			<input type="hidden" name="userCredit" value="${(useMoney!'0.0')}"/>
+			        			<span class="checkbox_item pull-right">
+                                   <label class="check_label ">
+				                   <i class="checkbox_icon "></i>
+                                    </label>
+				                </span>
+			        			 可用${(useCredit!'0')}积分抵扣${(useMoney!'0.0')}元 
+			        		</li>
+			        		
+			        	</ul>
+			        </div>
+                    <div class="text-ee">
+                    	未消费，可退款
+                    </div>
+			       
+			  </section>
+			<!-- 立即购买  E -->
+		</div>
+		<!--container E-->
+		<input type="hidden" data-type="order" name="orderPrice" value="0"/>
+</div>
+<!--wrapper E-->
+<!--footer S-->
+<div class="tab-muen" style="background: #f5f5f5;">
+	 <div class="boc">
+	 	 <span>共计：<em class="price">${(goodsPrice)!'0'}元</em></span>
+	 	 <a href="javascript:void(0);" class="pull-right btn-radius btn-warning" onclick="subFun()">确定下单</a> 
+	 </div>
+</div>
+<!--footer S-->
+
+  <script src="/js/swiper.min.js"></script>
+  <script src="/js/jquery-2.1.4.min.js"></script>
+  <script src="/js/checkbox.js" ></script>
+  <script src="/js/app.js"></script>
+<script src="/js/mui.min.js"></script>
+  <script src="/js/script.js"></script>
+  <script type="text/javascript">
+    $(".check_label").checkbox();
+  </script>
+  <!--商品加减-->
+	<script type="text/javascript">
+		$('.add').css({"color":"#2dacfe"});
+		$('.minus').css({"color":"#2dacfe"});
+		$(function(){
+			$(".minus").click(function(){
+				var t=$(this).parent().find('input[class*=text_box]');
+				t.val(parseInt(t.val())-1);
+				if(parseInt(t.val()) <= 0){
+					$(this).attr("disabled",true);
+					$(this).css({"color":"#d5d5d5"});
+					t.val(1);
+				}
+				setTotal();
+			});
+			$(".add").click(function(){
+				var t=$(this).parent().find('input[class*=text_box]');
+				t.val(parseInt(t.val())+1);
+				$(this).parent().find(".minus").attr("disabled",false);
+				$(this).parent().find(".minus").css({"color":"#2dacfe"});
+				setTotal();
+			});
+			//积分
+			$(".useCredit").click(function(){
+				setTotal();
+			});
+			function setTotal(){
+				var price = $('#wrapper').find('input[name="goodsPrice"]').val();
+				var num = $('#wrapper').find('input[name="goodsNum"]').val();
+				if(!price){
+					price = 0;
+				}
+				if(!num){
+					num = 0;
+				}
+				var total = (1*price)*(1*num);
+				total = total.toFixed(2);
+				$('.price').eq(1).text('￥'+total);
+				
+				var len = $(".useCredit").find(".on").length;
+				if(len>0){
+					var credit = $(".useCredit").find("input[name='userCredit']").val();
+					if(!credit){
+						credit = 0;
+					}
+					total = total-(1*credit);
+					total = total.toFixed(2);
+				}
+				if(total<=0){
+					total = 0.0;
+				}
+				$("#wrapper").find('input[name=orderPrice]').val(total);
+				$('.price').eq(2).text(total+"元");
+			}
+			setTotal();
+			
+		});
+		//添加订单
+		function subFun(){
+			var goodsNum = $('#wrapper').find('input[name="goodsNum"]').val();
+			var ph = $('#wrapper').find('input[name="linkUserPhone"]').val();
+			if(!goodsNum || goodsNum<=0){
+				mui.toast('请输入大于0的数量');
+			}else if(!ph){
+				mui.toast('请输入手机号码');
+			}else if(!validatePhone(ph)){
+				mui.toast('请输入正确的手机号码');
+			}else{
+				var data = {};
+				$('#wrapper').find('input[data-type="order"]').each(function(){
+				  	var v = $(this).val();
+				  	var name = $(this).attr('name');
+				  	data[name] = v;
+			  	});
+			  var json = {};
+			  var goods = [];
+			  $('#wrapper').find('input[data-type="text"]').each(function(){
+				  var v = $(this).val();
+				  var name = $(this).attr('name');
+				  json[name] = v;
+			  });
+			  goods[0] = json;
+			  data.goods = JsonToStr(goods);
+			  $.ajax({
+		      	data:data,
+		          type: 'POST',
+		          url: '/addOrder',
+		          dataType: 'json',
+		          success: function(data){
+		          	if(data.isError==1){
+			          	mui.toast(data.msg);
+		          	}else{
+		          		var orderId = data.orderId;
+		          		var orderNo = data.orderNo;
+		          		var goodsId = $('#wrapper').find('input[name="goodsId"]').val();
+		          		var goodsName = $('#wrapper').find('input[name="goodsName"]').val();
+		          		var goodsNum = $('#wrapper').find('input[name="goodsNum"]').val();
+		          		var orderPrice = $('#wrapper').find('input[name="orderPrice"]').val();
+		          		var userPhone = $('#wrapper').find('input[name="linkUserPhone"]').val();
+		          		var credit = 0;
+		          		var len = $(".useCredit").find(".on").length;
+						if(len>0){
+			          		credit = $('.useCredit').find('input[name="userCredit"]').val();
+						}
+		          		
+			          	window.location.href = '/toFoodBeveragesPay?orderNo='+orderNo+
+			          		'&orderId='+orderId+
+			          		'&goodsId='+goodsId+
+			          		'&goodsName='+goodsName+
+			          		'&goodsNum='+goodsNum+
+			          		'&orderPrice='+orderPrice+
+			          		'&userPhone='+userPhone+
+			          		'&credit='+credit;
+		          	}
+		          },
+		          error: function(xhr, type){
+		          	mui.toast('系统错误，请联系管理员');
+		          }
+		      });
+			}
+		}
+	</script>
+</body>
+</html>

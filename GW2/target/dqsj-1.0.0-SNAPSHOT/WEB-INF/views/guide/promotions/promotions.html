@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1">
+<title>民生大千世界游乐园-优惠活动</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<meta name="keywords" content="民生大千世界游乐园">
+<meta name="description" content="民生大千世界游乐园">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<link type="text/css" rel="stylesheet" href="/css/mui.min.css">
+<link type="text/css" rel="stylesheet" href="/css/main.css">
+<script>
+    (function() {
+        var b = document.documentElement, a = function() {
+            var a = b.getBoundingClientRect().width;
+            b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+        }, c = null;
+        window.addEventListener("resize", function() {
+            clearTimeout(c);
+            c = setTimeout(a, 300)
+        });
+        a()
+    })();
+</script>
+</head>
+<body style="height: auto; background: #f5f5f5;">
+	<!-- 类别代码 -->
+	<input id="hideTypeCode" type="hidden" value="promotions" />
+	<!-- 是否推荐 -->
+	<input id="hideIsRecommend" type="hidden" value="1" />
+	<!-- header S -->
+	<div class="header">
+		<div class="headbar">
+			<a href="javascript:history.go(-1)" class="return">
+				<i class="icon-return"></i>返回
+			</a>
+			<h3>民生大千世界梦幻乐园</h3>
+		</div>
+		<div class="tabactive clearfix">
+			<ul>
+
+				<li>
+					<a href="javascript:void(0);" class="active" onclick="isRecommendDetail(1)">精彩活动</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);" onclick="isRecommendDetail(0)">往期活动</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- header E -->
+	<!--wrapper S-->
+	<div id="wrapper" class="wrapper-conten" style="background: #f5f5f5;">
+		<!-- 上下拉详细信息列表容器 S-->
+		<div id="divPullRefresh" class="mui-scroll-wrapper" style="top: 85px;">
+			<!--container S-->
+			<div class="container mui-scroll">
+				<!--  优惠活动 S -->
+				<section class="special">
+					<ul id="ulPullRefresh"></ul>
+				</section>
+				<!--  优惠活动 E -->
+			</div>
+			<!--container E-->
+		</div>
+		<!-- 上下拉详细信息列表容器 E -->
+	</div>
+	<!--wrapper E-->
+
+	<script src="/js/jquery-2.1.4.min.js"></script>
+	<script src="/js/mui.min.js"></script>
+	<script src="/js/script.js"></script>
+	<script type="text/javascript">
+        function isRecommendDetail(isRecommend) {
+            $('.tabactive a').removeClass('active');
+            $(this).addClass('active');
+            $("#hideIsRecommend").val(isRecommend);
+            detailList.pulldownRefresh();
+        }
+
+        // 上下拉详细信息列表
+        var detailList = {
+            divPullRefresh : "#divPullRefresh",
+            ulPullRefresh : "#ulPullRefresh",
+            /**
+             * 初始化
+             */
+            init : function() {
+                mui.init({
+                    pullRefresh : {
+                        // 下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+                        container : detailList.divPullRefresh,
+                        down : {
+                            // 必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据
+                            callback : detailList.pulldownRefresh
+                        },
+                        up : {
+                            // 必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据
+                            callback : detailList.pullupRefresh
+                        }
+                    }
+                });
+
+                // 第一次加载数据
+                if (mui.os.plus) {
+                    mui.plusReady(function() {
+                        setTimeout(function() {
+                            mui(detailList.divPullRefresh).pullRefresh().pullupLoading();
+                        }, 1000);
+                    });
+                } else {
+                    mui.ready(function() {
+                        setTimeout(function() {
+                            mui(detailList.divPullRefresh).pullRefresh().pullupLoading();
+                        }, 1000);
+                    });
+                }
+
+            },
+            /**
+             * 下拉刷新
+             */
+            pulldownRefresh : function() {
+                detailList.loadDetails(0, true);
+            },
+            /**
+             * 上拉刷新
+             */
+            pullupRefresh : function() {
+                var currentRecords = $(detailList.ulPullRefresh).children().length; // 当前记录数
+                detailList.loadDetails(currentRecords, false);
+            },
+            /**
+             * 加载详细信息
+             * 
+             * @param currentRecords
+             * @param isRemoveAll
+             * @param isRecommend
+             */
+            loadDetails : function(currentRecords, isRemoveAll) {
+                var typeCode = $("#hideTypeCode").val(); // 类别代码
+                var isRecommend = $("#hideIsRecommend").val(); // 是否推荐
+                $
+                        .ajax({
+                            type : 'POST',
+                            url : '/info/loadDetails',
+                            data : {
+                                "currentRecords" : currentRecords,
+                                "typeCode" : typeCode,
+                                "isRecommend" : isRecommend
+                            },
+                            dataType : 'json',
+                            success : function(result) {
+                                if (isRemoveAll) {
+                                    $(detailList.ulPullRefresh).empty();
+                                    // 启用上拉加载
+                                    mui(detailList.divPullRefresh).pullRefresh().enablePullupToRefresh();
+                                    mui(detailList.divPullRefresh).pullRefresh().scrollTo(0, 0, 100);
+                                }
+                                if (typeof (result) == "undefined" || typeof (result.details) == "undefined" || result.details.length <= 0) {
+                                    // 加载完毕
+                                    $(detailList.ulPullRefresh).height(35);
+                                    mui(detailList.divPullRefresh).pullRefresh().endPullupToRefresh(true);
+                                    return;
+                                }
+                                var details = result.details;
+                                if (details != null && details.length > 0) {
+                                    // 详细信息当前记录数
+                                    var currentRecords = $(detailList.ulPullRefresh).children().length + details.length;
+                                    // 详细信息总记录数
+                                    var totalRecords = result.totalRecords;
+                                    // 若数据已加载完毕
+                                    if (!currentRecords || (currentRecords >= totalRecords)) {
+                                        // 显示加载完毕字样
+                                        mui(detailList.divPullRefresh).pullRefresh().endPullupToRefresh(true);
+                                        // 结束上拉加载
+                                        mui(detailList.divPullRefresh).pullRefresh().disablePullupToRefresh();
+                                    } else {
+                                        // 结束加载，但数据没加载完毕
+                                        mui(detailList.divPullRefresh).pullRefresh().endPullupToRefresh(false);
+                                        // 启用上拉加载
+                                        mui(detailList.divPullRefresh).pullRefresh().enablePullupToRefresh();
+                                    }
+
+                                    for (var i = 0; i < details.length; i++) {
+                                        var $li = $('<li data-id="' + details[i].id + '" data-infoType="' + details[i].infoType + '"></li>');
+                                        var $article = $('<article class="item mt15"></article>');
+                                        var $figure = $('<figure><h3>' + (details[i].infoTitle || '') + '</h3><a href="javascript:void(0);"><img src="' + (details[i].infoPicUrl || '') + '" alt="' + (details[i].infoTitle || '') + '"></a><figcaption>' + (details[i].infoBrief || '')
+                                                + '</figcaption></figure>');
+
+                                        $li.append($article);
+                                        $article.append($figure);
+
+                                        $(detailList.ulPullRefresh).append($li);
+                                    }
+                                }
+
+                                // 截取标题
+                                substr($(document).width() * 0.4, $("figure h3"));
+                                // 截取内容
+                                substr($(document).width() - 5, $("figure figcaption"));
+                                // 设置图片样式
+                                $('figure img').css('width', '100%');
+                                $('figure img').height($('figure img').width() * 0.46);
+
+                                $('.mui-pull-top-pocket').css('top', '20px');
+                                // 绑定详细信息单击事件
+                                mui(detailList.ulPullRefresh).off('tap').on('tap', 'li', function() {
+                                    var id = $(this).attr("data-id");
+                                    var infoType = $(this).attr("data-infoType");
+                                    if (infoType == "VOTE") {
+                                        location.href = "/vote/details?voteId=" + id;
+                                    } else {
+                                        location.href = "/promotions/detail?id=" + id;
+                                    }
+                                });
+
+                                setTimeout(function() {
+                                    var height = 0;
+                                    $(detailList.ulPullRefresh).children().each(function() {
+                                        height += $(this).outerHeight() + 15;
+                                    })
+                                    $(detailList.ulPullRefresh).height(height);
+                                }, 100);
+                            }
+                        });
+            }
+        };
+
+        detailList.init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+/*
+Error: Undefined variable: "$link-gray-e3".
+        on line 6 of E:\duomi\ued\html\038_daqianshijie\assets\sass\apply_refund\order_detail.scss
+
+1: .order-detail-list{
+2:     li{
+3:     line-height: 2.25rem;
+4:     padding: 0 0.6rem;
+5:     font-size: 0.75rem;
+6:     color:$link-gray-e3;
+7:     font-family: "Hiragino Sans GB";
+8:     border-bottom: 1px solid #eef1f6;
+9:         h1{
+10:             float: left;
+11:             color: $link-gray-e6;
+
+Backtrace:
+E:\duomi\ued\html\038_daqianshijie\assets\sass\apply_refund\order_detail.scss:6
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/script/tree/variable.rb:49:in `_perform'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:384:in `visit_prop'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `block in with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:115:in `with_frame'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:420:in `block (2 levels) in visit_rule'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:420:in `map'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:420:in `block in visit_rule'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:418:in `visit_rule'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `block in with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:115:in `with_frame'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:420:in `block (2 levels) in visit_rule'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:420:in `map'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:420:in `block in visit_rule'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:418:in `visit_rule'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `block in with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:115:in `with_frame'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `with_base'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:52:in `map'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:157:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:8:in `visit'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/root_node.rb:36:in `css_tree'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:369:in `_render_with_sourcemap'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:286:in `render_with_sourcemap'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:396:in `run'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:62:in `process_result'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/base.rb:52:in `parse'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/base.rb:19:in `parse!'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.4.9/bin/sass:13:in `<top (required)>'
+C:/Program Files (x86)/Koala/bin/sass:18:in `load'
+C:/Program Files (x86)/Koala/bin/sass:18:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$link-gray-e3\".\A         on line 6 of E:\duomi\ued\html\038_daqianshijie\assets\sass\apply_refund\order_detail.scss\A \A 1: .order-detail-list{\A 2:     li{\A 3:     line-height: 2.25rem;\A 4:     padding: 0 0.6rem;\A 5:     font-size: 0.75rem;\A 6:     color:$link-gray-e3;\A 7:     font-family: \"Hiragino Sans GB\";\A 8:     border-bottom: 1px solid #eef1f6;\A 9:         h1{\A 10:             float: left;\A 11:             color: $link-gray-e6;"; }

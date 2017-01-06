@@ -1,0 +1,43 @@
+/* =======================my-message ==================*/
+.g-mge{
+    margin-bottom: $font-size;
+    background-color: $link-white;
+    .text{
+        height: $height;
+        line-height: $height;
+        padding: 0 .5rem;
+        border-bottom: 1px solid  $link-color-ul;
+        color: $link-gray-e3;  
+    }
+    .description{
+        position: relative;
+        padding: .5rem;
+        h3{
+          display: block;
+          padding-bottom: .5rem;
+          font-weight: normal;
+          color: $link-gray-e6;  
+        }
+        .nner{
+            font-style: normal;
+            font-weight: normal;  
+            color: $link-gray-e9;
+        }
+        p{
+           color: $link-gray-e6;
+           line-height: $height - 20;  
+        }
+        .time{
+            position: absolute;
+            top: .5rem;
+            right: .5rem;
+            color: $link-gray-e9;
+        }
+    }
+}
+.shopR{
+    border-top: 1px solid $link-color-ul;
+    h3.erronv{
+        color: #2dacfe;
+    }
+}

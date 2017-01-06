@@ -1,0 +1,156 @@
+/* =======================personal-data==================*/
+.ernn-add{
+                position: absolute;
+                top: 12px;
+                right: 0;
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                line-height: 1;
+                background: url("../img/sprite.png") no-repeat;
+                background-size: 96px auto;
+                overflow: hidden;
+                content: "";
+                background-position: -75px 0;
+}
+.personal-data{
+    background-color: $link-white;
+    .title{
+        padding: .3rem .5rem;
+        border-bottom:  1px solid $link-color-ul;
+        position: relative;
+        label{
+            float: left;
+            line-height: 2.5rem;
+            color: $link-gray-e6;
+        }
+        .J_avatar{
+            position: relative;
+            width: 2.5rem;
+            height: 2.5rem;
+            float: right;
+            border-radius: 50%;
+            margin-right: 20px;
+            
+            &:after{
+                @extend .ernn-add;
+                position: absolute;
+                top: 1.1rem;
+                right: -30px;
+                
+            }
+        }
+    }
+    ul{
+        li{
+            display: block;
+            line-height: 40px;
+            padding: 0 .5rem;
+            border-bottom:  1px solid $link-color-ul;
+            position: relative;
+            color: $link-gray-e6;
+            position: relative;
+            
+            &:after{
+                @extend .ernn-add;
+            }
+            span{
+                float: right;
+                color: $link-gray-e3;
+                padding-right: 20px;
+                
+            }
+            .J_avatar{
+                    float: right;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    border-radius: 50%;
+                    background: #444;
+                }
+        }
+    }
+}
+.modify_tx{
+    width: 13rem;
+    background: $link-white;
+    border-radius: 5px;
+    position: relative;
+    top: -8.25rem;
+    left: 1.5rem;
+    z-index: 1001;
+    display: none;
+    ul{
+        li{
+            border-top: 1px solid $link-color-ul;
+            padding: 0 .6rem;
+            line-height: $height;
+            color: $link-gray-e3;
+            &:first-of-type{
+                color: $link-gray-e6;
+                border: none;
+            }
+            &:nth-of-type(2){
+                span:before{
+                    content: url(../img/take_photo.png);
+                    height: 15px;
+                    width: 15px;
+                    position: relative;
+                    margin-right: 5px;
+                    top: 2px;
+                }
+            }
+            &:last-of-type{
+                span:before{
+                    content: url(../img/photo.png);
+                    position: relative;
+                    margin-right: 5px;
+                    top: 2px;
+                }
+            }
+        }
+    }
+}
+.modify_username{
+    @extend .modify_tx;
+    ul{
+        li{
+            input{
+                border: none;
+                margin-right: 5px;
+            }
+            input[type=radio]{
+                display: none;
+                margin: 3px 3px 0px 5px;
+            }
+            label{
+                padding-left: 20px;
+                margin-right: 10px;
+                background: url(../img/radio-up.png) no-repeat;
+                
+            }
+            label.checked{
+                background: url(../img/radio-down.png) no-repeat;
+                }
+            button{
+                width: 100%;
+                height: $height;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+                margin: 0;
+                line-height: $height - 22;
+            }
+            &:last-of-type{
+                padding: 0;
+            }
+        }
+    }
+}
+.modify_sex,.modify_mobile{
+    @extend .modify_username;
+}
+.close{
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    display: none;
+}

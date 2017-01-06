@@ -1,0 +1,27 @@
+/* =======================cart-order-submit==================*/
+.cart-list-content{
+    background: $link-white;
+    li{
+        @extend .common;
+        &:nth-of-type(even){
+            border-bottom: none;
+        }
+        span{
+            float: left;
+            font-weight: normal;
+            &:nth-of-type(2){
+                display: block;
+                width: 30%;
+                text-align: right;
+            }
+        }
+    &:first-of-type span{
+        color: $link-gray-e3;
+    }
+    &:last-of-type{
+                span:last-of-type{
+                    color: $link-wag-color;
+                }
+            }
+    }
+}

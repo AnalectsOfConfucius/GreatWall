@@ -1,0 +1,111 @@
+/* =======================ticket-buy==================*/
+.ticket-content{
+    background: $link-white;
+    li{
+        @extend .common;
+        span{
+            float: left;
+            color: $link-gray-e6;
+            font-weight: normal;
+            &:last-of-type{
+                color: $link-gray-e9;
+            }
+            
+        }
+        .laydate-icon-l{
+                border: none;
+                background-color: none;
+                color: $link-gray-e3;
+                text-align: right;
+                float: right;
+                line-height:$height + 6; 
+                width: 55%;
+            }
+    &:first-of-type span{
+        color: $link-gray-e3;
+    }
+    }
+}
+
+.ticket-num{
+    background: $link-white;
+    li{
+    @extend .common;
+    border-bottom: 1px solid #eef1f6;
+        span{
+            float: left;
+            color: $link-gray-e3;
+            font-weight: normal;
+            &:nth-of-type(2){
+                color: $link-wag-color;
+            }
+        }
+        div{
+            @extend .div-common;
+            height: 70px;
+            span:first-of-type{
+                display: block;
+                width: 4.5rem;
+                color: $link-gray-e3;
+                span{
+                    line-height: 20px;
+                    color: $link-gray-e9;
+                    position: relative;
+                    top: -10px;
+                    font-size: 13px;
+                }
+            }
+            button{
+                @extend .btn-common;
+            }
+            input{
+                @extend .input-common;
+            }
+            &:last-of-type *{
+                float: right;
+            }
+        }
+    }
+}
+.integral{
+    @extend .common;
+    background: $link-white;
+    li{
+        input{
+        float: right;
+        background: url("../img/sprite.png") no-repeat;
+        
+        }
+    }
+}
+.comfirm-common{
+    margin: .3rem 4%;
+    line-height: 30px;
+    display: block;
+    font-size: $font-size + 1;
+}
+.comfirm{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    height: 44px;
+    background-color: #f4f4f4;
+    border-top: 1px solid $link-gray-bor;
+    a{
+       width: 35%;
+            float: left;
+            text-align: left;
+            color: $link-black-total;
+            @extend .comfirm-common;
+            span{
+                color: $link-wag-color;
+            }
+    }
+    button{
+        width: 45.33%;
+        @extend .comfirm-common;
+        float: right;
+    }
+}   

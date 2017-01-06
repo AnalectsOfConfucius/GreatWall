@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1" >
+    <title>民生大千世界游乐园-提交订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="keywords" content="民生大千世界游乐园">
+    <meta name="description" content="民生大千世界游乐园">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link type="text/css" rel="stylesheet" href="/css/mui.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/main.css">
+
+    <script>
+		(function() {
+			var b = document.documentElement,
+			a = function() {
+				var a = b.getBoundingClientRect().width;
+				b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+			},
+			c = null;
+			window.addEventListener("resize",
+			function() {
+				clearTimeout(c);
+				c = setTimeout(a, 300)
+			});
+			a()
+		})();
+    </script>
+</head>
+<body>
+
+<!-- header S -->
+    <div class="header">
+      <div class="headbar">
+      	<a href="javascript:history.go(-1)" class="return"><i class="icon-return"></i>返回</a>
+      	<h3>提交订单</h3>
+      </div>
+    </div>
+<!-- header E -->
+<!--wrapper S-->
+<div id	="wrapper">
+		<!--container S-->
+		<div class="container">
+			<!-- 提交订单 S -->
+			  <section class="order-submit clearfix">
+			  	
+			        <div class="list-submit clearfix">
+			        	<input type="hidden" data-type="text" name="useDate" value="${useDate!''}"/>
+			        	<input type="hidden" data-type="text" name="orderPrice" value="${orderPrice!'0.0'}"/>
+			        	<input type="hidden" data-type="text" name="orderTypeCode" value="1"/>
+			        	<input type="hidden" data-type="json" name="goods" value='${goods!""}'/>
+			        	<ul>
+			        		<li><span>民生大千世界梦幻乐园门票</span></li>
+			        		<li>
+			        			<span style="display:inline-block;width:75px;">入园时间：</span>
+			        			<span class="tiem">${useDate!''}</span>
+			        		</li>
+			        		[#if goodsList??]
+			        		[#list goodsList as l]
+			        		<li class="goodsData">
+			        			
+				        		<span style="display:inline-block;width:75px;">${(l.goodsName)!''}：</span>
+				        		<span>${(l.goodsNum)!''}张</span>
+			        		</li>
+			        		[/#list]
+			        		[/#if]
+			        		<li>
+			        			<span style="display:inline-block;width:75px;">总 计：</span>
+			        			<span class="price">￥${orderPrice!'0.0'}</span>
+			        		</li>
+			        	</ul>
+			        </div>
+			        
+			        <div class="cellphone mt15 clearfix">
+			        	<h3 class="title">购卡人联系手机 <em class="must">（必填）</em></h3>
+			        	<ul>
+			        		<li style="border-top: none;">
+			        			<label>手机号</label>
+                                <input type="text" data-type="text" id="linkUserPhone" name="linkUserPhone" class="inputCont" placeholder="请输入手机号码">
+			        		</li>
+			        		<li>
+			        			<a href="javascript:void(0);" class="refund">支持退款</a>
+			        			<a href="javascript:void(0);" class="holiday">节假日开放</a>
+			        			<a href="javascript:void(0);" class="week">周末开放</a>
+			        		</li>
+			        	</ul>
+			        </div>
+			        
+			  </section>
+			<!-- 提交订单 E -->
+			<div class="pb10"></div>
+		</div>
+		<!--container E-->
+		<div class="reading-ticket">
+			<span class="checkbox_item pull-left" style="padding-right: 5px;">
+	                <label class="check_label on">
+					    <i class="checkbox_icon "></i>
+	                </label>
+			</span>		
+			<ul>
+				<li>
+					<a>
+						阅读购票须知 
+						<span class="icon-down pull-right"></span>
+						<span class="icon-up pull-right"></span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<button class="btn-block btn-warning btn-radius mt25" onclick="show()">
+			<a href="javascript:void(0);">微信支付</a>
+		</button>
+		<!-- 阅读购票须知 S -->
+        <section class="annual-card borderCon">
+               <h4>旅客购票须知</h4>
+               <p>1、全价票：1.5米以上、65岁以下、无证件购票者。<br/>
+2、半票价：6周岁（不含6周岁）—18周岁（含18周岁）未成年人、全日制在校大学本科及以下学历学生，凭本人学生证购票（不包含成人院校学生）<br/>
+3、免票：6周岁（含6周岁）以下或身高1.20米（含1.20米）以下的儿童（需成人陪同）、65岁以上老人、残疾人、现役军人、军队离退休干部、
+军队院校学员凭本人有效证件（寿星证、残疾证、军官证、文职干部证、士兵证、学员证）换取免票（老人及残疾人建议有陪同）。<br/>
+4、售出门票当日有效，一张门票只可入园一次，副劵自行撕毁即视无效。<br/>
+5、售出门票概不退换，门票遗失，自行负责。<br/>
+6、门票对园区内需另行付费的项目无效，门票可作为商业发票及报销凭证使用。<br/>
+7、请游客在园区规定的营业时间内持有效门票入园。<br/>
+8、本门票最终解释权属民生大千世界有限公司。</p>
+        </section>
+        <!-- 阅读购票须知 E -->
+</div>
+<!--wrapper E-->
+
+<input type="hidden" id="hideOrderId"/>
+<!--弹出框 S-->
+<div class="mask"></div>
+<div class="comfirm-msg">
+	<ul>
+		<li><span>确认购买信息</span></li>
+		<li class="mt15">手机号码：<span class="mobile"></span></li>
+		<li>入园时间：<span class="inDate"></span></li>
+	</ul>
+	<button class="btn-block btn-radius-sm btn-warning mt15" onclick="subFun()">确认提交</button>
+	<button class="btn-block cancel">关闭</button>
+</div>
+<div class="success-msg">
+	<ul>
+		<li><span>提示信息</span></li>
+		<li class="mt15"><span><span class="msgcontent"></span>详情请查看&nbsp;<a href="javascript:window.location.href='/order'">订单详情</a></span></li>
+	</ul>
+	<button class="btn-block btn-radius-sm mt15" onclick="orderDetail()">我知道了</button>
+</div>
+
+<!--弹出框 E-->
+  <script src="/js/swiper.min.js"></script> 
+  <script src="/js/jquery-2.1.4.min.js"></script>
+  <script src="/js/checkbox.js" ></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/mui.min.js"></script>
+  <script src="/js/script.js"></script>
+<script src="/js/goodsPay.js"></script>
+  <script>
+  	//check_label
+     $(".check_label").checkbox();
+  </script>
+  <!--弹出框jq-->
+  <script type="text/javascript">
+	function show(){
+		var exp = /^1[3|4|5|8][0-9]\d{4,8}$/;
+	  	var v= $("#linkUserPhone").val();
+	  	if(!v){
+	  		mui.toast("请输入手机号");
+	  	}else if(!exp.test(v)){
+	  		mui.toast("请输入正确的手机号");
+	  	}else{
+	  		var indate = $("#wrapper").find("input[name='useDate']").val();
+  		  	var week = getWeek(indate);
+  		  	
+  		  	//手机
+  			$(".comfirm-msg").find(".mobile").text(v);
+  		  	//手机
+  			$(".comfirm-msg").find(".inDate").html(indate+"&nbsp;周"+week);
+  			
+  			$(".comfirm-msg").fadeIn();
+  			$(".mask").fadeIn();
+	  	}
+	}
+  function success(){
+		$(".comfirm-msg").fadeOut();
+		$(".success-msg").fadeIn();
+		$(".mask").fadeIn();
+  }
+  function subFun(){
+	  var data = {};
+  	  $('#wrapper').find('input[data-type="text"]').each(function(){
+  		  var v = $(this).val();
+  		  var name = $(this).attr('name');
+  		  data[name] = v;
+  	  });
+  	  var goods = $('.list-submit').find('input[name="goods"]').val();
+  	  data.goods = goods;
+  	  $.ajax({
+        	data:data,
+            type: 'POST',
+            url: '/addOrder',
+            dataType: 'json',
+            success: function(data){
+            	if(data.isError==1){
+  	          	mui.toast(data.msg);
+            	}else{
+            		$('#hideOrderId').val(data.orderId);
+            		payOrder();
+            	}
+            },
+            error: function(xhr, type){
+            	mui.toast('系统错误，请联系管理员');
+            }
+        });
+  }
+  	/*$(".mask").click(function(){
+  		$(".comfirm-msg").fadeOut(300);
+  		$(".success-msg").fadeOut(300);
+  		$(".mask").fadeOut(500);
+  	});*/
+  	$(".cancel").click(function(){
+  		$(".comfirm-msg").fadeOut(300);
+  		$(".success-msg").fadeOut(300);
+  		$(".mask").fadeOut(500);
+  	})
+  </script>
+ <!--购票需知-->
+ <script type="text/javascript">
+ 	$('.icon-up').hide();
+  	$('.borderCon').hide();
+ 	
+  	$(".reading-ticket ul").click(function(){
+  		var $t = $(this).parent('.reading-ticket');
+  		if($t.hasClass('top')){
+  			$('.reading-ticket').removeClass('top');
+  			$('.borderCon').hide();
+  			$(".container").show();
+  			$("button").show();
+  			$(".icon-up").hide();
+  			$(".icon-down").show();
+  		}else{
+  			$('.reading-ticket').removeClass('top');
+  			$('.borderCon').hide();
+  			$('.reading-ticket').addClass('top');
+  			$('.borderCon').show();
+  			$(".container").hide();
+  			$("button").hide();
+  			$(".icon-up").show();
+  			$(".icon-down").hide();
+  		}
+  	})
+  </script>
+</body>
+</html>

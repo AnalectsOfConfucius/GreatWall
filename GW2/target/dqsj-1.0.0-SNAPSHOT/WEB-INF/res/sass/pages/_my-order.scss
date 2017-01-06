@@ -1,0 +1,128 @@
+/* =======================my_order==================*/
+.all_pro_type{
+    border-bottom: 1px solid $link-color-ul;
+    ul{
+        padding:8px 0;
+        background: $link-white;
+        overflow: hidden;
+        li{
+            float: left;
+            width: 23%;
+            margin:0 1%;
+            line-height: $height - 14;
+            text-align: center;
+            a{
+                color: $link-black;
+                display: block;
+            }
+            
+            &.current a{
+                background: $link-primary;
+                border-radius: 15px;
+                color: $link-white;
+            }
+        }
+    }
+}
+.all_sit_type{
+    ul{
+        background: $link-white;
+        overflow: hidden;
+        li{
+           float: left;
+           width: 24.6%;
+           line-height: $height - 14;
+           text-align: center;
+           position: relative;
+           a{
+               color: $link-gray-e6;
+               display: block;
+               padding:4px 0;
+           }
+           &:nth-of-type(2):before,
+           &:nth-of-type(3):before,
+           &:nth-of-type(1):before{
+               position: absolute;
+               top: 12px;
+               right: 0;
+               width: 1px;
+               height: 16px;
+               background: $link-color-ul;
+               content:"";
+           }
+            &.current{
+                border-bottom: 3px solid $link-primary;
+                a{
+                    color: $link-gray-e3;
+                }
+            }
+        }
+    }
+}
+.pro-content{
+    ul{
+        padding-top: 15px;
+        padding-bottom: 8px;
+        background: $link-white;
+        li{
+            line-height: 30px;
+            color:$link-gray-e6;
+            padding-left:.5rem;  
+            padding-right:.5rem; 
+            font-family: helvetica;
+            &:first-of-type{
+                overflow: hidden;
+                line-height: 16px;
+                color: $link-gray-e3; 
+                padding-bottom: 15px;
+                .icon-ticket,.icon-shop,.icon-card,.icon-hotel{
+                    width: 16px;
+                    height: 16px;
+                    float: left;
+                }
+                span{
+                    position: relative;
+                    margin-left: 16px;
+                    float: left;
+                    &:first-of-type:before{
+                       position: absolute;
+                       top: 0;
+                       left: -10px;
+                       width: 1px;
+                       height: 16px;
+                       background: $link-color-ul;
+                       content:"";
+                    }
+                    &:last-of-type{
+                        color: $link-primary;
+                    }
+                }
+            }
+            &:last-of-type.action{
+                overflow: hidden;
+                border-top: 1px solid $link-color-ul;
+                padding: 0 ;
+                margin-top: .3rem;
+                button{
+                    color: $link-white;
+                    outline: none;
+                    border: none;
+                    margin-right: .5rem;
+                    margin-top: .3rem;
+                    padding: 0 15px;
+                }
+            }
+        }
+    }
+}
+.pro-content ul li span.price{
+    color: $link-wag-color;
+}
+.pro-content ul li:last-of-type.action button.refund{
+    color: $link-gray-e6;
+    border: 1px solid $link-gray-bor;
+    background: $link-bgc;
+}
+.pro-content ul li.hotel:first-of-type span:last-of-type{
+    color: $link-gray-e3;
+}

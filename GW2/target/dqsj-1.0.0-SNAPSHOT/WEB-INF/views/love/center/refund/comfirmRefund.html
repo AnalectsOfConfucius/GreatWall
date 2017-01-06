@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" chrome="1">
+<title>民生大千世界游乐园-申请退款</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<meta name="keywords" content="民生大千世界游乐园">
+<meta name="description" content="民生大千世界游乐园">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<link type="text/css" rel="stylesheet" href="/css/main.css">
+<link type="text/css" rel="stylesheet" href="/css/mui.min.css">
+<script>
+    (function() {
+        var b = document.documentElement, a = function() {
+            var a = b.getBoundingClientRect().width;
+            b.style.fontSize = 0.0625 * (640 <= a ? 640 : a) + "px"
+        }, c = null;
+        window.addEventListener("resize", function() {
+            clearTimeout(c);
+            c = setTimeout(a, 300)
+        });
+        a()
+    })();
+</script>
+</head>
+<body>
+
+	<!-- header S -->
+	<div class="header">
+		<div class="headbar">
+			<a href="javascript:history.go(-1)" class="return">
+				<i class="icon-return"></i>返回
+			</a>
+			<h3>申请退款</h3>
+		</div>
+	</div>
+	<!-- header E -->
+	<!--wrapper S-->
+	<div id="wrapper">
+		<!--container S-->
+		[#if detail ??]
+		<div class="container">
+			<ul class="order-detail-list">
+				<li>
+					<span>订单编号：</span>
+					<span>${(detail.orderNo)!''}</span>
+				</li>
+				[#assign unit='' /] [#if detail.orderTypeCode ??]
+				<li>[#if detail.orderTypeCode == '1']民生大千世界梦幻乐园门票[#assign unit='张' /] [#elseif detail.orderTypeCode == '2']民生大千世界梦幻乐园客房[#assign unit='套' /] [#elseif detail.orderTypeCode == '3']民生大千世界梦幻乐园年卡[#assign unit='张' /] [#elseif detail.orderTypeCode == '4']民生大千世界梦幻乐园特色商品[#assign unit='件' /] [#elseif
+					detail.orderTypeCode == '5']民生大千世界梦幻乐园美食[#assign unit='份' /] [#else]民生大千世界梦幻乐园商品[#assign unit='份' /]${unit!'件'} [/#if]</li>
+				[#else]
+				<li>民生大千世界梦幻乐园商品</li>
+				[/#if] [#if goodsDetails ??] [#list goodsDetails as good]
+				<li>
+					<span>${(good.goodsName)!''}：</span>
+					<span>${(good.goodsNum-good.refundGoodsNum)!'0'}${unit!'件'}</span>
+				</li>
+				[/#list] [/#if] [#if detail.orderTypeCode ??] [#if detail.orderTypeCode == '1']
+				<li>
+					<span>入园时间：</span>
+					<span>${(detail.useDate)!''}</span>
+				</li>
+				[/#if] [#if detail.orderTypeCode == '2']
+				<li>
+					<span>入住时间：</span>
+					<span>${(detail.checkInDate)!''}</span>
+				</li>
+				[/#if] [/#if]
+				<li>
+					<span>总&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计：</span>
+					<span>￥${(detail.orderPrice)!''}</span>
+				</li>
+			</ul>
+			<ul class="order-detail-num mt15 reproul">
+				<li>
+					<span>退款商品</span>
+					<span class="pull-right">选择退款数量</span>
+				</li>
+				[#if goodsDetails ??] [#list goodsDetails as good] [#if (good.goodsNum-good.refundGoodsNum)>0]
+				<li class="reProdect">
+					<input type="hidden" class="price" value="${(good.goodsPrice)!''}">
+					<input type="hidden" class="goodsId" value="${(good.goodsId)!''}">
+					<div class="pull-left">
+						<span>${(good.goodsName)!''}</span>
+						<span>￥${(good.goodsPrice)!''}</span>
+					</div>
+					<div class="pull-right">
+						<i class="add mui-icon mui-icon-plus" data-num="${(good.goodsNum-good.refundGoodsNum)!'1'}"></i>
+						<input type="text" value="1" class="text_box" disabled />
+						<i class="minus mui-icon mui-icon-minus"></i>
+					</div>
+				</li>
+				[/#if] [/#list] [/#if]
+				<li>
+					<span>退款金额总计</span>
+					<span class="pull-right money">￥0</span>
+				</li>
+			</ul>
+			<div class="declare mt25 mb88">说明：入园当日24点之前可以退票</div>
+		</div>
+		<!--container E-->
+		[/#if]
+	</div>
+	<!--wrapper E-->
+	<!-- 确认退款 S-->
+	<section class="reserve">
+		<button class=" btn-warning btn-radius btn-block" id="goRefund">确认退款</button>
+	</section>
+	<!-- 确认退款 E-->
+	<script src="/js/swiper.min.js"></script>
+	<script src="/js/jquery-2.1.4.min.js"></script>
+	<script src="/js/app.js"></script>
+	<script src="/js/mui.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.json.min.js"></script>
+	<script type="text/javascript">
+        $('#goRefund').click(function() {
+            var sum = $('.money').html();
+            var orderId = '${orderId!'
+            '}';
+            var goods = [];
+            $('.reproul').find('.reProdect').each(function() {
+                var $this = $(this);
+                var good = {
+                    "goodsId" : $this.find('.goodsId').val(),
+                    "goodsNum" : $this.find('.text_box').val(),
+                    "goodsPrice" : $this.find('.price').val()
+                };
+                goods.push(good);
+            });
+            $.ajax({
+                url : "/refund/doRefund",
+                data : {
+                    'sum' : sum,
+                    'orderId' : orderId,
+                    "goods" : $.toJSON(goods)
+                },
+                type : 'POST',
+                cache : false,
+                async : false,
+                dataType : 'json',
+                success : function(result) {
+                    if (!result || !result.isError) {
+                        mui.toast("网络错误，请稍后重试！");
+                        return;
+                    }
+                    if (result.isError == "1") {
+                        mui.toast(result.msg);
+                        return;
+                    }
+                    mui.toast(result.msg);
+                    $('#goRefund').attr("disabled", true);
+                    /*   setTimeout(function () { 
+                          location.href="/vote/details?voteId="+voteId;
+                      }, 2000); */
+                },
+                error : function() {
+                    mui.toast("网络错误，请稍后重试！");
+                }
+            });
+        })
+    </script>
+	<!--商品加减-->
+	<script type="text/javascript">
+        $('.add').css({
+            "color" : "#2dacfe"
+        });
+        $('.minus').css({
+            "color" : "#2dacfe"
+        });
+        $(function() {
+            $(".minus").click(function() {
+                var t = $(this).parent().find('input[class*=text_box]');
+                t.val(parseInt(t.val()) - 1);
+                if (parseInt(t.val()) <= 0) {
+                    $(this).attr("disabled", true);
+                    $(this).css({
+                        "color" : "#d5d5d5"
+                    });
+                    t.val(0);
+                }
+                $(this).parent().find(".add").attr("disabled", false);
+                $(this).parent().find(".add").css({
+                    "color" : "#2dacfe"
+                });
+                setTotal();
+                setMoney();
+            })
+            $(".add").click(function() {
+                if (!$(this).attr("disabled")) {
+                    var t = $(this).parent().find('input[class*=text_box]');
+                    var num = $(this).data('num');
+                    t.val(parseInt(t.val()) + 1);
+                    var val = $(this).parent().find('input[class*=text_box]').val();
+                    $(this).parent().find(".minus").attr("disabled", false);
+                    $(this).parent().find(".minus").css({
+                        "color" : "#2dacfe"
+                    });
+                    if (val >= num) {
+                        $(this).attr("disabled", true);
+                        $(this).css({
+                            "color" : "#d5d5d5"
+                        });
+                    }
+                    setTotal();
+                    setMoney();
+                }
+            })
+
+            function setTotal() {
+                var t = $(this).parent().find('input[class*=text_box]');
+
+            }
+            function disAdd() {
+                $('.reproul').find('.reProdect').each(function() {
+                    var $this = $(this);
+                    var num = $this.find('.add').data('num');
+                    if (num <= 1) {
+                        $this.find('.add').attr("disabled", true);
+                        $this.find('.add').css({
+                            "color" : "#d5d5d5"
+                        });
+                    }
+                });
+            }
+            function setMoney() {
+                var sum = 0;
+                $('.reproul').find('.reProdect').each(function() {
+                    var price = $(this).find('.price').val();
+                    var num = $(this).find('.text_box').val();
+                    sum += price * num;
+                })
+                $('.money').html(sum);
+            }
+            setMoney();
+            setTotal();
+            disAdd();
+        })
+    </script>
+</body>
+</html>

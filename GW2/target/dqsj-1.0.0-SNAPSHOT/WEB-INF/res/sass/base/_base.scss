@@ -1,0 +1,93 @@
+
+html,body {
+	width: 100%;
+	height: 100%;
+}
+html {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+	font-family: $font-family-base;
+	font-size: $font-size;
+	line-height: 1;
+	color: $link-gray-e3;
+	background-color: $link-color-ul;
+}
+
+a {
+	text-decoration: none;
+	&:focus {
+		outline: none;
+	}
+}
+
+img {
+	max-width: 100%;
+}
+ul,li {
+	
+	list-style: none;
+}
+.clearfix{
+	@include clearfix();
+}
+.clearfix:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+.clearfix{
+	zoom:1;
+}
+#wrapper {
+	width: 100%;
+    margin-top: 44px;
+    margin-bottom: 44px;
+	background: $link-color-ul;
+	overflow: hidden;
+}
+
+#wrapper.wrapper-conten{
+	margin-top: 88px;
+}
+#wrapper.wrapper-bottom{
+	position: absolute;
+	bottom: 55px;
+}
+
+
+#wrapper.Contbottom{
+    position: absolute;
+    bottom: 100px;
+}
+
+#scroller{
+	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 100%;
+	@include css3(transform, translateZ(0));
+	-webkit-touch-callout: none;
+    @include css3(user-select, none);
+	@include css3(text-size-adjust, none);
+}
+
+.container{
+	position: relative;
+	min-width: 320px;
+	max-width: 640px;
+	margin: 0 auto;
+}
+
+*:focus { outline: none; }
+
+//@media only screen and (min-width: 320px) {
+//#wrapper.wrapper-conten-me{
+//  position: absolute;
+//  top: 12rem;
+//  background-color: #F5F5F5;
+//}
+//}
+
+
