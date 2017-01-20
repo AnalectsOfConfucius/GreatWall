@@ -91,6 +91,26 @@ public class AdController extends BaseController {
 		return result;
 	}
 
+	@RequestMapping(value = "queryAd", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> queryAd(HttpServletRequest request, ModelMap model) {
+		Map<String, Object> result = new HashMap<String, Object>(); // 返回结果集
+		try {
+			/*if (menuService.isHasOperator(request, "search")) {
+				result = feAdService.selectByCriterias(request); // 查询结果
+			} else {
+				result.put("isError", "1");
+				result.put("msg", "你未拥有当前菜单的查询权限！");
+			}*/
+			result = feAdService.selectByCriterias(request); // 查询结果
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			result.put("isError", "1");
+			result.put("msg", "操作失败，请重试！");
+		}
+		return result;
+	}
+
 	/**
 	 * 保存或更新
 	 * 
