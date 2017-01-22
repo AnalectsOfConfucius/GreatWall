@@ -229,8 +229,6 @@ public class FEAdServiceImpl implements FEAdService {
 			result.put("msg", "【封面图片】不能为空！");
 		} else if (!NumberUtil.isInt(adOrder, false)) {
 			result.put("msg", "请输入正确的【排序】!");
-		} else if (!StringUtil.isChsEnNum(remark, false)) {
-			result.put("msg", "请不要输入带有特殊字符的【备注】！");
 		} else if (!UUIdUtil.matchUUID(typeId) || !UUIdUtil.matchUUID(linkTypeId) || !UUIdUtil.matchUUID(linkObjId)) {
 			result.put("msg", "操作失败，请重试！");
 		} else {
